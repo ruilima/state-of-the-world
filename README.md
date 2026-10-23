@@ -35,6 +35,8 @@ it. When a source fails, its last good file is kept and marked `status: "stale"`
 page shows which sources are live, delayed or failed.
 
 Schedule: fast sources every 30 minutes (`7,37 * * * *`), slow sources daily at 05:23 UTC.
+The Cloudflare Worker in `cron-trigger/` starts each run; the workflow has no `schedule:`
+trigger of its own (see *Cron trigger* below).
 
 | Source | File | Refresh | Key |
 |---|---|---|---|
@@ -76,11 +78,12 @@ Schedule: fast sources every 30 minutes (`7,37 * * * *`), slow sources daily at 
    *Read and write permissions*.
 6. **First run**: Actions → *Update data and deploy* → Run workflow (group `all`). With
    no `data` branch yet, it fetches every source and backfills 7 days of GDELT event
-   files (a few minutes). After that the schedule takes over.
+   files (a few minutes). After that the Worker in `cron-trigger/` starts the runs (next
+   section).
 
 ## Cron trigger (Cloudflare Worker)
 
-GitHub's own scheduler never fired for this repository, so a small Worker in
+GitHub's own scheduler did not fire reliably for this repository, so a small Worker in
 `cron-trigger/` starts the workflow instead. On each Cloudflare Cron Trigger it calls
 `POST /repos/ruilima/state-of-the-world/actions/workflows/update.yml/dispatches` with
 `ref: main` and the right `group`, logs the HTTP status, and does nothing else:
@@ -91,9 +94,9 @@ GitHub's own scheduler never fired for this repository, so a small Worker in
 | `23 5 * * *` | `slow` | World Bank, UCDP, AI summary, index |
 
 The workflow's `concurrency` block (`group: data-update`, `cancel-in-progress: false`)
-keeps two runs from ever overlapping. The `schedule:` lines stay in the workflow as a
-fallback; if GitHub's scheduler ever starts firing, each slot will run twice, one after
-the other (see `RELATORIO.md`).
+keeps two runs from ever overlapping. The Worker is the only scheduler: the workflow has no
+`schedule:` trigger, because GitHub's scheduler fired once on 23 Oct 2026 and doubled that
+slot. A test fails if a `schedule:` trigger comes back.
 
 ### Set it up (once, from this Mac)
 

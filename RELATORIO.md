@@ -462,13 +462,9 @@ desativar e voltar a ativar o workflow. Não houve nenhuma execução com o even
 - **Concurrency:** o workflow já tinha o bloco `concurrency` (`group: data-update`,
   `cancel-in-progress: false`), por isso duas execuções nunca correm em simultâneo. Um
   teste confirma que o bloco continua lá.
-- **A linha `schedule` ficou no workflow, mas causa duplicados se o GitHub voltar a
-  disparar.** Hoje não causa, porque o agendador do GitHub não dispara. Se começar a
-  disparar, cada horário (:07, :37, 05:23) corre duas vezes, uma depois da outra, por
-  causa da concurrency.
-  - Não há corrupção de dados, mas o trabalho é feito duas vezes, e às 05:23 o resumo
-    por IA é gerado duas vezes (cerca de $0.01 a mais por dia).
-  - Se isso acontecer, recomendo tirar o `schedule` do workflow e deixar só o Worker.
+- **O workflow já não tem `schedule`.** Ao início, as linhas `schedule` ficaram como
+  reserva. Foram retiradas a 23 out, depois de o GitHub ter disparado uma vez (ver
+  abaixo); agora o Worker é a única fonte de disparos e cada horário corre uma só vez.
 
 **Testes:**
 - **Testes unitários** (`cron-trigger/test/worker.test.mjs`), que correm com `npm test`:
@@ -478,7 +474,8 @@ desativar e voltar a ativar o workflow. Não houve nenhuma execução com o even
   - o modo de ensaio não chama o GitHub;
   - falta de segredo ou cron desconhecido dão erro;
   - os crons do `wrangler.toml` coincidem com o mapeamento e com as opções de `group`
-    do workflow.
+    do workflow;
+  - o workflow não tem `schedule` (se voltar, o teste falha).
 - **Ensaio no runtime da Cloudflare** (`wrangler dev` local, `DRY_RUN=true`): o evento
   dos dois crons produz exatamente o pedido esperado, sem tocar no GitHub. Feito aqui,
   com resultado certo.
@@ -497,3 +494,14 @@ desativar e voltar a ativar o workflow. Não houve nenhuma execução com o even
   `fast`) terminou com sucesso: correram só as fontes rápidas, o deploy concluiu e o ramo
   `data` recebeu o commit `6539fae` às 20:09. O site mostra "updated 23 Oct, 20:09 UTC".
 - **Seguintes:** a cada 30 minutos (aos :07 e :37), mais o grupo `slow` às 05:23 UTC.
+
+**Disparo duplicado e remoção do `schedule` (23 out, 22:20 UTC):**
+- O Worker disparou todos os horários entre as 20:07 e as 22:07 UTC, cada um com resposta
+  `204` do GitHub. Todas as execuções terminaram com sucesso.
+- Às 21:37:49 UTC o agendador do GitHub disparou pela primeira vez (execução 40028160588,
+  evento `schedule`), 11 segundos depois do Worker (execução 40028139677). Graças à
+  concurrency, correram uma a seguir à outra, ambas com sucesso, mas o trabalho foi feito
+  duas vezes. Às 22:07 o GitHub não voltou a disparar.
+- Por isso tirei as linhas `schedule` de `.github/workflows/update.yml`. O Worker passa a
+  ser a única fonte de disparos. O teste de consistência do Worker falha se um
+  `schedule` voltar ao workflow.

@@ -2,15 +2,14 @@ name: Update data and deploy
 
 # Fast sources (GDELT, USGS, EONET, HN/arXiv, curated files, index) every
 # 30 minutes; slow sources (World Bank, UCDP, AI summary) once a day.
+# The schedule lives in the Cloudflare Worker in cron-trigger/, which starts
+# this workflow through workflow_dispatch; GitHub's own scheduler is not used.
 #
 # Generated JSON never lands on main. The previous run's files are restored
 # from the `data` branch, refreshed, and pushed back as a single replacement
 # commit, so main keeps only code and the repository does not grow with
 # every run. The site is then uploaded to Cloudflare Pages.
 on:
-  schedule:
-    - cron: '7,37 * * * *'
-    - cron: '23 5 * * *'
   workflow_dispatch:
     inputs:
       group:

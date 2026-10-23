@@ -73,5 +73,7 @@ test('wrangler.toml crons and workflow group options match the Worker schedule',
   const options = workflow.match(/options:\s*\[(.*?)\]/)[1].split(',').map((s) => s.trim());
   for (const group of Object.values(SCHEDULE)) assert.ok(options.includes(group), `workflow has no group "${group}"`);
   assert.match(workflow, /concurrency:\s*\n\s*group: data-update\s*\n\s*cancel-in-progress: false/);
+  // The Worker is the only scheduler; a `schedule:` trigger would run every slot twice.
+  assert.ok(!/^\s*schedule:/m.test(workflow), 'workflow must not have a schedule trigger');
   assert.ok(!/github_pat_|ghp_/.test(toml), 'no token in wrangler.toml');
 });
