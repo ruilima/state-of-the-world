@@ -33,7 +33,7 @@
       "calm": 5000,
       "alarm": 25000,
       "maxAgeHours": 1080,
-      "weight": 25
+      "weight": 30
     },
     {
       "id": "quakes",
@@ -65,14 +65,14 @@
     {
       "id": "aiLayoffs",
       "name": "Pace of AI-attributed job cuts",
-      "explain": "Last month's job cuts where companies cited AI (Challenger), divided by the average of the previous 12 months. 1 means a normal pace.",
+      "explain": "Last month's US job cuts where companies cited AI (Challenger), divided by the average of the months before it (up to 12). 1 means a normal pace. Weighted lower than the other signals because the attribution is the companies' own.",
       "source": "curated",
       "special": "layoffRatio",
       "unit": "ratio to average",
       "calm": 0.8,
       "alarm": 2.0,
       "maxAgeHours": 840,
-      "weight": 15
+      "weight": 10
     },
     {
       "id": "doomsday",

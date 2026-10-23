@@ -167,8 +167,10 @@ function headlineList(items, emptyText) {
   );
 }
 
-function unverified(flag) {
-  return flag ? h('span', { class: 'unverified', title: 'Not yet confirmed in the primary source' }, 'to be confirmed') : null;
+function unverified(flag, kind = 'pending') {
+  if (!flag) return null;
+  if (kind === 'secondary') return h('span', { class: 'unverified', title: 'Backed only by secondary reporting, not by the primary source' }, 'secondary source');
+  return h('span', { class: 'unverified', title: 'Not yet confirmed in the primary source' }, 'to be confirmed');
 }
 
 // What to say when a GDELT DOC query has nothing fresh to show.
@@ -318,13 +320,16 @@ function renderWork(files) {
   const out = [];
   if (c) {
     out.push(h('p', { class: 'lede' }, 'How many jobs are being cut, and how much of that is really AI? The numbers depend on who counts. Each one is shown with its source.'));
+    if (c.trend) {
+      out.push(h('p', { class: 'notice' }, c.trend.text, ' ', h('span', { class: 'meta' }, 'Source: ', link(c.trend.source.url, c.trend.source.name), '.'), ' ', unverified(!c.trend.verified)));
+    }
     out.push(h('h3', {}, 'Reference figures'));
     out.push(
       h(
         'ul',
         { class: 'list' },
         c.figures.map((f) => {
-          const value = f.high && f.high !== f.low ? `${compact(f.low)} to ${compact(f.high)}` : f.high == null ? `over ${compact(f.low)}` : `about ${compact(f.low)}`;
+          const value = f.high && f.high !== f.low ? `${num(f.low)} to ${num(f.high)}` : f.high == null ? `over ${num(f.low)}` : num(f.low);
           return h(
             'li',
             {},
@@ -333,7 +338,7 @@ function renderWork(files) {
             unverified(!f.verified),
             h('br'),
             `${f.label}, ${f.period}${f.detail ? ` (${f.detail})` : ''}.`,
-            h('span', { class: 'meta' }, 'Source: ', link(f.source.url, f.source.name), f.via ? `, via ${f.via.name}` : '', f.publishedAt ? `, ${fmtDate(f.publishedAt)}` : ''),
+            h('span', { class: 'meta' }, 'Source: ', link(f.source.url, f.source.name), f.via ? `, via ${f.via.name}` : '', f.publishedAt ? `, published ${fmtDate(f.publishedAt)}` : ''),
           );
         }),
       ),
@@ -346,11 +351,17 @@ function renderWork(files) {
         h(
           'figure',
           { class: 'figure' },
-          barChart(rows.map((r) => ({ label: tidy(monthShort.format(new Date(`${r.month}-01T00:00:00Z`))), value: r.aiCited, hover: `${fmtMonth(r.month)}: ${num(r.aiCited)} cuts attributed to AI, of ${num(r.total)}` })), {
-            label: 'US job cuts attributed to AI, per month (Challenger, Gray & Christmas).',
+          barChart(rows.map((r) => ({ label: tidy(monthShort.format(new Date(`${r.month}-01T00:00:00Z`))), value: r.aiCited, hover: `${fmtMonth(r.month)}: ${num(r.aiCited)} cuts attributed to AI, of ${num(r.total)} announced` })), {
+            label: `US job cuts where companies cited AI, per month in ${rows[0].month.slice(0, 4)}. Highest: ${(() => { const m = rows.reduce((a, b) => (b.aiCited > a.aiCited ? b : a)); return `${fmtMonth(m.month)}, ${num(m.aiCited)}`; })()}. Latest: ${fmtMonth(rows.at(-1).month)}, ${num(rows.at(-1).aiCited)}.`,
             format: compact,
           }),
-          tableDetails('Job cuts per month', ['Month', 'Attributed to AI', 'Total', 'Confirmed'], rows.map((r) => [fmtMonth(r.month), num(r.aiCited), num(r.total), r.verified ? 'yes' : 'to be confirmed']), [1, 2]),
+          h('figcaption', {}, `Cuts where the company named AI as the reason, from each monthly Challenger report. The table also shows all announced cuts per month.`),
+          tableDetails(
+            'Job cuts per month',
+            ['Month', 'Attributed to AI', 'All announced', 'AI share', 'Report'],
+            rows.map((r) => [fmtMonth(r.month), num(r.aiCited), num(r.total), pct((r.aiCited / r.total) * 100, 0), r.verified ? `published ${fmtDate(r.publishedAt)}` : 'to be confirmed']),
+            [1, 2, 3],
+          ),
         ),
       );
     } else {
@@ -504,7 +515,7 @@ function renderAhead(files) {
     out.push(h('p', { class: 'lede' }, h('span', { class: 'big-number' }, `${dd.current.seconds} seconds`), ' to midnight on the Doomsday Clock, the closest it has ever been.'));
     out.push(h('p', { class: 'small' }, `Set on ${fmtDate(dd.current.setAt)} by the `, link(dd.source.url, dd.source.name), '. ', unverified(!dd.current.verified)));
     out.push(h('h3', {}, 'Recent years'));
-    out.push(h('ol', { class: 'seq' }, dd.history.map((r) => h('li', {}, `${r.year}: ${r.seconds} seconds `, unverified(!r.verified)))));
+    out.push(h('ol', { class: 'seq' }, dd.history.map((r) => h('li', {}, `${r.year}: ${r.seconds} seconds `, unverified(!r.verified, r.evidence === 'secondary' ? 'secondary' : 'pending')))));
 
     out.push(h('h3', {}, 'Horizons'));
     out.push(h('p', { class: 'small faded' }, c.horizons.rule ?? 'Only claims with a named author and a primary source.'));

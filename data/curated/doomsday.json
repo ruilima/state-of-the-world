@@ -1,12 +1,37 @@
 {
   "updatedAt": "2026-10-23",
-  "source": { "name": "Bulletin of the Atomic Scientists", "url": "https://thebulletin.org/doomsday-clock/" },
-  "current": { "seconds": 85, "setAt": "2026-01-27", "verified": false },
+  "source": {
+    "name": "Bulletin of the Atomic Scientists",
+    "url": "https://thebulletin.org/doomsday-clock/"
+  },
+  "current": {
+    "seconds": 85,
+    "setAt": "2026-01-27",
+    "verified": true
+  },
   "history": [
-    { "year": 2023, "seconds": 90, "verified": false },
-    { "year": 2024, "seconds": 90, "verified": false },
-    { "year": 2025, "seconds": 89, "verified": false },
-    { "year": 2026, "seconds": 85, "verified": false }
+    {
+      "year": 2023,
+      "seconds": 90,
+      "verified": true
+    },
+    {
+      "year": 2024,
+      "seconds": 90,
+      "verified": false,
+      "evidence": "secondary",
+      "note": "Not stated on the Bulletin's Doomsday Clock page; supported by secondary reporting."
+    },
+    {
+      "year": 2025,
+      "seconds": 89,
+      "verified": true
+    },
+    {
+      "year": 2026,
+      "seconds": 85,
+      "verified": true
+    }
   ],
   "note": "Set once a year, usually in January. There is no API: update this file by hand."
 }

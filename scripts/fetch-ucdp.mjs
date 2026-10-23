@@ -63,7 +63,7 @@ async function eventsFromDownloads(link) {
   return rows.map(toEvent);
 }
 
-async function eventsFromApi(token, version, year) {
+export async function eventsFromApi(token, version, year) {
   const events = [];
   let url = `${URLS.ucdpApi}/gedevents/${version}?pagesize=1000&StartDate=${year}-01-01`;
   for (let page = 0; url && page < 50; page++) {
@@ -119,22 +119,31 @@ export const run = () =>
       const annual = await annualSeries(links.brd);
       const year = new Date().getUTCFullYear();
 
+      // With a token, try the API first. Any API failure (bad token, new
+      // version naming, outage) falls back to the official downloads, and
+      // the page says which one was used.
       let mode = 'downloads';
       let events;
+      let apiError = null;
       if (token && links.monthly) {
-        mode = 'api';
-        events = await eventsFromApi(token, links.monthly.version, year);
-      } else {
-        events = await eventsFromDownloads(links.cumulative);
+        try {
+          events = await eventsFromApi(token, links.monthly.version, year);
+          mode = 'api';
+        } catch (err) {
+          apiError = String(err.message).slice(0, 160);
+          console.error(`ucdp: API failed, using downloads instead: ${apiError}`);
+        }
       }
+      if (!events) events = await eventsFromDownloads(links.cumulative);
+      const annualText = `Annual series: Battle-Related Deaths ${links.brd.version}.`;
+      const modeNote =
+        mode === 'api'
+          ? `Candidate events from the UCDP API (version ${links.monthly.version}). ${annualText}`
+          : apiError
+            ? `The UCDP API request failed, so candidate events were read from the official monthly download. ${annualText}`
+            : `Official downloads: candidate events read from UCDP's monthly file, because no API token is set. ${annualText}`;
       return {
-        meta: {
-          mode,
-          modeNote:
-            mode === 'api'
-              ? `Candidate events from the UCDP API (version ${links.monthly.version}). Annual series: Battle-Related Deaths ${links.brd.version}.`
-              : `No UCDP_TOKEN: candidate events read from the official monthly download. Annual series: Battle-Related Deaths ${links.brd.version}.`,
-        },
+        meta: { mode, modeNote, apiError },
         data: {
           annual,
           annualVersion: links.brd.version,

@@ -8,9 +8,10 @@ name: Update data and deploy
 # commit, so main keeps only code and the repository does not grow with
 # every run. The site is then uploaded to Cloudflare Pages.
 on:
-  schedule:
-    - cron: '7,37 * * * *'
-    - cron: '23 5 * * *'
+  # Schedule disabled until the first manual run has been checked.
+  # schedule:
+  #   - cron: '7,37 * * * *'
+  #   - cron: '23 5 * * *'
   workflow_dispatch:
     inputs:
       group:
@@ -85,6 +86,15 @@ jobs:
           git add -A
           git commit -q -m "Data snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
           git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" data
+
+      - name: Ensure the Cloudflare Pages project exists
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        run: |
+          if npx --yes wrangler@4 pages project list | grep -q "state-of-the-world"; then
+            echo "Pages project exists."
+          else
+            npx --yes wrangler@4 pages project create state-of-the-world --production-branch=main
+          fi
 
       - name: Deploy to Cloudflare Pages
         if: env.CLOUDFLARE_API_TOKEN != ''

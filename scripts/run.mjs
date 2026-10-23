@@ -21,9 +21,10 @@ import { readdir } from 'node:fs/promises';
 
 const GROUPS = {
   fast: [usgs, eonet, gdeltEvents, gdeltDoc, pulse, curated],
-  slow: [worldbank, ucdp, digest, curated],
+  slow: [worldbank, ucdp, curated, digest],
 };
-GROUPS.all = [...new Set([...GROUPS.slow, ...GROUPS.fast])];
+// Fast first: the AI summary (slow group) reads the headlines the fast group fetches.
+GROUPS.all = [...new Set([...GROUPS.fast, ...GROUPS.slow])];
 
 const group = process.argv[2] ?? 'fast';
 if (!GROUPS[group]) {

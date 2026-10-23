@@ -4,54 +4,201 @@
   "howToUpdate": "Add one row to `monthly` for each Challenger, Gray & Christmas monthly report (usually out in the first week of the following month) and refresh `figures` from Layoffs.fyi. Set `updatedAt` to the review date. Every value needs a source, URL and publication date; set `verified` to true only after reading it in the primary source.",
   "figures": [
     {
-      "id": "tech-layoffs-2026-ytd",
-      "label": "Tech-sector layoffs in 2026",
-      "period": "January to July 2026",
-      "low": 119000,
-      "high": 119000,
+      "id": "ai-cited-us-2026-ytd",
+      "label": "US job cuts where companies cited AI",
+      "period": "January to September 2026",
+      "low": 120136,
+      "high": 120136,
       "unit": "people",
-      "detail": "at 219 companies",
+      "detail": "about 21% of all announced cuts; in all of 2025, companies cited AI for 54,836",
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+      },
+      "via": null,
+      "publishedAt": "2026-10-01",
+      "verified": true
+    },
+    {
+      "id": "total-us-2026-ytd",
+      "label": "All announced US job cuts",
+      "period": "January to September 2026",
+      "low": 573195,
+      "high": 573195,
+      "unit": "people",
+      "detail": "down 39% from 946,426 in the same period of 2025",
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+      },
+      "via": null,
+      "publishedAt": "2026-10-01",
+      "verified": true
+    },
+    {
+      "id": "tech-us-2026-ytd",
+      "label": "US tech-sector job cuts",
+      "period": "January to September 2026",
+      "low": 165925,
+      "high": 165925,
+      "unit": "people",
+      "detail": "up 54% from 107,878 in the same period of 2025",
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+      },
+      "via": null,
+      "publishedAt": "2026-10-01",
+      "verified": true
+    },
+    {
+      "id": "layoffsfyi-2026",
+      "label": "Tech layoffs tracked by Layoffs.fyi",
+      "period": "2026, up to 6 August",
+      "low": 125759,
+      "high": 125759,
+      "unit": "people",
+      "detail": "at 264 companies; for comparison, 122,606 at 278 companies in all of 2025",
       "source": {
         "name": "Layoffs.fyi",
         "url": "https://layoffs.fyi/"
       },
       "via": {
-        "name": "LatestLY (secondary report)",
-        "url": null
-      },
-      "publishedAt": null,
-      "verified": false
-    },
-    {
-      "id": "ai-cited-us-2026-h1",
-      "label": "US job cuts where companies cited AI",
-      "period": "January to June 2026",
-      "low": 100000,
-      "high": null,
-      "unit": "people",
-      "detail": "more than 100,000, according to the compilation",
-      "source": {
-        "name": "Challenger, Gray & Christmas — Job Cuts Report",
-        "url": "https://www.challengergray.com/blog/category/job-cuts/"
-      },
-      "via": {
-        "name": "Secondary compilation of Challenger data",
+        "name": "IBTimes (secondary report)",
         "url": null
       },
       "publishedAt": null,
       "verified": false
     }
   ],
-  "monthly": [],
+  "monthly": [
+    {
+      "month": "2026-01",
+      "total": 108435,
+      "aiCited": 7624,
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report (2026-01)",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/02/CR126007123.pdf"
+      },
+      "publishedAt": "2026-02-05",
+      "verified": true
+    },
+    {
+      "month": "2026-02",
+      "total": 48307,
+      "aiCited": 4680,
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report (2026-02)",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/04/Challenger-Report-February-2026.pdf"
+      },
+      "publishedAt": "2026-03-05",
+      "verified": true
+    },
+    {
+      "month": "2026-03",
+      "total": 60620,
+      "aiCited": 15341,
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report (2026-03)",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/04/Challenger-Report-March-2026-1.pdf"
+      },
+      "publishedAt": "2026-04-02",
+      "verified": true
+    },
+    {
+      "month": "2026-04",
+      "total": 83387,
+      "aiCited": 21490,
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report (2026-04)",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/05/Challenger-Report-Apr2026001249.pdf"
+      },
+      "publishedAt": "2026-05-07",
+      "verified": true
+    },
+    {
+      "month": "2026-05",
+      "total": 97006,
+      "aiCited": 38579,
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report (2026-05)",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/06/Challenger-Report-May-2026.pdf"
+      },
+      "publishedAt": "2026-06-04",
+      "verified": true
+    },
+    {
+      "month": "2026-06",
+      "total": 45849,
+      "aiCited": 14029,
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report (2026-06)",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/07/Challenger-Report-June2600986996.pdf"
+      },
+      "publishedAt": "2026-07-01",
+      "verified": true
+    },
+    {
+      "month": "2026-07",
+      "total": 33429,
+      "aiCited": 10970,
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report (2026-07)",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/08/Challenger-Report-July-2026.pdf"
+      },
+      "publishedAt": "2026-08-06",
+      "verified": true
+    },
+    {
+      "month": "2026-08",
+      "total": 52881,
+      "aiCited": 3462,
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report (2026-08)",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/09/Challenger-Report-August-2026.pdf"
+      },
+      "publishedAt": "2026-09-03",
+      "verified": true
+    },
+    {
+      "month": "2026-09",
+      "total": 43281,
+      "aiCited": 3961,
+      "source": {
+        "name": "Challenger, Gray & Christmas — Job Cut Report (2026-09)",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+      },
+      "publishedAt": "2026-10-01",
+      "verified": true
+    }
+  ],
   "attributionNote": {
-    "claim": "AI shows up as a reason because companies say so when they announce cuts. The trackers (Challenger, Layoffs.fyi) record the reason the company gives; they do not check it.",
-    "counter": "Some analysts read part of these cuts as restructuring for other reasons (over-hiring in 2021–22, costs, high interest rates) and argue that citing AI plays well with investors.",
+    "claim": "AI shows up as a reason because companies say so when they announce cuts. Challenger records the reason the company gives; it does not check it.",
+    "counter": "Some analysts read part of these cuts as restructuring for other reasons. Harvard Business School researchers, interviewed for an article republished by HBS Working Knowledge, argue that AI has not yet caused widespread layoffs because most firms are still slow to put it to work. A separate Harvard Business Review analysis, based on a survey of 1,006 executives, argues that companies are cutting jobs for what they expect AI to do, not for what it has shown it can do. Challenger itself said Amazon's 16,000 January cuts appeared to be due more to over-hiring and removing management layers than to the new technology.",
     "sources": [
       {
-        "name": "Harvard Business School Working Knowledge — \"AI Hasn't Spurred Widespread Layoffs Yet. Why Not?\" (October 2026)",
+        "name": "Sy Boles, \"AI Hasn't Spurred Widespread Layoffs Yet. Why Not?\", Harvard Business School Working Knowledge (first published in the Harvard Gazette), 20 October 2026",
         "url": "https://www.library.hbs.edu/working-knowledge/ai-hasnt-spurred-widespread-layoffs-yet-why-not",
-        "verified": false
+        "verified": true
+      },
+      {
+        "name": "Thomas H. Davenport and Laks Srinivasan, \"Companies Are Laying Off Workers Because of AI's Potential—Not Its Performance\", Harvard Business Review, 29 January 2026",
+        "url": "https://hbr.org/2026/01/companies-are-laying-off-workers-because-of-ais-potential-not-its-performance",
+        "verified": true
+      },
+      {
+        "name": "Challenger, Gray & Christmas — Job Cut Report, January 2026",
+        "url": "https://www.challengergray.com/wp-content/uploads/2026/02/CR126007123.pdf",
+        "verified": true
       }
     ]
+  },
+  "trend": {
+    "text": "Two things are true at once. All announced job cuts are down on 2025: 573,195 through September against 946,426 a year earlier (down 15% if government cuts are left out). Cuts that companies attribute to AI are up: 120,136 through September, more than twice the 54,836 for all of 2025.",
+    "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+    },
+    "verified": true
   }
 }
