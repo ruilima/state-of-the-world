@@ -1,4 +1,5 @@
 import { mountEcg } from './ecg.js';
+import { isLate } from './freshness.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -94,8 +95,6 @@ async function load() {
   return Object.fromEntries(entries);
 }
 
-// How often each source should refresh (minutes). Older than 3× → delayed.
-const EXPECT_MIN = { usgs: 30, eonet: 30, 'gdelt-events': 30, 'gdelt-doc': 30, pulse: 30, curated: 30, index: 30, ucdp: 1440, worldbank: 1440, digest: 1440 };
 const SOURCE_NAME = {
   usgs: 'USGS (earthquakes)', eonet: 'NASA EONET', 'gdelt-events': 'GDELT (event files)', 'gdelt-doc': 'GDELT (headlines)', pulse: 'Hacker News and arXiv',
   worldbank: 'World Bank', ucdp: 'UCDP', curated: 'Curated files', digest: 'AI summary',
@@ -105,9 +104,7 @@ function health(id, file) {
   if (!file) return { state: 'fail', text: 'failed: data file missing' };
   if (file.status === 'disabled') return { state: 'stale', text: 'off' };
   if (file.status === 'error') return { state: 'fail', text: `failed (${file.error ?? 'no details'})` };
-  const ageMin = (Date.now() - Date.parse(file.lastSuccessAt)) / 60000;
-  const late = file.status === 'stale' || ageMin > 3 * (EXPECT_MIN[id] ?? 60);
-  if (late) return { state: 'stale', text: `delayed: last good data ${ago(file.lastSuccessAt)}${file.error ? ` (${file.error.slice(0, 90)})` : ''}` };
+  if (isLate(id, file)) return { state: 'stale', text: `delayed: last good data ${ago(file.lastSuccessAt)}${file.error ? ` (${file.error.slice(0, 90)})` : ''}` };
   return { state: 'stable', text: `live${file.status === 'partial' ? ', some requests refused' : ''}: ${ago(file.lastSuccessAt)}` };
 }
 
@@ -121,7 +118,11 @@ function renderMonitor(index) {
   stateEl.replaceChildren(shape(state), d?.value == null ? 'NO SIGNAL' : STATE_LABEL[state]);
   document.getElementById('monitor-index').textContent = d?.value == null ? '—' : `${num(d.value, 0)} of 100`;
   document.getElementById('monitor-bpm').textContent = d?.bpm == null ? '—' : `${d.bpm} per minute`;
-  mountEcg(document.getElementById('trace'), { state, bpm: d?.bpm ?? 60 });
+  // Same rule as the source health lines: older than 3× the 30-minute refresh.
+  const outdated = d?.value != null && isLate('index', index);
+  // After the figures, so it lands under the state word and the figures keep their row.
+  if (outdated) document.querySelector('.monitor__figures').after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
+  mountEcg(document.getElementById('trace'), { state, bpm: d?.bpm ?? 60, still: outdated });
 }
 
 const ICONS = {

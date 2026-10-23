@@ -1,6 +1,7 @@
 // The planet's ECG: a sweeping trace drawn into an SVG, like a bedside
 // monitor. Rhythm and shape follow the Condition Index state.
-// With prefers-reduced-motion the full trace is drawn once and left still.
+// With prefers-reduced-motion, or `still` (outdated index), the full trace is
+// drawn once and left still.
 
 const W = 1000;
 const H = 200;
@@ -26,7 +27,7 @@ function beat(phase, state, amp) {
   return v;
 }
 
-export function mountEcg(svg, { state = 'stable', bpm = 72 } = {}) {
+export function mountEcg(svg, { state = 'stable', bpm = 72, still = false } = {}) {
   svg.replaceChildren();
   const grid = document.createElementNS(NS, 'g');
   grid.setAttribute('class', 'grid');
@@ -70,8 +71,7 @@ export function mountEcg(svg, { state = 'stable', bpm = 72 } = {}) {
     pathB.setAttribute('d', toPath(ys, Math.min(W, split + GAP), W));
   };
 
-  const still = matchMedia('(prefers-reduced-motion: reduce)');
-  if (still.matches) {
+  if (still || matchMedia('(prefers-reduced-motion: reduce)').matches) {
     for (let x = 0; x <= W; x++) ys[x] = step();
     head = W;
     pathA.setAttribute('d', toPath(ys, 0, W));

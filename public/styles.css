@@ -274,6 +274,8 @@ a:hover { text-decoration-thickness: 2px; }
 .stamp--caution { color: var(--caution-ink); }
 .stamp--danger { color: var(--danger-ink); }
 .stamp--stale { color: var(--ink); border-style: dashed; }
+/* On the monitor the stamp sits in the readout, in the tube colour. */
+.monitor__readout .stamp { position: static; justify-self: start; color: var(--tube); }
 
 .paper h3 {
   margin: 32px 0 8px;
