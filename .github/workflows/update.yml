@@ -8,10 +8,9 @@ name: Update data and deploy
 # commit, so main keeps only code and the repository does not grow with
 # every run. The site is then uploaded to Cloudflare Pages.
 on:
-  # Schedule disabled until the first manual run has been checked.
-  # schedule:
-  #   - cron: '7,37 * * * *'
-  #   - cron: '23 5 * * *'
+  schedule:
+    - cron: '7,37 * * * *'
+    - cron: '23 5 * * *'
   workflow_dispatch:
     inputs:
       group:

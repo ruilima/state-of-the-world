@@ -9,6 +9,14 @@ import { runSource, readJson, writeJson, OUT_DIR } from './lib/io.mjs';
 
 const MODEL = 'claude-opus-5-5';
 
+const hostOf = (url) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return 'news.ycombinator.com';
+  }
+};
+
 async function collectHeadlines() {
   const doc = await readJson(join(OUT_DIR, 'gdelt-doc.json'));
   const pulse = await readJson(join(OUT_DIR, 'pulse.json'));
@@ -16,7 +24,7 @@ async function collectHeadlines() {
   const items = [
     ...(doc?.data?.queries?.conflictHeadlines?.items ?? []).map((a) => ({ topic: 'conflict', title: a.title, source: a.domain, url: a.url })),
     ...(doc?.data?.queries?.aiLayoffHeadlines?.items ?? []).map((a) => ({ topic: 'work and AI', title: a.title, source: a.domain, url: a.url })),
-    ...(pulse?.data?.hn ?? []).slice(0, 5).map((a) => ({ topic: 'work and AI', title: a.title, source: 'Hacker News', url: a.url })),
+    ...(pulse?.data?.hn ?? []).slice(0, 5).map((a) => ({ topic: 'work and AI', title: a.title, source: `${hostOf(a.url)} (via Hacker News)`, url: a.url })),
     ...(usgs?.data?.significant ?? []).slice(0, 5).map((q) => ({ topic: 'planet', title: `M${q.mag} earthquake — ${q.place}`, source: 'USGS', url: q.url })),
   ];
   return items.map((it, i) => ({ id: i + 1, ...it }));
@@ -78,7 +86,10 @@ export const run = async () => {
         text: p.text,
         sources: [...new Set(p.sources)].filter((id) => byId.has(id)).map((id) => ({ title: byId.get(id).title, source: byId.get(id).source, url: byId.get(id).url })),
       }));
-      return { meta: { model: response.model }, data: { label: 'AI-generated', paragraphs } };
+      // Token counts are kept so the monthly cost can be checked from the data branch.
+      const usage = { inputTokens: response.usage.input_tokens, outputTokens: response.usage.output_tokens };
+      console.log(`digest usage: ${usage.inputTokens} input, ${usage.outputTokens} output tokens`);
+      return { meta: { model: response.model, usage }, data: { label: 'AI-generated', paragraphs } };
     },
   });
 };
