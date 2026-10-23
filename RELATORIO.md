@@ -489,3 +489,11 @@ desativar e voltar a ativar o workflow. Não houve nenhuma execução com o even
   registar erros 401 e os dados deixam de se atualizar.
 - Para confirmar sem esperar, o README explica como disparar uma vez a sério com
   `wrangler dev` e um `.dev.vars` local.
+
+**Confirmação (23 out, 20:10 UTC):** o Worker foi instalado por volta das 19:36 UTC.
+- **19:37:** o disparo não aconteceu. É consistente com o tempo de propagação de um
+  Cron Trigger novo, que a Cloudflare indica ser de até 15 minutos.
+- **20:07:** primeiro disparo. A execução 40016787438 (`workflow_dispatch`, grupo
+  `fast`) terminou com sucesso: correram só as fontes rápidas, o deploy concluiu e o ramo
+  `data` recebeu o commit `6539fae` às 20:09. O site mostra "updated 23 Oct, 20:09 UTC".
+- **Seguintes:** a cada 30 minutos (aos :07 e :37), mais o grupo `slow` às 05:23 UTC.
