@@ -37,3 +37,9 @@ test('missing signals are dropped and weights rescaled', () => {
   assert.equal(r.value, 100);
   assert.equal(r.signals.find((s) => s.id === 'quakes').effectiveWeight, 100);
 });
+
+test('the conflict signal comes only from the GDELT 15-minute event files, never the DOC API', () => {
+  const config = JSON.parse(readFileSync(new URL('../config/index.json', import.meta.url)));
+  assert.equal(config.signals.find((s) => s.id === 'conflictNews').source, 'gdelt-events');
+  assert.ok(config.signals.every((s) => s.source !== 'gdelt-doc'), 'no index signal may read gdelt-doc');
+});

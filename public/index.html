@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="pt-PT">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Estado do Mundo</title>
-  <meta name="description" content="Conflitos, trabalho e IA, planeta, economia e o que aí vem, atualizado automaticamente a partir de fontes abertas.">
+  <title>State of the World</title>
+  <meta name="description" content="Armed conflict, work and AI, the planet, the economy and what lies ahead, updated automatically from open data sources.">
   <meta name="theme-color" content="#1F2119">
   <link rel="icon" href="assets/insignia.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
   <script type="module" src="app.js"></script>
 </head>
 <body>
-  <a class="skip" href="#registos">Saltar para os dossiers</a>
+  <a class="skip" href="#records">Skip to the files</a>
   <div class="wrap">
     <header class="masthead">
       <h1 class="masthead__name">
@@ -23,37 +23,37 @@
           <ellipse cx="20" cy="20" rx="7.5" ry="17" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".55"/>
           <path d="M3 20h9l3-7 4 14 3-10 2 3h13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
         </svg>
-        Estado do Mundo
+        State of the World
       </h1>
-      <p class="masthead__time" id="updated">A ler os registos…</p>
+      <p class="masthead__time" id="updated">Reading the records…</p>
     </header>
 
     <main>
       <section class="monitor" aria-labelledby="monitor-state">
         <svg class="monitor__trace" id="trace" viewBox="0 0 1000 200" preserveAspectRatio="none" role="img" aria-labelledby="trace-desc">
-          <desc id="trace-desc">Linha de batimento do planeta. O ritmo e a cor acompanham o Índice de Condição.</desc>
+          <desc id="trace-desc">The planet's heartbeat. Its pace and colour follow the Condition Index.</desc>
         </svg>
         <div class="monitor__readout">
           <p class="monitor__state" id="monitor-state" aria-live="polite">—</p>
           <dl class="monitor__figures">
-            <div><dt>índice</dt><dd id="monitor-index">—</dd></div>
-            <div><dt>ritmo</dt><dd id="monitor-bpm">—</dd></div>
+            <div><dt>index</dt><dd id="monitor-index">—</dd></div>
+            <div><dt>pulse</dt><dd id="monitor-bpm">—</dd></div>
           </dl>
-          <p class="monitor__note">Indicador editorial, não científico. <a href="como-se-calcula.html">Como se calcula</a></p>
+          <p class="monitor__note">An editorial indicator, not a scientific one. <a href="how-the-index-works.html">How the index is calculated</a></p>
         </div>
       </section>
 
-      <h2 class="visually-hidden">Indicadores-chave</h2>
+      <h2 class="visually-hidden">Key indicators</h2>
       <ul class="inventory" id="inventory"></ul>
 
-      <section class="records" id="registos" aria-label="Dossiers">
-        <h2 class="records__title">Registos</h2>
-        <noscript><p>Esta página precisa de JavaScript para ler os ficheiros de dados em <a href="data/manifest.json">data/</a>.</p></noscript>
+      <section class="records" id="records" aria-label="Files">
+        <h2 class="records__title">Records</h2>
+        <noscript><p>This page needs JavaScript to read its data files in <a href="data/manifest.json">data/</a>.</p></noscript>
       </section>
     </main>
 
     <footer class="footer">
-      <h2>Fontes e atribuições</h2>
+      <h2>Sources and attribution</h2>
       <ul>
         <li><a href="https://ucdp.uu.se/">UCDP — Uppsala Conflict Data Program</a>, Uppsala University (CC BY 4.0)</li>
         <li><a href="https://data.worldbank.org/">World Bank Open Data</a> (CC BY 4.0)</li>
@@ -61,10 +61,10 @@
         <li><a href="https://earthquake.usgs.gov/">U.S. Geological Survey</a> — Earthquake Hazards Program</li>
         <li><a href="https://eonet.gsfc.nasa.gov/">NASA EONET</a> — Earth Observatory Natural Event Tracker</li>
         <li><a href="https://thebulletin.org/doomsday-clock/">Bulletin of the Atomic Scientists</a> — Doomsday Clock</li>
-        <li><a href="https://hn.algolia.com/api">Hacker News</a> (pesquisa Algolia) e <a href="https://arxiv.org/">arXiv</a> — obrigado ao arXiv pelo uso da sua API aberta</li>
-        <li>Contorno do mapa: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (domínio público)</li>
+        <li><a href="https://hn.algolia.com/api">Hacker News</a> (Algolia search) and <a href="https://arxiv.org/">arXiv</a>. Thank you to arXiv for use of its open access interoperability.</li>
+        <li>Map outline: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain)</li>
       </ul>
-      <p>Das notícias mostra-se apenas título, fonte, data e ligação. Os dados atualizam-se sozinhos: fontes rápidas a cada 30 minutos, lentas uma vez por dia.</p>
+      <p>News items show only the headline, source, date and link. The data refreshes on its own: fast sources every 30 minutes, slow ones once a day. Times are in UTC.</p>
     </footer>
   </div>
 </body>

@@ -4,7 +4,7 @@
 //                       format no longer matches what the scripts expect.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { check } from '../scripts/lib/schema.mjs';
 import { s } from '../scripts/lib/schema.mjs';
 import { RAW, URLS } from '../scripts/lib/upstream.mjs';
@@ -47,9 +47,12 @@ test('a renamed upstream field is detected', () => {
   assert.throws(() => parseExport('a\tb\tc\n'), /columns/);
 });
 
-test('published files in public/data match the output schemas', () => {
+// public/data only exists after a fetch (it lives on the `data` branch),
+// so on a plain checkout of main this test is skipped.
+test('published files in public/data match the output schemas', (t) => {
   const dir = new URL('../public/data/', import.meta.url);
-  const files = readdirSync(dir).filter((f) => f.endsWith('.json') && f !== 'manifest.json');
+  const files = existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.json') && f !== 'manifest.json') : [];
+  if (!files.length) return t.skip('no data files (run npm run fetch:all first)');
   assert.ok(files.length >= Object.keys(OUTPUT).length - 1, 'some data files are missing');
   for (const f of files) {
     const id = f.replace(/\.json$/, '');

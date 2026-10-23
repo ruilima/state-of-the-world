@@ -43,7 +43,7 @@ export function parseExport(tsv) {
 export const run = () =>
   runSource({
     id: 'gdelt-events',
-    source: { name: 'GDELT Project — Event Database 2.0', url: 'https://www.gdeltproject.org/', license: 'Uso livre com atribuição ao GDELT Project' },
+    source: { name: 'GDELT Project — Event Database 2.0', url: 'https://www.gdeltproject.org/', license: 'Free to use with attribution to the GDELT Project' },
     async fetchData() {
       const prev = await readJson(join(OUT_DIR, 'gdelt-events.json'));
       const latestLine = (await http(URLS.gdeltLastUpdate, { as: 'text' })).split('\n')[0];

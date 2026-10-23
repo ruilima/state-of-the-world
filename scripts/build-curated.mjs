@@ -11,7 +11,7 @@ const dir = join(ROOT, 'data', 'curated');
 export const run = () =>
   runSource({
     id: 'curated',
-    source: { name: 'Ficheiros curados à mão (data/curated/)', url: null, license: 'Ver fonte de cada valor' },
+    source: { name: 'Hand-curated files (data/curated/)', url: null, license: 'See the source of each value' },
     async fetchData() {
       const out = {};
       for (const name of ['layoffs', 'doomsday', 'horizons']) {

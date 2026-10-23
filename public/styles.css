@@ -365,6 +365,7 @@ table.data td.num, table.data th.num { text-align: right; font-variant-numeric: 
 /* ---------- Method page ---------- */
 
 .method { max-width: 52rem; margin: 32px 0 0; }
+.method__h { margin: 28px 0 8px; font: 800 var(--s-28) / 1.1 var(--crate); }
 .method .paper h2 { margin: 0 0 8px; font: 800 var(--s-44) / 1 var(--crate); }
 
 /* ---------- Narrow screens: stacked save list, dossier opens under its slot ---------- */
@@ -388,6 +389,11 @@ table.data td.num, table.data th.num { text-align: right; font-variant-numeric: 
   .lede { padding-right: 0; padding-top: 44px; font-size: var(--s-16); }
   .item__qty { font-size: var(--s-21); right: 6px; }
   .stamp { font-size: var(--s-16); }
+}
+
+/* Very narrow phones: long English words ("earthquakes") need wider boxes. */
+@media (max-width: 400px) {
+  .inventory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (prefers-reduced-motion: reduce) {

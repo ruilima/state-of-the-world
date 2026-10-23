@@ -1,22 +1,22 @@
 {
   "updatedAt": "2026-10-23",
   "maxAgeDays": 35,
-  "howToUpdate": "Acrescentar uma linha a `monthly` por cada relatório mensal da Challenger, Gray & Christmas (normalmente publicado na primeira semana do mês seguinte) e atualizar `figures` com o Layoffs.fyi. Mudar `updatedAt` para a data da revisão. Cada valor leva fonte, URL e data de publicação; `verified` só passa a true depois de lido na fonte primária.",
+  "howToUpdate": "Add one row to `monthly` for each Challenger, Gray & Christmas monthly report (usually out in the first week of the following month) and refresh `figures` from Layoffs.fyi. Set `updatedAt` to the review date. Every value needs a source, URL and publication date; set `verified` to true only after reading it in the primary source.",
   "figures": [
     {
       "id": "tech-layoffs-2026-ytd",
-      "label": "Despedimentos no setor tecnológico em 2026",
-      "period": "janeiro a julho de 2026",
+      "label": "Tech-sector layoffs in 2026",
+      "period": "January to July 2026",
       "low": 119000,
       "high": 119000,
-      "unit": "pessoas",
-      "detail": "em 219 empresas",
+      "unit": "people",
+      "detail": "at 219 companies",
       "source": {
         "name": "Layoffs.fyi",
         "url": "https://layoffs.fyi/"
       },
       "via": {
-        "name": "LatestLY (reportagem secundária)",
+        "name": "LatestLY (secondary report)",
         "url": null
       },
       "publishedAt": null,
@@ -24,18 +24,18 @@
     },
     {
       "id": "ai-cited-us-2026-h1",
-      "label": "Cortes de emprego nos EUA em que as empresas citaram a IA",
-      "period": "janeiro a junho de 2026",
+      "label": "US job cuts where companies cited AI",
+      "period": "January to June 2026",
       "low": 100000,
       "high": null,
-      "unit": "pessoas",
-      "detail": "mais de 100 mil, segundo a compilação",
+      "unit": "people",
+      "detail": "more than 100,000, according to the compilation",
       "source": {
         "name": "Challenger, Gray & Christmas — Job Cuts Report",
         "url": "https://www.challengergray.com/blog/category/job-cuts/"
       },
       "via": {
-        "name": "Compilação secundária de dados Challenger",
+        "name": "Secondary compilation of Challenger data",
         "url": null
       },
       "publishedAt": null,
@@ -44,11 +44,11 @@
   ],
   "monthly": [],
   "attributionNote": {
-    "claim": "A IA aparece como motivo porque as empresas a declaram nos anúncios de cortes. Os contadores (Challenger, Layoffs.fyi) registam o motivo que a empresa indica, sem o verificar.",
-    "counter": "Há analistas que veem parte destes cortes como reestruturações por outras razões (contratação excessiva em 2021–22, custos, juros altos) e consideram que citar a IA agrada a investidores.",
+    "claim": "AI shows up as a reason because companies say so when they announce cuts. The trackers (Challenger, Layoffs.fyi) record the reason the company gives; they do not check it.",
+    "counter": "Some analysts read part of these cuts as restructuring for other reasons (over-hiring in 2021–22, costs, high interest rates) and argue that citing AI plays well with investors.",
     "sources": [
       {
-        "name": "Harvard Business School Working Knowledge — \"AI Hasn't Spurred Widespread Layoffs Yet. Why Not?\" (outubro de 2026)",
+        "name": "Harvard Business School Working Knowledge — \"AI Hasn't Spurred Widespread Layoffs Yet. Why Not?\" (October 2026)",
         "url": "https://www.library.hbs.edu/working-knowledge/ai-hasnt-spurred-widespread-layoffs-yet-why-not",
         "verified": false
       }

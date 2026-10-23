@@ -18,7 +18,7 @@ export const OUTPUT = {
       significant: s.arr(s.obj({ id: s.str, mag: s.nullable(s.num), time: s.str, url: s.str })),
     }),
   ),
-  eonet: envelope(s.obj({ open: s.num, byCategory: s.map(s.num), events: s.arr(s.obj({ id: s.str, title: s.str, category: s.str, categoryPt: s.str, ...point, url: s.str })) })),
+  eonet: envelope(s.obj({ open: s.num, byCategory: s.map(s.num), events: s.arr(s.obj({ id: s.str, title: s.str, category: s.str, categoryName: s.str, ...point, url: s.str })) })),
   'gdelt-events': envelope(
     s.obj({
       latestBucket: s.str,

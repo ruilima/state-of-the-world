@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How the Index Works</title>
+  <meta name="description" content="How State of the World calculates its Condition Index: signals, weights and thresholds.">
+  <meta name="theme-color" content="#1F2119">
+  <link rel="icon" href="assets/insignia.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Big+Shoulders+Stencil+Display:wght@800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="method.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <p class="masthead__name"><a href="./">State of the World</a></p>
+      <p class="masthead__time"><a href="./">Back to the monitor</a></p>
+    </header>
+    <main class="method">
+      <article class="paper">
+        <h1 class="big-number">How the index is calculated</h1>
+        <p class="lede" style="padding-right:0;max-width:none">The Condition Index is an editorial indicator, not a scientific one. It folds a handful of public signals into one reading to give a sense of the moment. It does not measure anyone's suffering and it does not predict anything.</p>
+
+        <h2 class="method__h">Step by step</h2>
+        <ol class="seq">
+          <li>Each signal has a "calm" value and an "alarm" value, chosen by us. Today's value is placed on a scale from 0 (calm or better) to 100 (alarm or worse).</li>
+          <li>The index is the weighted average of those scales. The weights are in the table.</li>
+          <li>If a signal has no recent data, it is left out and the other weights are rescaled. The table shows each signal's effective weight.</li>
+          <li>The state comes from the index: STABLE below <span data-t="caution">40</span>, CAUTION from there, DANGER from <span data-t="danger">65</span>.</li>
+          <li>So the monitor does not flip between states on every update, there is a margin of <span data-t="hysteresis">3</span> points: to move up a state the index must pass the threshold plus the margin; to move down it must drop below the threshold minus the margin.</li>
+          <li>The monitor's pulse (beats per minute) is only a visual translation of the index.</li>
+        </ol>
+
+        <h3>The signals, now</h3>
+        <div id="signals"><p class="notice">Reading the configuration and data…</p></div>
+
+        <h3>Where to change it</h3>
+        <p>The formula, weights and thresholds all live in one file, <code>config/index.json</code>, in the repository. A change there applies from the next update.</p>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

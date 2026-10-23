@@ -1,5 +1,5 @@
 // The planet's ECG: a sweeping trace drawn into an SVG, like a bedside
-// monitor. Rhythm and shape follow the Índice de Condição state.
+// monitor. Rhythm and shape follow the Condition Index state.
 // With prefers-reduced-motion the full trace is drawn once and left still.
 
 const W = 1000;

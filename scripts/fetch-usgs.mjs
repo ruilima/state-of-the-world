@@ -24,7 +24,7 @@ const round = (n, d) => Math.round(n * 10 ** d) / 10 ** d;
 export const run = () =>
   runSource({
     id: 'usgs',
-    source: { name: 'USGS Earthquake Hazards Program', url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php', license: 'Domínio público (U.S. Government)' },
+    source: { name: 'USGS Earthquake Hazards Program', url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php', license: 'Public domain (U.S. Government)' },
     async fetchData() {
       const week = assertSchema('usgs', RAW.usgs, await http(URLS.usgs('4.5_week')));
       const significant = assertSchema('usgs', RAW.usgs, await http(URLS.usgs('significant_month')));

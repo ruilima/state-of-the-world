@@ -3,3 +3,5 @@ node_modules/
 .env
 .wrangler/
 screenshots/
+# Generated data lives on the `data` branch, not on main.
+public/data/

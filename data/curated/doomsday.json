@@ -8,5 +8,5 @@
     { "year": 2025, "seconds": 89, "verified": false },
     { "year": 2026, "seconds": 85, "verified": false }
   ],
-  "note": "Definido uma vez por ano, normalmente em janeiro. Não tem API: este ficheiro atualiza-se à mão."
+  "note": "Set once a year, usually in January. There is no API: update this file by hand."
 }

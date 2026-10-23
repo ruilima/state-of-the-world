@@ -16,9 +16,9 @@ export const QUERIES = [
     titleFilter: /\b(strikes?|airstrikes?|attack|attacks|killed|shelling|missile|drone|troops|ceasefire|truce|militia|rebels|army|offensive|bombing|clashes|conflict)\b/i },
   { key: 'aiLayoffHeadlines', mode: 'artlist', q: '(layoffs OR "job cuts") ("artificial intelligence" OR automation) sourcelang:english', timespan: '72h', max: 40,
     titleFilter: /\b(layoffs?|job cuts?|cuts? \d[\d,]* jobs|jobs|workforce|redundanc(y|ies)|fired|replac\w+ workers)\b/i },
-  { key: 'coverageArmedConflict', mode: 'timelinevol', q: '"armed conflict"', timespan: '30d', label: 'conflito armado' },
-  { key: 'coverageCeasefire', mode: 'timelinevol', q: 'ceasefire', timespan: '30d', label: 'cessar-fogo' },
-  { key: 'coverageSanctions', mode: 'timelinevol', q: 'sanctions', timespan: '30d', label: 'sanções' },
+  { key: 'coverageArmedConflict', mode: 'timelinevol', q: '"armed conflict"', timespan: '30d', label: 'armed conflict' },
+  { key: 'coverageCeasefire', mode: 'timelinevol', q: 'ceasefire', timespan: '30d', label: 'ceasefire' },
+  { key: 'coverageSanctions', mode: 'timelinevol', q: 'sanctions', timespan: '30d', label: 'sanctions' },
 ];
 
 const urlFor = ({ mode, q, timespan, max }) => {
@@ -28,11 +28,18 @@ const urlFor = ({ mode, q, timespan, max }) => {
   return `${URLS.gdeltDoc}?${p}`;
 };
 
+// GDELT tokenises titles ("cut 5 , 000 jobs", "word , word"); undo the
+// spacing it adds around commas and full stops.
+export const cleanTitle = (t) =>
+  t.trim().replace(/(\d) , (\d{3})\b/g, '$1,$2').replace(/ ([,.;:!?])(?=\s|$)/g, '$1').replace(/\s+/g, ' ');
+
 // "20261023T120000Z" -> ISO
 const gdeltDate = (s) => `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}T${s.slice(9, 11)}:${s.slice(11, 13)}:00Z`;
 
 async function runQuery(def) {
-  const raw = await http(urlFor(def), { retries: 1, retryDelay: 20000, timeout: 45000 });
+  // No retry: a refused query keeps its last good result, and a retry
+  // would only add minutes to every CI run.
+  const raw = await http(urlFor(def), { retries: 0, timeout: 30000 });
   if (def.mode === 'artlist') {
     const body = assertSchema('gdelt-doc', RAW.gdeltArtList, raw);
     // Title, source, date and link only: never article bodies.
@@ -40,7 +47,7 @@ async function runQuery(def) {
     return (body.articles ?? [])
       .filter((a) => (!def.titleFilter || def.titleFilter.test(a.title)) && !seen.has(a.title) && seen.add(a.title))
       .slice(0, 10)
-      .map((a) => ({ title: a.title.trim(), domain: a.domain, language: a.language, date: gdeltDate(a.seendate), url: a.url }));
+      .map((a) => ({ title: cleanTitle(a.title), domain: a.domain, language: a.language, date: gdeltDate(a.seendate), url: a.url }));
   }
   const body = assertSchema('gdelt-doc', RAW.gdeltTimeline, raw);
   // timelinevol: share of all monitored coverage (%), hourly or daily points.
@@ -57,7 +64,7 @@ async function runQuery(def) {
 export const run = () =>
   runSource({
     id: 'gdelt-doc',
-    source: { name: 'GDELT Project — DOC 2.0 API', url: 'https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/', license: 'Uso livre com atribuição ao GDELT Project' },
+    source: { name: 'GDELT Project — DOC 2.0 API', url: 'https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/', license: 'Free to use with attribution to the GDELT Project' },
     async fetchData() {
       const prev = (await readJson(join(OUT_DIR, 'gdelt-doc.json')))?.data?.queries ?? {};
       const queries = {};
@@ -73,7 +80,7 @@ export const run = () =>
           if (err.name === 'SchemaError') throw err;
           const old = prev[def.key];
           queries[def.key] = old?.items?.length
-            ? { ...old, status: 'stale', error: String(err.message).slice(0, 200), items: def.titleFilter ? old.items.filter((a) => def.titleFilter.test(a.title)) : old.items }
+            ? { ...old, status: 'stale', error: String(err.message).slice(0, 200), items: def.mode === 'artlist' ? old.items.filter((a) => !def.titleFilter || def.titleFilter.test(a.title)).map((a) => ({ ...a, title: cleanTitle(a.title) })) : old.items }
             : { ...base, status: 'error', fetchedAt: null, error: String(err.message).slice(0, 200), items: [] };
         }
       }

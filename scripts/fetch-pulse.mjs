@@ -1,4 +1,4 @@
-// "Pulso técnico" for the work-and-AI dossier: what the tech community
+// Tech pulse for the work-and-AI dossier: what the tech community
 // (Hacker News) and researchers (arXiv) are posting about AI and jobs.
 // Titles, dates and links only.
 import { runSource, http, sleep } from './lib/io.mjs';
@@ -48,7 +48,7 @@ async function arxiv() {
 export const run = () =>
   runSource({
     id: 'pulse',
-    source: { name: 'Hacker News (Algolia) e arXiv', url: 'https://hn.algolia.com/api', license: 'Títulos e ligações; arXiv: obrigado ao arXiv pelo uso da sua API aberta' },
+    source: { name: 'Hacker News (Algolia) and arXiv', url: 'https://hn.algolia.com/api', license: 'Titles and links only. Thank you to arXiv for use of its open access interoperability.' },
     async fetchData() {
       const [hnItems, papers] = [await hn(), await arxiv()];
       return { data: { hn: hnItems, arxiv: papers } };

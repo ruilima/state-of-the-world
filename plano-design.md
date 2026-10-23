@@ -215,3 +215,12 @@ sobre o fundo escuro já se separa sozinha.
    DADOS DESATUALIZADOS); num dossier sem estado calculável não há carimbo.
 7. **Cartões iguais.** Inventário em casas quadradas rígidas, dossiers como
    folhas, monitor com moldura própria: três formas para três funções.
+
+## Mudança de idioma (23 out 2026)
+
+O site passou a inglês (público internacional). Este plano continua em português.
+Equivalências: ESTÁVEL → STABLE, CUIDADO → CAUTION, PERIGO → DANGER, DADOS
+DESATUALIZADOS → DATA OUTDATED. As formas de cada estado não mudam. Datas e
+números em formato en-GB ("23 Oct 2026", "14:32 UTC", "13,286"). Por baixo
+de 400 px o inventário passa a duas colunas, porque "earthquakes" não cabia
+numa casa de um terço da largura.

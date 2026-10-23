@@ -52,13 +52,17 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
 
 // Surface -> text colours drawn on it, and how to find blank strips of it.
 const SURFACES = [
-  { name: 'sala (cabeçalho)', fg: ['tube', 'tube-low'], rect: () => { const a = document.querySelector('.masthead__name').getBoundingClientRect(), b = document.querySelector('.masthead__time').getBoundingClientRect(); return { x: a.right + 20, y: a.top, width: b.left - a.right - 40, height: a.height }; } },
-  { name: 'sala (coluna dos registos)', fg: ['tube', 'tube-low'], rect: () => { const s = [...document.querySelectorAll('.slot')].at(-1).getBoundingClientRect(), r = document.querySelector('.records').getBoundingClientRect(); return { x: s.left, y: s.bottom + 20, width: s.width, height: Math.min(400, r.bottom - s.bottom - 40) }; } },
-  { name: 'sala (rodapé)', fg: ['tube', 'tube-low'], rect: () => { const f = document.querySelector('.footer').getBoundingClientRect(); return { x: f.left, y: f.bottom - 30, width: f.width, height: 24 }; } },
+  { name: 'room (header)', fg: ['tube', 'tube-low'], rect: () => { const a = document.querySelector('.masthead__name').getBoundingClientRect(), b = document.querySelector('.masthead__time').getBoundingClientRect(); return { x: a.right + 20, y: a.top, width: b.left - a.right - 40, height: a.height }; } },
+  { name: 'room (records column)', fg: ['tube', 'tube-low'], rect: () => { const s = [...document.querySelectorAll('.slot')].at(-1).getBoundingClientRect(), r = document.querySelector('.records').getBoundingClientRect(); return { x: s.left, y: s.bottom + 20, width: s.width, height: Math.min(400, r.bottom - s.bottom - 40) }; } },
+  { name: 'room (footer)', fg: ['tube', 'tube-low'], rect: () => { const f = document.querySelector('.footer').getBoundingClientRect(); return { x: f.left, y: f.bottom - 30, width: f.width, height: 24 }; } },
   { name: 'monitor', fg: ['tube', 'tube-low', 'stable', 'caution', 'danger-light'], rect: () => { const m = document.querySelector('.monitor').getBoundingClientRect(); return { x: m.left + 4, y: m.bottom - 18, width: m.width - 8, height: 14 }; } },
-  { name: 'casa do inventário', fg: ['tube', 'stable', 'caution', 'danger-light'], rect: () => { const b = document.querySelector('.item__box').getBoundingClientRect(); return { x: b.left + 4, y: b.top + 4, width: b.width * 0.3, height: b.height * 0.25 }; } },
-  { name: 'papel', fg: ['ink', 'ink-faded', 'stable-ink', 'caution-ink', 'danger-ink'], rect: () => { const p = document.querySelector('.dossier:not([hidden]) .paper').getBoundingClientRect(); return { x: p.left + 4, y: p.bottom - 22, width: p.width - 8, height: 18 }; } },
+  { name: 'inventory box', fg: ['tube', 'stable', 'caution', 'danger-light'], rect: () => { const b = document.querySelector('.item__box').getBoundingClientRect(); return { x: b.left + 4, y: b.top + 4, width: b.width * 0.3, height: b.height * 0.25 }; } },
+  { name: 'paper', fg: ['ink', 'ink-faded', 'stable-ink', 'caution-ink', 'danger-ink'], rect: () => { const p = document.querySelector('.dossier:not([hidden]) .paper').getBoundingClientRect(); return { x: p.left + 4, y: p.bottom - 22, width: p.width - 8, height: 18 }; } },
 ];
+
+// COMPARE=1 also measures the state colours on the bare room header, where
+// the page never uses them, to compare against the darker monitor surface.
+if (process.env.COMPARE) SURFACES[0].fg.push('stable', 'caution', 'danger-light');
 
 const browser = await chromium.launch({ channel: 'chrome' });
 const page = await browser.newPage({ viewport: { width: 1360, height: 900 } });
@@ -83,7 +87,7 @@ for (const s of SURFACES) {
     const worst = ratio(fl, worstBg);
     const ok = worst >= 4.5;
     if (!ok) failed = true;
-    rows.push({ superfície: s.name, texto: name, 'pior rácio': worst.toFixed(2), 'rácio médio': ratio(fl, lums[lums.length >> 1]).toFixed(2), passa: ok ? 'sim' : 'NÃO' });
+    rows.push({ surface: s.name, text: name, 'worst ratio': worst.toFixed(2), 'median ratio': ratio(fl, lums[lums.length >> 1]).toFixed(2), pass: ok ? 'yes' : 'NO' });
   }
 }
 await browser.close();

@@ -4,13 +4,13 @@ import { assertSchema, SchemaError } from './lib/schema.mjs';
 import { URLS, RAW } from './lib/upstream.mjs';
 
 const INDICATORS = [
-  { id: 'FP.CPI.TOTL.ZG', name: 'Inflação', unit: '% ao ano' },
-  { id: 'SL.UEM.TOTL.ZS', name: 'Desemprego', unit: '% da população ativa' },
-  { id: 'NY.GDP.MKTP.KD.ZG', name: 'Crescimento do PIB', unit: '% ao ano' },
+  { id: 'FP.CPI.TOTL.ZG', name: 'Inflation', unit: '% per year' },
+  { id: 'SL.UEM.TOTL.ZS', name: 'Unemployment', unit: '% of labour force' },
+  { id: 'NY.GDP.MKTP.KD.ZG', name: 'GDP growth', unit: '% per year' },
 ];
 const COUNTRIES = [
-  { id: 'WLD', name: 'Mundo' },
-  { id: 'EUU', name: 'União Europeia' },
+  { id: 'WLD', name: 'World' },
+  { id: 'EUU', name: 'European Union' },
   { id: 'PRT', name: 'Portugal' },
 ];
 

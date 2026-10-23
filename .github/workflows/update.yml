@@ -1,0 +1,101 @@
+name: Update data and deploy
+
+# Fast sources (GDELT, USGS, EONET, HN/arXiv, curated files, index) every
+# 30 minutes; slow sources (World Bank, UCDP, AI summary) once a day.
+#
+# Generated JSON never lands on main. The previous run's files are restored
+# from the `data` branch, refreshed, and pushed back as a single replacement
+# commit, so main keeps only code and the repository does not grow with
+# every run. The site is then uploaded to Cloudflare Pages.
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+    inputs:
+      group:
+        description: Which sources to fetch
+        type: choice
+        options: [fast, slow, all]
+        default: all
+
+concurrency:
+  group: data-update
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # The deploy step runs only when these secrets exist.
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --omit=dev
+
+      - name: Pick source group
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then g="${{ inputs.group }}"
+          elif [ "${{ github.event.schedule }}" = "23 5 * * *" ]; then g=slow
+          else g=fast; fi
+          echo "GROUP=$g" >> "$GITHUB_ENV"
+
+      - name: Restore last data from the data branch
+        run: |
+          mkdir -p public/data
+          if git ls-remote --exit-code --heads origin data >/dev/null; then
+            git fetch --depth=1 origin data
+            git archive FETCH_HEAD | tar -x -C public/data
+          else
+            echo "No data branch yet: first run fetches every source and backfills 7 days of GDELT."
+            echo "GROUP=all" >> "$GITHUB_ENV"
+            echo "GDELT_MAX_DOWNLOADS=672" >> "$GITHUB_ENV"
+          fi
+
+      - name: Fetch sources
+        id: fetch
+        # Exits 1 only when an upstream changed format. The stale-marked files
+        # are still published; the job fails at the end so it shows up.
+        continue-on-error: true
+        env:
+          UCDP_TOKEN: ${{ secrets.UCDP_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/run.mjs "$GROUP"
+
+      - name: Check published files
+        run: npm test
+
+      - name: Publish data branch (one commit, replaced each run)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd public/data
+          git init -q -b data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Data snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" data
+
+      - name: Deploy to Cloudflare Pages
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        run: npx --yes wrangler@4 pages deploy public --project-name=state-of-the-world --branch=main --commit-dirty=true
+
+      - name: Live schema test (upstream formats)
+        if: env.GROUP != 'fast'
+        run: npm run test:live
+
+      - name: Fail if an upstream changed format
+        if: steps.fetch.outcome == 'failure'
+        run: |
+          echo "::error::An upstream source changed format. See the 'Fetch sources' step."
+          exit 1

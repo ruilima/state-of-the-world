@@ -1,4 +1,4 @@
-// Índice de Condição: combines the signals listed in config/index.json into
+// Condition Index: combines the signals listed in config/index.json into
 // one 0–100 value and a state (stable / caution / danger) with hysteresis.
 // Reads public/data/*.json, writes public/data/index.json.
 import { join } from 'node:path';
@@ -25,11 +25,11 @@ export const scale = (value, calm, alarm) => {
 // Latest Challenger month divided by the mean of the 12 months before it.
 function layoffRatio(file) {
   const rows = [...(file?.data?.layoffs?.monthly ?? [])].sort((a, b) => a.month.localeCompare(b.month));
-  if (rows.length < 4) return { value: undefined, reason: 'série mensal de cortes por preencher em data/curated/layoffs.json' };
+  if (rows.length < 4) return { value: undefined, reason: 'monthly job-cut series not filled in yet (data/curated/layoffs.json)' };
   const last = rows.at(-1);
   const before = rows.slice(-13, -1);
   const mean = before.reduce((a, r) => a + r.aiCited, 0) / before.length;
-  if (!mean) return { value: undefined, reason: 'média dos meses anteriores é zero' };
+  if (!mean) return { value: undefined, reason: 'average of the previous months is zero' };
   return { value: Math.round((last.aiCited / mean) * 100) / 100 };
 }
 
@@ -52,9 +52,9 @@ export function computeIndex(config, files, now = Date.now()) {
   for (const sig of config.signals) {
     const file = files[sig.source];
     const base = { id: sig.id, name: sig.name, explain: sig.explain, unit: sig.unit, calm: sig.calm, alarm: sig.alarm, weight: sig.weight, source: sig.source };
-    if (!file?.data) { signals.push({ ...base, value: null, score: null, missing: `fonte ${sig.source} sem dados` }); continue; }
+    if (!file?.data) { signals.push({ ...base, value: null, score: null, missing: `no data from ${sig.source}` }); continue; }
     const ageH = file.lastSuccessAt ? (now - Date.parse(file.lastSuccessAt)) / 36e5 : Infinity;
-    if (ageH > sig.maxAgeHours) { signals.push({ ...base, value: null, score: null, missing: `dados de ${sig.source} com mais de ${sig.maxAgeHours} h` }); continue; }
+    if (ageH > sig.maxAgeHours) { signals.push({ ...base, value: null, score: null, missing: `${sig.source} data older than ${sig.maxAgeHours} h` }); continue; }
 
     let value;
     let reason;
@@ -62,7 +62,7 @@ export function computeIndex(config, files, now = Date.now()) {
     else if (sig.sum) value = sig.sum.reduce((a, p) => a + (Number(getPath(file, p)) || 0), 0);
     else value = getPath(file, sig.path);
 
-    if (typeof value !== 'number' || Number.isNaN(value)) { signals.push({ ...base, value: null, score: null, missing: reason ?? 'valor indisponível' }); continue; }
+    if (typeof value !== 'number' || Number.isNaN(value)) { signals.push({ ...base, value: null, score: null, missing: reason ?? 'value unavailable' }); continue; }
     signals.push({ ...base, value, score: scale(value, sig.calm, sig.alarm), missing: null });
   }
 
@@ -87,15 +87,15 @@ export async function run() {
 
   const out = {
     id: 'index',
-    source: { name: 'Cálculo próprio (config/index.json)', url: null, license: null },
+    source: { name: 'Own calculation (config/index.json)', url: null, license: null },
     status: value === null ? 'error' : 'ok',
     fetchedAt: now.toISOString(),
     lastSuccessAt: value === null ? prev?.lastSuccessAt ?? null : now.toISOString(),
-    error: value === null ? 'nenhum sinal disponível' : null,
+    error: value === null ? 'no signal available' : null,
     data: { value, state, bpm, thresholds: config.states, weightCovered, weightTotal, signals, history, description: config.description },
   };
   await writeJson(join(OUT_DIR, 'index.json'), out);
-  console.log(`index  ${value} ${state} (${weightCovered}/${weightTotal} do peso coberto)`);
+  console.log(`index  ${value} ${state} (${weightCovered}/${weightTotal} of weight covered)`);
   return out;
 }
 

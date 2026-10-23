@@ -15,7 +15,7 @@ import { assertSchema, SchemaError } from './lib/schema.mjs';
 import { URLS, RAW } from './lib/upstream.mjs';
 import { s } from './lib/schema.mjs';
 
-const VIOLENCE = { 1: 'Conflito com Estado', 2: 'Conflito sem Estado', 3: 'Violência unilateral' };
+const VIOLENCE = { 1: 'State-based conflict', 2: 'Non-state conflict', 3: 'One-sided violence' };
 
 async function findDownloadLinks() {
   const html = await http(URLS.ucdpDownloads, { as: 'text' });
@@ -111,7 +111,7 @@ export const run = () =>
       license: 'CC BY 4.0',
       // Dataset names only; UCDP's preferred article citations are listed at
       // https://ucdp.uu.se/downloads/ next to each dataset.
-      citation: 'UCDP Candidate Events Dataset e UCDP Battle-Related Deaths Dataset, Department of Peace and Conflict Research, Uppsala University.',
+      citation: 'UCDP Candidate Events Dataset and UCDP Battle-Related Deaths Dataset, Department of Peace and Conflict Research, Uppsala University.',
     },
     async fetchData() {
       const token = process.env.UCDP_TOKEN?.trim();
@@ -132,13 +132,13 @@ export const run = () =>
           mode,
           modeNote:
             mode === 'api'
-              ? `Eventos candidatos via API UCDP (versão ${links.monthly.version}). Série anual: Battle-Related Deaths ${links.brd.version}.`
-              : `Sem UCDP_TOKEN: eventos candidatos lidos do ficheiro mensal oficial. Série anual: Battle-Related Deaths ${links.brd.version}.`,
+              ? `Candidate events from the UCDP API (version ${links.monthly.version}). Annual series: Battle-Related Deaths ${links.brd.version}.`
+              : `No UCDP_TOKEN: candidate events read from the official monthly download. Annual series: Battle-Related Deaths ${links.brd.version}.`,
         },
         data: {
           annual,
           annualVersion: links.brd.version,
-          annualNote: 'Mortes em combate em conflitos em que pelo menos uma parte é um Estado (estimativa "best").',
+          annualNote: 'Battle deaths in conflicts where at least one side is a state ("best" estimate).',
           candidateFile: mode === 'downloads' ? links.cumulative.url : null,
           violenceTypes: VIOLENCE,
           ...summarise(events),
