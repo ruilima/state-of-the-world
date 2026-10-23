@@ -20,7 +20,9 @@ function h(tag, attrs = {}, ...children) {
   for (const c of children.flat()) if (c !== null && c !== undefined && c !== false) node.append(c);
   return node;
 }
-const link = (href, text) => h('a', { href, rel: 'noopener' }, text);
+// Only http(s) URLs become links; anything else (javascript:, data:…) is
+// shown as plain text. Link text is always inserted as text, never as HTML.
+const link = (href, text) => (/^https?:\/\//i.test(href ?? '') ? h('a', { href, rel: 'noopener' }, text) : h('span', {}, text));
 
 // English formats: 23 Oct 2026, 14:32 UTC, 13,286.
 const LOCALE = 'en-GB';
@@ -323,26 +325,51 @@ function renderWork(files) {
     if (c.trend) {
       out.push(h('p', { class: 'notice' }, c.trend.text, ' ', h('span', { class: 'meta' }, 'Source: ', link(c.trend.source.url, c.trend.source.name), '.'), ' ', unverified(!c.trend.verified)));
     }
+    // Figures are grouped by tracker, each with its scope, because the
+    // trackers count different things and must not read as comparable.
+    const figureItem = (f) => {
+      const value = f.high && f.high !== f.low ? `${num(f.low)} to ${num(f.high)}` : f.high == null ? `over ${num(f.low)}` : num(f.low);
+      return h(
+        'li',
+        {},
+        h('span', { class: 'big-number' }, value),
+        ' ',
+        unverified(!f.verified),
+        h('br'),
+        `${f.label}, ${f.period}${f.detail ? ` (${f.detail})` : ''}.`,
+        h(
+          'span',
+          { class: 'meta' },
+          'Source: ',
+          link(f.source.url, f.source.name),
+          f.via ? `, via ${f.via.name}` : '',
+          f.publishedAt ? `, published ${fmtDate(f.publishedAt)}` : '',
+          f.readAt ? `, counter read on ${fmtDate(f.readAt)}` : '',
+        ),
+        f.comparisons?.length
+          ? h(
+              'span',
+              { class: 'meta' },
+              'For reference: ',
+              ...f.comparisons.flatMap((cmp, i) => [
+                i ? '; ' : '',
+                `${num(cmp.value)} people${cmp.companies ? ` at ${num(cmp.companies)} companies` : ''} in ${cmp.label}`,
+              ]),
+              ` (${f.comparisons[0].source.name}) `,
+              unverified(f.comparisons.some((cmp) => cmp.evidence === 'secondary'), 'secondary'),
+            )
+          : null,
+      );
+    };
     out.push(h('h3', {}, 'Reference figures'));
-    out.push(
-      h(
-        'ul',
-        { class: 'list' },
-        c.figures.map((f) => {
-          const value = f.high && f.high !== f.low ? `${num(f.low)} to ${num(f.high)}` : f.high == null ? `over ${num(f.low)}` : num(f.low);
-          return h(
-            'li',
-            {},
-            h('span', { class: 'big-number' }, value),
-            ' ',
-            unverified(!f.verified),
-            h('br'),
-            `${f.label}, ${f.period}${f.detail ? ` (${f.detail})` : ''}.`,
-            h('span', { class: 'meta' }, 'Source: ', link(f.source.url, f.source.name), f.via ? `, via ${f.via.name}` : '', f.publishedAt ? `, published ${fmtDate(f.publishedAt)}` : ''),
-          );
-        }),
-      ),
-    );
+    const groups = c.scopes ? Object.keys(c.scopes) : [null];
+    for (const g of groups) {
+      const figs = c.figures.filter((f) => !g || f.group === g);
+      if (!figs.length) continue;
+      if (g) out.push(h('p', { class: 'small' }, h('strong', {}, `${c.scopes[g].name}. `), c.scopes[g].scope));
+      out.push(h('ul', { class: 'list' }, figs.map(figureItem)));
+    }
+    if (c.scopeNote) out.push(h('p', { class: 'small faded' }, c.scopeNote));
 
     out.push(h('h3', {}, 'Job cuts attributed to AI, month by month'));
     if (c.monthly.length) {

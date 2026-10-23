@@ -18,8 +18,15 @@ export const CURATED = {
         via: s.nullable(link),
         publishedAt: s.nullable(s.str),
         verified: s.bool,
-      }),
+        // Which tracker the figure comes from; see `scopes`.
+        group: s.oneOf('challenger', 'layoffsfyi'),
+        // Date the editor read a live counter (Layoffs.fyi has no report date).
+        readAt: s.nullable(s.str),
+        comparisons: s.arr(s.obj({ label: s.str, value: s.num, companies: s.nullable(s.num), source: link, evidence: s.oneOf('primary', 'secondary') })),
+      }, { optional: ['readAt', 'comparisons'] }),
     ),
+    scopes: s.map(s.obj({ name: s.str, scope: s.str })),
+    scopeNote: s.str,
     // One row per Challenger monthly report.
     monthly: s.arr(s.obj({ month: s.str, total: s.num, aiCited: s.num, source: link, publishedAt: s.str, verified: s.bool })),
     attributionNote: s.obj({ claim: s.str, counter: s.str, sources: s.arr(s.obj({ name: s.str, url: s.str, verified: s.bool })) }),

@@ -17,7 +17,8 @@
       },
       "via": null,
       "publishedAt": "2026-10-01",
-      "verified": true
+      "verified": true,
+      "group": "challenger"
     },
     {
       "id": "total-us-2026-ytd",
@@ -33,7 +34,8 @@
       },
       "via": null,
       "publishedAt": "2026-10-01",
-      "verified": true
+      "verified": true,
+      "group": "challenger"
     },
     {
       "id": "tech-us-2026-ytd",
@@ -49,26 +51,48 @@
       },
       "via": null,
       "publishedAt": "2026-10-01",
-      "verified": true
+      "verified": true,
+      "group": "challenger"
     },
     {
       "id": "layoffsfyi-2026",
-      "label": "Tech layoffs tracked by Layoffs.fyi",
-      "period": "2026, up to 6 August",
-      "low": 125759,
-      "high": 125759,
+      "group": "layoffsfyi",
+      "label": "People laid off at tech companies worldwide",
+      "period": "2026, as of 23 October",
+      "low": 135183,
+      "high": 135183,
       "unit": "people",
-      "detail": "at 264 companies; for comparison, 122,606 at 278 companies in all of 2025",
+      "detail": "at 331 tech companies",
       "source": {
         "name": "Layoffs.fyi",
         "url": "https://layoffs.fyi/"
       },
-      "via": {
-        "name": "IBTimes (secondary report)",
-        "url": null
-      },
+      "via": null,
       "publishedAt": null,
-      "verified": false
+      "readAt": "2026-10-23",
+      "verified": true,
+      "comparisons": [
+        {
+          "label": "2026, as of 6 August",
+          "value": 125759,
+          "companies": 264,
+          "source": {
+            "name": "IBTimes (secondary report of Layoffs.fyi data)",
+            "url": null
+          },
+          "evidence": "secondary"
+        },
+        {
+          "label": "all of 2025",
+          "value": 122606,
+          "companies": 278,
+          "source": {
+            "name": "IBTimes (secondary report of Layoffs.fyi data)",
+            "url": null
+          },
+          "evidence": "secondary"
+        }
+      ]
     }
   ],
   "monthly": [
@@ -200,5 +224,16 @@
       "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
     },
     "verified": true
-  }
+  },
+  "scopes": {
+    "challenger": {
+      "name": "Challenger, Gray & Christmas",
+      "scope": "Job cuts announced by US-based employers, in every sector, counted from company announcements. It records the reason each company gives, including AI."
+    },
+    "layoffsfyi": {
+      "name": "Layoffs.fyi",
+      "scope": "Layoffs at tech companies worldwide, compiled from public reports."
+    }
+  },
+  "scopeNote": "These two trackers measure different things. Challenger's US tech-sector count (165,925, January to September 2026) and Layoffs.fyi's global tech count use different scopes and methods, so their numbers are not comparable with each other."
 }

@@ -18,6 +18,10 @@ on:
         type: choice
         options: [fast, slow, all]
         default: all
+      compare_digest_models:
+        description: Also compare the AI summary across Opus, Sonnet and Haiku (costs a few cents)
+        type: boolean
+        default: false
 
 concurrency:
   group: data-update
@@ -70,6 +74,21 @@ jobs:
           UCDP_TOKEN: ${{ secrets.UCDP_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/run.mjs "$GROUP"
+
+      - name: Compare AI summary models
+        if: github.event_name == 'workflow_dispatch' && inputs.compare_digest_models
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/compare-digest.mjs
+
+      - name: Keep the comparison
+        if: github.event_name == 'workflow_dispatch' && inputs.compare_digest_models
+        uses: actions/upload-artifact@v4
+        with:
+          name: compare-digest
+          path: compare-digest.json
+          if-no-files-found: ignore
 
       - name: Check published files
         run: npm test

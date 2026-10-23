@@ -5,3 +5,4 @@ node_modules/
 screenshots/
 # Generated data lives on the `data` branch, not on main.
 public/data/
+compare-digest.json
