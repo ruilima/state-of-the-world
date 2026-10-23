@@ -1,8 +1,14 @@
-# State of the World
+# World Vitals
+
+Live signs of a world in transition: https://worldvitals.org
 
 A static dashboard of armed conflict, work and AI, the planet, the economy and what lies
 ahead. The data refreshes itself through GitHub Actions; the site is plain HTML/CSS/JS
 hosted on Cloudflare Pages.
+
+The repository and the Cloudflare Pages project keep their original name,
+`state-of-the-world`. Renaming the Pages project would change its `*.pages.dev` URL and
+the deploy configuration; the custom domain `worldvitals.org` points at it.
 
 Design reference (Portuguese): [`plano-design.md`](plano-design.md).
 Build report (Portuguese): [`RELATORIO.md`](RELATORIO.md).

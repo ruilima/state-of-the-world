@@ -1,5 +1,5 @@
 {
-  "description": "State of the World palette. The CSS tokens in public/styles.css must use these values (tested). Each entry in `pairs` is a combination used on the page; `kind` sets the WCAG threshold: text = 4.5, graphic = 3.",
+  "description": "World Vitals palette. The CSS tokens in public/styles.css must use these values (tested). Each entry in `pairs` is a combination used on the page; `kind` sets the WCAG threshold: text = 4.5, graphic = 3.",
   "colors": {
     "tile": "#1F2119",
     "tube": "#D6D1B1",

@@ -1,10 +1,12 @@
-# Relatório — State of the World (antes "Estado do Mundo")
+# Relatório — World Vitals (antes "State of the World" e "Estado do Mundo")
 
 Última atualização: 23 de outubro de 2026, depois da primeira publicação.
 
 **Estado atual:**
-- **Site:** publicado em https://state-of-the-world-1x8.pages.dev, a partir do
-  repositório público https://github.com/ruilima/state-of-the-world.
+- **Site:** publicado em https://worldvitals.org (o projeto Cloudflare Pages continua a
+  chamar-se `state-of-the-world`, e o endereço https://state-of-the-world-1x8.pages.dev
+  também funciona), a partir do repositório público
+  https://github.com/ruilima/state-of-the-world.
 - **Atualização automática:** ativa desde as 15:14 UTC. Fontes rápidas a cada 30 minutos
   (aos :07 e :37) e fontes lentas às 05:23 UTC.
 - **O que mudou nesta fase:** secções 10 a 15. As secções 1 a 9 descrevem a construção.

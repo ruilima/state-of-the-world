@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const OUT_DIR = join(ROOT, 'public', 'data');
-export const UA = 'state-of-the-world/1.0 (+https://github.com/ruilima/state-of-the-world)';
+export const UA = 'world-vitals/1.0 (+https://worldvitals.org)';
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
