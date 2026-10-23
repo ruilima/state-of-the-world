@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "description": "Índice de Condição: indicador editorial, não científico. Cada sinal é convertido numa escala 0–100 entre um valor 'calmo' (0) e um valor 'alarme' (100), com corte nos extremos. O índice é a média ponderada dos sinais disponíveis; sinais em falta ficam de fora e os pesos restantes são reescalados.",
+  "states": {
+    "caution": 40,
+    "danger": 65,
+    "hysteresis": 3
+  },
+  "pulse": { "minBpm": 56, "bpmPerPoint": 0.6 },
+  "signals": [
+    {
+      "id": "conflictNews",
+      "name": "Conflito nas notícias",
+      "explain": "Parte dos acontecimentos codificados pelo GDELT nas últimas 24 horas que são 'conflito material' (ataques, combates, violência em massa).",
+      "source": "gdelt-events",
+      "path": "data.materialShare24h",
+      "unit": "fração",
+      "calm": 0.10,
+      "alarm": 0.16,
+      "maxAgeHours": 6,
+      "weight": 20
+    },
+    {
+      "id": "conflictDeaths",
+      "name": "Mortes em violência organizada",
+      "explain": "Mortes registadas pelo UCDP no último mês disponível (eventos candidatos, estimativa 'best').",
+      "source": "ucdp",
+      "path": "data.monthly[-1].deaths",
+      "unit": "mortes por mês",
+      "calm": 5000,
+      "alarm": 25000,
+      "maxAgeHours": 1080,
+      "weight": 25
+    },
+    {
+      "id": "quakes",
+      "name": "Sismos significativos",
+      "explain": "Sismos que o USGS classifica como significativos nos últimos 7 dias (combina magnitude, danos e relatos).",
+      "source": "usgs",
+      "path": "data.counts.significantWeek",
+      "unit": "sismos por semana",
+      "calm": 1,
+      "alarm": 8,
+      "maxAgeHours": 6,
+      "weight": 10
+    },
+    {
+      "id": "naturalEvents",
+      "name": "Tempestades e vulcões ativos",
+      "explain": "Tempestades severas e vulcões em atividade abertos no NASA EONET (os incêndios ficam de fora: são sempre dezenas e dominariam o sinal).",
+      "source": "eonet",
+      "sum": ["data.byCategory.severeStorms", "data.byCategory.volcanoes"],
+      "unit": "eventos abertos",
+      "calm": 2,
+      "alarm": 15,
+      "maxAgeHours": 12,
+      "weight": 10
+    },
+    {
+      "id": "aiLayoffs",
+      "name": "Ritmo de cortes atribuídos à IA",
+      "explain": "Cortes do último mês em que as empresas citaram a IA (Challenger), divididos pela média dos 12 meses anteriores. 1 = ritmo normal.",
+      "source": "curated",
+      "special": "layoffRatio",
+      "unit": "rácio face à média",
+      "calm": 0.8,
+      "alarm": 2.0,
+      "maxAgeHours": 840,
+      "weight": 15
+    },
+    {
+      "id": "doomsday",
+      "name": "Doomsday Clock",
+      "explain": "Segundos para a meia-noite segundo o Bulletin of the Atomic Scientists. Menos segundos, mais perto do alarme.",
+      "source": "curated",
+      "path": "data.doomsday.current.seconds",
+      "unit": "segundos",
+      "calm": 420,
+      "alarm": 60,
+      "maxAgeHours": 9500,
+      "weight": 20
+    }
+  ]
+}

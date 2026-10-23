@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estado do Mundo</title>
+  <meta name="description" content="Conflitos, trabalho e IA, planeta, economia e o que aí vem, atualizado automaticamente a partir de fontes abertas.">
+  <meta name="theme-color" content="#1F2119">
+  <link rel="icon" href="assets/insignia.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Big+Shoulders+Stencil+Display:wght@800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#registos">Saltar para os dossiers</a>
+  <div class="wrap">
+    <header class="masthead">
+      <h1 class="masthead__name">
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2.5"/>
+          <ellipse cx="20" cy="20" rx="7.5" ry="17" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".55"/>
+          <path d="M3 20h9l3-7 4 14 3-10 2 3h13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+        Estado do Mundo
+      </h1>
+      <p class="masthead__time" id="updated">A ler os registos…</p>
+    </header>
+
+    <main>
+      <section class="monitor" aria-labelledby="monitor-state">
+        <svg class="monitor__trace" id="trace" viewBox="0 0 1000 200" preserveAspectRatio="none" role="img" aria-labelledby="trace-desc">
+          <desc id="trace-desc">Linha de batimento do planeta. O ritmo e a cor acompanham o Índice de Condição.</desc>
+        </svg>
+        <div class="monitor__readout">
+          <p class="monitor__state" id="monitor-state" aria-live="polite">—</p>
+          <dl class="monitor__figures">
+            <div><dt>índice</dt><dd id="monitor-index">—</dd></div>
+            <div><dt>ritmo</dt><dd id="monitor-bpm">—</dd></div>
+          </dl>
+          <p class="monitor__note">Indicador editorial, não científico. <a href="como-se-calcula.html">Como se calcula</a></p>
+        </div>
+      </section>
+
+      <h2 class="visually-hidden">Indicadores-chave</h2>
+      <ul class="inventory" id="inventory"></ul>
+
+      <section class="records" id="registos" aria-label="Dossiers">
+        <h2 class="records__title">Registos</h2>
+        <noscript><p>Esta página precisa de JavaScript para ler os ficheiros de dados em <a href="data/manifest.json">data/</a>.</p></noscript>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <h2>Fontes e atribuições</h2>
+      <ul>
+        <li><a href="https://ucdp.uu.se/">UCDP — Uppsala Conflict Data Program</a>, Uppsala University (CC BY 4.0)</li>
+        <li><a href="https://data.worldbank.org/">World Bank Open Data</a> (CC BY 4.0)</li>
+        <li><a href="https://www.gdeltproject.org/">The GDELT Project</a></li>
+        <li><a href="https://earthquake.usgs.gov/">U.S. Geological Survey</a> — Earthquake Hazards Program</li>
+        <li><a href="https://eonet.gsfc.nasa.gov/">NASA EONET</a> — Earth Observatory Natural Event Tracker</li>
+        <li><a href="https://thebulletin.org/doomsday-clock/">Bulletin of the Atomic Scientists</a> — Doomsday Clock</li>
+        <li><a href="https://hn.algolia.com/api">Hacker News</a> (pesquisa Algolia) e <a href="https://arxiv.org/">arXiv</a> — obrigado ao arXiv pelo uso da sua API aberta</li>
+        <li>Contorno do mapa: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (domínio público)</li>
+      </ul>
+      <p>Das notícias mostra-se apenas título, fonte, data e ligação. Os dados atualizam-se sozinhos: fontes rápidas a cada 30 minutos, lentas uma vez por dia.</p>
+    </footer>
+  </div>
+</body>
+</html>

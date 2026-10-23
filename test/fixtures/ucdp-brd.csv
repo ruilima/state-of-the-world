@@ -1,0 +1,4 @@
+conflict_id,dyad_id,location_inc,side_a,side_a_id,side_a_2nd,side_b,side_b_id,side_b_2nd,incompatibility,territory_name,year,bd_best,bd_low,bd_high,type_of_conflict,battle_location,gwno_a,gwno_a_2nd,gwno_b,gwno_b_2nd,gwno_loc,gwno_battle,region,version
+205,406,Iran,Government of Iran,114,"",KDPI,164,"",1,Kurdistan,1990,31,31,335,3,Iran,630,"","","",630,630,2,26.1
+205,406,Iran,Government of Iran,114,"",KDPI,164,"",1,Kurdistan,1993,110,110,110,3,"Iran, Iraq",630,"","","",630,"630, 645",2,26.1
+205,406,Iran,Government of Iran,114,"",KDPI,164,"",1,Kurdistan,1996,27,27,29,3,"Iran, Iraq",630,"","","",630,"630, 645",2,26.1

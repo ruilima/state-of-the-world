@@ -1,0 +1,128 @@
+{
+ "id": "curated",
+ "source": {
+  "name": "Ficheiros curados à mão (data/curated/)",
+  "url": null,
+  "license": "Ver fonte de cada valor"
+ },
+ "status": "ok",
+ "fetchedAt": "2026-10-23T12:48:42.029Z",
+ "lastSuccessAt": "2026-10-23T12:48:42.029Z",
+ "error": null,
+ "data": {
+  "layoffs": {
+   "updatedAt": "2026-10-23",
+   "maxAgeDays": 35,
+   "howToUpdate": "Acrescentar uma linha a `monthly` por cada relatório mensal da Challenger, Gray & Christmas (normalmente publicado na primeira semana do mês seguinte) e atualizar `figures` com o Layoffs.fyi. Mudar `updatedAt` para a data da revisão. Cada valor leva fonte, URL e data de publicação; `verified` só passa a true depois de lido na fonte primária.",
+   "figures": [
+    {
+     "id": "tech-layoffs-2026-ytd",
+     "label": "Despedimentos no setor tecnológico em 2026",
+     "period": "janeiro a julho de 2026",
+     "low": 119000,
+     "high": 119000,
+     "unit": "pessoas",
+     "detail": "em 219 empresas",
+     "source": {
+      "name": "Layoffs.fyi",
+      "url": "https://layoffs.fyi/"
+     },
+     "via": {
+      "name": "LatestLY (reportagem secundária)",
+      "url": null
+     },
+     "publishedAt": null,
+     "verified": false
+    },
+    {
+     "id": "ai-cited-us-2026-h1",
+     "label": "Cortes de emprego nos EUA em que as empresas citaram a IA",
+     "period": "janeiro a junho de 2026",
+     "low": 100000,
+     "high": null,
+     "unit": "pessoas",
+     "detail": "mais de 100 mil, segundo a compilação",
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cuts Report",
+      "url": "https://www.challengergray.com/blog/category/job-cuts/"
+     },
+     "via": {
+      "name": "Compilação secundária de dados Challenger",
+      "url": null
+     },
+     "publishedAt": null,
+     "verified": false
+    }
+   ],
+   "monthly": [],
+   "attributionNote": {
+    "claim": "A IA aparece como motivo porque as empresas a declaram nos anúncios de cortes. Os contadores (Challenger, Layoffs.fyi) registam o motivo que a empresa indica, sem o verificar.",
+    "counter": "Há analistas que veem parte destes cortes como reestruturações por outras razões (contratação excessiva em 2021–22, custos, juros altos) e consideram que citar a IA agrada a investidores.",
+    "sources": [
+     {
+      "name": "Harvard Business School Working Knowledge — \"AI Hasn't Spurred Widespread Layoffs Yet. Why Not?\" (outubro de 2026)",
+      "url": "https://www.library.hbs.edu/working-knowledge/ai-hasnt-spurred-widespread-layoffs-yet-why-not",
+      "verified": false
+     }
+    ]
+   }
+  },
+  "doomsday": {
+   "updatedAt": "2026-10-23",
+   "source": {
+    "name": "Bulletin of the Atomic Scientists",
+    "url": "https://thebulletin.org/doomsday-clock/"
+   },
+   "current": {
+    "seconds": 85,
+    "setAt": "2026-01-27",
+    "verified": false
+   },
+   "history": [
+    {
+     "year": 2023,
+     "seconds": 90,
+     "verified": false
+    },
+    {
+     "year": 2024,
+     "seconds": 90,
+     "verified": false
+    },
+    {
+     "year": 2025,
+     "seconds": 89,
+     "verified": false
+    },
+    {
+     "year": 2026,
+     "seconds": 85,
+     "verified": false
+    }
+   ],
+   "note": "Definido uma vez por ano, normalmente em janeiro. Não tem API: este ficheiro atualiza-se à mão."
+  },
+  "horizons": {
+   "updatedAt": "2026-10-23",
+   "rule": "Só entram afirmações com autor identificado e ligação para a fonte primária. Nada de previsões sem autor.",
+   "items": [
+    {
+     "claim": "O aquecimento global deverá atingir 1,5 °C acima dos níveis pré-industriais no início da década de 2030, na maioria dos cenários avaliados.",
+     "who": "IPCC — Sexto Relatório de Avaliação, Relatório de Síntese",
+     "date": "2023-03-20",
+     "horizon": "2030–2035",
+     "url": "https://www.ipcc.ch/report/ar6/syr/",
+     "verified": false
+    },
+    {
+     "claim": "Há cerca de 70% de probabilidade de a temperatura média global do período 2025–2029 ficar acima de 1,5 °C.",
+     "who": "Organização Meteorológica Mundial — Global Annual to Decadal Climate Update",
+     "date": "2025-05-28",
+     "horizon": "2025–2029",
+     "url": "https://wmo.int/publication-series/wmo-global-annual-decadal-climate-update-2025-2029",
+     "verified": false
+    }
+   ]
+  }
+ }
+}

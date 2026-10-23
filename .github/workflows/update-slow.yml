@@ -1,0 +1,65 @@
+name: Atualizar fontes lentas
+
+# World Bank, UCDP and the optional AI digest, once a day. Also runs the live
+# schema test, which fails if any upstream format changed.
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: data-update
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      # Deploy runs only when the Cloudflare secrets exist.
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --omit=dev
+
+      - name: Fetch sources
+        id: fetch
+        continue-on-error: true
+        env:
+          UCDP_TOKEN: ${{ secrets.UCDP_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npm run fetch:slow
+
+      - name: Check published files
+        run: npm test
+
+      - name: Commit data
+        run: |
+          git config user.name "estado-do-mundo-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "dados: atualização diária $(date -u +%Y-%m-%d)"
+          git pull --rebase --autostash
+          git push
+
+      - name: Deploy to Cloudflare Pages
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        run: npx --yes wrangler@4 pages deploy public --project-name=estado-do-mundo --branch=main --commit-dirty=true
+
+      - name: Live schema test (upstream formats)
+        run: npm run test:live
+
+      - name: Fail if an upstream changed format
+        if: steps.fetch.outcome == 'failure'
+        run: |
+          echo "::error::Uma fonte mudou de formato. Ver o passo 'Fetch sources'."
+          exit 1

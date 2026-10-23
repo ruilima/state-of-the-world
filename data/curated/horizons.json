@@ -1,0 +1,22 @@
+{
+  "updatedAt": "2026-10-23",
+  "rule": "Só entram afirmações com autor identificado e ligação para a fonte primária. Nada de previsões sem autor.",
+  "items": [
+    {
+      "claim": "O aquecimento global deverá atingir 1,5 °C acima dos níveis pré-industriais no início da década de 2030, na maioria dos cenários avaliados.",
+      "who": "IPCC — Sexto Relatório de Avaliação, Relatório de Síntese",
+      "date": "2023-03-20",
+      "horizon": "2030–2035",
+      "url": "https://www.ipcc.ch/report/ar6/syr/",
+      "verified": false
+    },
+    {
+      "claim": "Há cerca de 70% de probabilidade de a temperatura média global do período 2025–2029 ficar acima de 1,5 °C.",
+      "who": "Organização Meteorológica Mundial — Global Annual to Decadal Climate Update",
+      "date": "2025-05-28",
+      "horizon": "2025–2029",
+      "url": "https://wmo.int/publication-series/wmo-global-annual-decadal-climate-update-2025-2029",
+      "verified": false
+    }
+  ]
+}

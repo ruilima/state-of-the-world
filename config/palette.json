@@ -1,0 +1,31 @@
+{
+  "description": "Paleta do Estado do Mundo. Os tokens CSS em public/styles.css têm de ter estes valores (o teste verifica). Cada par em `pairs` é uma combinação usada na página; `kind` define o limiar WCAG: text = 4.5, graphic = 3.",
+  "colors": {
+    "tile": "#1F2119",
+    "tube": "#D6D1B1",
+    "tube-low": "#A6A084",
+    "paper": "#CDC2A2",
+    "ink": "#2B2519",
+    "ink-faded": "#4A4536",
+    "stable": "#8EA35B",
+    "caution": "#C68A2E",
+    "danger-light": "#E0705A",
+    "stable-ink": "#384D1C",
+    "caution-ink": "#663D0B",
+    "danger-ink": "#8A2C20"
+  },
+  "pairs": [
+    { "fg": "tube", "bg": "tile", "kind": "text", "use": "texto principal na sala" },
+    { "fg": "tube-low", "bg": "tile", "kind": "text", "use": "texto secundário na sala" },
+    { "fg": "stable", "bg": "tile", "kind": "text", "use": "ESTÁVEL no monitor e inventário" },
+    { "fg": "caution", "bg": "tile", "kind": "text", "use": "CUIDADO no monitor e inventário" },
+    { "fg": "danger-light", "bg": "tile", "kind": "text", "use": "PERIGO no monitor (linha e palavra)" },
+    { "fg": "ink", "bg": "paper", "kind": "text", "use": "texto dos dossiers" },
+    { "fg": "ink-faded", "bg": "paper", "kind": "text", "use": "texto secundário dos dossiers" },
+    { "fg": "stable-ink", "bg": "paper", "kind": "text", "use": "carimbo ESTÁVEL" },
+    { "fg": "caution-ink", "bg": "paper", "kind": "text", "use": "carimbo CUIDADO" },
+    { "fg": "danger-ink", "bg": "paper", "kind": "text", "use": "carimbo PERIGO e valores acima do limiar" },
+    { "fg": "ink-faded", "bg": "paper", "kind": "graphic", "use": "eixos e contorno do mapa" },
+    { "fg": "tube-low", "bg": "tile", "kind": "graphic", "use": "moldura do monitor e casas do inventário" }
+  ]
+}

@@ -1,0 +1,1 @@
+{"query_details": {"title": "ceasefire", "date_resolution": "hour"}, "timeline": [ { "series": "Volume Intensity", "data": [ { "date": "20261016T130000Z", "value": 0.3012},{ "date": "20261016T140000Z", "value": 0.2871},{ "date": "20261017T130000Z", "value": 0.3355} ] } ] }

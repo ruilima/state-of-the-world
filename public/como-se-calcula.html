@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Como se calcula</title>
+  <meta name="description" content="Como o Estado do Mundo calcula o Índice de Condição: sinais, pesos e limiares.">
+  <meta name="theme-color" content="#1F2119">
+  <link rel="icon" href="assets/insignia.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Big+Shoulders+Stencil+Display:wght@800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="method.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <p class="masthead__name"><a href="./">Estado do Mundo</a></p>
+      <p class="masthead__time"><a href="./">Voltar ao monitor</a></p>
+    </header>
+    <main class="method">
+      <article class="paper">
+        <h1 class="big-number">Como se calcula o Índice de Condição</h1>
+        <p class="lede" style="padding-right:0;max-width:none">É um indicador editorial, não científico. Junta meia dúzia de sinais públicos numa só leitura para dar uma ideia do momento. Não mede o sofrimento de ninguém e não prevê nada.</p>
+
+        <h2 class="tab" style="padding:0;margin-top:28px"><span style="font:800 var(--s-28)/1.1 var(--crate)">Passo a passo</span></h2>
+        <ol class="seq">
+          <li>Cada sinal tem um valor "calmo" e um valor "alarme", escolhidos por nós. O valor de hoje é convertido numa escala de 0 (calmo ou melhor) a 100 (alarme ou pior).</li>
+          <li>O índice é a média ponderada dessas escalas. Os pesos estão na tabela.</li>
+          <li>Se um sinal não tem dados recentes, fica de fora e os pesos dos restantes são reescalados. A tabela mostra o peso efetivo de cada um.</li>
+          <li>O estado sai do índice: ESTÁVEL abaixo de <span data-t="caution">40</span>, CUIDADO a partir daí, PERIGO a partir de <span data-t="danger">65</span>.</li>
+          <li>Para a linha não saltar entre estados a cada atualização, há uma margem de <span data-t="hysteresis">3</span> pontos: para subir de estado o índice tem de passar o limiar mais essa margem; para descer, tem de ficar abaixo do limiar menos a margem.</li>
+          <li>O ritmo do monitor (batimentos por minuto) é só uma tradução visual do índice.</li>
+        </ol>
+
+        <h3>Os sinais, agora</h3>
+        <div id="signals"><p class="notice">A ler config e dados…</p></div>
+
+        <h3>Onde mudar</h3>
+        <p>A fórmula, os pesos e os limiares estão todos num só ficheiro, <code>config/index.json</code>, no repositório. Uma alteração lá muda o cálculo na atualização seguinte.</p>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

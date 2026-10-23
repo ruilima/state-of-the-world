@@ -1,0 +1,239 @@
+{
+	"title": "EONET Events",
+	"description": "Natural events from EONET.",
+	"link": "https://eonet.gsfc.nasa.gov/api/v3/events",
+	"events": [
+		{
+			"id": "EONET_25457",
+			"title": "Tropical Cyclone Agueda",
+            "description": null,
+			"link": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_25457",
+			"closed": null,
+				"categories": [
+					{
+					"id": "severeStorms",
+					"title": "Severe Storms"
+				}
+
+	    				],
+    			"sources": [
+					{
+					"id": "JTWC",
+					"url": "https://www.metoc.navy.mil/jtwc/products/sh0227.tcw"
+				}
+
+						
+			],
+					"geometry": [
+					{
+							"magnitudeValue": 35.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-20T06:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 53.8, -4.5 ]
+							},
+
+							{
+							"magnitudeValue": 40.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-20T12:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 53.3, -5 ]
+							},
+
+							{
+							"magnitudeValue": 40.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-20T18:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 52.7, -5.1 ]
+							},
+
+							{
+							"magnitudeValue": 45.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-21T00:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 52.5, -5.1 ]
+							},
+
+							{
+							"magnitudeValue": 45.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-21T06:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 52.2, -5.3 ]
+							},
+
+							{
+							"magnitudeValue": 50.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-21T12:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 51.6, -5.7 ]
+							},
+
+							{
+							"magnitudeValue": 50.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-21T18:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 50.8, -6 ]
+							},
+
+							{
+							"magnitudeValue": 45.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-22T00:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 51.2, -5.8 ]
+							},
+
+							{
+							"magnitudeValue": 50.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-22T06:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 50.8, -6 ]
+							},
+
+							{
+							"magnitudeValue": 55.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-22T12:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 50.1, -6.2 ]
+							},
+
+							{
+							"magnitudeValue": 50.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-22T18:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 49.7, -6.7 ]
+							},
+
+							{
+							"magnitudeValue": 35.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-23T00:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 49.9, -5.8 ]
+							},
+
+							{
+							"magnitudeValue": 35.00,
+					"magnitudeUnit": "kts",
+					"date": "2026-10-23T06:00:00Z",
+					"type": "Point", 
+							"coordinates": [ 49.5, -5.7 ]
+							}
+
+						
+			]
+		},
+
+			{
+			"id": "EONET_25455",
+			"title": "Prescribed Fire STE - Goodin Ridge RX, McCreary, Kentucky",
+            "description": null,
+			"link": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_25455",
+			"closed": null,
+				"categories": [
+					{
+					"id": "wildfires",
+					"title": "Wildfires"
+				}
+
+	    				],
+    			"sources": [
+					{
+					"id": "IRWIN",
+					"url": "https://irwin.doi.gov/observer/incidents/2026-KYDBF-260285"
+				}
+
+						
+			],
+					"geometry": [
+					{
+							"magnitudeValue": 2604.00,
+					"magnitudeUnit": "acres",
+					"date": "2026-10-18T08:25:00Z",
+					"type": "Point", 
+							"coordinates": [ -84.376511, 36.948746 ]
+							}
+
+						
+			]
+		},
+
+			{
+			"id": "EONET_25450",
+			"title": "Wildfire COOLEY, Mendocino, California",
+            "description": "4 Miles S from Yorkville, CA",
+			"link": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_25450",
+			"closed": null,
+				"categories": [
+					{
+					"id": "wildfires",
+					"title": "Wildfires"
+				}
+
+	    				],
+    			"sources": [
+					{
+					"id": "IRWIN",
+					"url": "https://irwin.doi.gov/observer/incidents/2026-CAMEU-012265"
+				}
+
+						
+			],
+					"geometry": [
+					{
+							"magnitudeValue": 1365.00,
+					"magnitudeUnit": "acres",
+					"date": "2026-10-16T20:14:00Z",
+					"type": "Point", 
+							"coordinates": [ -123.188056, 38.819722 ]
+							}
+
+						
+			]
+		},
+
+			{
+			"id": "EONET_25452",
+			"title": "Wildfire NORTE, Orange, California",
+            "description": "1 Miles NW from San Clemente, CA",
+			"link": "https://eonet.gsfc.nasa.gov/api/v3/events/EONET_25452",
+			"closed": null,
+				"categories": [
+					{
+					"id": "wildfires",
+					"title": "Wildfires"
+				}
+
+	    				],
+    			"sources": [
+					{
+					"id": "IRWIN",
+					"url": "https://irwin.doi.gov/observer/incidents/2026-CAORC-149182"
+				}
+
+						
+			],
+					"geometry": [
+					{
+							"magnitudeValue": 570.00,
+					"magnitudeUnit": "acres",
+					"date": "2026-10-16T14:52:00Z",
+					"type": "Point", 
+							"coordinates": [ -117.63483, 33.47965118 ]
+							}
+
+						
+			]
+		}
+
+		]
+}

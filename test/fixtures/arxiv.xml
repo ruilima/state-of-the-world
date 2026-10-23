@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/AlIdzfsvADeZxJ+b7V033u8i60M</id>
+  <title>arXiv Query: search_query=cat:econ.GN&amp;id_list=&amp;start=0&amp;max_results=2</title>
+  <updated>2026-10-23T12:31:54Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=cat:econ.GN&amp;start=0&amp;max_results=2&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>2</opensearch:itemsPerPage>
+  <opensearch:totalResults>7704</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2012.11595v1</id>
+    <title>Valuation Models Applied to Value-Based Management. Application to the Case of UK Companies with Problems</title>
+    <updated>2020-12-19T14:09:14Z</updated>
+    <link href="https://arxiv.org/abs/2012.11595v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2012.11595v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Many still rightly wonder whether accounting numbers affect business value. Basic questions are why? and how? I aim at promoting an objective choice on how optimizing the most suitable valuation methods under a value-based management framework through some performance measurement systems. First, I present a comprehensive review of valuation methods. Three valuations methods, (i) Free Cash Flow Valuation Model (FCFVM), (ii) Residual Earning Valuation Model (REVM) and (iii) Abnormal Earning Growth Model (AEGM), are presented. I point out to advantages and limitations. As applications, the proofs of the findings are illustrated on three study cases: Marks &amp; Spencer's business pattern (size and growth prospect), which had a recently advertised valuation problem, and two comparable companies, Tesco and Sainsbury's, all three chosen for multiple-based valuation. For the purpose, two value drivers are chosen, EnV/EBIT (entity value/earnings before interests and taxes) and the corresponding EnV/Sales. Thus, the question whether accounting numbers through models based on mathematical economics truly affect business value has an answer: Maybe, yes.</summary>
+    <category term="q-fin.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="econ.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-12-19T14:09:14Z</published>
+    <arxiv:comment>15 pages; 52 references; 3 Tables</arxiv:comment>
+    <arxiv:primary_category term="q-fin.GN"/>
+    <arxiv:journal_ref>Forecasting 2, 549-565 (2020)</arxiv:journal_ref>
+    <author>
+      <name>Marcel Ausloos</name>
+    </author>
+    <arxiv:doi>10.3390/forecast2040029</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.3390/forecast2040029" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2012.12951v1</id>
+    <title>If Global or Local Investor Sentiments are Prone to Developing an Impact on Stock Returns, is there an Industry Effect?</title>
+    <updated>2020-12-21T22:51:42Z</updated>
+    <link href="https://arxiv.org/abs/2012.12951v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2012.12951v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper investigates the heterogeneous impacts of either Global or Local Investor Sentiments on stock returns. We study 10 industry sectors through the lens of 6 (so called) emerging countries: China, Brazil, India, Mexico, Indonesia and Turkey, over the 2000 to 2014 period. Using a panel data framework, our study sheds light on a significant effect of Local Investor Sentiments on expected returns for basic materials, consumer goods, industrial, and financial industries. Moreover, our results suggest that from Global Investor Sentiments alone, one cannot predict expected stock returns in these markets.</summary>
+    <category term="econ.GN" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-12-21T22:51:42Z</published>
+    <arxiv:comment>24 pages, 47 references, 4 Tables, 1 figure; to be published in International Journal of Finance and Economics</arxiv:comment>
+    <arxiv:primary_category term="econ.GN"/>
+    <author>
+      <name>Jing Shi</name>
+    </author>
+    <author>
+      <name>Marcel Ausloos</name>
+    </author>
+    <author>
+      <name>Tingting Zhu</name>
+    </author>
+    <arxiv:doi>10.1002/ijfe.2216</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1002/ijfe.2216" title="doi"/>
+  </entry>
+</feed>
