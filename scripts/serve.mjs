@@ -13,6 +13,13 @@ createServer(async (req, res) => {
   let file = join(PUB, path);
   if (!file.startsWith(PUB)) { res.writeHead(403).end(); return; }
   try {
+    // Like Cloudflare Pages: "/page" serves "page.html".
+    if (!extname(file)) {
+      try {
+        await stat(`${file}.html`);
+        file = `${file}.html`;
+      } catch {}
+    }
     if ((await stat(file)).isDirectory()) file = join(file, 'index.html');
     res.writeHead(200, { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream' });
     res.end(await readFile(file));
