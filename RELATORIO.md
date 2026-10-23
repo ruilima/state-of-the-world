@@ -1,8 +1,13 @@
 # Relatório — State of the World (antes "Estado do Mundo")
 
-Data: 23 de outubro de 2026. Estado: tudo construído e testado localmente, **nada
-publicado**. O repositório GitHub e o projeto Cloudflare ficam a teu cargo; os passos
-estão no `README.md`.
+Última atualização: 23 de outubro de 2026, depois da primeira publicação.
+
+**Estado atual:**
+- **Site:** publicado em https://state-of-the-world-1x8.pages.dev, a partir do
+  repositório público https://github.com/ruilima/state-of-the-world.
+- **Atualização automática:** ativa desde as 15:14 UTC. Fontes rápidas a cada 30 minutos
+  (aos :07 e :37) e fontes lentas às 05:23 UTC.
+- **O que mudou nesta fase:** secções 10 a 15. As secções 1 a 9 descrevem a construção.
 
 ## 1. Endpoints
 
@@ -191,76 +196,244 @@ paráfrase imprecisa.
 - **Frase publicada:** "There is a 70% chance that the 5-year average warming for
   2025–2029 will be more than 1.5 °C above pre-industrial levels."
 
-## 7. O que está em tempo real, o que é anual ou manual, e o que precisa de ação tua
+## 7. O que está em tempo real, o que é mensal ou anual, e o que é manual
 
-**Tempo quase real (30 min):**
-- sismos (USGS) e eventos naturais (EONET);
-- parte de "conflito material" nos eventos GDELT;
-- manchetes e curvas GDELT, quando a API aceita;
-- Hacker News e arXiv;
-- o Índice de Condição. Estava em 49,7, CAUTION, com 85 de 100 de peso coberto.
-
-**Mensal:** UCDP, eventos candidatos (último mês: setembro de 2026). Funciona sem token,
-pelos ficheiros de download. A secção diz em que modo está.
-
-**Anual:**
-- UCDP Battle-Related Deaths (versão 26.1, até 2025);
-- World Bank (até 2025);
-- Doomsday Clock, à mão.
-
-**Manual:** `data/curated/layoffs.json`, `doomsday.json`, `horizons.json`.
-
-**Precisa de ação tua:**
-
-1. **Criar o repositório público e configurar os segredos** (secção 5). Depois, criar o
-   projeto Cloudflare Pages `state-of-the-world` como Direct Upload (passos no README).
-2. **Confirmar nas fontes primárias** o que está marcado "to be confirmed":
-   - os dois números de despedimentos: ~119k no setor tecnológico (Layoffs.fyi, via
-     LatestLY) e mais de 100k nos EUA com a IA citada (via compilação Challenger);
-   - o artigo da Harvard Business School citado em "What sceptics say";
-   - o Doomsday Clock: 85 s a 27/01/2026, e 90/90/89/85 s em 2023–2026.
-3. **Preencher `monthly` em `layoffs.json`** com os relatórios Challenger. Até lá, esse
-   sinal fica fora do índice, e a página diz isso.
+- **Tempo quase real (30 min):**
+  - sismos (USGS) e eventos naturais (EONET);
+  - parte de "conflito material" nos eventos GDELT de 15 minutos;
+  - manchetes e curvas GDELT, quando a API aceita;
+  - Hacker News e arXiv;
+  - o Índice de Condição.
+- **Diário:** World Bank (dados anuais); UCDP, verificado todos os dias; resumo por IA.
+- **Mensal:** UCDP, eventos candidatos, pelos downloads oficiais (último mês: setembro
+  de 2026); Challenger, à mão, no ficheiro curado.
+- **Anual:** UCDP Battle-Related Deaths (até 2025); Doomsday Clock (à mão).
+- **Manual:** `data/curated/layoffs.json`, `doomsday.json`, `horizons.json`.
 
 ## 8. Mudança do site para inglês
 
-- **Interface toda em inglês:**
-  - dossiers: Armed conflict, Work and AI, Planet, Economy, What lies ahead;
-  - carimbos: STABLE, CAUTION, DANGER, DATA OUTDATED (as formas mantêm-se);
-  - estado das fontes: live, delayed, failed, off;
-  - também as mensagens de dados em falta, o rodapé, os metadados, `lang="en"`, os
-    textos alternativos dos gráficos e a página "How the index is calculated"
-    (`how-the-index-works.html`).
-- **Datas e números en-GB:** "23 Oct 2026", "13:23 UTC", "13,286". Troquei "Sept" por
-  "Sep" e as datas não partem entre o dia e o mês.
-- **Ficheiros curados em inglês**, com fontes, autores e datas preservados.
-- **Strings que os scripts escrevem nos dados**, também em inglês: categorias EONET,
-  indicadores do Banco Mundial, notas UCDP, motivos de sinais em falta. O prompt do
-  resumo por IA passou a pedir inglês.
-- **Layout:**
-  - Forcei cada estado (STABLE, CAUTION, DANGER) e o carimbo DATA OUTDATED a 320 px e a
-    1360 px.
-  - O script de screenshots verifica agora se a palavra de estado, os carimbos, as casas
-    do inventário e os nomes dos dossiers saem da sua caixa.
-  - Única falha encontrada: a 320 px, "earthquakes" não cabia numa casa com um terço da
-    largura. Abaixo de 400 px o inventário passa a duas colunas.
-  - Resultado final: sem transbordo nem scroll horizontal.
-- **Procura de português:**
-  - Grep nos ficheiros do site e varrimento do texto renderizado (texto visível,
-    `aria-label`, `title`, `<desc>`) dos cinco dossiers e da página do índice.
-  - Zero ocorrências. Só aparecem acentos em nomes de lugares vindos do USGS (Río
-    Grande, San José, Sámi), que são nomes próprios.
-- **Testes:** 28 passam, 0 falham, 8 saltados (testes ao vivo, que só correm com
-  `LIVE=1`). O contraste renderizado passa em todos os pares (secção 2).
-- **Limpeza:** os títulos do GDELT vinham com espaços a mais ("5 , 000"). Corrijo
-  vírgulas e pontos. Os hífenes espaçados ("AI - driven") ficam como vêm, porque não
-  se distinguem com segurança de travessões verdadeiros.
+- **Interface toda em inglês:** dossiers, carimbos (STABLE, CAUTION, DANGER, DATA
+  OUTDATED, com as mesmas formas), estado das fontes (live, delayed, failed, off),
+  mensagens de dados em falta, rodapé, metadados, `lang="en"`, textos alternativos e a
+  página "How the index is calculated" (`how-the-index-works.html`).
+- **Datas e números en-GB:** "23 Oct 2026", "13:23 UTC", "13,286".
+- **Abaixo de 400 px** o inventário passa a duas colunas, porque "earthquakes" não cabia
+  numa casa com um terço da largura.
+- **Procura de português no site publicado** (texto visível e alternativo, a 1360 px e a
+  390 px): zero ocorrências. Só aparecem nomes de lugares do USGS (Río Grande, San José,
+  Sámi).
 
 ## 9. Limitações conhecidas
 
-- **GDELT DOC:** vai continuar a recusar muitos pedidos, provavelmente ainda mais a
-  partir dos IPs partilhados do GitHub. Ver a secção 3.
-- **Manchetes GDELT com ruído:** o filtro por palavras no título ajuda, mas deixa passar
-  algumas sem relação.
-- **Modo API do UCDP:** nunca foi executado (falta o token).
-- **Contraste das cores de estado sobre a sala nua:** ver a regra na secção 2.
+- **GDELT DOC:** recusa muitos pedidos (429 ou "fetch failed"), também a partir do GitHub.
+  Na primeira execução publicada, as duas listas de manchetes passaram e as três curvas
+  de cobertura falharam; a página explica a falta das curvas.
+- **Manchetes GDELT com ruído:** o filtro por palavras no título deixa passar algumas sem
+  relação.
+- **Modo API do UCDP:** nunca correu com um token válido. Só foi testado o caminho de
+  falha, com um token inválido (401 → downloads).
+- **Cores de estado claras:** só podem ir sobre os painéis escuros (monitor, inventário),
+  nunca diretamente sobre a sala.
+
+## 10. Dados verificados nas fontes primárias
+
+**Challenger, Gray & Christmas.** Li os nove relatórios mensais de 2026 (PDF em
+challengergray.com) e confirmei todos os valores que me deste.
+
+| Mês | Publicado | Cortes anunciados | Atribuídos à IA |
+|---|---|---|---|
+| jan | 5 fev 2026 | 108,435 | 7,624 |
+| fev | 5 mar 2026 | 48,307 | 4,680 |
+| mar | 2 abr 2026 | 60,620 | 15,341 |
+| abr | 7 mai 2026 | 83,387 | 21,490 |
+| mai | 4 jun 2026 | 97,006 | 38,579 |
+| jun | 1 jul 2026 | 45,849 | 14,029 |
+| jul | 6 ago 2026 | 33,429 | 10,970 |
+| ago | 3 set 2026 | 52,881 | 3,462 |
+| set | 1 out 2026 | 43,281 | 3,961 |
+| **Total** | | **573,195** | **120,136** |
+
+- **As somas batem com o acumulado** do relatório de setembro. Os acumulados intermédios
+  também batem: 12,304 em fevereiro, 27,645 em março, 49,135 em abril, 87,714 em maio,
+  101,743 em junho, 112,713 em julho e 116,175 em agosto.
+- **Os URLs não seguem um padrão.** O relatório de janeiro chama-se `CR126007123.pdf` e o
+  de abril `Challenger-Report-Apr2026001249.pdf`; encontrei-os pela lista de ficheiros
+  do site. Cada linha do ficheiro curado tem o URL exato.
+- **Dois lados na página:**
+  - O total desceu: 573,195 contra 946,426 em jan–set de 2025, menos 39%. Sem o setor
+    público, a descida é de 15%; este número está no relatório de setembro.
+  - Os cortes atribuídos à IA subiram: 120,136 em jan–set de 2026, mais do dobro dos
+    54,836 de todo o 2025.
+  - Os dois números de 2025 vêm dos relatórios de setembro e de maio de 2026.
+- **Setor tecnológico:** 165,925 contra 107,878, mais 54%.
+- **Saiu o valor antigo** ">100 mil até junho", de fonte secundária.
+
+**Layoffs.fyi: continua "to be confirmed".**
+- O valor `<N pessoas em N empresas…>` ficou por preencher na tua mensagem.
+- A página mostra o valor secundário que indicaste: 125,759 pessoas em 264 empresas em
+  2026 até 6 de agosto, e para comparação 122,606 em 278 empresas em todo o 2025, via
+  IBTimes. Está marcado "to be confirmed" e "via IBTimes (secondary report)".
+- O valor antigo da LatestLY saiu.
+
+**Os dois artigos "Harvard" são diferentes e citam-se separados, cada um com o seu
+editor.** Tinhas razão em pôr a troca em causa: o site citava o artigo da HBS.
+- **Sy Boles, "AI Hasn't Spurred Widespread Layoffs Yet. Why Not?"**, Harvard Business
+  School Working Knowledge (publicado primeiro na Harvard Gazette), 20 out 2026.
+  - Afirma que a IA ainda não causou despedimentos generalizados porque a maioria das
+    empresas ainda é lenta a pô-la a funcionar.
+  - Na página, entra em "What sceptics say" como argumento de que o efeito real ainda é
+    pequeno.
+- **Thomas H. Davenport e Laks Srinivasan, "Companies Are Laying Off Workers Because of
+  AI's Potential—Not Its Performance"**, Harvard Business Review, 29 jan 2026.
+  - Com base num inquérito a 1,006 executivos (dezembro de 2025), afirma que as empresas
+    cortam pelo que esperam que a IA faça, não pelo que ela já demonstrou.
+  - Na página, é a segunda referência do mesmo lado: a atribuição à IA reflete
+    expectativas, não substituição comprovada.
+- **Terceira referência, também primária:** o comentário da própria Challenger, no
+  relatório de janeiro, de que os 16,000 cortes da Amazon pareciam dever-se mais a
+  contratação excessiva e a cortes de chefias do que à IA.
+
+**Doomsday Clock.** Confirmado na página do Bulletin: 85 s a 27 jan 2026, 89 s em 2025 e
+90 s em 2023. A página não indica o valor de 2024: os 90 s de 2024 aparecem marcados
+"secondary source".
+
+## 11. Índice de Condição com o sinal de despedimentos
+
+Com os mesmos dados (a última execução local antes da publicação):
+
+| | Sinal de despedimentos | Pesos | Índice |
+|---|---|---|---|
+| Antes | fora (série por preencher) | anteriores (aiLayoffs 15, conflictDeaths 25) | **49.7** CAUTION |
+| Depois | dentro | novos (abaixo) | **44.3** CAUTION |
+
+- **Pesos atuais em `config/index.json`:** conflictNews 20, conflictDeaths 30, quakes 10,
+  naturalEvents 10, aiLayoffs 10, doomsday 20 (total 100).
+- **O sinal de despedimentos ficou com 10, não 15,** porque a atribuição à IA é declarada
+  pelas próprias empresas. Os 5 pontos passaram para as mortes em violência organizada
+  (UCDP), o sinal com dados mais sólidos.
+- **Valor do sinal hoje:** 0. É o corte de setembro (3,961) dividido pela média de jan–ago
+  (14,522), um rácio de 0.27, abaixo do valor "calmo" de 0.8.
+- **No site publicado,** com os dados da primeira execução, o índice está em 45.5,
+  CAUTION.
+
+## 12. UCDP
+
+- **Com `UCDP_TOKEN`:** o pedido à API leva o cabeçalho `x-ucdp-access-token`. Um teste
+  automático (`test/ucdp.test.mjs`) confirma o cabeçalho e o URL.
+- **Se a API falhar,** o módulo usa os downloads oficiais e não dá erro. Testado com um
+  token inválido: 401 → downloads, e a página diz "The UCDP API request failed, so
+  candidate events were read from the official monthly download."
+- **Sem token,** usa os downloads. No site publicado aparece: "Mode: official download
+  files. Official downloads: candidate events read from UCDP's monthly file, because no
+  API token is set."
+- **Versão da API:** o módulo pede `gedevents/<versão candidata>` (hoje `26.0.9`), tirada
+  da lista de downloads. O teu exemplo usa `26.1`, que é a versão anual. Se a versão
+  candidata não for aceite pela API, o site cai para os downloads e diz isso. Saberemos
+  quando o token chegar.
+
+## 13. Workflow e publicação
+
+- **Deploy:** feito com `npx wrangler@4 pages deploy` (wrangler 4.152.0). Não usa a
+  `cloudflare/pages-action`, que está arquivada.
+- **Projeto Cloudflare Pages:** ainda não existia. O passo "Ensure the Cloudflare Pages
+  project exists" criou-o na primeira execução (`state-of-the-world`, com subdomínio
+  `state-of-the-world-1x8.pages.dev`). Não precisas de fazer nada.
+- **Dados do deploy:** cada execução restaura `public/data/` a partir do ramo `data`,
+  atualiza as fontes e publica esse conteúdo. Nunca usa um build anterior da Cloudflare.
+- **Push:** o token HTTPS do `gh` nesta máquina não tem permissão de escrita neste
+  repositório, por isso o push foi feito por SSH. Também não pode disparar workflows
+  (403); a primeira execução manual foi disparada por ti.
+
+**Primeira execução** (manual, run 39974832070, 15:02–15:06 UTC, 4 min 25 s): todos os
+passos com sucesso.
+
+| Passo | Resultado |
+|---|---|
+| Restore last data from the data branch | sem ramo `data`: grupo `all`, 7 dias de GDELT |
+| Fetch sources | usgs ok, eonet ok, gdelt-events ok, gdelt-doc partial, pulse ok, curated ok, worldbank ok, ucdp ok (downloads), digest ok; índice 45.5 |
+| Check published files | 29/29 |
+| Publish data branch | 1 commit, `fa44aed Data snapshot 2026-10-23T15:06Z` |
+| Ensure the Cloudflare Pages project exists | projeto criado |
+| Deploy to Cloudflare Pages | 20 ficheiros + `_headers` |
+| Live schema test | 36 passam, 0 falham, 1 saltado (GDELT DOC com 429: limite de tráfego tolerado, formato não verificado nessa vez) |
+
+**Ramo `data`** (1 commit, 11 ficheiros):
+
+| Ficheiro | Tamanho |
+|---|---|
+| curated.json | 10 KB |
+| digest.json | 5 KB |
+| eonet.json | 16 KB |
+| gdelt-doc.json | 5 KB |
+| gdelt-events.json | 90 KB |
+| index.json | 3 KB |
+| manifest.json | 2 KB |
+| pulse.json | 5 KB |
+| ucdp.json | 55 KB |
+| usgs.json | 48 KB |
+| worldbank.json | 11 KB |
+
+**Verificação do site publicado** (Chrome, 1360 px e 390 px):
+- **Carimbos:** Armed conflict CAUTION, Work and AI STABLE, Planet STABLE, What lies
+  ahead DANGER (Doomsday Clock). Economy não tem carimbo, porque não há sinal.
+- **Monitor:** CAUTION, "46 of 100".
+- **Estado das fontes:** todas "live"; GDELT (headlines) aparece "live, some requests
+  refused".
+- **"Last good list":** ainda não aparece no site publicado. Na primeira execução as
+  duas listas de manchetes passaram e não havia lista anterior. As curvas falharam sem
+  lista anterior e a página diz "No coverage curves by topic: the GDELT API refused our
+  requests…". O aviso "Last good list" já tinha sido verificado localmente e aparece
+  quando uma consulta que já teve dados for recusada. Volto a verificar depois das
+  execuções agendadas.
+- **O índice de conflito lê só `gdelt-events`:** confirmado no `index.json` publicado
+  (`conflictNews` com `source=gdelt-events`) e por um teste.
+- **Português:** zero ocorrências, exceto nomes de lugares do USGS.
+- **Erros:** nenhum erro na página e nenhum scroll horizontal.
+- **Testes finais, corridos uma vez contra o URL publicado:**
+  - contraste renderizado: todos os pares passam; o pior é 4.81 (sangue seco sobre
+    papel);
+  - esquema dos 10 ficheiros publicados: todos válidos.
+
+**Cron ativado às 15:14 UTC:** `7,37 * * * *` para as fontes rápidas e `23 5 * * *` para
+as lentas. Primeira execução agendada: 15:37 UTC. O GitHub costuma atrasar alguns
+minutos as execuções agendadas.
+
+## 14. Resumo por IA
+
+- **Funciona com a chave:** foi gerado na primeira execução.
+- **Etiqueta e fontes:** está marcado "AI-generated", com a nota "Written by a language
+  model from the headlines on this page… It may contain mistakes". Cada parágrafo tem
+  links para as manchetes usadas. O código só aceita como fonte manchetes que lhe foram
+  dadas, por isso o modelo não pode inventar links.
+- **Correção depois da primeira execução:** os links vindos do Hacker News apareciam
+  como "Hacker News" mesmo quando apontavam para outro site (politico.eu, hbs.edu).
+  Passam a mostrar o domínio do artigo, com "via Hacker News".
+- **Modelo e custo:** `claude-opus-5-5`, esforço `low`, uma vez por dia, na execução das
+  05:23 UTC.
+  - Cada pedido usa à volta de 2 a 3 mil tokens de entrada e 1 a 2 mil de saída. A
+    $4/$20 por milhão de tokens, são cerca de $0.03–0.05 por dia, à volta de
+    **$1–1.5 por mês**.
+  - É uma estimativa. Os tokens reais passam a ficar em `digest.json` (`usage`) a partir
+    da próxima execução diária.
+  - Execuções manuais com o grupo `all` ou `slow` também chamam o modelo.
+- **Sem a chave,** o bloco fica escondido.
+
+## 15. O que continua por confirmar e o que precisa de ação tua
+
+**Por confirmar:**
+- o valor do Layoffs.fyi (falta a tua leitura);
+- os 90 s de 2024 do Doomsday Clock (apenas fonte secundária);
+- o modo API do UCDP (falta o token).
+
+**Ação tua:**
+1. **Layoffs.fyi:** quando leres o contador, envia-me "N pessoas em N empresas, a
+   DD/MM/2026" e eu atualizo o ficheiro e tiro o aviso.
+2. **Challenger:** em cada mês, o relatório sai na primeira semana; o de outubro deve
+   sair por volta de 5 nov 2026. Acrescenta uma linha a `monthly` e muda `updatedAt` em
+   `data/curated/layoffs.json`, ou pede-me. Com mais de 35 dias sem atualização, o
+   dossier mostra DATA OUTDATED.
+3. **UCDP_TOKEN:** quando chegar, põe-no nos segredos do repositório. O módulo passa a
+   usar a API sozinho e, se falhar, volta aos downloads.
+4. **Opcional:** dar ao token do `gh` desta máquina acesso a este repositório
+   (*Contents: write* e *Actions: write*), para eu poder fazer push e disparar
+   workflows sem SSH nem cliques teus.
