@@ -5,7 +5,7 @@ import { join, extname, normalize } from 'node:path';
 import { ROOT } from './lib/io.mjs';
 
 const PUB = join(ROOT, 'public');
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.txt': 'text/plain; charset=utf-8', '.xml': 'application/xml', '.png': 'image/png' };
 const port = Number(process.argv[2] ?? 8080);
 
 createServer(async (req, res) => {

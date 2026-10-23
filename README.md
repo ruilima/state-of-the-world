@@ -1,6 +1,6 @@
 # World Vitals
 
-Live signs of a world in transition: https://worldvitals.org
+Signs of a world in transition: https://worldvitals.org
 
 A static dashboard of armed conflict, work and AI, the planet, the economy and what lies
 ahead. The data refreshes itself through GitHub Actions; the site is plain HTML/CSS/JS
