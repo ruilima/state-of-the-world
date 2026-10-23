@@ -1,0 +1,24 @@
+# Worker that starts the GitHub workflow "Update data and deploy" on a
+# schedule, because GitHub's own scheduler does not fire for this repository.
+# Deploy from this folder: npx wrangler@4 deploy
+name = "world-vitals-cron-trigger"
+main = "src/index.js"
+compatibility_date = "2026-10-23"
+
+# Cron times are UTC. Each expression maps to a workflow `group` in
+# src/index.js (SCHEDULE); keep the two lists identical.
+[triggers]
+crons = ["7,37 * * * *", "23 5 * * *"]
+
+# "true" logs the request instead of calling GitHub.
+[vars]
+DRY_RUN = "false"
+
+# The GitHub token is a secret, set with: npx wrangler@4 secret put GITHUB_TOKEN
+# It is never stored in this file.
+
+[observability]
+enabled = true
+
+[observability.traces]
+enabled = true

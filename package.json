@@ -9,8 +9,8 @@
     "fetch:fast": "node scripts/run.mjs fast",
     "fetch:slow": "node scripts/run.mjs slow",
     "fetch:all": "node scripts/run.mjs all",
-    "test": "node --test \"test/*.test.mjs\"",
-    "test:live": "LIVE=1 node --test \"test/*.test.mjs\"",
+    "test": "node --test \"test/*.test.mjs\" \"cron-trigger/test/*.test.mjs\"",
+    "test:live": "LIVE=1 node --test \"test/*.test.mjs\" \"cron-trigger/test/*.test.mjs\"",
     "serve": "node scripts/serve.mjs",
     "shots": "node scripts/screenshots.mjs"
   },

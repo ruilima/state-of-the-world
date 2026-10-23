@@ -78,6 +78,59 @@ Schedule: fast sources every 30 minutes (`7,37 * * * *`), slow sources daily at 
    no `data` branch yet, it fetches every source and backfills 7 days of GDELT event
    files (a few minutes). After that the schedule takes over.
 
+## Cron trigger (Cloudflare Worker)
+
+GitHub's own scheduler never fired for this repository, so a small Worker in
+`cron-trigger/` starts the workflow instead. On each Cloudflare Cron Trigger it calls
+`POST /repos/ruilima/state-of-the-world/actions/workflows/update.yml/dispatches` with
+`ref: main` and the right `group`, logs the HTTP status, and does nothing else:
+
+| Cron (UTC) | Workflow group | Sources |
+|---|---|---|
+| `7,37 * * * *` | `fast` | GDELT, USGS, EONET, HN/arXiv, curated files, index |
+| `23 5 * * *` | `slow` | World Bank, UCDP, AI summary, index |
+
+The workflow's `concurrency` block (`group: data-update`, `cancel-in-progress: false`)
+keeps two runs from ever overlapping. The `schedule:` lines stay in the workflow as a
+fallback; if GitHub's scheduler ever starts firing, each slot will run twice, one after
+the other (see `RELATORIO.md`).
+
+### Set it up (once, from this Mac)
+
+1. **Create a GitHub token**: github.com → Settings → Developer settings → Personal access
+   tokens → **Fine-grained tokens** → Generate new token.
+   - Resource owner: `ruilima`. Expiration: your choice (it must be renewed before it
+     expires; note the date).
+   - Repository access: **Only select repositories** → `state-of-the-world`.
+   - Repository permissions: **Actions → Read and write**. Nothing else (GitHub adds
+     *Metadata: read* on its own).
+   - Copy the token once; GitHub will not show it again.
+2. **Log in to Cloudflare** (opens the browser): `cd cron-trigger && npx wrangler@4 login`
+3. **Store the token as a Worker secret**: `npx wrangler@4 secret put GITHUB_TOKEN` and
+   paste it when asked. If the Worker does not exist yet, Wrangler offers to create it;
+   answer yes. The token is stored by Cloudflare, encrypted; it is not written to any file
+   in the repository.
+4. **Deploy**: `npx wrangler@4 deploy`. The output lists the two schedules.
+5. **Watch it**: `npx wrangler@4 tail` shows each run's log line, for example
+   `{"event":"dispatch","cron":"7,37 * * * *","group":"fast","status":204,"ok":true}`.
+   The dashboard also lists past runs under the Worker's *Cron Events*.
+
+### Test without waiting
+
+- **Unit tests** (no network, no token): `npm test` from the repository root.
+- **Dry run in the real Workers runtime** (no token, never calls GitHub):
+  ```sh
+  cd cron-trigger
+  npx wrangler@4 dev --ip 127.0.0.1 --port 8799 --var DRY_RUN:true
+  # in another terminal:
+  curl "http://127.0.0.1:8799/cdn-cgi/local/scheduled?cron=7,37+*+*+*+*"
+  ```
+  The dev log shows `{"event":"dry-run","group":"fast",…}` with the exact request body.
+- **Fire it for real, once**: put `GITHUB_TOKEN=<your token>` in `cron-trigger/.dev.vars`
+  (git-ignored), run `npx wrangler@4 dev --ip 127.0.0.1 --port 8799`, then the same
+  `curl`. The log shows `"status":204` and a new *workflow_dispatch* run appears in
+  Actions with group `fast`. Delete `.dev.vars` afterwards.
+
 ## Local development
 
 ```sh

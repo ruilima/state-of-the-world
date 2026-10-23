@@ -439,3 +439,53 @@ minutos as execuções agendadas.
 4. **Opcional:** dar ao token do `gh` desta máquina acesso a este repositório
    (*Contents: write* e *Actions: write*), para eu poder fazer push e disparar
    workflows sem SSH nem cliques teus.
+
+## 16. Agendamento externo: Worker com Cron Triggers (23 out, noite)
+
+**Porquê:** o agendador do GitHub nunca disparou neste repositório, nem depois de
+desativar e voltar a ativar o workflow. Não houve nenhuma execução com o evento
+"schedule" entre as 15:14 e as 19:12 UTC.
+
+**O que foi feito:** a pasta `cron-trigger/` tem um Cloudflare Worker
+(`world-vitals-cron-trigger`) com dois Cron Triggers. Cada um chama a API do GitHub
+(`POST …/actions/workflows/update.yml/dispatches`, com `ref: main`):
+
+| Cron (UTC) | Grupo do workflow |
+|---|---|
+| `7,37 * * * *` | `fast` |
+| `23 5 * * *` | `slow` (inclui o resumo por IA) |
+
+- **O token vem do segredo `GITHUB_TOKEN` do Worker.** Nunca aparece no código nem no
+  log; o log regista só o grupo e o estado HTTP da resposta.
+- **Um pedido recusado pelo GitHub dá erro na execução do cron,** e fica visível nos
+  logs e em *Cron Events*.
+- **Concurrency:** o workflow já tinha o bloco `concurrency` (`group: data-update`,
+  `cancel-in-progress: false`), por isso duas execuções nunca correm em simultâneo. Um
+  teste confirma que o bloco continua lá.
+- **A linha `schedule` ficou no workflow, mas causa duplicados se o GitHub voltar a
+  disparar.** Hoje não causa, porque o agendador do GitHub não dispara. Se começar a
+  disparar, cada horário (:07, :37, 05:23) corre duas vezes, uma depois da outra, por
+  causa da concurrency.
+  - Não há corrupção de dados, mas o trabalho é feito duas vezes, e às 05:23 o resumo
+    por IA é gerado duas vezes (cerca de $0.01 a mais por dia).
+  - Se isso acontecer, recomendo tirar o `schedule` do workflow e deixar só o Worker.
+
+**Testes:**
+- **Testes unitários** (`cron-trigger/test/worker.test.mjs`), que correm com `npm test`:
+  - o URL, o método, os cabeçalhos e o corpo `{ref: "main", inputs: {group}}`;
+  - o token nunca aparece no log;
+  - um erro do GitHub falha a execução;
+  - o modo de ensaio não chama o GitHub;
+  - falta de segredo ou cron desconhecido dão erro;
+  - os crons do `wrangler.toml` coincidem com o mapeamento e com as opções de `group`
+    do workflow.
+- **Ensaio no runtime da Cloudflare** (`wrangler dev` local, `DRY_RUN=true`): o evento
+  dos dois crons produz exatamente o pedido esperado, sem tocar no GitHub. Feito aqui,
+  com resultado certo.
+
+**O que tens de fazer:** criar o token, guardá-lo com `wrangler secret put` e fazer
+`wrangler deploy`. Os passos estão no README, secção "Cron trigger".
+- O token tem de ser renovado antes de expirar. Quando expirar, o Worker passa a
+  registar erros 401 e os dados deixam de se atualizar.
+- Para confirmar sem esperar, o README explica como disparar uma vez a sério com
+  `wrangler dev` e um `.dev.vars` local.
