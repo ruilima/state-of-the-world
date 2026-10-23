@@ -143,7 +143,7 @@ export const SYSTEM =
   'Use only facts stated in the headlines; do not add facts, numbers or sources that are not in them. Do not include URLs in your text.\n' +
   'You are describing only the headlines collected today, not the world. Frame the summary as "in today\'s headlines" and attribute every statement to its source (for example "Reuters reports…", "the USGS recorded…"). ' +
   'The headlines were found with narrow searches (for example layoffs and AI), so they are not a representative sample: never say "most", "many" or similar, and draw no conclusions about proportions or trends.\n' +
-  'Only quote words or name organisations and people that appear in the headlines the paragraph cites.\n' +
+  'Only quote words or name organisations and people that appear in the headlines the paragraph cites. Refer to each source exactly as written in its source field.\n' +
   'Write 2 to 4 short paragraphs (about 150 words in total). Each paragraph lists, in `sources`, the ids of the headlines it is based on.\n' +
   'No alarmist adjectives and no forecasts of your own. If the headlines are unclear, say less.';
 
@@ -151,47 +151,102 @@ export const SYSTEM =
 export const userMessage = (headlines) =>
   `<headlines>\n${JSON.stringify(headlines.map(({ id, topic, title, source }) => ({ id, topic, title, source }))).replace(/</g, '\\u003c')}\n</headlines>\n\nSummarise these headlines.`;
 
-/** One summary request. Returns validated paragraphs and token usage. */
-export async function summarise(client, model, headlines) {
-  const opts = MODEL_OPTIONS[model] ?? { fallback: false };
+// Turns the model's paragraphs into publishable ones. The model returns ids
+// only; each is mapped back to the input list and unknown ids are dropped.
+function validate(parsed, byId) {
+  const paragraphs = [];
+  const dropped = [];
+  for (const p of parsed.paragraphs) {
+    // Paragraph text is never cut; only titles are capped.
+    const text = cleanText(p.text, Infinity);
+    const cited = [...new Set(p.sources)].filter((id) => byId.has(id)).map((id) => byId.get(id));
+    if (!text || !cited.length) {
+      dropped.push({ text: text.slice(0, 80), reason: 'no valid source', names: [] });
+      continue;
+    }
+    const missing = unsupportedNames(text, cited);
+    if (missing.length) {
+      dropped.push({ text: text.slice(0, 80), reason: `not in cited headlines: ${missing.join(', ')}`, names: missing });
+      continue;
+    }
+    paragraphs.push({ text, sources: displaySources(cited) });
+  }
+  const droppedIds = parsed.paragraphs.flatMap((p) => p.sources).filter((id) => !byId.has(id));
+  return { paragraphs, dropped, droppedIds };
+}
+
+async function ask(client, model, messages) {
   const params = {
     model,
     max_tokens: 4000,
     output_config: { effort: 'low', format: { type: 'json_schema', schema: SCHEMA } },
     system: SYSTEM,
-    messages: [{ role: 'user', content: userMessage(headlines) }],
+    messages,
   };
+  const opts = MODEL_OPTIONS[model] ?? { fallback: false };
   const response = opts.fallback
     ? await client.beta.messages.create({ ...params, betas: ['server-side-fallback-2026-07-01'], fallbacks: 'default' })
     : await client.messages.create(params);
   if (response.stop_reason === 'refusal') throw new Error(`request refused (${response.stop_details?.category ?? 'no category'})`);
   if (response.stop_reason === 'max_tokens') throw new Error('response cut off (max_tokens)');
   const text = response.content.find((b) => b.type === 'text')?.text;
-  const parsed = JSON.parse(text);
+  return { response, parsed: JSON.parse(text) };
+}
 
-  // The model returns ids only. Map them back to the input list; drop the rest.
+export const retryMessage = (names) =>
+  'Some paragraphs were rejected because they quote or name something that does not appear in the headlines they cite: ' +
+  `${names.join('; ')}. ` +
+  'Rewrite the whole summary. Leave those quotes and names out, or refer to the source exactly as written in its source field. Keep every other rule.';
+
+/**
+ * One summary. If the citations/names check drops paragraphs, the request is
+ * repeated once, telling the model what was rejected. The attempt that keeps
+ * more paragraphs is published (the retry wins a tie); whatever is still
+ * dropped is logged.
+ */
+export async function summarise(client, model, headlines) {
   const byId = new Map(headlines.map((h) => [h.id, h]));
-  const droppedParagraphs = [];
-  const paragraphs = [];
-  for (const p of parsed.paragraphs) {
-    // Paragraph text is never cut; only titles are capped.
-    const text = cleanText(p.text, Infinity);
-    const cited = [...new Set(p.sources)].filter((id) => byId.has(id)).map((id) => byId.get(id));
-    if (!text || !cited.length) {
-      droppedParagraphs.push({ text: text.slice(0, 80), reason: 'no valid source' });
-      continue;
+  const messages = [{ role: 'user', content: userMessage(headlines) }];
+  const first = await ask(client, model, messages);
+  const usage = { inputTokens: first.response.usage.input_tokens, outputTokens: first.response.usage.output_tokens };
+  let best = validate(first.parsed, byId);
+  let resolvedModel = first.response.model;
+  let attempts = 1;
+  const firstDropped = best.dropped;
+
+  const rejectedNames = [...new Set(best.dropped.flatMap((d) => d.names))];
+  if (rejectedNames.length) {
+    attempts = 2;
+    try {
+      // Append-only history: the first answer goes back unchanged.
+      const second = await ask(client, model, [
+        ...messages,
+        { role: 'assistant', content: first.response.content },
+        { role: 'user', content: retryMessage(rejectedNames) },
+      ]);
+      usage.inputTokens += second.response.usage.input_tokens;
+      usage.outputTokens += second.response.usage.output_tokens;
+      const retried = validate(second.parsed, byId);
+      if (retried.paragraphs.length >= best.paragraphs.length) {
+        best = retried;
+        resolvedModel = second.response.model;
+      }
+    } catch (err) {
+      console.warn(`digest: retry failed, keeping the first attempt: ${String(err.message).slice(0, 160)}`);
     }
-    const missing = unsupportedNames(text, cited);
-    if (missing.length) {
-      droppedParagraphs.push({ text: text.slice(0, 80), reason: `not in cited headlines: ${missing.join(', ')}` });
-      continue;
-    }
-    paragraphs.push({ text, sources: displaySources(cited) });
   }
-  for (const d of droppedParagraphs) console.warn(`digest: dropped paragraph (${d.reason}): "${d.text}…"`);
-  if (!paragraphs.length) throw new Error('no paragraph passed the source checks');
-  const usage = { inputTokens: response.usage.input_tokens, outputTokens: response.usage.output_tokens };
-  return { model: response.model, paragraphs, usage, droppedParagraphs, droppedIds: parsed.paragraphs.flatMap((p) => p.sources).filter((id) => !byId.has(id)) };
+
+  for (const d of best.dropped) console.warn(`digest: dropped paragraph (${d.reason}): "${d.text}…"`);
+  if (!best.paragraphs.length) throw new Error('no paragraph passed the source checks');
+  return {
+    model: resolvedModel,
+    paragraphs: best.paragraphs,
+    usage,
+    attempts,
+    firstAttemptDropped: firstDropped.map(({ text, reason }) => ({ text, reason })),
+    droppedParagraphs: best.dropped.map(({ text, reason }) => ({ text, reason })),
+    droppedIds: best.droppedIds,
+  };
 }
 
 export const run = async () => {
@@ -210,7 +265,7 @@ export const run = async () => {
       const r = await summarise(new Anthropic(), MODEL, headlines);
       // Token counts are kept so the monthly cost can be checked from the data branch.
       console.log(`digest usage: ${r.usage.inputTokens} input, ${r.usage.outputTokens} output tokens`);
-      return { meta: { model: r.model, usage: r.usage, droppedParagraphs: r.droppedParagraphs }, data: { label: 'AI-generated', paragraphs: r.paragraphs } };
+      return { meta: { model: r.model, usage: r.usage, attempts: r.attempts, firstAttemptDropped: r.firstAttemptDropped, droppedParagraphs: r.droppedParagraphs }, data: { label: 'AI-generated', paragraphs: r.paragraphs } };
     },
   });
 };

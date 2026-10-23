@@ -11,9 +11,17 @@ const headlines = [
   { id: 4, topic: 'work and AI', title: 'Barclays job cuts explained', source: 'thestar.com.my', url: 'https://www.thestar.com.my/d' },
 ];
 
-const fakeClient = (reply) => {
-  const response = { stop_reason: 'end_turn', model: 'fake', usage: { input_tokens: 10, output_tokens: 5 }, content: [{ type: 'text', text: JSON.stringify(reply) }] };
-  return { messages: { create: async () => response }, beta: { messages: { create: async () => response } } };
+// Answers with the given replies in order (the last one repeats) and
+// records every request. A reply that is an Error is thrown instead.
+const fakeClient = (...replies) => {
+  const calls = [];
+  const create = async (params) => {
+    calls.push(params);
+    const reply = replies[Math.min(calls.length, replies.length) - 1];
+    if (reply instanceof Error) throw reply;
+    return { stop_reason: 'end_turn', model: 'fake', usage: { input_tokens: 10, output_tokens: 5 }, content: [{ type: 'thinking', thinking: '' }, { type: 'text', text: JSON.stringify(reply) }] };
+  };
+  return { calls, messages: { create }, beta: { messages: { create } } };
 };
 
 test('links come only from input headlines; unknown ids and unsourced paragraphs are dropped', async () => {
@@ -79,4 +87,65 @@ test('headlines are sent as escaped data, with framing and anti-injection instru
   assert.match(SYSTEM, /ignore them/);
   assert.match(SYSTEM, /in today's headlines/);
   assert.match(SYSTEM, /never say "most", "many"/);
+  assert.match(SYSTEM, /Refer to each source exactly as written in its source field/);
+});
+
+const good = { text: 'Barclays plans to cut 5,000 jobs, thestar.com.my reports.', sources: [1] };
+const quake = { text: 'The USGS recorded an M6.1 earthquake near Port-Olry, Vanuatu.', sources: [3] };
+const named = { text: 'Harvard Business School says Barclays will cut jobs.', sources: [1] };
+
+test('a names/quotes drop triggers one retry that lists what was rejected, with the first answer appended unchanged', async () => {
+  const client = fakeClient({ paragraphs: [named, quake] }, { paragraphs: [good, quake] });
+  const r = await summarise(client, 'claude-opus-5-5', headlines);
+  assert.equal(client.calls.length, 2);
+  assert.equal(r.attempts, 2);
+  assert.equal(r.paragraphs.length, 2);
+  assert.equal(r.droppedParagraphs.length, 0);
+  assert.equal(r.firstAttemptDropped.length, 1);
+  const msgs = client.calls[1].messages;
+  assert.equal(msgs.length, 3);
+  assert.equal(msgs[1].role, 'assistant');
+  assert.equal(msgs[1].content[0].type, 'thinking', 'first answer is passed back as-is, thinking block included');
+  assert.match(msgs[2].content, /Harvard; Business; School/);
+  assert.match(msgs[2].content, /exactly as written in its source field/);
+  assert.deepEqual(r.usage, { inputTokens: 20, outputTokens: 10 });
+});
+
+test('if the retry still loses paragraphs, what passed is published and the rest is logged', async () => {
+  const client = fakeClient({ paragraphs: [named, quake] }, { paragraphs: [named, good, quake] });
+  const warnings = [];
+  const orig = console.warn;
+  console.warn = (m) => warnings.push(m);
+  try {
+    const r = await summarise(client, 'claude-opus-5-5', headlines);
+    assert.equal(client.calls.length, 2, 'only one retry');
+    assert.equal(r.paragraphs.length, 2);
+    assert.equal(r.droppedParagraphs.length, 1);
+    assert.ok(warnings.some((w) => /dropped paragraph \(not in cited headlines: Harvard/.test(w)));
+  } finally {
+    console.warn = orig;
+  }
+});
+
+test('the attempt with more paragraphs wins; a failed retry keeps the first attempt', async () => {
+  const worse = await summarise(fakeClient({ paragraphs: [named, good, quake] }, { paragraphs: [named, named] }), 'claude-opus-5-5', headlines);
+  assert.equal(worse.paragraphs.length, 2, 'retry with fewer paragraphs is ignored');
+  const orig = console.warn;
+  console.warn = () => {};
+  try {
+    const failed = await summarise(fakeClient({ paragraphs: [named, quake] }, new Error('overloaded')), 'claude-opus-5-5', headlines);
+    assert.equal(failed.attempts, 2);
+    assert.equal(failed.paragraphs.length, 1);
+  } finally {
+    console.warn = orig;
+  }
+});
+
+test('no retry when nothing was dropped, or when only invalid source ids were dropped', async () => {
+  const clean = fakeClient({ paragraphs: [good, quake] });
+  assert.equal((await summarise(clean, 'claude-opus-5-5', headlines)).attempts, 1);
+  const badIds = fakeClient({ paragraphs: [{ text: 'Something.', sources: [99] }, quake] });
+  const r = await summarise(badIds, 'claude-opus-5-5', headlines);
+  assert.equal(badIds.calls.length, 1);
+  assert.equal(r.attempts, 1);
 });

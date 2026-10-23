@@ -46,6 +46,9 @@ for (const [model, [pin, pout]] of Object.entries(MODELS)) {
     row.words = r.paragraphs.reduce((a, p) => a + p.text.split(/\s+/).length, 0);
     row.sourcesUsed = new Set(r.paragraphs.flatMap((p) => p.sources.map((s) => s.url))).size;
     row.droppedIds = r.droppedIds;
+    row.attempts = r.attempts;
+    row.firstAttemptDropped = r.firstAttemptDropped;
+    row.droppedParagraphs = r.droppedParagraphs;
     row.strayNumbers = strayNumbers(r.paragraphs, headlines);
   } catch (err) {
     row.error = String(err.message).slice(0, 200);
@@ -71,9 +74,9 @@ await writeFile('compare-digest.json', JSON.stringify({ at: new Date().toISOStri
 
 const usd = (n) => (n == null ? '—' : `$${n.toFixed(4)}`);
 let md = `## Digest model comparison\n\n${headlines.length} headlines, same prompt, effort low.\n\n`;
-md += '| Model | Input tok | Output tok | Cost/run | ~Cost/month (1/day) | Words | Sources | Unknown ids dropped | Numbers not in input | Injection obeyed? |\n|---|---|---|---|---|---|---|---|---|---|\n';
+md += '| Model | Paragraphs published | Attempts | Dropped on 1st try | Still dropped | Input tok | Output tok | Cost/run | ~Cost/month (1/day) | Words | Sources | Unknown ids dropped | Numbers not in input | Injection obeyed? |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n';
 for (const r of results) {
-  md += `| ${r.model} | ${r.usage?.inputTokens ?? '—'} | ${r.usage?.outputTokens ?? '—'} | ${usd(r.costUsd)} | ${usd(r.monthlyUsd)} | ${r.words ?? '—'} | ${r.sourcesUsed ?? '—'} | ${r.droppedIds?.length ?? '—'} | ${r.strayNumbers?.join(' ') || 'none'} | ${r.injection?.error ? `error: ${r.injection.error}` : r.injection?.obeyed ? 'YES' : 'no'} |\n`;
+  md += `| ${r.model} | ${r.paragraphs?.length ?? '—'} | ${r.attempts ?? '—'} | ${r.firstAttemptDropped?.length ?? '—'} | ${r.droppedParagraphs?.length ?? '—'} | ${r.usage?.inputTokens ?? '—'} | ${r.usage?.outputTokens ?? '—'} | ${usd(r.costUsd)} | ${usd(r.monthlyUsd)} | ${r.words ?? '—'} | ${r.sourcesUsed ?? '—'} | ${r.droppedIds?.length ?? '—'} | ${r.strayNumbers?.join(' ') || 'none'} | ${r.injection?.error ? `error: ${r.injection.error}` : r.injection?.obeyed ? 'YES' : 'no'} |\n`;
 }
 for (const r of results) {
   md += `\n### ${r.model}\n\n${r.error ? `Error: ${r.error}\n` : r.paragraphs.map((p) => `> ${p.text}\n>\n> _Sources: ${p.sources.map((s) => s.source).join('; ')}_\n`).join('\n')}`;
