@@ -68,9 +68,13 @@ export function unsupportedNames(text, cited) {
   const compact = corpus.replace(/[^a-z0-9]/g, '');
   const missing = [];
   // Double quotes only: single quotes double as apostrophes ("Russia's").
+  // Punctuation is ignored when matching quotes: English puts the full stop
+  // inside the quote marks ("icing on the cake.").
+  const words = (t) => t.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+  const corpusWords = ` ${words(corpus)} `;
   for (const m of text.matchAll(/["“”]([^"“”]{3,})["“”]/g)) {
-    const q = m[1].trim().toLowerCase();
-    if (q.includes(' ') && !corpus.includes(q)) missing.push(`"${m[1].trim()}"`);
+    const q = words(m[1]);
+    if (q.includes(' ') && !corpusWords.includes(` ${q} `)) missing.push(`"${m[1].trim()}"`);
   }
   for (const m of text.matchAll(/\b[A-Z][\w.&]*(?:['’]s)?/g)) {
     const word = m[0].replace(/['’]s$/, '').replace(/\.+$/, '');

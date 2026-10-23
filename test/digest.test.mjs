@@ -49,6 +49,8 @@ test('a paragraph naming or quoting something absent from its cited headlines is
   assert.match(r.droppedParagraphs[0].reason, /Goldman/);
   assert.match(r.droppedParagraphs[1].reason, /the future of banking/);
   assert.deepEqual(unsupportedNames('The Star and Vanuatu’s USGS', [headlines[0], headlines[2]]), []);
+  // A full stop inside the quote marks still matches the headline.
+  assert.deepEqual(unsupportedNames('Barclays’ CEO called AI "icing on the cake."', [headlines[1]]), []);
 });
 
 test('sources: one per domain within a paragraph, at most six', async () => {
