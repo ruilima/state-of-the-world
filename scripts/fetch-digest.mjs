@@ -17,7 +17,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import { join } from 'node:path';
 import { runSource, readJson, writeJson, OUT_DIR } from './lib/io.mjs';
 
-export const MODEL = process.env.DIGEST_MODEL || 'claude-opus-5-5';
+export const MODEL = process.env.DIGEST_MODEL || 'claude-sonnet-5-5';
 
 // Per-model request options. Haiku has no server-side refusal fallback.
 const MODEL_OPTIONS = {
@@ -144,6 +144,7 @@ export const SYSTEM =
   'You are describing only the headlines collected today, not the world. Frame the summary as "in today\'s headlines" and attribute every statement to its source (for example "Reuters reports…", "the USGS recorded…"). ' +
   'The headlines were found with narrow searches (for example layoffs and AI), so they are not a representative sample: never say "most", "many" or similar, and draw no conclusions about proportions or trends.\n' +
   'Only quote words or name organisations and people that appear in the headlines the paragraph cites. Refer to each source exactly as written in its source field.\n' +
+  "Keep the strength of each headline's verb (e.g. 'plans to cut' must not become 'will cut').\n" +
   'Write 2 to 4 short paragraphs (about 150 words in total). Each paragraph lists, in `sources`, the ids of the headlines it is based on.\n' +
   'No alarmist adjectives and no forecasts of your own. If the headlines are unclear, say less.';
 
@@ -204,7 +205,7 @@ export const retryMessage = (names) =>
  * more paragraphs is published (the retry wins a tie); whatever is still
  * dropped is logged.
  */
-export async function summarise(client, model, headlines) {
+export async function summarise(client, model, headlines, { label = model } = {}) {
   const byId = new Map(headlines.map((h) => [h.id, h]));
   const messages = [{ role: 'user', content: userMessage(headlines) }];
   const first = await ask(client, model, messages);
@@ -232,11 +233,12 @@ export async function summarise(client, model, headlines) {
         resolvedModel = second.response.model;
       }
     } catch (err) {
-      console.warn(`digest: retry failed, keeping the first attempt: ${String(err.message).slice(0, 160)}`);
+      console.warn(`digest[${label}]: retry failed, keeping the first attempt: ${String(err.message).slice(0, 160)}`);
     }
   }
 
-  for (const d of best.dropped) console.warn(`digest: dropped paragraph (${d.reason}): "${d.text}…"`);
+  for (const d of firstDropped) console.warn(`digest[${label}] attempt 1: dropped paragraph (${d.reason}): "${d.text}…"`);
+  if (attempts === 2) for (const d of best.dropped) console.warn(`digest[${label}] published attempt: still dropped (${d.reason}): "${d.text}…"`);
   if (!best.paragraphs.length) throw new Error('no paragraph passed the source checks');
   return {
     model: resolvedModel,

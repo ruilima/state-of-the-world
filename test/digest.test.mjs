@@ -88,6 +88,7 @@ test('headlines are sent as escaped data, with framing and anti-injection instru
   assert.match(SYSTEM, /in today's headlines/);
   assert.match(SYSTEM, /never say "most", "many"/);
   assert.match(SYSTEM, /Refer to each source exactly as written in its source field/);
+  assert.match(SYSTEM, /Keep the strength of each headline's verb \(e\.g\. 'plans to cut' must not become 'will cut'\)/);
 });
 
 const good = { text: 'Barclays plans to cut 5,000 jobs, thestar.com.my reports.', sources: [1] };
@@ -121,7 +122,7 @@ test('if the retry still loses paragraphs, what passed is published and the rest
     assert.equal(client.calls.length, 2, 'only one retry');
     assert.equal(r.paragraphs.length, 2);
     assert.equal(r.droppedParagraphs.length, 1);
-    assert.ok(warnings.some((w) => /dropped paragraph \(not in cited headlines: Harvard/.test(w)));
+    assert.ok(warnings.some((w) => /still dropped \(not in cited headlines: Harvard/.test(w)));
   } finally {
     console.warn = orig;
   }
