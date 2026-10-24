@@ -181,6 +181,7 @@ a:hover { text-decoration-thickness: 2px; }
     'stamp stamp'
     'figures figures'
     'delayed delayed'
+    'lead lead'
     'note note';
   align-items: center;
   column-gap: 14px;
@@ -219,6 +220,7 @@ a:hover { text-decoration-thickness: 2px; }
 .monitor__figures dd { margin: 0; font: 800 var(--s-21) / 1.2 var(--crate); white-space: nowrap; }
 .monitor__note { grid-area: note; margin: 6px 0 0; color: var(--tube-low); font-size: var(--s-14); }
 .monitor__delayed { grid-area: delayed; }
+.monitor__lead { grid-area: lead; }
 /* Phones wide enough for the state word and the stamp side by side. */
 @media (min-width: 380px) and (max-width: 719px) {
   .monitor {
@@ -227,6 +229,7 @@ a:hover { text-decoration-thickness: 2px; }
       'state stamp'
       'figures figures'
       'delayed delayed'
+      'lead lead'
       'note note';
   }
 }
@@ -236,11 +239,12 @@ a:hover { text-decoration-thickness: 2px; }
 @media (min-width: 720px) {
   .monitor {
     grid-template-columns: minmax(0, 1fr) minmax(13rem, 21rem);
-    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-rows: auto auto auto auto 1fr auto;
     grid-template-areas:
       'trace state'
       'trace stamp'
       'trace delayed'
+      'trace lead'
       'trace note'
       'figures note';
     align-items: start;
@@ -261,7 +265,7 @@ a:hover { text-decoration-thickness: 2px; }
   .monitor__figures { margin-top: 10px; gap: 0 28px; }
   .monitor__figures dd { font-size: var(--s-28); }
   .monitor__note { margin-top: 12px; align-self: end; }
-  .monitor__delayed { margin-top: 10px; align-self: start; }
+  .monitor__delayed, .monitor__lead { margin-top: 10px; align-self: start; }
 }
 
 .is-stable { color: var(--stable); }

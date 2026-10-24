@@ -41,7 +41,7 @@
         <h2 class="method__h">Step by step</h2>
         <ol class="seq">
           <li>Each signal has a "calm" value and an "alarm" value, chosen by us; the table gives the reason for each. Today's value gets a score from 0 (calm or better) to 100 (alarm or worse).</li>
-          <li>The index is the weighted average of those scores. The weights are in the table.</li>
+          <li>The index is the weighted average of those scores. The weights are in the table. Each signal's points (score × effective weight) add up to the index; the monitor names the signal with the most points.</li>
           <li>If a signal has no recent data, it is left out and the other weights are rescaled. The table shows each signal's effective weight.</li>
           <li>The state comes from the index: STABLE below <span data-t="caution">40</span>, CAUTION from there, DANGER from <span data-t="danger">65</span>.</li>
           <li>So the monitor does not flip between states on every update, there is a margin of <span data-t="hysteresis">3</span> points: to move up a state the index must pass the threshold plus the margin; to move down it must drop below the threshold minus the margin.</li>

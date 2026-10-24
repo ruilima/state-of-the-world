@@ -1,6 +1,7 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
 import { mountTicker } from './ticker.js';
+import { biggestContribution } from './derive.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -137,6 +138,8 @@ function renderMonitor(index, files) {
   // After the figures, so it lands under the state word and the figures keep their row.
   if (outdated) figures.after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
   else if (d?.value != null && fresh.late.length) figures.after(h('p', { class: 'monitor__note monitor__delayed' }, delayedNote(fresh.late)));
+  const lead = biggestContribution(d);
+  if (lead) Object.assign(document.getElementById('monitor-lead'), { textContent: `Biggest contribution now: ${lead}`, hidden: false });
   mountEcg(document.getElementById('trace'), { state, bpm: d?.bpm ?? 60, still: outdated });
 }
 
