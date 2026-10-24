@@ -227,6 +227,11 @@ a:hover { text-decoration-thickness: 2px; }
    figures row has no room for it without growing the monitor, so there it is
    for screen readers only (the state word also carries it as a title). */
 .monitor__figures .monitor__hold { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+.monitor__scale-hold { display: none; }
+@media (max-width: 899px) {
+  .monitor__scale.is-holding .monitor__scale-thresholds { display: none; }
+  .monitor__scale.is-holding .monitor__scale-hold { display: inline; }
+}
 @media (min-width: 900px) {
   .monitor__figures .monitor__hold { grid-area: 3 / 1; position: static; width: auto; height: auto; overflow: visible; clip: auto; font: 400 0.75rem / 1 var(--type); color: var(--tube-low); }
   .monitor__index #monitor-index { grid-area: 1 / 2 / 4 / 3; }

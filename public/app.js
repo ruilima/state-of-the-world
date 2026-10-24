@@ -1,7 +1,7 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
 import { mountTicker } from './ticker.js';
-import { holdNote, biggestContribution, mainDriver, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
+import { holdNote, scaleLine, biggestContribution, mainDriver, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -126,7 +126,17 @@ function renderMonitor(index, files) {
   document.getElementById('monitor-index').textContent = d?.value == null ? '—' : `${num(d.value, 0)} of 100`;
   if (d?.thresholds) {
     const t = d.thresholds;
-    document.getElementById('monitor-scale').replaceChildren(h('span', { 'aria-hidden': 'true' }, `caution ≥${t.caution}, danger ≥${t.danger}`), h('span', { class: 'visually-hidden' }, `caution from ${t.caution}, danger from ${t.danger}`));
+    // Below 900 px the line shows the short hold note instead of the
+    // thresholds while the margin holds the state (CSS picks one); screen
+    // readers always get the thresholds here and the full note below.
+    const line = scaleLine(d.value, state, t);
+    const scale = document.getElementById('monitor-scale');
+    scale.replaceChildren(
+      h('span', { class: 'monitor__scale-thresholds', 'aria-hidden': 'true' }, `caution ≥${t.caution}, danger ≥${t.danger}`),
+      line.holding ? h('span', { class: 'monitor__scale-hold', 'aria-hidden': 'true' }, line.text) : null,
+      h('span', { class: 'visually-hidden' }, `caution from ${t.caution}, danger from ${t.danger}`),
+    );
+    scale.classList.toggle('is-holding', line.holding);
   }
   document.getElementById('monitor-bpm').replaceChildren(...(d?.bpm == null ? ['—'] : [`${d.bpm} bpm`, h('span', { class: 'visually-hidden' }, ' (visual only: it follows the Condition Index, it is not a measurement)')]));
   // Outdated when the index itself is older than 3× its 30-minute refresh, or

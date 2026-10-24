@@ -79,3 +79,16 @@ export function holdNote(value, state, { caution, danger, hysteresis: m }) {
   if (RANK[state] > RANK[raw]) return `holding ${STATE_WORD[state]} until below ${(state === 'danger' ? danger : caution) - m}`;
   return `holding ${STATE_WORD[state]} until ${(state === 'stable' ? caution : danger) + m}`;
 }
+
+/**
+ * The small line under "Condition Index" on narrow screens: the thresholds,
+ * or, while the margin is holding the state, a short hold note that fits the
+ * same width ("CAUTION held until <37").
+ */
+export function scaleLine(value, state, t) {
+  const thresholds = `caution ≥${t.caution}, danger ≥${t.danger}`;
+  const note = holdNote(value, state, t);
+  if (!note) return { text: thresholds, holding: false };
+  const [, word, below, n] = note.match(/^holding (\w+) until (below )?(\d+(?:\.\d+)?)$/);
+  return { text: `${word} held until ${below ? '<' : ''}${n}`, holding: true };
+}

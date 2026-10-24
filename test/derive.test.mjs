@@ -80,3 +80,15 @@ test('the hold note shows only while the margin keeps a state, on both sides', a
   assert.equal(holdNote(36.9, 'stable', t), null);
   assert.equal(holdNote(null, 'caution', t), null);
 });
+
+test('on narrow screens the thresholds line turns into the hold note, and back', async () => {
+  const { scaleLine } = await import('../public/derive.js');
+  const t = { caution: 40, danger: 65, hysteresis: 3 };
+  assert.deepEqual(scaleLine(39, 'caution', t), { text: 'CAUTION held until <37', holding: true });
+  assert.deepEqual(scaleLine(63, 'danger', t), { text: 'DANGER held until <62', holding: true });
+  assert.deepEqual(scaleLine(41, 'stable', t), { text: 'STABLE held until 43', holding: true });
+  assert.deepEqual(scaleLine(66, 'caution', t), { text: 'CAUTION held until 68', holding: true });
+  assert.deepEqual(scaleLine(45, 'caution', t), { text: 'caution ≥40, danger ≥65', holding: false });
+  // Never wider than the thresholds line it replaces (same font, monospace).
+  for (const [v, s] of [[39, 'caution'], [63, 'danger'], [41, 'stable'], [66, 'caution']]) assert.ok(scaleLine(v, s, t).text.length <= 'caution ≥40, danger ≥65'.length);
+});
