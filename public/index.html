@@ -50,7 +50,7 @@
     <!-- Filled by ticker.js; stays hidden when there are no headlines. -->
     <section class="ticker" id="ticker" aria-labelledby="ticker-title" hidden>
       <div class="ticker__bar">
-        <h2 class="ticker__title" id="ticker-title">Headlines</h2>
+        <h2 class="ticker__title" id="ticker-title">Headlines via GDELT <span class="ticker__about">· automatic selection, not checked by us</span></h2>
         <p class="ticker__note" hidden></p>
         <button class="ticker__toggle" type="button">Pause headlines</button>
       </div>
@@ -65,13 +65,13 @@
     <main>
       <section class="monitor" aria-labelledby="monitor-state">
         <svg class="monitor__trace" id="trace" viewBox="0 0 1000 200" preserveAspectRatio="none" role="img" aria-labelledby="trace-desc">
-          <desc id="trace-desc">The planet's heartbeat. Its pace and colour follow the Condition Index.</desc>
+          <desc id="trace-desc">A heartbeat trace: its pace and colour follow the Condition Index.</desc>
         </svg>
         <div class="monitor__readout">
           <p class="monitor__state" id="monitor-state" aria-live="polite">—</p>
           <dl class="monitor__figures">
-            <div><dt>index</dt><dd id="monitor-index">—</dd></div>
-            <div><dt>pulse</dt><dd id="monitor-bpm">—</dd></div>
+            <div><dt>Condition Index</dt><dd id="monitor-index">—</dd><dd class="monitor__scale" id="monitor-scale">caution from 40, danger from 65</dd></div>
+            <div><dt>Pulse</dt><dd id="monitor-bpm">—</dd></div>
           </dl>
           <p class="monitor__note">An editorial indicator, not a scientific one. <a href="how-the-index-works">How the index works</a></p>
         </div>
