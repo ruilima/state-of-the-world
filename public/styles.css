@@ -223,6 +223,9 @@ a:hover { text-decoration-thickness: 2px; }
 .monitor__note { grid-area: note; margin: 6px 0 0; color: var(--tube-low); font-size: var(--s-14); }
 .monitor__delayed { grid-area: delayed; }
 .monitor__lead { grid-area: lead; }
+@media (max-width: 719px) {
+  .monitor__lead { margin-top: 4px; font-size: 0.75rem; line-height: 1.35; }
+}
 /* Phones wide enough for the state word and the stamp side by side. */
 @media (min-width: 380px) and (max-width: 719px) {
   .monitor {

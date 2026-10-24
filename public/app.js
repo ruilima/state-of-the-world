@@ -139,7 +139,8 @@ function renderMonitor(index, files) {
   if (outdated) figures.after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
   else if (d?.value != null && fresh.late.length) figures.after(h('p', { class: 'monitor__note monitor__delayed' }, delayedNote(fresh.late)));
   const lead = biggestContribution(d);
-  if (lead) Object.assign(document.getElementById('monitor-lead'), { textContent: `Biggest contribution now: ${lead}`, hidden: false });
+  // An outdated index has no "now": the line only shows with fresh data.
+  if (lead && !outdated) Object.assign(document.getElementById('monitor-lead'), { textContent: `Biggest contribution now: ${lead}`, hidden: false });
   mountEcg(document.getElementById('trace'), { state, bpm: d?.bpm ?? 60, still: outdated });
 }
 
