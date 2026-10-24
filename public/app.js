@@ -462,7 +462,6 @@ function renderTemperature(file) {
   return [
     h('h3', {}, 'Global temperature'),
     h('p', {}, climateLede(c)),
-    h('p', { class: 'small' }, 'A single month above 1.5 °C is not the Paris Agreement threshold, which refers to long-term averages (about 20 years). Not part of the Condition Index.'),
     h(
       'figure',
       { class: 'figure' },
@@ -479,12 +478,15 @@ function renderTemperature(file) {
           format: (v) => deg(v, 1),
           formatLabel: (v) => deg(v),
           ref: { value: 1.5, label: '1.5 °C' },
+          // Lower than the other bar charts, so the block stays compact.
+          height: CHART_W === 380 ? 176 : 160,
         },
       ),
       h(
         'figcaption',
         {},
-        'Monthly global surface air temperature above the 1850–1900 average. Dashed line: 1.5 °C. Data: ERA5, C3S/ECMWF. ',
+        // One small note: context, line, scope and source.
+        'A single month above 1.5 °C is not the Paris Agreement threshold, which refers to long-term averages (about 20 years). Dashed line: 1.5 °C. Not part of the Condition Index. Data: ERA5, C3S/ECMWF. ',
         link(c.bulletinUrl, `C3S bulletin for ${fmtMonth(last.month)}`),
         c.publishedAt ? `, published ${fmtDate(c.publishedAt)}.` : '.',
       ),
@@ -534,9 +536,9 @@ function renderPlanet(files) {
         h(
           'ol',
           { class: 'list' },
-          q.quakes.slice(0, 8).map((x) => h('li', {}, link(x.url, `M${num(x.mag, 1)} ${x.place ?? ''}`), h('span', { class: 'meta' }, `${fmtDayTime(x.time)}, ${num(x.depthKm)} km deep${x.tsunami ? ', large quake at sea' : ''}`))),
+          q.quakes.slice(0, 5).map((x) => h('li', {}, link(x.url, `M${num(x.mag, 1)} ${x.place ?? ''}`), h('span', { class: 'meta' }, `${fmtDayTime(x.time)}, ${num(x.depthKm)} km deep${x.tsunami ? ', large quake at sea' : ''}`))),
         ),
-        q.quakes.slice(0, 8).some((x) => x.tsunami) ? h('p', { class: 'small faded' }, 'USGS flags large quakes at sea. It does not mean a tsunami occurred or will occur.') : null,
+        q.quakes.slice(0, 5).some((x) => x.tsunami) ? h('p', { class: 'small faded' }, 'USGS flags large quakes at sea. It does not mean a tsunami occurred or will occur.') : null,
       ),
     );
   }
