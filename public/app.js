@@ -538,7 +538,7 @@ function renderAhead(files) {
   if (c) {
     const dd = c.doomsday;
     out.push(h('p', { class: 'lede' }, h('span', { class: 'big-number' }, `${dd.current.seconds} seconds`), ' to midnight on the Doomsday Clock, the closest it has ever been.'));
-    out.push(h('p', { class: 'small' }, 'An expert panel’s judgement of global risk, set once a year. ', `Set on ${fmtDate(dd.current.setAt)} by the `, link(dd.source.url, dd.source.name), '. ', unverified(!dd.current.verified)));
+    out.push(h('p', { class: 'small' }, 'An expert panel’s judgement of global risk, set once a year. Shown as context: it is not part of the Condition Index. ', `Set on ${fmtDate(dd.current.setAt)} by the `, link(dd.source.url, dd.source.name), '. ', unverified(!dd.current.verified)));
     out.push(h('h3', {}, 'Recent years'));
     out.push(h('ol', { class: 'seq' }, dd.history.map((r) => h('li', {}, `${r.year}: ${r.seconds} seconds `, unverified(!r.verified, r.evidence === 'secondary' ? 'secondary' : 'pending')))));
 
@@ -606,7 +606,7 @@ const FILES_LIST = [
   },
   {
     id: 'ahead', name: 'What lies ahead', subject: 'warnings about the years ahead',
-    sources: ['curated', 'digest'], signals: ['doomsday'], stampSources: ['doomsday'], render: renderAhead,
+    sources: ['curated', 'digest'], signals: [], stampSources: ['doomsday'], render: renderAhead,
     keySource: 'curated',
     key: (f) => { const c = f.curated?.data?.doomsday?.current; return c ? `${c.seconds} seconds to midnight` : null; },
   },

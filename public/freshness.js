@@ -84,7 +84,8 @@ export const STAMP_SOURCES = {
 };
 
 // Which stamp source each index signal comes from.
-export const SIGNAL_SOURCE = { conflictNews: 'gdelt-events', conflictDeaths: 'ucdp', quakes: 'usgs', naturalEvents: 'eonet', aiLayoffs: 'layoffs', doomsday: 'doomsday' };
+// The Doomsday Clock is shown in What lies ahead but is not an index signal.
+export const SIGNAL_SOURCE = { conflictNews: 'gdelt-events', conflictDeaths: 'ucdp', quakes: 'usgs', naturalEvents: 'eonet', aiLayoffs: 'layoffs' };
 
 /** { outdated, late: [names] } for the stamp sources `ids`. */
 export function stampFreshness(ids, files, now = Date.now()) {

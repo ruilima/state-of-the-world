@@ -21,7 +21,7 @@ if (!index?.data) {
         <td class="num">${nf(s.calm)}</td>
         <td class="num">${nf(s.alarm)}</td>
         <td class="num">${s.score == null ? 'out' : nf(s.score, 0)}</td>
-        <td class="num">${s.weight}%</td>
+        <td class="num">${nf((s.weight / d.weightTotal) * 100, 1)}%</td>
         <td class="num">${s.score == null ? '0%' : `${nf(s.effectiveWeight, 1)}%`}</td>
       </tr>`,
     )

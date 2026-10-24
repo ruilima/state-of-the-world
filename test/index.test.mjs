@@ -38,6 +38,11 @@ test('missing signals are dropped and weights rescaled', () => {
   assert.equal(r.signals.find((s) => s.id === 'quakes').effectiveWeight, 100);
 });
 
+test('the Doomsday Clock is context only, not an index signal', () => {
+  const config = JSON.parse(readFileSync(new URL('../config/index.json', import.meta.url)));
+  assert.ok(config.signals.every((s) => s.id !== 'doomsday' && !/doomsday/.test(s.path ?? '')));
+});
+
 test('the conflict signal comes only from the GDELT 15-minute event files, never the DOC API', () => {
   const config = JSON.parse(readFileSync(new URL('../config/index.json', import.meta.url)));
   assert.equal(config.signals.find((s) => s.id === 'conflictNews').source, 'gdelt-events');

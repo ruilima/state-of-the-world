@@ -65,7 +65,7 @@
     {
       "id": "aiLayoffs",
       "name": "Pace of job cuts citing AI",
-      "explain": "Last month's US job cuts where companies cited AI (Challenger), divided by the average of the months before it (up to 12). 1 means a normal pace. Calm 0.8 (below the usual pace) and alarm 2.0 (double it) are our choice. Weighted 10, like the earthquake and storm signals and half the conflict-news and Doomsday Clock signals, because the reason is the companies' own.",
+      "explain": "Last month's US job cuts where companies cited AI (Challenger), divided by the average of the months before it (up to 12). 1 means a normal pace. Calm 0.8 (below the usual pace) and alarm 2.0 (double it) are our choice. Weighted 10, like the earthquake and storm signals and half the conflict-news signal, because the reason is the companies' own.",
       "source": "curated",
       "special": "layoffRatio",
       "unit": "ratio to average",
@@ -73,18 +73,6 @@
       "alarm": 2.0,
       "maxAgeHours": 840,
       "weight": 10
-    },
-    {
-      "id": "doomsday",
-      "name": "Doomsday Clock",
-      "explain": "Seconds to midnight according to the Bulletin of the Atomic Scientists. Fewer seconds, closer to alarm. Calm 420 seconds is the clock's first setting, in 1947 (7 minutes); alarm 60 seconds is our choice.",
-      "source": "curated",
-      "path": "data.doomsday.current.seconds",
-      "unit": "seconds",
-      "calm": 420,
-      "alarm": 60,
-      "maxAgeHours": 9500,
-      "weight": 20
     }
   ]
 }
