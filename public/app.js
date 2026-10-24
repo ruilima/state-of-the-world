@@ -1,7 +1,7 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
 import { mountTicker } from './ticker.js';
-import { biggestContribution, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
+import { biggestContribution, mainDriver, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -140,7 +140,13 @@ function renderMonitor(index, files) {
   else if (d?.value != null && fresh.late.length) figures.after(h('p', { class: 'monitor__note monitor__delayed' }, delayedNote(fresh.late)));
   const lead = biggestContribution(d);
   // An outdated index has no "now": the line only shows with fresh data.
-  if (lead && !outdated) Object.assign(document.getElementById('monitor-lead'), { textContent: `Biggest contribution now: ${lead}`, hidden: false });
+  // Wide screens get the long line with points; phones a short one (CSS picks).
+  if (lead && !outdated) {
+    const el = document.getElementById('monitor-lead');
+    el.replaceChildren(h('span', { class: 'monitor__lead-long' }, `Biggest contribution now: ${lead}`), h('span', { class: 'monitor__lead-short' }, `Main driver: ${mainDriver(d)}`));
+    el.hidden = false;
+    document.querySelector('.monitor').classList.add('has-lead');
+  }
   mountEcg(document.getElementById('trace'), { state, bpm: d?.bpm ?? 60, still: outdated });
 }
 

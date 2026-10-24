@@ -59,3 +59,9 @@ test('the Planet lede names the M4.5+, M6+ and significant counts', async () => 
     '1,167 earthquakes of magnitude 4.5 or more in the last 7 days, 5 of magnitude 6 or more. USGS classed 4 as significant, the number the Condition Index uses.',
   );
 });
+
+test('the phone line names the main driver by its short name', async () => {
+  const { mainDriver } = await import('../public/derive.js');
+  assert.equal(mainDriver(index), 'conflict deaths');
+  assert.equal(mainDriver({ value: null, signals: [] }), null);
+});

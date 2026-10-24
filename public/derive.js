@@ -54,3 +54,12 @@ export function quakeSummary(counts) {
   if (counts.significantWeek != null) out.push(`USGS classed ${n(counts.significantWeek)} as significant, the number the Condition Index uses.`);
   return out.join(' ');
 }
+
+// Short names for the phone version of the monitor line ("Main driver: …").
+export const SHORT_NAME = { conflictDeaths: 'conflict deaths', conflictNews: 'conflict news', quakes: 'earthquakes', naturalEvents: 'storms and volcanoes', aiLayoffs: 'job cuts citing AI' };
+
+/** "conflict deaths": the signal with the most points, by its short name. */
+export function mainDriver(index) {
+  const top = contributions(index)[0];
+  return top ? SHORT_NAME[top.id] ?? top.name : null;
+}
