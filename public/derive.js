@@ -92,3 +92,22 @@ export function scaleLine(value, state, t) {
   const [, word, below, n] = note.match(/^holding (\w+) until (below )?(\d+(?:\.\d+)?)$/);
   return { text: `${word} held until ${below ? '<' : ''}${n}`, holding: true };
 }
+
+const ORDINAL = ['', '', 'second-', 'third-', 'fourth-', 'fifth-', 'sixth-', 'seventh-', 'eighth-', 'ninth-', 'tenth-'];
+const MONTH_NAME = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const deg = (n) => `${n.toFixed(2)}\u00a0°C`;
+
+/**
+ * The Planet temperature lede, from the C3S data:
+ * "September 2026 was 1.63 °C above the 1850–1900 average, the second-warmest
+ * September on record (after 2023). Average of the last 12 monthly values: 1.49 °C."
+ */
+export function climateLede(c) {
+  const last = c.months.at(-1);
+  const month = MONTH_NAME[Number(last.month.slice(5, 7)) - 1];
+  const { position, warmerYears } = c.rank;
+  const th = (n) => (n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] ?? 'th');
+  const rank = position === 1 ? 'the warmest' : position <= 10 ? `the ${ORDINAL[position]}warmest` : `the ${position}${th(position)}-warmest`;
+  const after = position > 1 && warmerYears.length <= 3 ? ` (after ${warmerYears.length > 1 ? `${warmerYears.slice(0, -1).join(', ')} and ${warmerYears.at(-1)}` : warmerYears[0]})` : '';
+  return `${month} ${last.month.slice(0, 4)} was ${deg(last.anomaly)} above the 1850–1900 average, ${rank} ${month} on record${after}. Average of the last 12 monthly values: ${deg(c.mean12)}.`;
+}

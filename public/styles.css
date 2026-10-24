@@ -433,6 +433,9 @@ a:hover { text-decoration-thickness: 2px; }
 .chart .line { fill: none; stroke: var(--ink); stroke-width: 2; }
 .chart .bar { fill: var(--ink); }
 .chart .bar.over { fill: var(--danger-ink); }
+/* Reference line (1.5 °C): ink, dashed, labelled, so it never relies on colour. */
+.chart .refline { stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.chart .refline-halo { stroke: var(--paper); stroke-width: 3; }
 .chart .label { fill: var(--ink); font-weight: 700; }
 
 .map .land { fill: var(--ink); fill-opacity: 0.1; stroke: var(--ink-faded); stroke-width: 0.35; }

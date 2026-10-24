@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { isLate, stampFreshness, delayedNote, nextChallengerReport, missingCalendarYear } from '../public/freshness.js';
+import { isLate, stampFreshness, delayedNote, nextChallengerReport, missingCalendarYear, nextClimateBulletin } from '../public/freshness.js';
 
 const NOW = Date.parse('2026-10-24T12:00:00Z');
 const at = (min) => ({ status: 'ok', lastSuccessAt: new Date(NOW - min * 60000).toISOString() });
@@ -94,4 +94,15 @@ test('the Doomsday Clock is delayed 13 months after it was set', () => {
   const f = fresh();
   assert.equal(stampFreshness(['doomsday'], f, Date.parse('2027-02-26T00:00:00Z')).outdated, false);
   assert.equal(stampFreshness(['doomsday'], f, Date.parse('2027-02-28T00:00:00Z')).outdated, true);
+});
+
+test('the C3S temperature is delayed 5 days after the next bulletin was due', () => {
+  assert.equal(nextClimateBulletin('2026-09'), '2026-11-12');
+  assert.equal(nextClimateBulletin('2026-12'), '2027-02-12');
+  const f = (lastSuccessAt) => ({ climate: { status: 'ok', lastSuccessAt, data: { month: '2026-09' } } });
+  const fresh = (t) => new Date(Date.parse(t) - 3600e3).toISOString();
+  assert.equal(stampFreshness(['climate'], f(fresh('2026-11-16T23:00:00Z')), Date.parse('2026-11-16T23:00:00Z')).outdated, false);
+  assert.deepEqual(stampFreshness(['climate'], f(fresh('2026-11-17T00:00:00Z')), Date.parse('2026-11-17T00:00:00Z')), { outdated: true, late: ['Copernicus (C3S)'] });
+  // A download that keeps failing is late too, whatever the bulletin date.
+  assert.equal(stampFreshness(['climate'], f('2026-10-01T00:00:00Z'), Date.parse('2026-10-24T12:00:00Z')).outdated, true);
 });

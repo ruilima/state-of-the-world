@@ -92,3 +92,14 @@ test('on narrow screens the thresholds line turns into the hold note, and back',
   // Never wider than the thresholds line it replaces (same font, monospace).
   for (const [v, s] of [[39, 'caution'], [63, 'danger'], [41, 'stable'], [66, 'caution']]) assert.ok(scaleLine(v, s, t).text.length <= 'caution ≥40, danger ≥65'.length);
 });
+
+test('the temperature lede is written from the data', async () => {
+  const { climateLede } = await import('../public/derive.js');
+  const months = Array.from({ length: 24 }, (_, i) => ({ month: `2026-${String((i % 9) + 1).padStart(2, '0')}`, anomaly: 1.4, absolute: 15 }));
+  months[23] = { month: '2026-09', anomaly: 1.634, absolute: 16.27 };
+  const c = { months, mean12: 1.49, rank: { position: 2, of: 87, since: '1940', warmerYears: ['2023'] } };
+  assert.equal(climateLede(c), 'September 2026 was 1.63\u00a0°C above the 1850–1900 average, the second-warmest September on record (after 2023). Average of the last 12 monthly values: 1.49\u00a0°C.');
+  assert.match(climateLede({ ...c, rank: { position: 1, warmerYears: [] } }), /, the warmest September on record\. /);
+  assert.match(climateLede({ ...c, rank: { position: 3, warmerYears: ['2023', '2024'] } }), /the third-warmest September on record \(after 2023 and 2024\)/);
+  assert.match(climateLede({ ...c, rank: { position: 12, warmerYears: Array(11).fill('x') } }), /the 12th-warmest September on record\. /);
+});

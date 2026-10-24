@@ -1,7 +1,7 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
 import { mountTicker } from './ticker.js';
-import { holdNote, scaleLine, biggestContribution, mainDriver, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
+import { holdNote, scaleLine, climateLede, biggestContribution, mainDriver, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -81,7 +81,7 @@ const stateFromScore = (score, t) => (score >= t.danger ? 'danger' : score >= t.
 
 // ---------- data ----------
 
-const FILES = ['manifest', 'index', 'usgs', 'eonet', 'gdelt-events', 'gdelt-doc', 'pulse', 'worldbank', 'ucdp', 'curated', 'digest'];
+const FILES = ['manifest', 'index', 'usgs', 'eonet', 'gdelt-events', 'gdelt-doc', 'pulse', 'worldbank', 'ucdp', 'climate', 'curated', 'digest'];
 
 async function load() {
   const entries = await Promise.all(
@@ -99,13 +99,13 @@ async function load() {
 
 const SOURCE_NAME = {
   usgs: 'USGS (earthquakes)', eonet: 'NASA EONET', 'gdelt-events': 'GDELT (event files)', 'gdelt-doc': 'GDELT (headlines)', pulse: 'Hacker News and arXiv',
-  worldbank: 'World Bank', ucdp: 'UCDP', curated: 'Hand-curated figures', digest: 'AI summary',
+  worldbank: 'World Bank', ucdp: 'UCDP', climate: 'Copernicus (C3S)', curated: 'Hand-curated figures', digest: 'AI summary',
 };
 
 // Plain-English source states. Technical errors stay in the data files and
 // the run logs; the page only says what the visitor needs to know.
 // Sources that publish yearly or by hand are "checked", not "up to date".
-const CHECKED_ONLY = new Set(['worldbank', 'curated']);
+const CHECKED_ONLY = new Set(['worldbank', 'curated', 'climate']);
 function health(id, file) {
   if (!file) return { state: 'fail', text: 'no data yet' };
   if (file.status === 'disabled') return { state: 'stale', text: 'off' };
@@ -450,6 +450,54 @@ function renderWork(files) {
   return out;
 }
 
+// Global temperature from the C3S monthly bulletin: context only, not part
+// of the Condition Index. Without data the section is left out and the
+// source line below says why.
+function renderTemperature(file) {
+  const c = file?.data;
+  if (!c?.months?.length) return [];
+  const last = c.months.at(-1);
+  const deg = (v, d = 2) => `${num(v, d)}\u00a0°C`;
+  const shortMonth = (m) => tidy(monthShort.format(new Date(`${m}-01T00:00:00Z`)));
+  return [
+    h('h3', {}, 'Global temperature'),
+    h('p', {}, climateLede(c)),
+    h('p', { class: 'small' }, 'A single month above 1.5 °C is not the Paris Agreement threshold, which refers to long-term averages (about 20 years). Not part of the Condition Index.'),
+    h(
+      'figure',
+      { class: 'figure' },
+      barChart(
+        // Januaries carry the year; the first bar too, unless a January is
+        // too close for both labels. Other bars stay unlabelled so 24 fit.
+        c.months.map((m, i) => {
+          const firstJan = c.months.findIndex((x) => x.month.endsWith('-01'));
+          const show = m.month.endsWith('-01') || (i === 0 && (firstJan < 0 || firstJan >= 5));
+          return { label: show ? `${shortMonth(m.month)} ${m.month.slice(2, 4)}` : '', value: m.anomaly, hover: `${fmtMonth(m.month)}: ${deg(m.anomaly)} above 1850–1900` };
+        }),
+        {
+          label: `Global surface air temperature, monthly, above the 1850–1900 average, ${fmtMonth(c.months[0].month)} to ${fmtMonth(last.month)}. Latest: ${fmtMonth(last.month)}, ${deg(last.anomaly)}, ranked ${c.rank.position} of ${c.rank.of} since ${c.rank.since} for that month. Dashed line: 1.5 °C.`,
+          format: (v) => deg(v, 1),
+          formatLabel: (v) => deg(v),
+          ref: { value: 1.5, label: '1.5 °C' },
+        },
+      ),
+      h(
+        'figcaption',
+        {},
+        'Monthly global surface air temperature above the 1850–1900 average. Dashed line: 1.5 °C. Data: ERA5, C3S/ECMWF. ',
+        link(c.bulletinUrl, `C3S bulletin for ${fmtMonth(last.month)}`),
+        c.publishedAt ? `, published ${fmtDate(c.publishedAt)}.` : '.',
+      ),
+      tableDetails(
+        'Global surface air temperature by month',
+        ['Month', 'Above 1850–1900', 'Absolute', 'Above 1.5 °C'],
+        c.months.map((m) => [fmtMonth(m.month), deg(m.anomaly), deg(m.absolute), m.anomaly > 1.5 ? 'yes' : 'no']),
+        [1, 2],
+      ),
+    ),
+  ];
+}
+
 // EONET's own label for this category reads as dated English.
 const CATEGORY_NAME = { manmade: 'Human-caused' };
 
@@ -511,6 +559,7 @@ function renderPlanet(files) {
     );
   }
   out.push(h('div', { class: 'two-col' }, cols));
+  out.push(...renderTemperature(files.climate));
   return out;
 }
 
@@ -624,7 +673,8 @@ const FILES_LIST = [
   },
   {
     id: 'planet', name: 'Planet', subject: 'earthquakes and natural events',
-    sources: ['usgs', 'eonet'], signals: ['quakes', 'naturalEvents'], stampSources: ['usgs', 'eonet'], render: renderPlanet,
+    // The temperature is context: a late C3S file adds a note, never DATA OUTDATED.
+    sources: ['usgs', 'eonet', 'climate'], signals: ['quakes', 'naturalEvents'], stampSources: ['usgs', 'eonet'], noteSources: ['climate'], render: renderPlanet,
     keySource: 'usgs',
     key: (f) => { const q = f.usgs?.data?.strongest; return q ? `Strongest this week: M${num(q.mag, 1)}, ${q.place}` : null; },
   },
@@ -648,10 +698,13 @@ const FILES_LIST = [
 // The stamp and, when only some of its sources are delayed, a note naming them.
 function fileStamp(d, files) {
   const fresh = stampFreshness(d.stampSources, files);
+  // Sources that do not sustain the state can only add to the note.
+  const context = d.noteSources ? stampFreshness(d.noteSources, files).late : [];
   if (fresh.outdated) return { stamp: 'stale', note: null };
   const t = files.index?.data?.thresholds ?? { caution: 40, danger: 65 };
   const scores = (files.index?.data?.signals ?? []).filter((s) => d.signals.includes(s.id) && s.score != null).map((s) => s.score);
-  return { stamp: scores.length ? stateFromScore(Math.max(...scores), t) : null, note: fresh.late.length ? delayedNote(fresh.late) : null };
+  const late = [...fresh.late, ...context];
+  return { stamp: scores.length ? stateFromScore(Math.max(...scores), t) : null, note: late.length ? delayedNote(late) : null };
 }
 
 // The "Subject" and "Data" lines are typed out once when a record opens.
@@ -802,6 +855,8 @@ const files = await load();
 const gen = files.manifest?.generatedAt;
 document.getElementById('updated').textContent = gen ? `Updated ${fmtDayTime(gen)}` : 'No update recorded yet';
 renderMonitor(files.index, files);
+// The Copernicus notice names the year of the information shown.
+if (files.climate?.data?.month) document.getElementById('c3s-year').textContent = files.climate.data.month.slice(0, 4);
 try {
   const doc = files['gdelt-doc']?.data?.queries ?? {};
   mountTicker(document.getElementById('ticker'), [{ topic: 'Conflict', query: doc.conflictHeadlines }, { topic: 'Work & AI', query: doc.aiLayoffHeadlines }], fmtDayTime, fmtDate);

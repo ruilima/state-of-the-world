@@ -24,11 +24,16 @@ const niceMax = (v) => {
   return Math.ceil(v / p / 2) * 2 * p;
 };
 
-/** Vertical bars. items: [{label, value, hover}]; over(value) -> bool marks a breach. */
-export function barChart(items, { label, height = 200, width = 640, format = String, over = () => false } = {}) {
-  const W = width, H = height, L = 52, B = 26, T = 12;
-  const svg = frame(W, H, label);
-  const max = niceMax(Math.max(...items.map((d) => d.value)));
+/**
+ * Vertical bars. items: [{label, value, hover}]; over(value) -> bool marks a breach.
+ * ref: {value, label} draws a dashed reference line, labelled at its right end.
+ * An item's label may be '' to leave that bar without an axis label.
+ */
+export function barChart(items, { label, height = 200, width = 640, format = String, formatLabel = format, over = () => false, ref = null } = {}) {
+  const R = ref ? 44 : 0;
+  const W = width - R, H = height, L = 52, B = 26, T = 12;
+  const svg = frame(width, H, label);
+  const max = niceMax(Math.max(...items.map((d) => d.value), ref?.value ?? 0));
   const y = (v) => T + (H - T - B) * (1 - v / max);
   for (const g of [0, max / 2, max]) {
     svg.append(el('line', { class: g ? 'gridline' : 'axis', x1: L, x2: W, y1: y(g), y2: y(g) }));
@@ -40,11 +45,17 @@ export function barChart(items, { label, height = 200, width = 640, format = Str
     const x = L + i * slot + (slot - bw) / 2;
     const bar = el('rect', { class: `bar${over(d.value) ? ' over' : ''}`, x, y: y(d.value), width: bw, height: Math.max(1, y(0) - y(d.value)) }, title(d.hover ?? `${d.label}: ${format(d.value)}`));
     svg.append(bar);
-    svg.append(el('text', { x: x + bw / 2, y: H - 8, 'text-anchor': 'middle' }, d.label));
+    if (d.label) svg.append(el('text', { x: x + bw / 2, y: H - 8, 'text-anchor': 'middle' }, d.label));
   });
+  if (ref) {
+    // A paper-coloured halo keeps the dashes visible where they cross bars.
+    svg.append(el('line', { class: 'refline-halo', x1: L, x2: W, y1: y(ref.value), y2: y(ref.value) }));
+    svg.append(el('line', { class: 'refline', x1: L, x2: W, y1: y(ref.value), y2: y(ref.value) }));
+    svg.append(el('text', { class: 'label', x: W + 4, y: y(ref.value) + 4 }, ref.label));
+  }
   // Label the last bar so the latest value is readable without hovering.
   const last = items.at(-1);
-  if (last) svg.append(el('text', { class: 'label', x: L + (items.length - 1) * slot + slot / 2, y: y(last.value) - 6, 'text-anchor': 'middle' }, format(last.value)));
+  if (last) svg.append(el('text', { class: 'label', x: L + (items.length - 1) * slot + slot / 2, y: y(last.value) - 6, 'text-anchor': 'middle' }, formatLabel(last.value)));
   return svg;
 }
 

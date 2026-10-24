@@ -43,6 +43,16 @@ export function missingCalendarYear(layoffs) {
   return left > 1 || !last ? null : Number(addMonths(last, 1).slice(0, 4));
 }
 
+/**
+ * When the next C3S bulletin is due, given the newest month in the file:
+ * the 12th of the month after the next one (September data → October's
+ * bulletin, out around 12 November).
+ */
+export function nextClimateBulletin(month) {
+  const [y, m] = month.split('-').map(Number);
+  return new Date(Date.UTC(y, m + 1, 12)).toISOString().slice(0, 10);
+}
+
 export const STAMP_SOURCES = {
   'gdelt-events': { name: 'GDELT (event files)', late: (f, now) => fileLate('gdelt-events', f['gdelt-events'], now) },
   usgs: { name: 'USGS (earthquakes)', late: (f, now) => fileLate('usgs', f.usgs, now) },
@@ -68,6 +78,15 @@ export const STAMP_SOURCES = {
       if (!l.releaseCalendar) return (now - Date.parse(l.updatedAt)) / DAY > (l.maxAgeDays ?? 35);
       const next = nextChallengerReport(l);
       return !next || now >= Date.parse(next.expectedAt) + 3 * DAY;
+    },
+  },
+  // Monthly bulletin: late 5 days after the next one was due, or when the
+  // file itself has not been downloaded for 3 days.
+  climate: {
+    name: 'Copernicus (C3S)',
+    late: (f, now) => {
+      const month = f.climate?.data?.month;
+      return fileLate('climate', f.climate, now) || !month || now >= Date.parse(nextClimateBulletin(month)) + 5 * DAY;
     },
   },
   // Set once a year, in January: late 13 months after it was set.
