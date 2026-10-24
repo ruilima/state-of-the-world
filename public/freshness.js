@@ -20,10 +20,27 @@ const DAY = 864e5;
 const monthNo = (ym) => { const [y, m] = ym.split('-').map(Number); return y * 12 + m - 1; };
 const fileLate = (id, file, now) => !file?.lastSuccessAt || isLate(id, file, now);
 
-/** The Challenger report expected after the newest month in `monthly`, or null. */
+const newestMonth = (layoffs) => layoffs.monthly.map((r) => r.month).sort().at(-1) ?? '';
+const addMonths = (ym, n) => { const i = monthNo(ym) + n; return `${Math.floor(i / 12)}-${String((i % 12) + 1).padStart(2, '0')}`; };
+
+/**
+ * The Challenger report expected after the newest month in `monthly`. Past
+ * the end of the calendar, the date is estimated: the 7th of the second month
+ * after the newest row (the report usually comes out in the first week).
+ */
 export function nextChallengerReport(layoffs) {
-  const newest = layoffs.monthly.map((r) => r.month).sort().at(-1) ?? '';
-  return layoffs.releaseCalendar?.releases.find((r) => r.month > newest) ?? null;
+  const newest = newestMonth(layoffs);
+  const listed = layoffs.releaseCalendar?.releases.find((r) => r.month > newest);
+  if (listed || !newest) return listed ?? null;
+  return { month: addMonths(newest, 1), expectedAt: `${addMonths(newest, 2)}-07`, estimated: true };
+}
+
+/** The year whose release calendar should be added, or null while at least two reports are still listed. */
+export function missingCalendarYear(layoffs) {
+  const releases = layoffs.releaseCalendar?.releases ?? [];
+  const left = releases.filter((r) => r.month > newestMonth(layoffs)).length;
+  const last = releases.map((r) => r.month).sort().at(-1);
+  return left > 1 || !last ? null : Number(addMonths(last, 1).slice(0, 4));
 }
 
 export const STAMP_SOURCES = {
@@ -42,7 +59,7 @@ export const STAMP_SOURCES = {
     },
   },
   // Monthly report on a published calendar: late 3 days after the date the
-  // next report was due.
+  // next report was due (estimated once the calendar runs out).
   layoffs: {
     name: 'Challenger report',
     late: (f, now) => {

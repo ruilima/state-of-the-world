@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { isLate, stampFreshness, delayedNote, nextChallengerReport } from '../public/freshness.js';
+import { isLate, stampFreshness, delayedNote, nextChallengerReport, missingCalendarYear } from '../public/freshness.js';
 
 const NOW = Date.parse('2026-10-24T12:00:00Z');
 const at = (min) => ({ status: 'ok', lastSuccessAt: new Date(NOW - min * 60000).toISOString() });
@@ -62,9 +62,24 @@ test('the Challenger report is delayed 3 days after its release date', () => {
   // Adding the October row moves the due date to the December report.
   f.curated.data.layoffs.monthly.push({ month: '2026-10' });
   assert.equal(stampFreshness(['layoffs'], f, Date.parse('2026-11-08T00:00:00Z')).outdated, false);
-  // A calendar with no report left is delayed.
-  f.curated.data.layoffs.monthly.push({ month: '2026-11' });
-  assert.equal(stampFreshness(['layoffs'], f, NOW).outdated, true);
+});
+
+test('past the end of the calendar, only a missing report makes the stamp outdated', () => {
+  const f = fresh();
+  const l = f.curated.data.layoffs;
+  l.releaseCalendar.releases.push({ month: '2026-12', expectedAt: '2027-01-07' });
+  l.monthly.push({ month: '2026-10' });
+  assert.equal(missingCalendarYear(l), null);
+  l.monthly.push({ month: '2026-11' });
+  assert.equal(missingCalendarYear(l), 2027); // only the December report is left
+  // The December report (due 7 Jan 2027) is missing: outdated from 10 Jan.
+  assert.equal(stampFreshness(['layoffs'], f, Date.parse('2027-01-09T23:59:00Z')).outdated, false);
+  assert.equal(stampFreshness(['layoffs'], f, Date.parse('2027-01-10T00:00:00Z')).outdated, true);
+  // Its row arrives: the calendar has run out, but no report is missing.
+  l.monthly.push({ month: '2026-12' });
+  assert.deepEqual(nextChallengerReport(l), { month: '2027-01', expectedAt: '2027-02-07', estimated: true });
+  assert.equal(stampFreshness(['layoffs'], f, Date.parse('2027-01-10T00:00:00Z')).outdated, false);
+  assert.equal(stampFreshness(['layoffs'], f, Date.parse('2027-02-10T00:00:00Z')).outdated, true);
 });
 
 test('UCDP is delayed when its newest month is more than 2 months old', () => {

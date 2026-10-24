@@ -153,8 +153,10 @@ To work from the live data instead: `git fetch origin data && git archive FETCH_
 - `data/curated/layoffs.json`: add a row to `monthly` for each Challenger, Gray & Christmas
   monthly report and update `updatedAt`. `releaseCalendar` holds Challenger's published
   release dates: 3 days after the next report was due without its row in `monthly`, the
-  Work and AI file shows the DATA OUTDATED stamp. Add next year's calendar when Challenger
-  publishes it. Set `verified: true` only after reading the value in the primary source.
+  Work and AI file shows the DATA OUTDATED stamp. Past the end of the calendar the due date
+  is estimated (the 7th of the second month after the newest row), and the fetch log says
+  "release calendar for 2027 missing" once at most one listed report is left. Add next
+  year's calendar when Challenger publishes it. Set `verified: true` only after reading the value in the primary source.
 - `data/curated/doomsday.json`: once a year (January).
 - `data/curated/horizons.json`: only claims with a named author and a primary-source link.
 - `config/index.json`: signals, weights and thresholds of the Condition Index.

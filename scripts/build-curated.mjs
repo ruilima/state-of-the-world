@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { runSource, readJson, ROOT } from './lib/io.mjs';
 import { assertSchema } from './lib/schema.mjs';
 import { CURATED } from './lib/curated-schema.mjs';
+import { missingCalendarYear } from '../public/freshness.js';
 
 const dir = join(ROOT, 'data', 'curated');
 
@@ -19,6 +20,8 @@ export const run = () =>
         if (!value) throw new Error(`data/curated/${name}.json is missing or not valid JSON`);
         out[name] = assertSchema(`curated/${name}`, CURATED[name], value);
       }
+      const year = missingCalendarYear(out.layoffs);
+      if (year) console.warn(`curated: release calendar for ${year} missing (data/curated/layoffs.json, releaseCalendar)`);
       return { data: out };
     },
   });

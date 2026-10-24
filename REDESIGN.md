@@ -162,3 +162,9 @@ ARIA.
   `maxAgeDays`; esquema em `scripts/lib/curated-schema.mjs`). Se o `curated.json`
   publicado ainda não tiver o calendário (antes do merge), vale a regra antiga dos 35 dias.
   `npm test`: 59 passam. Capturas sem erros nem scroll horizontal.
+- Fim do calendário da Challenger: em vez de DATA OUTDATED logo que o calendário acaba,
+  a data prevista passa a ser estimada (dia 7 do segundo mês depois da linha mais
+  recente). Só fica DATA OUTDATED se faltar um relatório. `build-curated.mjs` escreve
+  "release calendar for 2027 missing" no log quando resta no máximo um relatório listado.
+  `npm test`: 60 passam.
+- Pré-visualização publicada no ramo `redesign-dossiers` do Pages (não toca no `main`).
