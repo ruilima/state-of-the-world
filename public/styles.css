@@ -165,6 +165,8 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .ticker__list a { color: var(--tube); }
 .ticker__src { color: var(--tube-low); }
+.ticker__topic { color: var(--tube-low); font-weight: 700; }
+.ticker__topic::after { content: ':'; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 /* ---------- Monitor (hero) ---------- */

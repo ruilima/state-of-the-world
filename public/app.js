@@ -781,7 +781,7 @@ document.getElementById('updated').textContent = gen ? `Updated ${fmtDayTime(gen
 renderMonitor(files.index, files);
 try {
   const doc = files['gdelt-doc']?.data?.queries ?? {};
-  mountTicker(document.getElementById('ticker'), [doc.conflictHeadlines, doc.aiLayoffHeadlines], fmtDayTime);
+  mountTicker(document.getElementById('ticker'), [{ topic: 'Conflict', query: doc.conflictHeadlines }, { topic: 'Work & AI', query: doc.aiLayoffHeadlines }], fmtDayTime, fmtDate);
 } catch (err) {
   console.error('ticker', err);
 }
