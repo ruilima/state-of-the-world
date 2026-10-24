@@ -183,3 +183,19 @@ ARIA.
     768: 325/361/369 → 241/241/241; 1360: 382/418/426 → 262/262/262.
   - Capturas `screenshots/monitor-{normal,delayed,outdated}-{320,390,768,1360}.png`.
   - Cores sem mudança, por isso não há pares novos.
+
+## 6. Decisão: Doomsday Clock fora do Condition Index (24 out 2026, ramo `logic-pass`)
+
+- **O que muda:** o Doomsday Clock sai do índice. O sinal foi removido de
+  `config/index.json`, em vez de ficar com peso 0. Fica no dossier What lies ahead como
+  contexto ("Shown as context: it is not part of the Condition Index"). Os outros pesos
+  mantêm as proporções entre si (20/30/10/10/10, de um total de 80).
+- **Porquê:** com peso 20 e pontuação 93,1 dava cerca de 38% do índice. Sem ele, o estado
+  das últimas 26 h passaria de CAUTION a STABLE (índice entre 33,1 e 38,2 em vez de entre
+  45,1 e 49,2).
+- **Limiares:** 40 (caution) e 65 (danger) ficam como estão. Só há 26 h de histórico (52
+  pontos desde 23 out 15:06), pouco para escolher novos valores.
+- **Reavaliar a 7 nov 2026**, com cerca de 2 semanas de dados sem o Doomsday Clock.
+- **Histerese:** a margem de 3 pontos mantém o estado anterior. Depois do merge, o estado
+  parte de CAUTION e só passa a STABLE quando o índice descer abaixo de 37 (40 − 3). Até
+  lá o site pode continuar a dizer CAUTION, mesmo com o índice abaixo de 40 (hoje 39,0).
