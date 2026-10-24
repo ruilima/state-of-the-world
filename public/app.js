@@ -1,7 +1,7 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
 import { mountTicker } from './ticker.js';
-import { biggestContribution, mainDriver, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
+import { holdNote, biggestContribution, mainDriver, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -138,6 +138,12 @@ function renderMonitor(index, files) {
   // After the figures, so it lands under the state word and the figures keep their row.
   if (outdated) figures.after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
   else if (d?.value != null && fresh.late.length) figures.after(h('p', { class: 'monitor__note monitor__delayed' }, delayedNote(fresh.late)));
+  // The margin can keep a state the index alone would not give; say so.
+  const hold = d?.thresholds ? holdNote(d.value, state, d.thresholds) : null;
+  if (hold) {
+    Object.assign(document.getElementById('monitor-hold'), { textContent: hold, hidden: false });
+    stateEl.title = hold.replace(/^h/, 'H');
+  }
   const lead = biggestContribution(d);
   // An outdated index has no "now": the line only shows with fresh data.
   // Wide screens get the long line with points; phones a short one (CSS picks).

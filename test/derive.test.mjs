@@ -65,3 +65,18 @@ test('the phone line names the main driver by its short name', async () => {
   assert.equal(mainDriver(index), 'conflict deaths');
   assert.equal(mainDriver({ value: null, signals: [] }), null);
 });
+
+test('the hold note shows only while the margin keeps a state, on both sides', async () => {
+  const { holdNote } = await import('../public/derive.js');
+  const t = { caution: 40, danger: 65, hysteresis: 3 };
+  // Holding a higher state on the way down.
+  assert.equal(holdNote(39, 'caution', t), 'holding CAUTION until below 37');
+  assert.equal(holdNote(63, 'danger', t), 'holding DANGER until below 62');
+  // Holding a lower state on the way up.
+  assert.equal(holdNote(41, 'stable', t), 'holding STABLE until 43');
+  assert.equal(holdNote(66, 'caution', t), 'holding CAUTION until 68');
+  // The state matches the index: no note.
+  assert.equal(holdNote(45, 'caution', t), null);
+  assert.equal(holdNote(36.9, 'stable', t), null);
+  assert.equal(holdNote(null, 'caution', t), null);
+});

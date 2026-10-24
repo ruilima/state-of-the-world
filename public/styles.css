@@ -223,6 +223,14 @@ a:hover { text-decoration-thickness: 2px; }
 .monitor__note { grid-area: note; margin: 6px 0 0; color: var(--tube-low); font-size: var(--s-14); }
 .monitor__delayed { grid-area: delayed; }
 .monitor__lead { grid-area: lead; }
+/* The hold note is a third small line under the thresholds. Below 900 px the
+   figures row has no room for it without growing the monitor, so there it is
+   for screen readers only (the state word also carries it as a title). */
+.monitor__figures .monitor__hold { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+@media (min-width: 900px) {
+  .monitor__figures .monitor__hold { grid-area: 3 / 1; position: static; width: auto; height: auto; overflow: visible; clip: auto; font: 400 0.75rem / 1 var(--type); color: var(--tube-low); }
+  .monitor__index #monitor-index { grid-area: 1 / 2 / 4 / 3; }
+}
 .monitor__lead-short { display: none; }
 /* Phones: a one-line "Main driver", paid for with a shorter trace, so the
    monitor keeps its height. The stroke keeps its width when the trace is

@@ -63,3 +63,19 @@ export function mainDriver(index) {
   const top = contributions(index)[0];
   return top ? SHORT_NAME[top.id] ?? top.name : null;
 }
+
+const RANK = { stable: 0, caution: 1, danger: 2 };
+const STATE_WORD = { stable: 'STABLE', caution: 'CAUTION', danger: 'DANGER' };
+
+/**
+ * When the margin (hysteresis) keeps a state the index alone would not give,
+ * says until when: "holding CAUTION until below 37", "holding STABLE until 43".
+ * Null when the state matches the index.
+ */
+export function holdNote(value, state, { caution, danger, hysteresis: m }) {
+  if (value == null || !(state in RANK)) return null;
+  const raw = value >= danger ? 'danger' : value >= caution ? 'caution' : 'stable';
+  if (raw === state) return null;
+  if (RANK[state] > RANK[raw]) return `holding ${STATE_WORD[state]} until below ${(state === 'danger' ? danger : caution) - m}`;
+  return `holding ${STATE_WORD[state]} until ${(state === 'stable' ? caution : danger) + m}`;
+}
