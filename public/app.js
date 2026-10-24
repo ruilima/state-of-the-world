@@ -2,7 +2,7 @@ import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote } from './freshness.js';
 import { mountTicker, tickerTopics } from './ticker.js';
 import { climateLede, dataPeriod, clockReading } from './derive.js';
-import { num, compact, pct, tidy, fmtDate, fmtTime, fmtDayTime, fmtMonth, dayMonth, monthShort, STATE_LABEL, updatedLine, monitorModel, recordKey, recordLede } from './text.js';
+import { num, compact, pct, tidy, fmtDate, fmtTime, fmtDayTime, fmtMonth, dayMonth, monthShort, STATE_LABEL, SHAPES, updatedLine, monitorModel, recordKey, recordLede } from './text.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -40,19 +40,11 @@ function ago(iso) {
 
 // Every state also has a shape, so it never depends on colour alone.
 function shape(state) {
-  const NS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(NS, 'svg');
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 20 20');
   svg.setAttribute('aria-hidden', 'true');
   svg.setAttribute('focusable', 'false');
-  const shapes = {
-    stable: '<circle cx="10" cy="10" r="8" fill="currentColor"/>',
-    caution: '<path d="M10 2 19 18H1Z" fill="currentColor"/>',
-    danger: '<path d="M10 1 19 10 10 19 1 10Z" fill="currentColor"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="var(--paper)" stroke-width="2"/>',
-    stale: '<rect x="2" y="2" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="4 3"/>',
-    fail: '<path d="M3 3l14 14M17 3 3 17" stroke="currentColor" stroke-width="3"/>',
-  };
-  svg.innerHTML = shapes[state];
+  svg.innerHTML = SHAPES[state];
   return svg;
 }
 
@@ -690,6 +682,9 @@ function typed(text, cls, delayMs) {
 function renderRecords(files) {
   const root = document.getElementById('records');
   const list = document.getElementById('records-list');
+  // The build writes a plain summary of the five records (scripts/prerender.mjs);
+  // the tabs and the open record replace it in the same frame.
+  for (const el of root.querySelectorAll('[data-prerendered]')) el.remove();
   const slots = [];
   for (const d of FILES_LIST) {
     const hs = d.sources.map((id) => ({ id, ...health(id, files[id]) })).filter((x) => !(x.id === 'digest' && x.text === 'off'));

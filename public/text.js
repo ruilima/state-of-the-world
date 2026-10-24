@@ -28,6 +28,15 @@ export const fmtMonth = (ym) => monthFmt.format(new Date(`${ym}-01T00:00:00Z`));
 
 export const STATE_LABEL = { stable: 'STABLE', caution: 'CAUTION', danger: 'DANGER', stale: 'DATA OUTDATED' };
 
+// The shape drawn with each state (inner SVG markup, 20×20 view box).
+export const SHAPES = {
+  stable: '<circle cx="10" cy="10" r="8" fill="currentColor"/>',
+  caution: '<path d="M10 2 19 18H1Z" fill="currentColor"/>',
+  danger: '<path d="M10 1 19 10 10 19 1 10Z" fill="currentColor"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="var(--paper)" stroke-width="2"/>',
+  stale: '<rect x="2" y="2" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="4 3"/>',
+  fail: '<path d="M3 3l14 14M17 3 3 17" stroke="currentColor" stroke-width="3"/>',
+};
+
 /** "Updated 24 Oct 2026, 19:17 UTC" for the masthead. */
 export const updatedLine = (manifest) => (manifest?.generatedAt ? `Updated ${fmtDayTime(manifest.generatedAt)}` : 'No update recorded yet');
 

@@ -339,6 +339,17 @@ a:hover { text-decoration-thickness: 2px; }
   grid-row: 1 / span 2;
 }
 .dossier[hidden] { display: none; }
+
+/* The plain summary the build writes into Records (scripts/prerender.mjs).
+   It takes the place and the shape of the list and the open record, so the
+   page does not jump when the script replaces it. */
+.records__static-list { list-style: none; margin: 0; padding: 0; }
+.records__static-list .rec { cursor: default; }
+.records__static-list .rec:first-child { border-left-color: var(--caution); background: rgb(14 16 11 / 0.55); }
+.records__static .paper section + section { margin-top: 28px; padding-top: 24px; border-top: 2px solid var(--ink); }
+.records__static .paper h3 { margin: 0 0 6px; font: 800 var(--s-28) / 1.1 var(--crate); }
+.records__static .paper .rec__key { margin: 0 0 8px; font-weight: 700; }
+.records__noscript { grid-column: 1 / -1; margin: 16px 0 0; color: var(--tube-low); font-size: var(--s-14); }
 .dossier:focus-visible { outline-offset: 6px; }
 
 /* ---------- Paper ---------- */

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- The deployed copy is written by scripts/prerender.mjs, with true lastmod dates. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://worldvitals.org/</loc>
-    <changefreq>hourly</changefreq>
   </url>
   <url>
     <loc>https://worldvitals.org/how-the-index-works</loc>
-    <changefreq>monthly</changefreq>
   </url>
 </urlset>

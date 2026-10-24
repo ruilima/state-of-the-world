@@ -8,3 +8,4 @@ public/data/
 compare-digest.json
 cron-trigger/.dev.vars
 cron-trigger/.wrangler/
+build/
