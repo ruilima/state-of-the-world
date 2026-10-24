@@ -168,3 +168,18 @@ ARIA.
   "release calendar for 2027 missing" no log quando resta no máximo um relatório listado.
   `npm test`: 60 passam.
 - Pré-visualização publicada no ramo `redesign-dossiers` do Pages (não toca no `main`).
+- Monitor mais baixo (pedido de 24 out). A secção é uma grelha única; o
+  `.monitor__readout` fica `display: contents`, e a ordem no HTML não muda.
+  - ≥ 720 px: duas colunas. À esquerda o ECG e, por baixo, o índice e o pulso. À direita
+    o estado, o carimbo, a nota "N source delayed" e a nota editorial, separados por um
+    traço `tube-low`.
+  - < 720 px: uma coluna, com o ECG mais baixo e o índice e o pulso na mesma linha
+    quando cabem. A 640 px as duas colunas apertavam a da esquerda ("85 per minute"
+    quebrava linha).
+  - 380–719 px: o estado e o carimbo ficam lado a lado.
+  - < 380 px: o carimbo passa para baixo do estado, porque ao lado não cabe a 320–379 px.
+  - Altura em px (normal / delayed / outdated), antes → depois:
+    320: 385/421/429 → 302/330/340; 390: 385/421/429 → 284/312/285;
+    768: 325/361/369 → 241/241/241; 1360: 382/418/426 → 262/262/262.
+  - Capturas `screenshots/monitor-{normal,delayed,outdated}-{320,390,768,1360}.png`.
+  - Cores sem mudança, por isso não há pares novos.

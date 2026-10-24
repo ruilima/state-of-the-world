@@ -127,7 +127,7 @@ function renderMonitor(index, files) {
   const figures = document.querySelector('.monitor__figures');
   // After the figures, so it lands under the state word and the figures keep their row.
   if (outdated) figures.after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
-  else if (d?.value != null && fresh.late.length) figures.after(h('p', { class: 'monitor__note' }, delayedNote(fresh.late)));
+  else if (d?.value != null && fresh.late.length) figures.after(h('p', { class: 'monitor__note monitor__delayed' }, delayedNote(fresh.late)));
   mountEcg(document.getElementById('trace'), { state, bpm: d?.bpm ?? 60, still: outdated });
 }
 

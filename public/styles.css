@@ -169,39 +169,94 @@ a:hover { text-decoration-thickness: 2px; }
 /* ---------- Monitor (hero) ---------- */
 
 .monitor {
-  margin: 28px 0 0;
+  /* One grid for the whole monitor (the readout div is display: contents),
+     so its parts can sit side by side without changing the HTML order:
+     state, figures, stamp or delayed note, then the editorial note. */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    'trace trace'
+    'state state'
+    'stamp stamp'
+    'figures figures'
+    'delayed delayed'
+    'note note';
+  align-items: center;
+  column-gap: 14px;
+  margin: 20px 0 0;
   border: 2px solid var(--tube-low);
-  padding: 20px clamp(16px, 3vw, 28px) 24px;
+  padding: 14px 16px 16px;
   background: rgb(14 16 11 / 0.55);
 }
+.monitor__readout { display: contents; }
 .monitor__trace {
+  grid-area: trace;
   display: block;
   width: 100%;
-  height: clamp(120px, 20vw, 200px);
+  height: clamp(80px, 22vw, 120px);
 }
 .monitor__trace .grid { stroke: var(--tube-low); stroke-opacity: 0.18; stroke-width: 1; }
 .monitor__trace .beat { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
-.monitor__readout {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  gap: 8px 32px;
-  margin-top: 12px;
-}
 .monitor__state {
+  grid-area: state;
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin: 0;
-  font: 800 clamp(3.25rem, 11vw, var(--s-96)) / 0.9 var(--crate);
+  gap: 12px;
+  margin: 10px 0 0;
+  font: 800 clamp(2.75rem, 13vw, 4.5rem) / 0.9 var(--crate);
   letter-spacing: 0.02em;
 }
 .monitor__state svg { width: 0.5em; height: 0.5em; flex: none; }
-.monitor__figures { margin: 0; text-align: right; }
-.monitor__figures div { display: flex; justify-content: flex-end; align-items: baseline; gap: 10px; }
+.monitor__figures { grid-area: figures; display: flex; flex-wrap: wrap; gap: 0 20px; margin: 8px 0 0; }
+.monitor__figures div { display: flex; align-items: baseline; gap: 8px; }
 .monitor__figures dt { color: var(--tube-low); font-size: var(--s-14); }
-.monitor__figures dd { margin: 0; font: 800 var(--s-28) / 1.2 var(--crate); }
-.monitor__note { grid-column: 1 / -1; margin: 6px 0 0; color: var(--tube-low); font-size: var(--s-14); }
+.monitor__figures dd { margin: 0; font: 800 var(--s-21) / 1.2 var(--crate); white-space: nowrap; }
+.monitor__note { grid-area: note; margin: 6px 0 0; color: var(--tube-low); font-size: var(--s-14); }
+.monitor__delayed { grid-area: delayed; }
+/* Phones wide enough for the state word and the stamp side by side. */
+@media (min-width: 380px) and (max-width: 719px) {
+  .monitor {
+    grid-template-areas:
+      'trace trace'
+      'state stamp'
+      'figures figures'
+      'delayed delayed'
+      'note note';
+  }
+}
+
+/* Wide screens: the trace and figures on the left, the state, its stamp and
+   notes in a column on the right, divided by a tube-coloured rule. */
+@media (min-width: 720px) {
+  .monitor {
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 21rem);
+    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-areas:
+      'trace state'
+      'trace stamp'
+      'trace delayed'
+      'trace note'
+      'figures note';
+    align-items: start;
+    column-gap: 36px;
+    margin-top: 24px;
+    padding: 18px clamp(16px, 2.5vw, 28px) 18px;
+  }
+  .monitor::after {
+    content: '';
+    grid-area: 1 / 2 / -1 / 3;
+    align-self: stretch;
+    margin-left: -18px;
+    border-left: 2px solid var(--tube-low);
+    opacity: 0.6;
+  }
+  .monitor__trace { height: clamp(120px, 13vw, 176px); }
+  .monitor__state { margin: 0; font-size: clamp(3rem, 6vw, 5.25rem); }
+  .monitor__figures { margin-top: 10px; gap: 0 28px; }
+  .monitor__figures dd { font-size: var(--s-28); }
+  .monitor__note { margin-top: 12px; align-self: end; }
+  .monitor__delayed { margin-top: 10px; align-self: start; }
+}
 
 .is-stable { color: var(--stable); }
 .is-caution { color: var(--caution); }
@@ -308,8 +363,12 @@ a:hover { text-decoration-thickness: 2px; }
 .stamp--caution { color: var(--caution-ink); }
 .stamp--danger { color: var(--danger-ink); }
 .stamp--stale { color: var(--ink); border-style: dashed; outline-style: dashed; }
-/* On the monitor the stamp sits in the readout, in the tube colour. */
-.monitor__readout .stamp { justify-self: start; margin: 0; padding: 4px 10px 2px; border-width: 3px; outline: 0; font-size: var(--s-21); transform: rotate(-4deg); color: var(--tube); }
+/* On the monitor the stamp sits beside the state word (under it on wide
+   screens), in the tube colour. */
+.monitor__readout .stamp { grid-area: stamp; justify-self: start; margin: 10px 0 0; padding: 3px 8px 1px; border-width: 3px; outline: 0; font-size: var(--s-16); transform: rotate(-4deg); color: var(--tube); }
+@media (min-width: 720px) {
+  .monitor__readout .stamp { margin: 14px 0 4px 2px; padding: 4px 10px 2px; font-size: var(--s-21); }
+}
 
 .paper h3 {
   margin: 32px 0 8px;
@@ -436,9 +495,6 @@ table.data td.num, table.data th.num { text-align: right; font-variant-numeric: 
 }
 
 @media (max-width: 560px) {
-  .monitor__readout { grid-template-columns: minmax(0, 1fr); }
-  .monitor__figures { text-align: left; }
-  .monitor__figures div { justify-content: flex-start; }
   .masthead__time { max-width: 9rem; }
   .lede { font-size: var(--s-16); }
   .ticker__toggle { margin-left: 0; }
