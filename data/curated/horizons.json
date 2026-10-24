@@ -3,9 +3,10 @@
   "rule": "Only claims from a named institution, with a link to the primary source. No unattributed forecasts.",
   "items": [
     {
-      "claim": "Global warming is more likely than not to reach 1.5 °C in the near term (2021–2040), even under the very low emissions scenario. In most scenarios, the midpoint of the first 20-year period that averages 1.5 °C falls in the first half of the 2030s.",
+      "claim": "“In the near term, global warming is more likely than not to reach 1.5°C even under the very low GHG emission scenario (SSP1-1.9) and likely or very likely to exceed 1.5°C under higher emissions scenarios.” Footnote 29: “In all scenarios considered in WGI except the very high emissions scenario (SSP5-8.5), the midpoint of the first 20-year running average period during which the assessed average global surface temperature change reaches 1.5°C lies in the first half of the 2030s.”",
       "who": "IPCC — Climate Change 2023: Synthesis Report, Summary for Policymakers (B.1.1 and footnote 29)",
       "date": "2023-03-20",
+      "dateNote": "confirmed via secondary sources only",
       "horizon": "Near term (2021–2040)",
       "url": "https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_SPM.pdf",
       "verified": true

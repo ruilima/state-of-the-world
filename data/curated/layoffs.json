@@ -70,7 +70,7 @@
       "low": 120136,
       "high": 120136,
       "unit": "people",
-      "detail": "about 21% of all announced cuts; in all of 2025, companies cited AI for 54,836",
+      "detail": "about 21% of all announced cuts",
       "source": {
         "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
         "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
@@ -78,7 +78,23 @@
       "via": null,
       "publishedAt": "2026-10-01",
       "verified": true,
-      "group": "challenger"
+      "group": "challenger",
+      "comparisons": [
+        {
+          "label": "all of 2025",
+          "value": 54836,
+          "companies": null,
+          "source": {
+            "name": "Challenger, Gray & Christmas — Job Cut Report, January 2026",
+            "url": "https://www.challengergray.com/wp-content/uploads/2026/02/CR126007123.pdf"
+          },
+          "alsoIn": {
+            "name": "Challenger, Gray & Christmas — Job Cut Report, February 2026",
+            "url": "https://www.challengergray.com/wp-content/uploads/2026/04/Challenger-Report-February-2026.pdf"
+          },
+          "evidence": "primary"
+        }
+      ]
     },
     {
       "id": "total-us-2026-ytd",
@@ -87,7 +103,7 @@
       "low": 573195,
       "high": 573195,
       "unit": "people",
-      "detail": "down 39% from 946,426 in the same period of 2025; without the government sector, down 15%: most of the fall comes from government cuts, down 92% on the same period of 2025",
+      "detail": "down 39% from 946,426 in the same period of 2025. Government cuts fell 92%; excluding them, total cuts are down 15%",
       "source": {
         "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
         "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
@@ -137,8 +153,8 @@
           "value": 125759,
           "companies": 264,
           "source": {
-            "name": "IBTimes (secondary report of Layoffs.fyi data)",
-            "url": null
+            "name": "IBTimes, 8 August 2026 (secondary report of Layoffs.fyi data)",
+            "url": "https://www.ibtimes.com/tech-layoffs-2026-already-beat-last-years-total-google-zillow-tiktok-cut-hundreds-3806211"
           },
           "evidence": "secondary"
         },
@@ -147,8 +163,8 @@
           "value": 122606,
           "companies": 278,
           "source": {
-            "name": "IBTimes (secondary report of Layoffs.fyi data)",
-            "url": null
+            "name": "IBTimes, 8 August 2026 (secondary report of Layoffs.fyi data)",
+            "url": "https://www.ibtimes.com/tech-layoffs-2026-already-beat-last-years-total-google-zillow-tiktok-cut-hundreds-3806211"
           },
           "evidence": "secondary"
         }

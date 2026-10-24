@@ -24,7 +24,8 @@ export const CURATED = {
         group: s.oneOf('challenger', 'layoffsfyi'),
         // Date the editor read a live counter (Layoffs.fyi has no report date).
         readAt: s.nullable(s.str),
-        comparisons: s.arr(s.obj({ label: s.str, value: s.num, companies: s.nullable(s.num), source: link, evidence: s.oneOf('primary', 'secondary') })),
+        // `alsoIn`: a second report that states the same value.
+        comparisons: s.arr(s.obj({ label: s.str, value: s.num, companies: s.nullable(s.num), source: link, alsoIn: link, evidence: s.oneOf('primary', 'secondary') }, { optional: ['alsoIn'] })),
       }, { optional: ['readAt', 'comparisons'] }),
     ),
     scopes: s.map(s.obj({ name: s.str, scope: s.str })),
@@ -44,6 +45,7 @@ export const CURATED = {
   }),
   horizons: s.obj({
     updatedAt: s.str,
-    items: s.arr(s.obj({ claim: s.str, who: s.str, date: s.str, horizon: s.str, url: s.str, verified: s.bool })),
+    // `dateNote`: how the date was confirmed, when not in the primary source.
+    items: s.arr(s.obj({ claim: s.str, who: s.str, date: s.str, dateNote: s.str, horizon: s.str, url: s.str, verified: s.bool }, { optional: ['dateNote'] })),
   }),
 };

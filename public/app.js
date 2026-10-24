@@ -334,7 +334,9 @@ function renderWork(files) {
                 i ? '; ' : '',
                 `${num(cmp.value)} people${cmp.companies ? ` at ${num(cmp.companies)} companies` : ''} in ${cmp.label}`,
               ]),
-              ` (${f.comparisons[0].source.name}) `,
+              ' (',
+              ...[...new Map(f.comparisons.flatMap((cmp) => [cmp.source, cmp.alsoIn]).filter(Boolean).map((s) => [s.name, s])).values()].flatMap((s, i) => [i ? '; ' : '', link(s.url, s.name)]),
+              ') ',
               unverified(f.comparisons.some((cmp) => cmp.evidence === 'secondary'), 'secondary'),
             )
           : null,
@@ -538,7 +540,7 @@ function renderAhead(files) {
       h(
         'ol',
         { class: 'seq' },
-        items.map((it) => h('li', {}, h('strong', {}, `${it.horizon}. `), it.claim, h('span', { class: 'meta', style: 'display:block' }, link(it.url, it.who), `, ${fmtDate(it.date)} `, unverified(!it.verified)))),
+        items.map((it) => h('li', {}, h('strong', {}, `${it.horizon}. `), it.claim, h('span', { class: 'meta', style: 'display:block' }, link(it.url, it.who), `, ${fmtDate(it.date)}${it.dateNote ? ` (date ${it.dateNote})` : ''} `, unverified(!it.verified)))),
       ),
     );
   }
