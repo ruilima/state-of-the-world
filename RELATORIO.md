@@ -206,7 +206,8 @@ paráfrase imprecisa.
   - manchetes e curvas GDELT, quando a API aceita;
   - Hacker News e arXiv;
   - o Índice de Condição.
-- **Diário:** World Bank (dados anuais); UCDP, verificado todos os dias; resumo por IA.
+- **Diário:** World Bank (dados anuais); UCDP, verificado todos os dias; temperatura
+  global do C3S (dados mensais, verificados todos os dias); resumo por IA.
 - **Mensal:** UCDP, eventos candidatos, pelos downloads oficiais (último mês: setembro
   de 2026); Challenger, à mão, no ficheiro curado.
 - **Anual:** UCDP Battle-Related Deaths (até 2025); Doomsday Clock (à mão).
@@ -506,3 +507,28 @@ desativar e voltar a ativar o workflow. Não houve nenhuma execução com o even
 - Por isso tirei as linhas `schedule` de `.github/workflows/update.yml`. O Worker passa a
   ser a única fonte de disparos. O teste de consistência do Worker falha se um
   `schedule` voltar ao workflow.
+
+## 17. Temperatura global (C3S/ERA5) no Planet
+
+- **Fonte:** o CSV que cada boletim mensal do C3S liga ("Surface air temperature for
+  <Month> <Year>"). Não precisa de chave e traz a anomalia oficial face a 1850–1900
+  (`ano_pi`).
+  - A diferença entre 1991–2020 e 1850–1900 muda com o mês, entre 0,80 e 0,96 °C; os 0,88 °C
+    são só para médias anuais.
+  - Não usamos o Climate Pulse, a API do CDS nem o GISTEMP (ver `CLIMA-FONTES.md`, fora do
+    repositório).
+- **Script:** `scripts/fetch-climate.mjs`, no grupo slow (diário).
+  - Lê a página do mês anterior ou, se ainda não saiu, a do mês antes desse.
+  - Escolhe a ligação do CSV pelo nome, só em climate.copernicus.eu, com limites de tamanho.
+  - Falha com `schemaChanged` se o cabeçalho mudar, e mantém o último ficheiro bom.
+- **Datas de publicação em 2026:** 8 mai, 10 jun, 9 jul, 10 ago, 10 set e 12 out
+  (setembro). O próximo boletim, o de outubro, deve sair por volta de 12 nov. Se não sair,
+  o Planet mostra "1 source delayed: Copernicus (C3S)" a partir de 17 nov e mantém o estado
+  dos sismos.
+- **Fora do Condition Index.**
+- **Atribuição:** "Contains modified Copernicus Climate Change Service information 2026",
+  conforme a cláusula 5.1.2 da licença, porque mostramos um extrato adaptado (24 meses
+  arredondados, ranking e média calculados por nós). Vai com a declaração de que nem a
+  Comissão Europeia nem o ECMWF são responsáveis.
+- **Plano B:** `data/curated/climate.json` à mão, com o calendário de publicação e o mesmo
+  aviso de atraso.

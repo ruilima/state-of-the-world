@@ -47,6 +47,7 @@ trigger of its own (see *Cron trigger* below).
 | Hacker News (Algolia) + arXiv | `pulse.json` | 30 min | no |
 | UCDP | `ucdp.json` | daily | `UCDP_TOKEN`, optional |
 | World Bank | `worldbank.json` | daily | no |
+| C3S monthly bulletin (ERA5 global temperature vs 1850–1900) | `climate.json` | daily check, new month around the 8th–12th | no |
 | AI summary | `digest.json` | daily | `ANTHROPIC_API_KEY`, optional |
 | Curated files | `curated.json` | copied every 30 min | — |
 
@@ -91,7 +92,7 @@ GitHub's own scheduler did not fire reliably for this repository, so a small Wor
 | Cron (UTC) | Workflow group | Sources |
 |---|---|---|
 | `7,37 * * * *` | `fast` | GDELT, USGS, EONET, HN/arXiv, curated files, index |
-| `23 5 * * *` | `slow` | World Bank, UCDP, AI summary, index |
+| `23 5 * * *` | `slow` | World Bank, UCDP, C3S temperature, AI summary, index |
 
 The workflow's `concurrency` block (`group: data-update`, `cancel-in-progress: false`)
 keeps two runs from ever overlapping. The Worker is the only scheduler: the workflow has no
@@ -147,6 +148,32 @@ node scripts/measure-contrast.mjs   # contrast measured on the rendered page
 ```
 
 To work from the live data instead: `git fetch origin data && git archive FETCH_HEAD | tar -x -C public/data`.
+
+## Global temperature (C3S)
+
+`scripts/fetch-climate.mjs` reads the latest "Surface air temperature for <Month> <Year>"
+bulletin page on climate.copernicus.eu (last month, then the month before), picks the linked
+CSV whose name matches `ref1850-1900_global_allmonths_DATA(_N).csv` (or
+`preindustrial_global_allmonths_DATA`), checks its header
+(`month,2t,clim_91-20,ano_91-20,offset_pi,ano_pi`) and keeps 24 months, the rank of the
+latest month against the same month since 1940, and the mean of the last 12 values. It uses
+C3S's `ano_pi` as published (the 1850–1900 offset differs by calendar month, 0.80–0.96 °C;
+0.88 °C is the annual one). The publication date comes from the bulletins index.
+
+- **When:** C3S published in 2026 on 8 May, 10 Jun, 9 Jul, 10 Aug, 10 Sep and 12 Oct. The
+  Planet record notes "1 source delayed: Copernicus (C3S)" 5 days after the 12th of the
+  month after next (September data: from 17 Nov), and the earthquake state is kept.
+- **If the page or the file changes shape,** the run fails loudly (`schemaChanged`) and the
+  last good file stays, marked delayed. `LIVE=1 npm run test:live` checks the live format.
+- **Credit (Copernicus licence, clause 5.1.2, because the site shows an adapted extract):**
+  "Contains modified Copernicus Climate Change Service information <year>. Neither the
+  European Commission nor ECMWF is responsible for any use that may be made of the
+  Copernicus information or data it contains." Next to the chart: "Data: ERA5, C3S/ECMWF".
+- **Plan B, if the bulletin files stop being reachable:** a hand-curated
+  `data/curated/climate.json` with one row per month (month, absolute, anomaly vs 1850–1900,
+  rank, bulletin URL, publication date) and an expected publication date (the 12th of the
+  following month), with the same delayed note 5 days after it. It loses the automatic update
+  and the long series behind the rank.
 
 ## Hand-maintained files
 
