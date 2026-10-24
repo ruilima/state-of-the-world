@@ -1,0 +1,372 @@
+{
+ "id": "curated",
+ "source": {
+  "name": "Hand-curated files (data/curated/)",
+  "url": null,
+  "license": "See the source of each value"
+ },
+ "status": "ok",
+ "fetchedAt": "2026-10-24T16:09:41.329Z",
+ "lastSuccessAt": "2026-10-24T16:09:41.329Z",
+ "error": null,
+ "data": {
+  "layoffs": {
+   "updatedAt": "2026-10-23",
+   "releaseCalendar": {
+    "source": {
+     "name": "Challenger, Gray & Christmas — 2026 Job Cut Report Release Calendar",
+     "url": "https://www.challengergray.com/blog/2026-challenger-job-cut-report-release-calendar/"
+    },
+    "note": "Dates are subject to change. The Work and AI stamp says DATA OUTDATED 3 days after the date of the first report whose month is not yet in `monthly`.",
+    "releases": [
+     {
+      "month": "2025-12",
+      "expectedAt": "2026-01-08"
+     },
+     {
+      "month": "2026-01",
+      "expectedAt": "2026-02-05"
+     },
+     {
+      "month": "2026-02",
+      "expectedAt": "2026-03-05"
+     },
+     {
+      "month": "2026-03",
+      "expectedAt": "2026-04-02"
+     },
+     {
+      "month": "2026-04",
+      "expectedAt": "2026-05-07"
+     },
+     {
+      "month": "2026-05",
+      "expectedAt": "2026-06-04"
+     },
+     {
+      "month": "2026-06",
+      "expectedAt": "2026-07-01"
+     },
+     {
+      "month": "2026-07",
+      "expectedAt": "2026-08-06"
+     },
+     {
+      "month": "2026-08",
+      "expectedAt": "2026-09-03"
+     },
+     {
+      "month": "2026-09",
+      "expectedAt": "2026-10-01"
+     },
+     {
+      "month": "2026-10",
+      "expectedAt": "2026-11-05"
+     },
+     {
+      "month": "2026-11",
+      "expectedAt": "2026-12-03"
+     },
+     {
+      "month": "2026-12",
+      "expectedAt": "2027-01-07"
+     }
+    ]
+   },
+   "howToUpdate": "Add one row to `monthly` for each Challenger, Gray & Christmas monthly report (release dates in `releaseCalendar`; add next year's calendar when Challenger publishes it) and refresh `figures` from Layoffs.fyi. Set `updatedAt` to the review date. Every value needs a source, URL and publication date; set `verified` to true only after reading it in the primary source.",
+   "figures": [
+    {
+     "id": "ai-cited-us-2026-ytd",
+     "label": "US job cuts where companies cited AI",
+     "period": "January to September 2026",
+     "low": 120136,
+     "high": 120136,
+     "unit": "people",
+     "detail": "about 21% of all announced cuts; in all of 2025, companies cited AI for 54,836",
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+     },
+     "via": null,
+     "publishedAt": "2026-10-01",
+     "verified": true,
+     "group": "challenger"
+    },
+    {
+     "id": "total-us-2026-ytd",
+     "label": "All announced US job cuts",
+     "period": "January to September 2026",
+     "low": 573195,
+     "high": 573195,
+     "unit": "people",
+     "detail": "down 39% from 946,426 in the same period of 2025",
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+     },
+     "via": null,
+     "publishedAt": "2026-10-01",
+     "verified": true,
+     "group": "challenger"
+    },
+    {
+     "id": "tech-us-2026-ytd",
+     "label": "US tech-sector job cuts",
+     "period": "January to September 2026",
+     "low": 165925,
+     "high": 165925,
+     "unit": "people",
+     "detail": "up 54% from 107,878 in the same period of 2025",
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+     },
+     "via": null,
+     "publishedAt": "2026-10-01",
+     "verified": true,
+     "group": "challenger"
+    },
+    {
+     "id": "layoffsfyi-2026",
+     "group": "layoffsfyi",
+     "label": "People laid off at tech companies worldwide",
+     "period": "2026, as of 23 October",
+     "low": 135183,
+     "high": 135183,
+     "unit": "people",
+     "detail": "at 331 tech companies",
+     "source": {
+      "name": "Layoffs.fyi",
+      "url": "https://layoffs.fyi/"
+     },
+     "via": null,
+     "publishedAt": null,
+     "readAt": "2026-10-23",
+     "verified": true,
+     "comparisons": [
+      {
+       "label": "2026, as of 6 August",
+       "value": 125759,
+       "companies": 264,
+       "source": {
+        "name": "IBTimes (secondary report of Layoffs.fyi data)",
+        "url": null
+       },
+       "evidence": "secondary"
+      },
+      {
+       "label": "all of 2025",
+       "value": 122606,
+       "companies": 278,
+       "source": {
+        "name": "IBTimes (secondary report of Layoffs.fyi data)",
+        "url": null
+       },
+       "evidence": "secondary"
+      }
+     ]
+    }
+   ],
+   "monthly": [
+    {
+     "month": "2026-01",
+     "total": 108435,
+     "aiCited": 7624,
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report (2026-01)",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/02/CR126007123.pdf"
+     },
+     "publishedAt": "2026-02-05",
+     "verified": true
+    },
+    {
+     "month": "2026-02",
+     "total": 48307,
+     "aiCited": 4680,
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report (2026-02)",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/04/Challenger-Report-February-2026.pdf"
+     },
+     "publishedAt": "2026-03-05",
+     "verified": true
+    },
+    {
+     "month": "2026-03",
+     "total": 60620,
+     "aiCited": 15341,
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report (2026-03)",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/04/Challenger-Report-March-2026-1.pdf"
+     },
+     "publishedAt": "2026-04-02",
+     "verified": true
+    },
+    {
+     "month": "2026-04",
+     "total": 83387,
+     "aiCited": 21490,
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report (2026-04)",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/05/Challenger-Report-Apr2026001249.pdf"
+     },
+     "publishedAt": "2026-05-07",
+     "verified": true
+    },
+    {
+     "month": "2026-05",
+     "total": 97006,
+     "aiCited": 38579,
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report (2026-05)",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/06/Challenger-Report-May-2026.pdf"
+     },
+     "publishedAt": "2026-06-04",
+     "verified": true
+    },
+    {
+     "month": "2026-06",
+     "total": 45849,
+     "aiCited": 14029,
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report (2026-06)",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/07/Challenger-Report-June2600986996.pdf"
+     },
+     "publishedAt": "2026-07-01",
+     "verified": true
+    },
+    {
+     "month": "2026-07",
+     "total": 33429,
+     "aiCited": 10970,
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report (2026-07)",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/08/Challenger-Report-July-2026.pdf"
+     },
+     "publishedAt": "2026-08-06",
+     "verified": true
+    },
+    {
+     "month": "2026-08",
+     "total": 52881,
+     "aiCited": 3462,
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report (2026-08)",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/09/Challenger-Report-August-2026.pdf"
+     },
+     "publishedAt": "2026-09-03",
+     "verified": true
+    },
+    {
+     "month": "2026-09",
+     "total": 43281,
+     "aiCited": 3961,
+     "source": {
+      "name": "Challenger, Gray & Christmas — Job Cut Report (2026-09)",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+     },
+     "publishedAt": "2026-10-01",
+     "verified": true
+    }
+   ],
+   "attributionNote": {
+    "claim": "AI shows up as a reason because companies say so when they announce cuts. Challenger records the reason the company gives; it does not check it.",
+    "counter": "Some analysts read part of these cuts as restructuring for other reasons. Harvard Business School researchers, interviewed for an article republished by HBS Working Knowledge, argue that AI has not yet caused widespread layoffs because most firms are still slow to put it to work. A separate Harvard Business Review analysis, based on a survey of 1,006 executives, argues that companies are cutting jobs for what they expect AI to do, not for what it has shown it can do. Challenger itself said Amazon's 16,000 January cuts appeared to be due more to over-hiring and removing management layers than to the new technology.",
+    "sources": [
+     {
+      "name": "Sy Boles, \"AI Hasn't Spurred Widespread Layoffs Yet. Why Not?\", Harvard Business School Working Knowledge (first published in the Harvard Gazette), 20 October 2026",
+      "url": "https://www.library.hbs.edu/working-knowledge/ai-hasnt-spurred-widespread-layoffs-yet-why-not",
+      "verified": true
+     },
+     {
+      "name": "Thomas H. Davenport and Laks Srinivasan, \"Companies Are Laying Off Workers Because of AI's Potential—Not Its Performance\", Harvard Business Review, 29 January 2026",
+      "url": "https://hbr.org/2026/01/companies-are-laying-off-workers-because-of-ais-potential-not-its-performance",
+      "verified": true
+     },
+     {
+      "name": "Challenger, Gray & Christmas — Job Cut Report, January 2026",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/02/CR126007123.pdf",
+      "verified": true
+     }
+    ]
+   },
+   "trend": {
+    "text": "Two things are true at once. All announced job cuts are down on 2025: 573,195 through September against 946,426 a year earlier (down 15% if government cuts are left out). Cuts that companies attribute to AI are up: 120,136 through September, more than twice the 54,836 for all of 2025.",
+    "source": {
+     "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
+     "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
+    },
+    "verified": true
+   },
+   "scopes": {
+    "challenger": {
+     "name": "Challenger, Gray & Christmas",
+     "scope": "Job cuts announced by US-based employers, in every sector, counted from company announcements. It records the reason each company gives, including AI."
+    },
+    "layoffsfyi": {
+     "name": "Layoffs.fyi",
+     "scope": "Layoffs at tech companies worldwide, compiled from public reports."
+    }
+   },
+   "scopeNote": "These two trackers measure different things. Challenger's US tech-sector count (165,925, January to September 2026) and Layoffs.fyi's global tech count use different scopes and methods, so their numbers are not comparable with each other."
+  },
+  "doomsday": {
+   "updatedAt": "2026-10-23",
+   "source": {
+    "name": "Bulletin of the Atomic Scientists",
+    "url": "https://thebulletin.org/doomsday-clock/"
+   },
+   "current": {
+    "seconds": 85,
+    "setAt": "2026-01-27",
+    "verified": true
+   },
+   "history": [
+    {
+     "year": 2023,
+     "seconds": 90,
+     "verified": true
+    },
+    {
+     "year": 2024,
+     "seconds": 90,
+     "verified": false,
+     "evidence": "secondary",
+     "note": "Not stated on the Bulletin's Doomsday Clock page; supported by secondary reporting."
+    },
+    {
+     "year": 2025,
+     "seconds": 89,
+     "verified": true
+    },
+    {
+     "year": 2026,
+     "seconds": 85,
+     "verified": true
+    }
+   ],
+   "note": "Set once a year, usually in January. There is no API: update this file by hand."
+  },
+  "horizons": {
+   "updatedAt": "2026-10-23",
+   "rule": "Only claims with a named author and a link to the primary source. No unattributed forecasts.",
+   "items": [
+    {
+     "claim": "Global warming is more likely than not to reach 1.5 °C in the near term (2021–2040), even under the very low emissions scenario. In most scenarios, the midpoint of the first 20-year period that averages 1.5 °C falls in the first half of the 2030s.",
+     "who": "IPCC — Climate Change 2023: Synthesis Report, Summary for Policymakers (B.1.1 and footnote 29)",
+     "date": "2023-03-20",
+     "horizon": "2030–2035",
+     "url": "https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_SPM.pdf",
+     "verified": true
+    },
+    {
+     "claim": "There is a 70% chance that the 5-year average warming for 2025–2029 will be more than 1.5 °C above pre-industrial levels.",
+     "who": "World Meteorological Organization — WMO Global Annual to Decadal Climate Update (2025–2029)",
+     "date": "2025-05-28",
+     "horizon": "2025–2029",
+     "url": "https://wmo.int/publication-series/wmo-global-annual-decadal-climate-update-2025-2029",
+     "verified": true
+    }
+   ]
+  }
+ }
+}

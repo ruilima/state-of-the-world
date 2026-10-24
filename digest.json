@@ -1,0 +1,90 @@
+{
+ "id": "digest",
+ "source": {
+  "name": "AI-generated summary (claude-sonnet-5-5)",
+  "url": "https://www.anthropic.com/",
+  "license": null
+ },
+ "status": "ok",
+ "fetchedAt": "2026-10-24T05:24:08.329Z",
+ "lastSuccessAt": "2026-10-24T05:24:08.329Z",
+ "error": null,
+ "model": "claude-sonnet-5-5",
+ "usage": {
+  "inputTokens": 2136,
+  "outputTokens": 473
+ },
+ "attempts": 1,
+ "firstAttemptDropped": [],
+ "droppedParagraphs": [],
+ "data": {
+  "label": "AI-generated",
+  "paragraphs": [
+   {
+    "text": "In today's headlines on conflict, presstv.co.uk reports at least three killed in Saudi airstrikes on the Yemen capital, and newsminer.com reports that the WHO reports at least 1,500 killed in new fighting in Yemen. Caribbeanherald.com reports 8 inmates killed in Ecuador prison riots, and allafrica.com reports that the army and Russia Africa Corp commit new abuses in Mali.",
+    "sources": [
+     {
+      "title": "At least three killed in Saudi airstrikes on Yemen capital",
+      "source": "presstv.co.uk",
+      "url": "https://www.presstv.co.uk/Detail/2026/10/23/779024/At-least-three-killed-in-Saudi-airstrikes-Yemen%E2%80%99s-capital"
+     },
+     {
+      "title": "WHO reports at least 1,500 killed in new fighting in Yemen",
+      "source": "newsminer.com",
+      "url": "https://www.newsminer.com/tribune_news_service/news/who-reports-at-least-1-500-killed-in-new-fighting-in-yemen/article_4dbddbe2-97cd-5182-b10f-b19f92825e2e.html"
+     },
+     {
+      "title": "1st LD Writethru: 8 inmates killed in Ecuador prison riots",
+      "source": "caribbeanherald.com",
+      "url": "http://www.caribbeanherald.com/news/279393830/1st-ld-writethru-8-inmates-killed-in-ecuador-prison-riots"
+     },
+     {
+      "title": "Mali: Army, Russia Africa Corp Commit New Abuses",
+      "source": "allafrica.com",
+      "url": "https://allafrica.com/stories/202610230063.html"
+     }
+    ]
+   },
+   {
+    "text": "On work and AI, morningstar.com lists American Express to cut 3,500 jobs, and thestar.com.my reports Barclays to cut 5,000 jobs in an AI-driven push to lower costs. Fortune.com reports Goldman says AI could displace one in 11 workers, but the layoffs are waiting for a recession. Afr.com reports thousands of NAB staff are being forced to re-apply for their own jobs, and wcax.com reports VIP layoffs raise questions about AI's role in the Vermont workforce.",
+    "sources": [
+     {
+      "title": "Dow Jones Top Company Headlines at 7 PM ET: American Express to Cut 3,500 Jobs | Apple ...",
+      "source": "morningstar.com",
+      "url": "https://www.morningstar.com/news/dow-jones/202610239776/dow-jones-top-company-headlines-at-7-pm-et-american-express-to-cut-3500-jobs-apples"
+     },
+     {
+      "title": "Barclays to cut 5,000 jobs in AI - driven push to lower costs",
+      "source": "thestar.com.my",
+      "url": "https://www.thestar.com.my/tech/tech-news/2026/10/23/barclays-to-cut-5000-jobs-in-ai-driven-push-to-lower-costs"
+     },
+     {
+      "title": "AI could displace one in 11 workers, Goldman says, but the layoffs are waiting for a recession",
+      "source": "fortune.com",
+      "url": "https://fortune.com/2026/10/22/goldman-sachs-forecast-how-many-jobs-lost-to-ai-9-percent/"
+     },
+     {
+      "title": "Thousands of NAB staff are being forced to re - apply for their own jobs",
+      "source": "afr.com",
+      "url": "https://www.afr.com/companies/financial-services/nab-asks-thousands-to-reapply-for-jobs-as-search-for-2500-cuts-begins-20261023-p617qg"
+     },
+     {
+      "title": "VIP layoffs raise questions about AI role in changing Vermont workforce",
+      "source": "wcax.com",
+      "url": "https://www.wcax.com/2026/10/22/vip-layoffs-raise-questions-about-ais-role-changing-vermont-workforce/"
+     }
+    ]
+   },
+   {
+    "text": "The USGS listed several earthquakes: M6.3, M6.9 and another M6.3 near Port-Olry, Vanuatu, an M7 near Nagqu, China, and an M5.7 near Khuzdar, Pakistan.",
+    "sources": [
+     {
+      "title": "M6.3 earthquake — 170 km NW of Port-Olry, Vanuatu",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4jb"
+     }
+    ]
+   }
+  ]
+ }
+}

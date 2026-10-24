@@ -1,0 +1,363 @@
+{
+ "id": "index",
+ "source": {
+  "name": "Own calculation (config/index.json)",
+  "url": null,
+  "license": null
+ },
+ "status": "ok",
+ "fetchedAt": "2026-10-24T16:09:41.333Z",
+ "lastSuccessAt": "2026-10-24T16:09:41.333Z",
+ "error": null,
+ "data": {
+  "value": 48.7,
+  "state": "caution",
+  "bpm": 85,
+  "thresholds": {
+   "caution": 40,
+   "danger": 65,
+   "hysteresis": 3
+  },
+  "weightCovered": 100,
+  "weightTotal": 100,
+  "signals": [
+   {
+    "id": "conflictNews",
+    "name": "Conflict in the news",
+    "explain": "Share of events coded by GDELT in the last 24 hours that are 'material conflict' (assaults, fighting, mass violence). Uses GDELT's 15-minute event files only.",
+    "unit": "share of events",
+    "calm": 0.1,
+    "alarm": 0.16,
+    "weight": 20,
+    "source": "gdelt-events",
+    "value": 0.1332,
+    "score": 55.3,
+    "missing": null,
+    "effectiveWeight": 20
+   },
+   {
+    "id": "conflictDeaths",
+    "name": "Deaths in organised violence",
+    "explain": "Deaths recorded by UCDP in the latest available month (candidate events, 'best' estimate).",
+    "unit": "deaths per month",
+    "calm": 5000,
+    "alarm": 25000,
+    "weight": 30,
+    "source": "ucdp",
+    "value": 13286,
+    "score": 41.4,
+    "missing": null,
+    "effectiveWeight": 30
+   },
+   {
+    "id": "quakes",
+    "name": "Significant earthquakes",
+    "explain": "Earthquakes the USGS classes as significant in the last 7 days (combines magnitude, damage and felt reports).",
+    "unit": "earthquakes per week",
+    "calm": 1,
+    "alarm": 8,
+    "weight": 10,
+    "source": "usgs",
+    "value": 4,
+    "score": 42.9,
+    "missing": null,
+    "effectiveWeight": 10
+   },
+   {
+    "id": "naturalEvents",
+    "name": "Active storms and volcanoes",
+    "explain": "Severe storms and active volcanoes open in NASA EONET. Wildfires are left out: there are always dozens and they would swamp the signal.",
+    "unit": "open events",
+    "calm": 2,
+    "alarm": 15,
+    "weight": 10,
+    "source": "eonet",
+    "value": 5,
+    "score": 23.1,
+    "missing": null,
+    "effectiveWeight": 10
+   },
+   {
+    "id": "aiLayoffs",
+    "name": "Pace of AI-attributed job cuts",
+    "explain": "Last month's US job cuts where companies cited AI (Challenger), divided by the average of the months before it (up to 12). 1 means a normal pace. Weighted lower than the other signals because the attribution is the companies' own.",
+    "unit": "ratio to average",
+    "calm": 0.8,
+    "alarm": 2,
+    "weight": 10,
+    "source": "curated",
+    "value": 0.27,
+    "score": 0,
+    "missing": null,
+    "effectiveWeight": 10
+   },
+   {
+    "id": "doomsday",
+    "name": "Doomsday Clock",
+    "explain": "Seconds to midnight according to the Bulletin of the Atomic Scientists. Fewer seconds, closer to alarm.",
+    "unit": "seconds",
+    "calm": 420,
+    "alarm": 60,
+    "weight": 20,
+    "source": "curated",
+    "value": 85,
+    "score": 93.1,
+    "missing": null,
+    "effectiveWeight": 20
+   }
+  ],
+  "history": [
+   {
+    "t": "2026-10-23T15:06:09.788Z",
+    "value": 45.5,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T15:34:13.447Z",
+    "value": 45.1,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T15:48:27.787Z",
+    "value": 45.1,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T16:18:59.262Z",
+    "value": 45.2,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T17:41:08.535Z",
+    "value": 45.3,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T18:11:37.587Z",
+    "value": 45.4,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T18:33:27.948Z",
+    "value": 45.3,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T20:09:42.867Z",
+    "value": 45.2,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T20:39:52.987Z",
+    "value": 45.4,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T21:09:43.674Z",
+    "value": 45.1,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T21:39:47.770Z",
+    "value": 45.3,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T21:42:01.916Z",
+    "value": 45.3,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T22:09:41.995Z",
+    "value": 45.3,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T22:39:39.674Z",
+    "value": 45.6,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T23:09:43.151Z",
+    "value": 45.6,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-23T23:39:34.637Z",
+    "value": 45.5,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T00:09:41.306Z",
+    "value": 45.8,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T00:39:47.633Z",
+    "value": 45.8,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T01:09:46.738Z",
+    "value": 45.8,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T01:39:36.418Z",
+    "value": 45.8,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T02:10:09.548Z",
+    "value": 45.6,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T02:39:34.834Z",
+    "value": 45.8,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T03:09:40.439Z",
+    "value": 48.7,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T03:39:52.133Z",
+    "value": 48.9,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T04:10:05.287Z",
+    "value": 49,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T04:39:43.474Z",
+    "value": 49,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T05:09:33.818Z",
+    "value": 47.7,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T05:24:12.307Z",
+    "value": 47.7,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T05:39:46.653Z",
+    "value": 47.8,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T06:09:48.137Z",
+    "value": 48,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T06:39:48.642Z",
+    "value": 47.9,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T07:09:32.485Z",
+    "value": 47.7,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T07:39:37.522Z",
+    "value": 47.9,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T08:09:38.543Z",
+    "value": 47.9,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T08:39:31.895Z",
+    "value": 47.8,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T09:09:40.467Z",
+    "value": 48,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T09:39:39.434Z",
+    "value": 48,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T10:09:40.041Z",
+    "value": 47.7,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T10:39:39.664Z",
+    "value": 47.9,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T11:09:43.681Z",
+    "value": 48,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T11:39:39.384Z",
+    "value": 48,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T12:09:36.801Z",
+    "value": 48.1,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T12:39:50.134Z",
+    "value": 48.3,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T13:09:43.885Z",
+    "value": 48.3,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T13:39:49.268Z",
+    "value": 48.3,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T14:09:41.843Z",
+    "value": 48.4,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T14:39:47.630Z",
+    "value": 48.5,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T15:09:40.554Z",
+    "value": 48.7,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T15:39:35.120Z",
+    "value": 48.8,
+    "state": "caution"
+   },
+   {
+    "t": "2026-10-24T16:09:41.333Z",
+    "value": 48.7,
+    "state": "caution"
+   }
+  ],
+  "description": "Condition Index: an editorial indicator, not a scientific one. Each signal is placed on a 0–100 scale between a 'calm' value (0) and an 'alarm' value (100), clipped at both ends. The index is the weighted average of the signals that have data; missing signals are left out and the remaining weights are rescaled."
+ }
+}

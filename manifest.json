@@ -1,0 +1,75 @@
+{
+ "generatedAt": "2026-10-24T16:09:41.336Z",
+ "sources": {
+  "curated": {
+   "status": "ok",
+   "fetchedAt": "2026-10-24T16:09:41.329Z",
+   "lastSuccessAt": "2026-10-24T16:09:41.329Z",
+   "error": null,
+   "mode": null
+  },
+  "digest": {
+   "status": "ok",
+   "fetchedAt": "2026-10-24T05:24:08.329Z",
+   "lastSuccessAt": "2026-10-24T05:24:08.329Z",
+   "error": null,
+   "mode": null
+  },
+  "eonet": {
+   "status": "ok",
+   "fetchedAt": "2026-10-24T16:07:50.378Z",
+   "lastSuccessAt": "2026-10-24T16:07:50.378Z",
+   "error": null,
+   "mode": null
+  },
+  "gdelt-doc": {
+   "status": "partial",
+   "fetchedAt": "2026-10-24T16:07:51.083Z",
+   "lastSuccessAt": "2026-10-24T16:07:51.083Z",
+   "error": null,
+   "mode": null
+  },
+  "gdelt-events": {
+   "status": "ok",
+   "fetchedAt": "2026-10-24T16:07:50.738Z",
+   "lastSuccessAt": "2026-10-24T16:07:50.738Z",
+   "error": null,
+   "mode": null
+  },
+  "index": {
+   "status": "ok",
+   "fetchedAt": "2026-10-24T16:09:41.333Z",
+   "lastSuccessAt": "2026-10-24T16:09:41.333Z",
+   "error": null,
+   "mode": null
+  },
+  "pulse": {
+   "status": "ok",
+   "fetchedAt": "2026-10-24T16:09:38.130Z",
+   "lastSuccessAt": "2026-10-24T16:09:38.130Z",
+   "error": null,
+   "mode": null
+  },
+  "ucdp": {
+   "status": "ok",
+   "fetchedAt": "2026-10-24T05:24:04.508Z",
+   "lastSuccessAt": "2026-10-24T05:24:04.508Z",
+   "error": null,
+   "mode": "downloads"
+  },
+  "usgs": {
+   "status": "ok",
+   "fetchedAt": "2026-10-24T16:07:50.125Z",
+   "lastSuccessAt": "2026-10-24T16:07:50.125Z",
+   "error": null,
+   "mode": null
+  },
+  "worldbank": {
+   "status": "ok",
+   "fetchedAt": "2026-10-24T05:24:01.250Z",
+   "lastSuccessAt": "2026-10-24T05:24:01.250Z",
+   "error": null,
+   "mode": null
+  }
+ }
+}

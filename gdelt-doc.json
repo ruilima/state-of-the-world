@@ -1,0 +1,444 @@
+{
+ "id": "gdelt-doc",
+ "source": {
+  "name": "GDELT Project — DOC 2.0 API",
+  "url": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/",
+  "license": "Free to use with attribution to the GDELT Project"
+ },
+ "status": "partial",
+ "fetchedAt": "2026-10-24T16:07:51.083Z",
+ "lastSuccessAt": "2026-10-24T16:07:51.083Z",
+ "error": null,
+ "queriesOk": 1,
+ "queriesTotal": 5,
+ "data": {
+  "queries": {
+   "conflictHeadlines": {
+    "key": "conflictHeadlines",
+    "mode": "artlist",
+    "query": "(\"armed conflict\" OR airstrike OR shelling) sourcelang:english",
+    "timespan": "24h",
+    "label": null,
+    "status": "stale",
+    "fetchedAt": "2026-10-24T14:38:04.459Z",
+    "error": "fetch failed",
+    "items": [
+     {
+      "title": "Three killed in Saudi air strike on Sanaa, says Houthi - linked media",
+      "domain": "middleeasteye.net",
+      "language": "English",
+      "date": "2026-10-24T14:15:00Z",
+      "url": "https://www.middleeasteye.net/live-blog/live-blog-update/three-killed-saudi-air-strike-sanaa-says-houthi-linked-media"
+     },
+     {
+      "title": "2 children killed, 3 civilians wounded in Houthi attacks in Yemen Taiz: Rights group – Middle East Monitor",
+      "domain": "middleeastmonitor.com",
+      "language": "English",
+      "date": "2026-10-24T13:45:00Z",
+      "url": "https://www.middleeastmonitor.com/20261024-2-children-killed-3-civilians-wounded-in-houthi-attacks-in-yemens-taiz-rights-group/"
+     },
+     {
+      "title": "2 children killed, 3 civilians wounded in Houthi attacks in Yemen Taiz: Rights group",
+      "domain": "aa.com.tr",
+      "language": "English",
+      "date": "2026-10-24T13:45:00Z",
+      "url": "https://aa.com.tr/en/middle-east/2-children-killed-3-civilians-wounded-in-houthi-attacks-in-yemens-taiz-rights-group/4099420"
+     },
+     {
+      "title": "Israel imposes closures across a West Bank city after attacks, and other Mideast news",
+      "domain": "mymotherlode.com",
+      "language": "English",
+      "date": "2026-10-24T13:15:00Z",
+      "url": "https://mymotherlode.com/news/world/11248019/israel-imposes-closures-across-a-west-bank-city-after-attacks-and-other-mideast-news.html"
+     },
+     {
+      "title": "Occupiers attack three towns, four villages in Donetsk region over past 24 hours: 2 people killed, 18 wounded",
+      "domain": "en.interfax.com.ua",
+      "language": "English",
+      "date": "2026-10-24T12:30:00Z",
+      "url": "https://en.interfax.com.ua/news/general/1225595.html"
+     },
+     {
+      "title": "One man killed, two others hospitalized following missile strike on Lozova – Synehubov",
+      "domain": "en.interfax.com.ua",
+      "language": "English",
+      "date": "2026-10-24T12:30:00Z",
+      "url": "https://en.interfax.com.ua/news/general/1225605.html"
+     },
+     {
+      "title": "Israel imposes closures across a West Bank city after attacks, and other Mideast news – Winnipeg Free Press",
+      "domain": "winnipegfreepress.com",
+      "language": "English",
+      "date": "2026-10-24T08:15:00Z",
+      "url": "https://www.winnipegfreepress.com/business/2026/10/24/israel-imposes-closures-across-a-west-bank-city-after-attacks-and-other-mideast-news"
+     },
+     {
+      "title": "Myanmar Military Regime Launches Fresh Airstrikes in Ye Township in Mon State Despite Absence of Fighting",
+      "domain": "bnionline.net",
+      "language": "English",
+      "date": "2026-10-24T06:45:00Z",
+      "url": "https://www.bnionline.net/en/news/myanmar-military-regime-launches-fresh-airstrikes-ye-township-mon-state-despite-absence"
+     },
+     {
+      "title": "BBC Investigation Claims Systematic RSF Attacks On El - Fasher Hospitals",
+      "domain": "eurasiareview.com",
+      "language": "English",
+      "date": "2026-10-24T02:45:00Z",
+      "url": "https://www.eurasiareview.com/24102026-bbc-investigation-claims-systematic-rsf-attacks-on-el-fashers-hospitals/"
+     }
+    ]
+   },
+   "aiLayoffHeadlines": {
+    "key": "aiLayoffHeadlines",
+    "mode": "artlist",
+    "query": "(layoffs OR \"job cuts\") (\"artificial intelligence\" OR automation) sourcelang:english",
+    "timespan": "72h",
+    "label": null,
+    "status": "stale",
+    "fetchedAt": "2026-10-24T14:38:33.874Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "title": "American Express to cut 3,500 jobs despite 28 % profit surge",
+      "domain": "americanbazaaronline.com",
+      "language": "English",
+      "date": "2026-10-24T13:45:00Z",
+      "url": "https://americanbazaaronline.com/2026/10/24/american-express-to-cut-3500-jobs-despite-28-profit-surge-490669/"
+     },
+     {
+      "title": "Why are Indians facing backlash over US tech jobs? Why H 1B visas have become a flashpoint",
+      "domain": "businesstoday.in",
+      "language": "English",
+      "date": "2026-10-24T06:45:00Z",
+      "url": "https://www.businesstoday.in/india/story/why-are-indians-facing-backlash-over-us-tech-jobs-how-h-1b-visas-became-a-flashpoint-563435-2026-10-24"
+     },
+     {
+      "title": "Dow Jones Top Company Headlines at 7 PM ET: American Express to Cut 3,500 Jobs | Apple ...",
+      "domain": "morningstar.com",
+      "language": "English",
+      "date": "2026-10-23T23:45:00Z",
+      "url": "https://www.morningstar.com/news/dow-jones/202610239776/dow-jones-top-company-headlines-at-7-pm-et-american-express-to-cut-3500-jobs-apples"
+     },
+     {
+      "title": "Goldman Sachs Says AI Could Displace One in 11 Workers, but Layoffs May Wait for a Recession",
+      "domain": "jobsnhire.com",
+      "language": "English",
+      "date": "2026-10-23T23:00:00Z",
+      "url": "https://www.jobsnhire.com/articles/60254/20261023/goldman-sachs-says-ai-could-displace-one-11-workers-layoffs-may-wait-recession.htm"
+     },
+     {
+      "title": "Barclays to cut 5,000 jobs in AI - driven push to lower costs",
+      "domain": "thestar.com.my",
+      "language": "English",
+      "date": "2026-10-23T09:30:00Z",
+      "url": "https://www.thestar.com.my/tech/tech-news/2026/10/23/barclays-to-cut-5000-jobs-in-ai-driven-push-to-lower-costs"
+     },
+     {
+      "title": "As college graduates fret over finding jobs, a record shortage of workers is projected",
+      "domain": "akronnewsreporter.com",
+      "language": "English",
+      "date": "2026-10-23T08:45:00Z",
+      "url": "https://www.akronnewsreporter.com/2026/09/14/college-graduates-worker-shortage/"
+     },
+     {
+      "title": "Thousands of NAB staff are being forced to re - apply for their own jobs",
+      "domain": "afr.com",
+      "language": "English",
+      "date": "2026-10-23T06:00:00Z",
+      "url": "https://www.afr.com/companies/financial-services/nab-asks-thousands-to-reapply-for-jobs-as-search-for-2500-cuts-begins-20261023-p617qg"
+     },
+     {
+      "title": "VIP layoffs raise questions about AI role in changing Vermont workforce",
+      "domain": "wcax.com",
+      "language": "English",
+      "date": "2026-10-22T23:00:00Z",
+      "url": "https://www.wcax.com/2026/10/22/vip-layoffs-raise-questions-about-ais-role-changing-vermont-workforce/"
+     },
+     {
+      "title": "AI could displace one in 11 workers, Goldman says, but the layoffs are waiting for a recession",
+      "domain": "fortune.com",
+      "language": "English",
+      "date": "2026-10-22T19:30:00Z",
+      "url": "https://fortune.com/2026/10/22/goldman-sachs-forecast-how-many-jobs-lost-to-ai-9-percent/"
+     }
+    ]
+   },
+   "coverageArmedConflict": {
+    "key": "coverageArmedConflict",
+    "mode": "timelinevol",
+    "query": "\"armed conflict\"",
+    "timespan": "30d",
+    "label": "armed conflict",
+    "status": "stale",
+    "fetchedAt": "2026-10-24T11:08:52.637Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-09-25",
+      "value": 0.0952
+     },
+     {
+      "date": "2026-09-27",
+      "value": 0.1357
+     },
+     {
+      "date": "2026-09-28",
+      "value": 0.0933
+     },
+     {
+      "date": "2026-09-29",
+      "value": 0.1468
+     },
+     {
+      "date": "2026-09-30",
+      "value": 0.1625
+     },
+     {
+      "date": "2026-10-01",
+      "value": 0.1408
+     },
+     {
+      "date": "2026-10-02",
+      "value": 0.0762
+     },
+     {
+      "date": "2026-10-06",
+      "value": 0.0758
+     },
+     {
+      "date": "2026-10-08",
+      "value": 0.295
+     },
+     {
+      "date": "2026-10-10",
+      "value": 0
+     },
+     {
+      "date": "2026-10-15",
+      "value": 0.084
+     },
+     {
+      "date": "2026-10-16",
+      "value": 0.0719
+     },
+     {
+      "date": "2026-10-17",
+      "value": 0.0808
+     },
+     {
+      "date": "2026-10-18",
+      "value": 0.0893
+     },
+     {
+      "date": "2026-10-19",
+      "value": 0.1061
+     },
+     {
+      "date": "2026-10-20",
+      "value": 0.0793
+     },
+     {
+      "date": "2026-10-21",
+      "value": 0.0773
+     },
+     {
+      "date": "2026-10-22",
+      "value": 0.1519
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.1241
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.1046
+     }
+    ]
+   },
+   "coverageCeasefire": {
+    "key": "coverageCeasefire",
+    "mode": "timelinevol",
+    "query": "ceasefire",
+    "timespan": "30d",
+    "label": "ceasefire",
+    "status": "stale",
+    "fetchedAt": "2026-10-24T15:39:09.700Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-09-25",
+      "value": 0.3809
+     },
+     {
+      "date": "2026-09-27",
+      "value": 0.6887
+     },
+     {
+      "date": "2026-09-28",
+      "value": 0.3575
+     },
+     {
+      "date": "2026-09-29",
+      "value": 0.272
+     },
+     {
+      "date": "2026-09-30",
+      "value": 0.1518
+     },
+     {
+      "date": "2026-10-01",
+      "value": 0.265
+     },
+     {
+      "date": "2026-10-02",
+      "value": 0.2269
+     },
+     {
+      "date": "2026-10-06",
+      "value": 0.2779
+     },
+     {
+      "date": "2026-10-08",
+      "value": 0.4425
+     },
+     {
+      "date": "2026-10-10",
+      "value": 0.4357
+     },
+     {
+      "date": "2026-10-15",
+      "value": 0.5815
+     },
+     {
+      "date": "2026-10-16",
+      "value": 0.4851
+     },
+     {
+      "date": "2026-10-17",
+      "value": 0.5125
+     },
+     {
+      "date": "2026-10-18",
+      "value": 0.5462
+     },
+     {
+      "date": "2026-10-19",
+      "value": 0.5203
+     },
+     {
+      "date": "2026-10-20",
+      "value": 0.2781
+     },
+     {
+      "date": "2026-10-21",
+      "value": 0.448
+     },
+     {
+      "date": "2026-10-22",
+      "value": 0.2682
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.3391
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.5364
+     }
+    ]
+   },
+   "coverageSanctions": {
+    "key": "coverageSanctions",
+    "mode": "timelinevol",
+    "query": "sanctions",
+    "timespan": "30d",
+    "label": "sanctions",
+    "status": "ok",
+    "fetchedAt": "2026-10-24T16:09:38.129Z",
+    "error": null,
+    "items": [
+     {
+      "date": "2026-09-25",
+      "value": 1.3535
+     },
+     {
+      "date": "2026-09-27",
+      "value": 1.8439
+     },
+     {
+      "date": "2026-09-28",
+      "value": 1.3228
+     },
+     {
+      "date": "2026-09-29",
+      "value": 1.5728
+     },
+     {
+      "date": "2026-09-30",
+      "value": 1.18
+     },
+     {
+      "date": "2026-10-01",
+      "value": 1.0416
+     },
+     {
+      "date": "2026-10-02",
+      "value": 1.1456
+     },
+     {
+      "date": "2026-10-06",
+      "value": 0.8338
+     },
+     {
+      "date": "2026-10-08",
+      "value": 1.3274
+     },
+     {
+      "date": "2026-10-10",
+      "value": 3.159
+     },
+     {
+      "date": "2026-10-15",
+      "value": 1.3572
+     },
+     {
+      "date": "2026-10-16",
+      "value": 1.5051
+     },
+     {
+      "date": "2026-10-17",
+      "value": 2.6997
+     },
+     {
+      "date": "2026-10-18",
+      "value": 2.0115
+     },
+     {
+      "date": "2026-10-19",
+      "value": 1.8034
+     },
+     {
+      "date": "2026-10-20",
+      "value": 1.5388
+     },
+     {
+      "date": "2026-10-21",
+      "value": 1.3739
+     },
+     {
+      "date": "2026-10-22",
+      "value": 1.3836
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.987
+     },
+     {
+      "date": "2026-10-24",
+      "value": 1.3201
+     }
+    ]
+   }
+  }
+ }
+}
