@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>World Vitals</title>
-  <meta name="description" content="Signs of a world in transition: armed conflict, work and AI, the planet, the economy and what lies ahead, from public data sources, refreshed automatically or by hand.">
+  <title>World Vitals: signs of a world in transition</title>
+  <meta name="description" content="A dashboard of the state of the world: armed conflict, AI and jobs, the planet and the economy. Public sources, checked every 30 minutes.">
   <link rel="canonical" href="https://worldvitals.org/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="World Vitals">
-  <meta property="og:title" content="World Vitals">
-  <meta property="og:description" content="Signs of a world in transition: armed conflict, work and AI, the planet, the economy and what lies ahead, from public data sources, refreshed automatically or by hand.">
+  <meta property="og:title" content="World Vitals: signs of a world in transition">
+  <meta property="og:description" content="A dashboard of the state of the world: armed conflict, AI and jobs, the planet and the economy. Public sources, checked every 30 minutes.">
   <meta property="og:url" content="https://worldvitals.org/">
   <meta property="og:locale" content="en_GB">
   <meta property="og:image" content="https://worldvitals.org/assets/og-image.png">
@@ -19,15 +19,21 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://worldvitals.org/assets/og-image.png">
   <meta name="twitter:image:alt" content="World Vitals: a heart-monitor trace under the name and the line 'Signs of a world in transition'.">
-  <meta name="twitter:title" content="World Vitals">
-  <meta name="twitter:description" content="Signs of a world in transition: armed conflict, work and AI, the planet, the economy and what lies ahead, from public data sources, refreshed automatically or by hand.">
+  <meta name="twitter:title" content="World Vitals: signs of a world in transition">
+  <meta name="twitter:description" content="A dashboard of the state of the world: armed conflict, AI and jobs, the planet and the economy. Public sources, checked every 30 minutes.">
   <meta name="theme-color" content="#1F2119">
   <link rel="icon" href="assets/insignia.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="icon" href="assets/icon-512.png" type="image/png" sizes="512x512">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- The title face only (latin subset); test/fonts.test.mjs checks Google still serves this file. -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/bigshouldersdisplay/v24/fC1MPZJEZG-e9gHhdI4-NBbfd2ys3SjJCx12wPgf9g-_3F0YdQ88FFkwSDH92ZWI0g.woff2">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Big+Shoulders+Stencil+Display:wght@800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap">
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="app.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"World Vitals","url":"https://worldvitals.org/","description":"A dashboard of the state of the world: armed conflict, AI and jobs, the planet and the economy. Public sources, checked every 30 minutes.","inLanguage":"en"}</script>
 </head>
 <body>
   <a class="skip" href="#records-list">Skip to the records</a>
@@ -63,7 +69,8 @@
     </section>
 
     <main>
-      <section class="monitor" aria-labelledby="monitor-state">
+      <section class="monitor" aria-labelledby="monitor-title monitor-state">
+        <h2 class="visually-hidden" id="monitor-title">Condition Index now</h2>
         <svg class="monitor__trace" id="trace" viewBox="0 0 1000 200" preserveAspectRatio="none" role="img" aria-labelledby="trace-desc">
           <desc id="trace-desc">A heartbeat trace: its pace and colour follow the Condition Index.</desc>
         </svg>
@@ -81,7 +88,7 @@
       <section class="records" id="records" aria-labelledby="records-title">
         <h2 class="records__title" id="records-title">Records</h2>
         <div class="records__list" role="tablist" aria-labelledby="records-title" aria-orientation="vertical" id="records-list"></div>
-        <noscript><p>This page needs JavaScript to read its data files in <a href="data/manifest.json">data/</a>.</p></noscript>
+        <noscript><p class="records__noscript">Without JavaScript this page shows the summary written when the data was last updated. The charts, maps, headlines and full records need JavaScript; the data files are in <a href="data/manifest.json">data/</a>.</p></noscript>
       </section>
     </main>
 
