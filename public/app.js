@@ -167,6 +167,12 @@ function lastGoodNote(q) {
   return h('p', { class: 'notice small' }, `Last good list, from ${fmtDayTime(q.fetchedAt)}. GDELT did not answer the last request. We try again every 30 minutes.`);
 }
 
+// Notes on single months whose figure needs context, shown under the bars
+// while that month is in the series.
+const UCDP_MONTH_NOTES = {
+  '2026-01': 'January includes about 19,900 deaths UCDP records as one-sided violence by the Government of Iran against civilians (8–10 Jan). The estimate is uncertain.',
+};
+
 function renderConflict(files) {
   const u = files.ucdp?.data;
   const g = files['gdelt-events']?.data;
@@ -211,7 +217,7 @@ function renderConflict(files) {
           u.monthly.map((m) => ({ label: tidy(monthShort.format(new Date(`${m.month}-01T00:00:00Z`))), value: m.deaths, hover: `${fmtMonth(m.month)}: ${num(m.deaths)} deaths` })),
           { label: `Deaths per month in ${last.month.slice(0, 4)}, from UCDP candidate events.`, format: compact, over: (v) => v >= alarm },
         ),
-        h('figcaption', {}, `Deaths per month (provisional). Red bars: months above ${num(alarm)} deaths, the alarm value we set for the Condition Index.`),
+        h('figcaption', {}, `Deaths per month (provisional). Red bars: months above ${num(alarm)} deaths, the alarm value we set for the Condition Index.`, ...u.monthly.filter((m) => UCDP_MONTH_NOTES[m.month]).map((m) => ` ${UCDP_MONTH_NOTES[m.month]}`)),
         tableDetails('Deaths per month', ['Month', 'Deaths (provisional)', 'Events'], u.monthly.map((m) => [fmtMonth(m.month), num(m.deaths), num(m.events)]), [1, 2]),
       ),
     );
@@ -451,9 +457,9 @@ function renderPlanet(files) {
         h(
           'ol',
           { class: 'list' },
-          q.quakes.slice(0, 8).map((x) => h('li', {}, link(x.url, `M${num(x.mag, 1)} ${x.place ?? ''}`), h('span', { class: 'meta' }, `${fmtDayTime(x.time)}, ${num(x.depthKm)} km deep${x.tsunami ? ', tsunami bulletin issued' : ''}`))),
+          q.quakes.slice(0, 8).map((x) => h('li', {}, link(x.url, `M${num(x.mag, 1)} ${x.place ?? ''}`), h('span', { class: 'meta' }, `${fmtDayTime(x.time)}, ${num(x.depthKm)} km deep${x.tsunami ? ', large quake at sea' : ''}`))),
         ),
-        q.quakes.slice(0, 8).some((x) => x.tsunami) ? h('p', { class: 'small faded' }, 'A tsunami bulletin does not mean a tsunami happened.') : null,
+        q.quakes.slice(0, 8).some((x) => x.tsunami) ? h('p', { class: 'small faded' }, 'USGS flags large quakes at sea. It does not mean a tsunami occurred or will occur.') : null,
       ),
     );
   }
