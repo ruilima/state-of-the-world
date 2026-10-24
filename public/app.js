@@ -295,7 +295,7 @@ function renderWork(files) {
   const pulse = files.pulse?.data;
   const out = [];
   if (c) {
-    out.push(h('p', { class: 'lede' }, 'How many jobs are being cut, and how much of that is really AI? The numbers depend on who counts. Each one is shown with its source.'));
+    out.push(h('p', { class: 'lede' }, 'How many jobs are being cut, and how often do companies say AI is the reason? The numbers depend on who counts. Each one is shown with its source.'));
     if (c.trend) {
       out.push(h('p', { class: 'notice' }, c.trend.text, ' ', h('span', { class: 'meta' }, 'Source: ', link(c.trend.source.url, c.trend.source.name), '.'), ' ', unverified(!c.trend.verified)));
     }
@@ -345,21 +345,21 @@ function renderWork(files) {
     }
     if (c.scopeNote) out.push(h('p', { class: 'small faded' }, c.scopeNote));
 
-    out.push(h('h3', {}, 'Job cuts attributed to AI, month by month'));
+    out.push(h('h3', {}, 'Job cuts citing AI, month by month'));
     if (c.monthly.length) {
       const rows = [...c.monthly].sort((a, b) => a.month.localeCompare(b.month));
       out.push(
         h(
           'figure',
           { class: 'figure' },
-          barChart(rows.map((r) => ({ label: tidy(monthShort.format(new Date(`${r.month}-01T00:00:00Z`))), value: r.aiCited, hover: `${fmtMonth(r.month)}: ${num(r.aiCited)} cuts attributed to AI, of ${num(r.total)} announced` })), {
+          barChart(rows.map((r) => ({ label: tidy(monthShort.format(new Date(`${r.month}-01T00:00:00Z`))), value: r.aiCited, hover: `${fmtMonth(r.month)}: ${num(r.aiCited)} cuts where the company cited AI, of ${num(r.total)} announced` })), {
             label: `US job cuts where companies cited AI, per month in ${rows[0].month.slice(0, 4)}. Highest: ${(() => { const m = rows.reduce((a, b) => (b.aiCited > a.aiCited ? b : a)); return `${fmtMonth(m.month)}, ${num(m.aiCited)}`; })()}. Latest: ${fmtMonth(rows.at(-1).month)}, ${num(rows.at(-1).aiCited)}.`,
             format: compact,
           }),
-          h('figcaption', {}, `Cuts where the company named AI as the reason, from each monthly Challenger report. The table also shows all announced cuts per month.`),
+          h('figcaption', {}, `Cuts where the company cited AI, from each monthly Challenger report. The table also shows all announced cuts per month.`),
           tableDetails(
             'Job cuts per month',
-            ['Month', 'Attributed to AI', 'All announced', 'AI share', 'Report'],
+            ['Month', 'Citing AI', 'All announced', 'AI share', 'Report'],
             rows.map((r) => [fmtMonth(r.month), num(r.aiCited), num(r.total), pct((r.aiCited / r.total) * 100, 0), r.verified ? `published ${fmtDate(r.publishedAt)}` : 'to be confirmed']),
             [1, 2, 3],
           ),
@@ -400,8 +400,8 @@ function renderWork(files) {
       h(
         'div',
         { class: 'two-col' },
-        h('div', {}, h('h3', {}, 'In the tech community'), headlineList(pulse.hn.slice(0, 6).map((x) => ({ ...x, source: 'Hacker News' })), 'No recent posts.')),
-        h('div', {}, h('h3', {}, 'Recent research'), headlineList(pulse.arxiv.slice(0, 6).map((x) => ({ ...x, source: 'arXiv' })), 'No recent papers.')),
+        h('div', {}, h('h3', {}, 'Posts on Hacker News'), headlineList(pulse.hn.slice(0, 6).map((x) => ({ ...x, url: x.discussion ?? x.url, source: 'Hacker News discussion' })), 'No recent posts.')),
+        h('div', {}, h('h3', {}, 'Recent preprints (arXiv, not peer-reviewed)'), headlineList(pulse.arxiv.slice(0, 6).map((x) => ({ ...x, source: 'arXiv' })), 'No recent preprints.')),
       ),
     );
   }
@@ -558,8 +558,11 @@ const FILES_LIST = [
     key: (f) => {
       const rows = f.curated?.data?.layoffs?.monthly ?? [];
       if (!rows.length) return null;
-      const year = rows.map((r) => r.month).sort().at(-1).slice(0, 4);
-      return `${num(rows.filter((r) => r.month.startsWith(year)).reduce((a, r) => a + r.aiCited, 0))} US job cuts attributed to AI in ${year}`;
+      const months = rows.map((r) => r.month).sort();
+      const year = months.at(-1).slice(0, 4);
+      const inYear = months.filter((m) => m.startsWith(year));
+      const short = (m) => tidy(monthShort.format(new Date(`${m}-01T00:00:00Z`)));
+      return `${num(rows.filter((r) => r.month.startsWith(year)).reduce((a, r) => a + r.aiCited, 0))} US job cuts citing AI, ${short(inYear[0])}–${short(inYear.at(-1))} ${year}`;
     },
   },
   {

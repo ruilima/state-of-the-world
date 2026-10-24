@@ -64,7 +64,7 @@
     },
     {
       "id": "aiLayoffs",
-      "name": "Pace of AI-attributed job cuts",
+      "name": "Pace of job cuts citing AI",
       "explain": "Last month's US job cuts where companies cited AI (Challenger), divided by the average of the months before it (up to 12). 1 means a normal pace. Weighted lower than the other signals because the attribution is the companies' own.",
       "source": "curated",
       "special": "layoffRatio",

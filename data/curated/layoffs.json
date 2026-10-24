@@ -87,7 +87,7 @@
       "low": 573195,
       "high": 573195,
       "unit": "people",
-      "detail": "down 39% from 946,426 in the same period of 2025",
+      "detail": "down 39% from 946,426 in the same period of 2025; without the government sector, down 15%: most of the fall comes from government cuts, down 92% on the same period of 2025",
       "source": {
         "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
         "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
@@ -278,7 +278,7 @@
     ]
   },
   "trend": {
-    "text": "Two things are true at once. All announced job cuts are down on 2025: 573,195 through September against 946,426 a year earlier (down 15% if government cuts are left out). Cuts that companies attribute to AI are up: 120,136 through September, more than twice the 54,836 for all of 2025.",
+    "text": "All announced job cuts are down on 2025, while cuts where companies cited AI are up: this year's total so far is already more than twice that of all of 2025.",
     "source": {
       "name": "Challenger, Gray & Christmas — Job Cut Report, September 2026",
       "url": "https://www.challengergray.com/wp-content/uploads/2026/10/Challenger-Report-September-2026.pdf"
@@ -295,5 +295,5 @@
       "scope": "Layoffs at tech companies worldwide, compiled from public reports."
     }
   },
-  "scopeNote": "These two trackers measure different things. Challenger's US tech-sector count (165,925, January to September 2026) and Layoffs.fyi's global tech count use different scopes and methods, so their numbers are not comparable with each other."
+  "scopeNote": "These two trackers measure different things. Challenger's US tech-sector count and Layoffs.fyi's global tech count use different scopes and methods, so their numbers are not comparable with each other."
 }
