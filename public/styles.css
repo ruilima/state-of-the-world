@@ -210,7 +210,11 @@ a:hover { text-decoration-thickness: 2px; }
 .monitor__state svg { width: 0.5em; height: 0.5em; flex: none; }
 .monitor__figures { grid-area: figures; display: flex; flex-wrap: wrap; gap: 0 20px; margin: 8px 0 0; }
 .monitor__figures div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; }
-.monitor__figures .monitor__scale { font: 400 var(--s-14) / 1.4 var(--type); color: var(--tube-low); white-space: normal; }
+/* The thresholds sit under the label, beside the number, so they add no row. */
+.monitor__figures .monitor__index { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; column-gap: 8px; }
+.monitor__index dt { grid-area: 1 / 1; line-height: 1; }
+.monitor__index #monitor-index { grid-area: 1 / 2 / 3 / 3; }
+.monitor__figures .monitor__scale { grid-area: 2 / 1; font: 400 0.75rem / 1 var(--type); color: var(--tube-low); white-space: nowrap; }
 .monitor__figures dt { color: var(--tube-low); font-size: var(--s-14); }
 .monitor__figures dd { margin: 0; font: 800 var(--s-21) / 1.2 var(--crate); white-space: nowrap; }
 .monitor__note { grid-area: note; margin: 6px 0 0; color: var(--tube-low); font-size: var(--s-14); }

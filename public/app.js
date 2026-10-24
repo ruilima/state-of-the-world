@@ -123,8 +123,11 @@ function renderMonitor(index, files) {
   stateEl.className = `monitor__state is-${state}`;
   stateEl.replaceChildren(shape(state), d?.value == null ? 'NO SIGNAL' : STATE_LABEL[state]);
   document.getElementById('monitor-index').textContent = d?.value == null ? '—' : `${num(d.value, 0)} of 100`;
-  if (d?.thresholds) document.getElementById('monitor-scale').textContent = `caution\u00a0from\u00a0${d.thresholds.caution}, danger\u00a0from\u00a0${d.thresholds.danger}`;
-  document.getElementById('monitor-bpm').replaceChildren(...(d?.bpm == null ? ['—'] : [`${d.bpm} bpm `, h('span', { class: 'monitor__scale' }, '(visual only)')]));
+  if (d?.thresholds) {
+    const t = d.thresholds;
+    document.getElementById('monitor-scale').replaceChildren(h('span', { 'aria-hidden': 'true' }, `caution ≥${t.caution}, danger ≥${t.danger}`), h('span', { class: 'visually-hidden' }, `caution from ${t.caution}, danger from ${t.danger}`));
+  }
+  document.getElementById('monitor-bpm').replaceChildren(...(d?.bpm == null ? ['—'] : [`${d.bpm} bpm`, h('span', { class: 'visually-hidden' }, ' (visual only: it follows the Condition Index, it is not a measurement)')]));
   // Outdated when the index itself is older than 3× its 30-minute refresh, or
   // when every source behind its signals is outside its window. When only
   // some are, the state stays and a note names them.
