@@ -475,7 +475,11 @@ function renderPlanet(files) {
 function renderEconomy(files) {
   const wb = files.worldbank?.data;
   if (!wb) return [];
-  const out = [h('p', { class: 'lede' }, 'A slow panel: the World Bank publishes annual figures and revises them a few times a year.')];
+  const latest = Math.max(...wb.indicators.flatMap((i) => i.series.flatMap((s) => s.points.map((p) => p.year))));
+  const out = [
+    h('p', { class: 'lede' }, `Annual figures from the World Bank. The latest year with data is ${latest}.`),
+    h('p', { class: 'small faded' }, 'Not part of the Condition Index. Portugal is shown as a local reference.'),
+  ];
   const dashes = { WLD: null, EUU: '6 4', PRT: '2 3' };
   for (const ind of wb.indicators) {
     const years = ind.series.flatMap((s) => s.points.map((p) => p.year));
@@ -518,12 +522,12 @@ function renderAhead(files) {
   if (c) {
     const dd = c.doomsday;
     out.push(h('p', { class: 'lede' }, h('span', { class: 'big-number' }, `${dd.current.seconds} seconds`), ' to midnight on the Doomsday Clock, the closest it has ever been.'));
-    out.push(h('p', { class: 'small' }, `Set on ${fmtDate(dd.current.setAt)} by the `, link(dd.source.url, dd.source.name), '. ', unverified(!dd.current.verified)));
+    out.push(h('p', { class: 'small' }, 'An expert panel’s judgement of global risk, set once a year. ', `Set on ${fmtDate(dd.current.setAt)} by the `, link(dd.source.url, dd.source.name), '. ', unverified(!dd.current.verified)));
     out.push(h('h3', {}, 'Recent years'));
     out.push(h('ol', { class: 'seq' }, dd.history.map((r) => h('li', {}, `${r.year}: ${r.seconds} seconds `, unverified(!r.verified, r.evidence === 'secondary' ? 'secondary' : 'pending')))));
 
     out.push(h('h3', {}, 'Horizons'));
-    out.push(h('p', { class: 'small faded' }, c.horizons.rule ?? 'Only claims with a named author and a primary source.'));
+    out.push(h('p', { class: 'small faded' }, c.horizons.rule ?? 'Only claims from a named institution, with a primary source.'));
     const items = [...c.horizons.items].sort((a, b) => a.horizon.localeCompare(b.horizon));
     out.push(
       h(
