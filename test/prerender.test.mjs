@@ -83,3 +83,48 @@ test('the sitemap has dates only and no changefreq', () => {
   assert.ok(!/changefreq|T\d\d:/.test(xml));
   assert.equal(xml.split('<lastmod>').length - 1, 1);
 });
+
+// lastmod of the method page from git history, in three kinds of clone.
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { lastChanged } from '../scripts/prerender.mjs';
+
+const PATHS = ['public/how-the-index-works.html', 'config/index.json'];
+function sourceRepo() {
+  const dir = mkdtempSync(join(tmpdir(), 'wv-src-'));
+  const git = (args, date) => execFileSync('git', args, { cwd: dir, env: { ...process.env, GIT_AUTHOR_DATE: date, GIT_COMMITTER_DATE: date, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@t', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@t' } });
+  git(['init', '-q', '-b', 'main']);
+  const commit = (file, date) => { execFileSync('mkdir', ['-p', join(dir, file, '..')]); writeFileSync(join(dir, file), date); git(['add', '-A']); git(['commit', '-q', '-m', file], date); };
+  commit('public/how-the-index-works.html', '2026-10-24T23:30:00Z'); // the method page changes late on 24 Oct (UTC)
+  commit('README.md', '2026-10-26T10:00:00Z'); // a later commit that does not touch it
+  git(['checkout', '-q', '-b', 'data']);
+  commit('data/index.json', '2026-10-27T10:00:00Z');
+  git(['checkout', '-q', 'main']);
+  return dir;
+}
+const clone = (src, args) => { const dir = mkdtempSync(join(tmpdir(), 'wv-clone-')); execFileSync('git', ['clone', '-q', ...args, `file://${src}`, dir]); return dir; };
+
+test('lastmod: a full clone gives the date of the last commit that touched the page (UTC)', () => {
+  const src = sourceRepo();
+  const dir = clone(src, ['--branch', 'main', '--single-branch']);
+  assert.equal(lastChanged(PATHS, dir), '2026-10-24');
+  rmSync(src, { recursive: true }); rmSync(dir, { recursive: true });
+});
+
+test('lastmod: a full clone marked shallow by fetching the data branch with --depth=1 keeps the date', () => {
+  const src = sourceRepo();
+  const dir = clone(src, ['--branch', 'main', '--single-branch']);
+  execFileSync('git', ['fetch', '-q', '--depth=1', 'origin', 'data'], { cwd: dir }); // as the workflow does
+  assert.equal(execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: dir, encoding: 'utf8' }).trim(), 'true');
+  assert.equal(lastChanged(PATHS, dir), '2026-10-24');
+  rmSync(src, { recursive: true }); rmSync(dir, { recursive: true });
+});
+
+test('lastmod: when the only commit is the boundary of a truncated history, no date is written', () => {
+  const src = sourceRepo();
+  const dir = clone(src, ['--depth=1', '--branch', 'main']);
+  assert.equal(lastChanged(PATHS, dir), null);
+  rmSync(src, { recursive: true }); rmSync(dir, { recursive: true });
+});

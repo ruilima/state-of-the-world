@@ -12,6 +12,7 @@
 // If the HTML no longer has the expected anchors, the run stops with an
 // error (the unit test checks the same against public/index.html).
 import { cp, rm, readFile, writeFile, readdir } from 'node:fs/promises';
+import { existsSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
 import { ROOT, OUT_DIR, readJson } from './lib/io.mjs';
@@ -91,12 +92,24 @@ export function sitemapXml(entries) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 }
 
-/** Date (YYYY-MM-DD) of the last commit that touched any of `paths`, or null in a shallow clone. */
-export function lastChanged(paths) {
+/**
+ * Date (YYYY-MM-DD) of the last commit that touched any of `paths`, or null
+ * when there is no reliable date. A repository can be marked shallow just
+ * because one other branch was fetched with --depth=1 (the workflow does that
+ * for the data branch), so that mark alone says nothing. What makes a date
+ * unreliable is the commit found being a boundary of a truncated history
+ * (listed in .git/shallow): git then reports it as touching every file, and
+ * its date is not when these files changed. Never the build date.
+ */
+export function lastChanged(paths, cwd = ROOT) {
   try {
-    const shallow = execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: ROOT, encoding: 'utf8' }).trim() === 'true';
-    if (shallow) return null; // the dates would be the clone's, not the files'
-    return execFileSync('git', ['log', '-1', '--format=%cs', '--', ...paths], { cwd: ROOT, encoding: 'utf8' }).trim() || null;
+    const git = (...args) => execFileSync('git', args, { cwd, encoding: 'utf8', env: { ...process.env, TZ: 'UTC' } }).trim();
+    // The commit date in UTC, like every other date on the site.
+    const [hash, date] = git('log', '-1', '--format=%H %cd', '--date=format-local:%Y-%m-%d', 'HEAD', '--', ...paths).split(' ');
+    if (!hash || !/^\d{4}-\d{2}-\d{2}$/.test(date ?? '')) return null;
+    const shallowFile = join(cwd, git('rev-parse', '--git-path', 'shallow'));
+    const boundaries = existsSync(shallowFile) ? readFileSync(shallowFile, 'utf8').split('\n').filter(Boolean) : [];
+    return boundaries.includes(hash) ? null : date;
   } catch {
     return null;
   }
