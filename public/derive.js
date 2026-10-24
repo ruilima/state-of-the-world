@@ -44,3 +44,13 @@ export function closestEver(doomsday) {
 
 /** "7 minutes", "2.5 minutes", "100 seconds": how the Bulletin writes each setting. */
 export const clockReading = (seconds) => (seconds >= 120 && seconds % 30 === 0 ? `${seconds / 60} minutes` : `${seconds} seconds`);
+
+/** Planet lede counts, from the fields the USGS file already has. */
+export function quakeSummary(counts) {
+  const n = (x) => new Intl.NumberFormat('en-GB').format(x);
+  const parts = [`${n(counts.m45Week)} earthquakes of magnitude 4.5 or more in the last 7 days`];
+  if (counts.m6Week != null) parts[0] += `, ${n(counts.m6Week)} of magnitude 6 or more`;
+  const out = [`${parts[0]}.`];
+  if (counts.significantWeek != null) out.push(`USGS classed ${n(counts.significantWeek)} as significant, the number the Condition Index uses.`);
+  return out.join(' ');
+}

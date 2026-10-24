@@ -1,7 +1,7 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
 import { mountTicker } from './ticker.js';
-import { biggestContribution, dataPeriod, closestEver, clockReading } from './derive.js';
+import { biggestContribution, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -436,7 +436,7 @@ function renderPlanet(files) {
   const out = [];
   if (q) {
     const s = q.strongest;
-    out.push(h('p', { class: 'lede' }, `${num(q.counts.m45Week)} earthquakes of magnitude 4.5 or more in the last 7 days. The strongest: M${num(s.mag, 1)}, ${s.place}.`));
+    out.push(h('p', { class: 'lede' }, `${quakeSummary(q.counts)} The strongest: M${num(s.mag, 1)}, ${s.place}.`));
   }
   if (q || e) {
     const quakeOver = (x) => x.mag >= 7 || x.alert === 'red' || x.alert === 'orange';

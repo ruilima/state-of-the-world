@@ -51,3 +51,11 @@ test('"the closest it has ever been" only when the current setting is the minimu
   assert.equal(clockReading(150), '2.5 minutes');
   assert.equal(clockReading(100), '100 seconds');
 });
+
+test('the Planet lede names the M4.5+, M6+ and significant counts', async () => {
+  const { quakeSummary } = await import('../public/derive.js');
+  assert.equal(
+    quakeSummary({ m45Week: 1167, m6Week: 5, significantWeek: 4, significantMonth: 18 }),
+    '1,167 earthquakes of magnitude 4.5 or more in the last 7 days, 5 of magnitude 6 or more. USGS classed 4 as significant, the number the Condition Index uses.',
+  );
+});
