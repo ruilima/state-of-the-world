@@ -188,7 +188,7 @@ function renderConflict(files) {
   if (u?.monthly?.length) {
     const last = u.monthly.at(-1);
     out.push(h('p', { class: 'lede' }, `In ${fmtMonth(last.month)}, UCDP recorded ${num(last.deaths)} deaths (provisional) in organised violence, across ${num(last.events)} events.`));
-    out.push(h('p', { class: 'small faded' }, 'Candidate events: UCDP’s first monthly count, revised in the next annual release. Deaths in events that last several months are spread over those months by days.'));
+    out.push(h('p', { class: 'small faded' }, 'Candidate events: UCDP’s first monthly count, revised in the next annual release.'));
 
     const over = (cell) => cell.deaths >= 1000;
     const top = u.topCountries.slice(0, 3).map((c) => `${c.country} (${num(c.deaths)})`).join(', ');
@@ -224,7 +224,7 @@ function renderConflict(files) {
           u.monthly.map((m) => ({ label: tidy(monthShort.format(new Date(`${m.month}-01T00:00:00Z`))), value: m.deaths, hover: `${fmtMonth(m.month)}: ${num(m.deaths)} deaths` })),
           { label: `Deaths per month in ${last.month.slice(0, 4)}, from UCDP candidate events.`, format: compact, over: (v) => v >= alarm },
         ),
-        h('figcaption', {}, `Deaths per month (provisional). Red bars: months above ${num(alarm)} deaths, the alarm value we set for the Condition Index.`, ...u.monthly.filter((m) => UCDP_MONTH_NOTES[m.month]).map((m) => ` ${UCDP_MONTH_NOTES[m.month]}`)),
+        h('figcaption', {}, `Deaths per month (provisional). Events lasting more than one month are split evenly across their days. Red bars: months above ${num(alarm)} deaths, the alarm value we set for the Condition Index.`, ...u.monthly.filter((m) => UCDP_MONTH_NOTES[m.month]).map((m) => ` ${UCDP_MONTH_NOTES[m.month]}`)),
         tableDetails('Deaths per month', ['Month', 'Deaths (provisional)', 'Events'], u.monthly.map((m) => [fmtMonth(m.month), num(m.deaths), num(m.events)]), [1, 2]),
       ),
     );

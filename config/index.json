@@ -26,7 +26,7 @@
     {
       "id": "conflictDeaths",
       "name": "Deaths in organised violence",
-      "explain": "Deaths recorded by UCDP in the latest available month (candidate events, 'best' estimate). Calm 5,000 and alarm 25,000 a month are our choice: 25,000 a month is about 300,000 a year, above the highest yearly battle-death total since 1989 (about 285,000 in 2022, which counts only state-based conflict).",
+      "explain": "Deaths recorded by UCDP in the latest available month (candidate events, 'best' estimate). Events lasting more than one month are split evenly across their days. Calm 5,000 and alarm 25,000 a month are our choice: 25,000 a month is about 300,000 a year, above the highest yearly battle-death total since 1989 (about 285,000 in 2022, which counts only state-based conflict).",
       "source": "ucdp",
       "path": "data.monthly[-1].deaths",
       "unit": "deaths per month",
