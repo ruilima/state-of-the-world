@@ -88,5 +88,34 @@ for (const s of shots) {
   for (const sp of spills) errors.push(`${s.name}: overflows its box — ${sp}`);
   await ctx.close();
 }
+
+// No horizontal scroll while the opening animations play either (the stamp
+// starts its slam at 2.4× its size). Every frame is sampled from load until
+// the open record's animations finish, then once more after.
+for (const width of [320, 390, 768, 1360]) {
+  for (const hash of ['#conflict', '#work', '#planet', '#economy', '#ahead']) {
+    const mobile = width < 600;
+    const ctx = await browser.newContext({ viewport: { width, height: 900 }, isMobile: mobile, hasTouch: mobile, deviceScaleFactor: mobile ? 2 : 1 });
+    const page = await ctx.newPage();
+    await page.addInitScript(() => {
+      window.__maxOverflow = 0;
+      const tick = () => {
+        window.__maxOverflow = Math.max(window.__maxOverflow, document.documentElement.scrollWidth - innerWidth);
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+    await page.goto(base + hash, { waitUntil: 'load' });
+    await page.waitForFunction(
+      () => document.querySelector('[role=tabpanel]:not([hidden]) .paper') && document.getAnimations().filter((a) => a.effect?.target?.closest?.('.dossier')).every((a) => a.playState === 'finished'),
+      null,
+      { timeout: 15000 },
+    );
+    const during = await page.evaluate(() => window.__maxOverflow);
+    const after = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+    if (during > 0 || after > 0) errors.push(`animation ${hash.slice(1)}-${width}: horizontal overflow ${during}px during, ${after}px after`);
+    await ctx.close();
+  }
+}
 await browser.close();
 console.log(errors.length ? errors.join('\n') : 'no page errors, no horizontal overflow');

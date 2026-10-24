@@ -324,6 +324,11 @@ a:hover { text-decoration-thickness: 2px; }
   background: var(--paper);
   color: var(--ink);
   padding: clamp(20px, 4vw, 44px) clamp(18px, 4vw, 48px) 28px;
+  /* The stamp starts its slam at 2.4× its size (invisible during its delay).
+     Clip sideways at the sheet, so it never widens the page; the resting
+     stamp sits well inside the padding, so it is never cut. Not a scroll
+     container, so tables and charts inside keep their own scrolling. */
+  overflow-x: clip;
 }
 .paper a { color: var(--ink); }
 
