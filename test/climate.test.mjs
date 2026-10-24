@@ -81,3 +81,15 @@ live('live: the latest C3S bulletin links a 1850–1900 CSV with the expected he
   assert.ok(url, 'no 1850-1900 CSV link');
   parseBulletinCsv(await http(url, { as: 'text', timeout: 60000 }));
 });
+
+test('the 12-month mean from the unrounded values: 17.9357 / 12 = 1.4946, shown as 1.49', () => {
+  // ano_pi, October 2025 to September 2026, as in the September 2026 bulletin file.
+  const values = [1.5454, 1.5392, 1.4165, 1.4709, 1.4907, 1.4803, 1.433, 1.4203, 1.3886, 1.4711, 1.6457, 1.634];
+  const rows = parseBulletinCsv(csv).rows.slice(-12);
+  assert.deepEqual(rows.map((r) => r.anomaly), values);
+  const sum = values.reduce((a, v) => a + v, 0);
+  assert.equal(Math.round(sum * 1e4) / 1e4, 17.9357);
+  assert.equal(Math.round((sum / 12) * 1e4) / 1e4, 1.4946);
+  // Close to 1.495: one rounding step (to 2 decimals) gives 1.49.
+  assert.equal(summariseClimate(parseBulletinCsv(csv).rows).mean12, 1.49);
+});
