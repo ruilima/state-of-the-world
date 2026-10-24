@@ -1,7 +1,8 @@
 import { mountEcg } from './ecg.js';
-import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
+import { isLate, stampFreshness, delayedNote } from './freshness.js';
 import { mountTicker } from './ticker.js';
-import { holdNote, scaleLine, climateLede, biggestContribution, mainDriver, dataPeriod, closestEver, clockReading, quakeSummary } from './derive.js';
+import { climateLede, dataPeriod, clockReading } from './derive.js';
+import { num, compact, pct, tidy, fmtDate, fmtTime, fmtDayTime, fmtMonth, dayMonth, monthShort, STATE_LABEL, updatedLine, monitorModel, recordKey, recordLede } from './text.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -27,26 +28,6 @@ function h(tag, attrs = {}, ...children) {
 // shown as plain text. Link text is always inserted as text, never as HTML.
 const link = (href, text) => (/^https?:\/\//i.test(href ?? '') ? h('a', { href, rel: 'noopener' }, text) : h('span', {}, text));
 
-// English formats: 24 Oct 2026, 14:39 UTC (one format everywhere), 13,286.
-const LOCALE = 'en-GB';
-const nf = (d = 0) => new Intl.NumberFormat(LOCALE, { maximumFractionDigits: d, minimumFractionDigits: d });
-const num = (n, d = 0) => nf(d).format(n);
-const compact = (n) => (Math.abs(n) >= 100000 ? `${num(n / 1000)}k` : Math.abs(n) >= 10000 ? `${num(n / 1000, n % 1000 ? 1 : 0)}k` : num(n));
-const pct = (n, d = 1) => `${num(n, d)}%`;
-const utc = { timeZone: 'UTC', hourCycle: 'h23' };
-const dateFmt = new Intl.DateTimeFormat(LOCALE, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
-const dayMonth = new Intl.DateTimeFormat(LOCALE, { day: 'numeric', month: 'short', timeZone: 'UTC' });
-const clock = new Intl.DateTimeFormat(LOCALE, { hour: '2-digit', minute: '2-digit', ...utc });
-const monthFmt = new Intl.DateTimeFormat(LOCALE, { month: 'long', year: 'numeric', timeZone: 'UTC' });
-const monthShort = new Intl.DateTimeFormat(LOCALE, { month: 'short', timeZone: 'UTC' });
-// en-GB writes "Sept"; use the shorter "Sep" like every other month, and keep
-// day and month together on one line.
-const tidy = (s) => s.replace(/\bSept\b/, 'Sep').replace(/ /g, '\u00a0');
-const fmtDate = (iso) => tidy(dateFmt.format(new Date(iso)));
-const fmtTime = (iso) => `${clock.format(new Date(iso))} UTC`;
-const fmtDayTime = (iso) => `${fmtDate(iso)}, ${fmtTime(iso)}`;
-const fmtMonth = (ym) => monthFmt.format(new Date(`${ym}-01T00:00:00Z`));
-
 function ago(iso) {
   if (!iso) return 'never';
   const min = Math.round((Date.now() - Date.parse(iso)) / 60000);
@@ -56,8 +37,6 @@ function ago(iso) {
   if (hrs < 48) return `${hrs} h ago`;
   return `${Math.round(hrs / 24)} days ago`;
 }
-
-const STATE_LABEL = { stable: 'STABLE', caution: 'CAUTION', danger: 'DANGER', stale: 'DATA OUTDATED' };
 
 // Every state also has a shape, so it never depends on colour alone.
 function shape(state) {
@@ -118,55 +97,53 @@ function health(id, file) {
 // ---------- monitor ----------
 
 function renderMonitor(index, files) {
-  const d = index?.data;
-  const state = d?.state ?? 'stable';
+  const m = monitorModel(index, files);
   const stateEl = document.getElementById('monitor-state');
-  stateEl.className = `monitor__state is-${state}`;
-  stateEl.replaceChildren(shape(state), d?.value == null ? 'NO SIGNAL' : STATE_LABEL[state]);
-  document.getElementById('monitor-index').textContent = d?.value == null ? '—' : `${num(d.value, 0)} of 100`;
-  if (d?.thresholds) {
-    const t = d.thresholds;
+  // The build may already have written these (scripts/prerender.mjs). The
+  // state word is a live region: leave it alone when it already says the
+  // same, so a screen reader does not announce it twice.
+  for (const el of document.querySelectorAll('.monitor [data-prerendered]')) el.remove();
+  stateEl.className = `monitor__state is-${m.state}`;
+  if (stateEl.textContent.trim() !== m.stateLabel) stateEl.replaceChildren(shape(m.state), m.stateLabel);
+  else if (!stateEl.querySelector('svg')) stateEl.prepend(shape(m.state));
+  document.getElementById('monitor-index').textContent = m.indexText;
+  if (m.thresholds) {
     // Below 900 px the line shows the short hold note instead of the
     // thresholds while the margin holds the state (CSS picks one); screen
     // readers always get the thresholds here and the full note below.
-    const line = scaleLine(d.value, state, t);
     const scale = document.getElementById('monitor-scale');
     scale.replaceChildren(
-      h('span', { class: 'monitor__scale-thresholds', 'aria-hidden': 'true' }, `caution ≥${t.caution}, danger ≥${t.danger}`),
-      line.holding ? h('span', { class: 'monitor__scale-hold', 'aria-hidden': 'true' }, line.text) : null,
-      h('span', { class: 'visually-hidden' }, `caution from ${t.caution}, danger from ${t.danger}`),
+      h('span', { class: 'monitor__scale-thresholds', 'aria-hidden': 'true' }, m.thresholds.visible),
+      m.scaleHold.holding ? h('span', { class: 'monitor__scale-hold', 'aria-hidden': 'true' }, m.scaleHold.text) : null,
+      h('span', { class: 'visually-hidden' }, m.thresholds.spoken),
     );
-    scale.classList.toggle('is-holding', line.holding);
+    scale.classList.toggle('is-holding', m.scaleHold.holding);
   }
-  document.getElementById('monitor-bpm').replaceChildren(...(d?.bpm == null ? ['—'] : [`${d.bpm} bpm`, h('span', { class: 'visually-hidden' }, ' (visual only: it follows the Condition Index, it is not a measurement)')]));
+  document.getElementById('monitor-bpm').replaceChildren(...(m.bpm == null ? ['—'] : [m.bpm, h('span', { class: 'visually-hidden' }, m.bpmSpoken)]));
   // Outdated when the index itself is older than 3× its 30-minute refresh, or
   // when every source behind its signals is outside its window. When only
   // some are, the state stays and a note names them.
-  const fresh = stampFreshness([...new Set((d?.signals ?? []).filter((s) => s.score != null).map((s) => SIGNAL_SOURCE[s.id]).filter(Boolean))], files);
-  const outdated = d?.value != null && (isLate('index', index) || fresh.outdated);
   const figures = document.querySelector('.monitor__figures');
   // After the figures, so it lands under the state word and the figures keep their row.
-  if (outdated) figures.after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
-  else if (d?.value != null && fresh.late.length) figures.after(h('p', { class: 'monitor__note monitor__delayed' }, delayedNote(fresh.late)));
+  if (m.outdated) figures.after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
+  else if (m.delayed) figures.after(h('p', { class: 'monitor__note monitor__delayed' }, m.delayed));
   // The margin can keep a state the index alone would not give; say so.
-  const hold = d?.thresholds ? holdNote(d.value, state, d.thresholds) : null;
-  if (hold) {
-    Object.assign(document.getElementById('monitor-hold'), { textContent: hold, hidden: false });
-    stateEl.title = hold.replace(/^h/, 'H');
-  }
-  const lead = biggestContribution(d);
-  // An outdated index has no "now": the line only shows with fresh data.
+  const holdEl = document.getElementById('monitor-hold');
+  Object.assign(holdEl, { textContent: m.hold ?? '', hidden: !m.hold });
+  if (m.hold) stateEl.title = m.holdTitle;
+  else stateEl.removeAttribute('title');
   // Wide screens get the long line with points; phones a short one (CSS picks).
-  if (lead && !outdated) {
-    const el = document.getElementById('monitor-lead');
-    el.replaceChildren(h('span', { class: 'monitor__lead-long' }, `Biggest contribution now: ${lead}`), h('span', { class: 'monitor__lead-short' }, `Main driver: ${mainDriver(d)}`));
-    el.hidden = false;
-    document.querySelector('.monitor').classList.add('has-lead');
-  }
-  mountEcg(document.getElementById('trace'), { state, bpm: d?.bpm ?? 60, still: outdated });
+  const lead = document.getElementById('monitor-lead');
+  if (m.leadLong) lead.replaceChildren(h('span', { class: 'monitor__lead-long' }, m.leadLong), h('span', { class: 'monitor__lead-short' }, m.leadShort));
+  lead.hidden = !m.leadLong;
+  document.querySelector('.monitor').classList.toggle('has-lead', !!m.leadLong);
+  mountEcg(document.getElementById('trace'), { state: m.state, bpm: index?.data?.bpm ?? 60, still: m.outdated });
 }
 
 // ---------- files (dossiers) ----------
+
+// A record's opening sentence, from text.js (the build writes the same one).
+const lede = (l) => h('p', { class: 'lede' }, l.big ? h('span', { class: 'big-number' }, l.big) : null, l.text);
 
 function headlineList(items, emptyText) {
   if (!items?.length) return h('p', { class: 'notice' }, emptyText);
@@ -209,7 +186,7 @@ function renderConflict(files) {
   const out = [];
   if (u?.monthly?.length) {
     const last = u.monthly.at(-1);
-    out.push(h('p', { class: 'lede' }, `In ${fmtMonth(last.month)}, UCDP recorded ${num(last.deaths)} deaths (provisional) in organised violence, across ${num(last.events)} events.`));
+    out.push(lede(recordLede('conflict', files)));
     out.push(h('p', { class: 'small faded' }, 'Candidate events: UCDP’s first monthly count, revised in the next annual release.'));
 
     const over = (cell) => cell.deaths >= 1000;
@@ -335,7 +312,7 @@ function renderWork(files) {
   const pulse = files.pulse?.data;
   const out = [];
   if (c) {
-    out.push(h('p', { class: 'lede' }, 'How many jobs are being cut, and how often do companies say AI is the reason? The numbers depend on who counts. Each one is shown with its source.'));
+    out.push(lede(recordLede('work', files)));
     if (c.trend) {
       out.push(h('p', { class: 'notice' }, c.trend.text, ' ', h('span', { class: 'meta' }, 'Source: ', link(c.trend.source.url, c.trend.source.name), '.'), ' ', unverified(!c.trend.verified)));
     }
@@ -508,8 +485,7 @@ function renderPlanet(files) {
   const e = files.eonet?.data;
   const out = [];
   if (q) {
-    const s = q.strongest;
-    out.push(h('p', { class: 'lede' }, `${quakeSummary(q.counts)} The strongest: M${num(s.mag, 1)}, ${s.place}.`));
+    out.push(lede(recordLede('planet', files)));
   }
   if (q || e) {
     const quakeOver = (x) => x.mag >= 7 || x.alert === 'red' || x.alert === 'orange';
@@ -568,9 +544,8 @@ function renderPlanet(files) {
 function renderEconomy(files) {
   const wb = files.worldbank?.data;
   if (!wb) return [];
-  const latest = Math.max(...wb.indicators.flatMap((i) => i.series.flatMap((s) => s.points.map((p) => p.year))));
   const out = [
-    h('p', { class: 'lede' }, `Annual figures from the World Bank. The latest year with data is ${latest}.`),
+    lede(recordLede('economy', files)),
     h('p', { class: 'small faded' }, 'Not part of the Condition Index. Portugal is shown as a local reference.'),
   ];
   const dashes = { WLD: null, EUU: '6 4', PRT: '2 3' };
@@ -615,7 +590,7 @@ function renderAhead(files) {
   if (c) {
     const dd = c.doomsday;
     // "The closest it has ever been" only while the data says so.
-    out.push(h('p', { class: 'lede' }, h('span', { class: 'big-number' }, `${dd.current.seconds} seconds`), ` to midnight on the Doomsday Clock${closestEver(dd) ? ', the closest it has ever been' : ''}.`));
+    out.push(lede(recordLede('ahead', files)));
     out.push(h('p', { class: 'small' }, 'An expert panel’s judgement of global risk, set once a year. Shown as context: it is not part of the Condition Index. ', `Set on ${fmtDate(dd.current.setAt)} by the `, link(dd.source.url, dd.source.name), '. ', unverified(!dd.current.verified)));
     out.push(h('h3', {}, 'Recent years'));
     out.push(h('ol', { class: 'seq' }, dd.history.slice(-5).map((r) => h('li', {}, `${r.year}: ${clockReading(r.seconds)}${r.unchanged ? ' (unchanged)' : ''} `, unverified(!r.verified, r.evidence === 'secondary' ? 'secondary' : 'pending')))));
@@ -657,43 +632,32 @@ const FILES_LIST = [
     id: 'conflict', name: 'Armed conflict', subject: 'armed conflict and organised violence',
     sources: ['ucdp', 'gdelt-events', 'gdelt-doc'], signals: ['conflictNews', 'conflictDeaths'], stampSources: ['gdelt-events', 'ucdp'], render: renderConflict,
     keySource: 'ucdp',
-    key: (f) => { const m = f.ucdp?.data?.monthly?.at(-1); return m ? `${num(m.deaths)} deaths in ${fmtMonth(m.month)} (provisional)` : null; },
+    key: (f) => recordKey('conflict', f),
   },
   {
     id: 'work', name: 'Work and AI', subject: 'work and artificial intelligence',
     sources: ['curated', 'gdelt-doc', 'pulse'], signals: ['aiLayoffs'], stampSources: ['layoffs'], render: renderWork,
     keySource: 'curated',
-    key: (f) => {
-      const rows = f.curated?.data?.layoffs?.monthly ?? [];
-      if (!rows.length) return null;
-      const months = rows.map((r) => r.month).sort();
-      const year = months.at(-1).slice(0, 4);
-      const inYear = months.filter((m) => m.startsWith(year));
-      const short = (m) => tidy(monthShort.format(new Date(`${m}-01T00:00:00Z`)));
-      return `${num(rows.filter((r) => r.month.startsWith(year)).reduce((a, r) => a + r.aiCited, 0))} US job cuts citing AI, ${short(inYear[0])}–${short(inYear.at(-1))} ${year}`;
-    },
+    key: (f) => recordKey('work', f),
   },
   {
     id: 'planet', name: 'Planet', subject: 'earthquakes and natural events',
     // The temperature is context: a late C3S file adds a note, never DATA OUTDATED.
     sources: ['usgs', 'eonet', 'climate'], signals: ['quakes', 'naturalEvents'], stampSources: ['usgs', 'eonet'], noteSources: ['climate'], render: renderPlanet,
     keySource: 'usgs',
-    key: (f) => { const q = f.usgs?.data?.strongest; return q ? `Strongest this week: M${num(q.mag, 1)}, ${q.place}` : null; },
+    key: (f) => recordKey('planet', f),
   },
   {
     id: 'economy', name: 'Economy', subject: 'inflation, unemployment and growth',
     sources: ['worldbank'], signals: [], stampSources: ['worldbank'], render: renderEconomy,
     keySource: 'worldbank',
-    key: (f) => {
-      const l = f.worldbank?.data?.indicators?.find((i) => i.id === 'FP.CPI.TOTL.ZG')?.series.find((s) => s.country === 'WLD')?.latest;
-      return l ? `World inflation ${pct(l.value)} in ${l.year}` : null;
-    },
+    key: (f) => recordKey('economy', f),
   },
   {
     id: 'ahead', name: 'What lies ahead', subject: 'warnings about the years ahead',
     sources: ['curated', 'digest'], signals: [], stampSources: ['doomsday'], render: renderAhead,
     keySource: 'curated',
-    key: (f) => { const c = f.curated?.data?.doomsday?.current; return c ? `${c.seconds} seconds to midnight` : null; },
+    key: (f) => recordKey('ahead', f),
   },
 ];
 
@@ -854,8 +818,7 @@ function renderRecords(files) {
 // ---------- boot ----------
 
 const files = await load();
-const gen = files.manifest?.generatedAt;
-document.getElementById('updated').textContent = gen ? `Updated ${fmtDayTime(gen)}` : 'No update recorded yet';
+document.getElementById('updated').textContent = updatedLine(files.manifest);
 renderMonitor(files.index, files);
 // The Copernicus notice names the year of the information shown.
 if (files.climate?.data?.month) document.getElementById('c3s-year').textContent = files.climate.data.month.slice(0, 4);
