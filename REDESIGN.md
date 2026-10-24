@@ -117,18 +117,44 @@ ARIA.
 
 ## 4. Verificação final
 
-- [ ] `npm test`: testes de esquema e de contraste, com os pares novos.
-- [ ] Contraste medido no browser (`scripts/measure-contrast.mjs`).
-- [ ] Capturas a 320, 390 e 1360 px: dossier Work and AI, dossier Planet, cabeçalho com
+- [x] `npm test`: testes de esquema e de contraste, com os pares novos (54 passam).
+- [x] Contraste medido no browser (`scripts/measure-contrast.mjs`): tudo passa; faixa 6.61 e separador aberto 6.53 no pior ponto (`tube-low`).
+- [x] Capturas a 320, 390 e 1360 px: dossier Work and AI, dossier Planet, cabeçalho com
       a faixa. Sem erros na consola e sem scroll horizontal.
-- [ ] Carimbo DATA OUTDATED forçado no browser.
-- [ ] Faixa: pausa visível, pára com rato e foco, parada com reduced-motion; escondida
+- [x] Carimbo DATA OUTDATED forçado no browser (`outdated-*.png`).
+- [x] Faixa: pausa visível, pára com rato e foco, parada com reduced-motion; escondida
       sem dados.
-- [ ] Teclado: setas, Home, End; hash guardado e lido.
-- [ ] Tamanho final do JS e do CSS, comparado com antes (antes: app.js 34,930 B,
+- [x] Teclado: setas, Home, End; hash guardado e lido.
+- [x] Tamanho final do JS e do CSS, comparado com antes (antes: app.js 34,930 B,
       charts.js 7,027 B, ecg.js 4,010 B, freshness.js 678 B, styles.css 13,048 B).
 - [ ] Mostrar as capturas ao Rui antes de qualquer merge.
 
 ## 5. Progresso
 
 - Ramo `redesign-dossiers` criado a partir de `main` (`82ca979`).
+- Feito: faixa (`public/ticker.js`, botão "Pause headlines"/"Play headlines" com o texto
+  a mudar, sem `aria-pressed`); Records como separadores ARIA com número-chave; folha com
+  linhas à máquina, carimbo stencil maior a bater; barras de tinta; anéis nos sismos das
+  últimas 24 h; grelha de inventário removida; pares de contraste novos em
+  `config/palette.json` e teste `redesign pairs are listed`; `measure-contrast.mjs` mede a
+  faixa e o separador aberto (todos passam).
+- Corrigido: letras invisíveis no texto à máquina. Animação de 1 ms com `steps(1, end)`
+  acabava no passo 0 por arredondamento a partir de ~1 s de atraso; passou a fade linear
+  de 60 ms.
+- Decisão a confirmar com o Rui: os anéis dos sismos recentes pulsam 2 vezes ao abrir o
+  Planet (menos de 5 s) e depois ficam parados como anel. Um pulso contínuo seria
+  movimento com mais de 5 s sem botão de pausa.
+- Corrigido: com movimento reduzido a página tinha 9,307 px de scroll horizontal (o
+  texto oculto "(opens in a new tab)" escapava à faixa parada); `.ticker__window` passou a
+  `position: relative`.
+- Verificado no browser: separadores (setas, Home, End, Tab para o painel), hash
+  (desconhecido abre o primeiro, `hashchange`, recarregar), faixa (hover, foco, botão,
+  cópia `aria-hidden` sem tab, `_blank` + `noopener noreferrer`, HTML num título fica
+  texto, `javascript:` não vira ligação, sem manchetes a faixa desaparece), movimento
+  reduzido (nada anima).
+- Tamanhos (bytes, sem compressão → gzip): JS 46,645 → 50,356 (+3.7 KB; gzip 16,365 →
+  18,200, +1.8 KB), CSS 13,048 → 15,897 (+2.8 KB; gzip 3,855 → 4,644, +0.8 KB),
+  index.html 5,490 → 6,163. Sem fontes nem bibliotecas novas.
+- Capturas em `screenshots/` (git-ignored): `work-*`, `planet-*`, `header-*`,
+  `outdated-*`, `reduced-motion-1360`, `state-*-320`.
+- Ajuste (a) ainda não aplicado: o carimbo usa a regra antiga até a tabela ser aprovada.

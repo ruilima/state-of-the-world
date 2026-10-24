@@ -30,7 +30,7 @@
   <script type="module" src="app.js"></script>
 </head>
 <body>
-  <a class="skip" href="#records">Skip to the files</a>
+  <a class="skip" href="#records-list">Skip to the files</a>
   <div class="wrap">
     <header class="masthead">
       <div class="masthead__brand">
@@ -47,6 +47,21 @@
       <p class="masthead__time" id="updated">Reading the records…</p>
     </header>
 
+    <!-- Filled by ticker.js; stays hidden when there are no headlines. -->
+    <section class="ticker" id="ticker" aria-labelledby="ticker-title" hidden>
+      <div class="ticker__bar">
+        <h2 class="ticker__title" id="ticker-title">Headlines</h2>
+        <p class="ticker__note" hidden></p>
+        <button class="ticker__toggle" type="button">Pause headlines</button>
+      </div>
+      <div class="ticker__window">
+        <div class="ticker__track">
+          <ul class="ticker__list"></ul>
+          <ul class="ticker__list" aria-hidden="true"></ul>
+        </div>
+      </div>
+    </section>
+
     <main>
       <section class="monitor" aria-labelledby="monitor-state">
         <svg class="monitor__trace" id="trace" viewBox="0 0 1000 200" preserveAspectRatio="none" role="img" aria-labelledby="trace-desc">
@@ -62,11 +77,9 @@
         </div>
       </section>
 
-      <h2 class="visually-hidden">Key indicators</h2>
-      <ul class="inventory" id="inventory"></ul>
-
-      <section class="records" id="records" aria-label="Files">
-        <h2 class="records__title">Records</h2>
+      <section class="records" id="records" aria-labelledby="records-title">
+        <h2 class="records__title" id="records-title">Records</h2>
+        <div class="records__list" role="tablist" aria-labelledby="records-title" aria-orientation="vertical" id="records-list"></div>
         <noscript><p>This page needs JavaScript to read its data files in <a href="data/manifest.json">data/</a>.</p></noscript>
       </section>
     </main>

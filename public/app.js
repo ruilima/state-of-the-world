@@ -1,5 +1,6 @@
 import { mountEcg } from './ecg.js';
 import { isLate } from './freshness.js';
+import { mountTicker } from './ticker.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -108,7 +109,7 @@ function health(id, file) {
   return { state: 'stable', text: `live${file.status === 'partial' ? ', some requests refused' : ''}: ${ago(file.lastSuccessAt)}` };
 }
 
-// ---------- monitor + inventory ----------
+// ---------- monitor ----------
 
 function renderMonitor(index) {
   const d = index?.data;
@@ -123,40 +124,6 @@ function renderMonitor(index) {
   // After the figures, so it lands under the state word and the figures keep their row.
   if (outdated) document.querySelector('.monitor__figures').after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
   mountEcg(document.getElementById('trace'), { state, bpm: d?.bpm ?? 60, still: outdated });
-}
-
-const ICONS = {
-  quake: '<path d="M2 24h8l3-10 4 18 4-24 3 16h8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>',
-  tally: '<path d="M7 6v20M13 6v20M19 6v20M25 6v20M3 22 29 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
-  storm: '<path d="M16 4a12 12 0 1 0 12 12M16 10a6 6 0 1 0 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="currentColor"/>',
-  wire: '<rect x="4" y="5" width="24" height="22" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M8 11h16M8 16h16M8 21h9" stroke="currentColor" stroke-width="2"/>',
-  clock: '<circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 16V7M16 16l-5 2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
-  coin: '<ellipse cx="16" cy="9" rx="10" ry="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M6 9v7c0 2.2 4.5 4 10 4s10-1.8 10-4V9M6 16v7c0 2.2 4.5 4 10 4s10-1.8 10-4v-7" fill="none" stroke="currentColor" stroke-width="2.2"/>',
-};
-
-function renderInventory(files) {
-  const sig = Object.fromEntries((files.index?.data?.signals ?? []).map((s) => [s.id, s]));
-  const t = files.index?.data?.thresholds ?? { caution: 40, danger: 65 };
-  const tone = (id) => (sig[id]?.score == null ? null : stateFromScore(sig[id].score, t));
-  const wb = files.worldbank?.data?.indicators?.find((i) => i.id === 'FP.CPI.TOTL.ZG')?.series.find((s) => s.country === 'WLD')?.latest;
-  const ucdp = files.ucdp?.data;
-  const items = [
-    { icon: 'quake', qty: files.usgs?.data ? num(files.usgs.data.counts.m45Week) : '—', label: 'M4.5+ earthquakes', sub: 'last 7 days', state: tone('quakes'), go: 'planet' },
-    { icon: 'tally', qty: ucdp?.monthly?.length ? compact(ucdp.monthly.at(-1).deaths) : '—', label: 'Deaths in organised violence', sub: ucdp?.latestMonth ? fmtMonth(ucdp.latestMonth) : '', state: tone('conflictDeaths'), go: 'conflict' },
-    { icon: 'wire', qty: files['gdelt-events']?.data?.materialShare24h != null ? pct(files['gdelt-events'].data.materialShare24h * 100) : '—', label: 'Material conflict in the news', sub: 'share of events, 24 h', state: tone('conflictNews'), go: 'conflict' },
-    { icon: 'storm', qty: sig.naturalEvents?.value != null ? num(sig.naturalEvents.value) : '—', label: 'Active storms and volcanoes', sub: 'NASA EONET', state: tone('naturalEvents'), go: 'planet' },
-    { icon: 'clock', qty: files.curated?.data ? `${files.curated.data.doomsday.current.seconds} s` : '—', label: 'Doomsday Clock', sub: 'to midnight', state: tone('doomsday'), go: 'ahead' },
-    { icon: 'coin', qty: wb ? pct(wb.value) : '—', label: 'World inflation', sub: wb ? `${wb.year}` : '', state: null, go: 'economy' },
-  ];
-  document.getElementById('inventory').replaceChildren(
-    ...items.map((it) => {
-      const box = h('a', { class: 'item__box', href: `#${it.go}`, 'aria-label': `${it.label}, ${it.sub}: ${it.qty}${it.state && it.state !== 'stable' ? `, ${STATE_LABEL[it.state].toLowerCase()}` : ''}. Open file.` });
-      box.innerHTML = `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">${ICONS[it.icon]}</svg>`;
-      // Colour only when the signal is above the stable band.
-      box.append(h('span', { class: `item__qty${it.state && it.state !== 'stable' ? ` is-${it.state}` : ''}`, 'aria-hidden': 'true' }, it.qty));
-      return h('li', { class: 'item' }, box, h('p', { class: 'item__label', 'aria-hidden': 'true' }, it.label, h('span', {}, it.sub)));
-    }),
-  );
 }
 
 // ---------- files (dossiers) ----------
@@ -451,10 +418,10 @@ function renderPlanet(files) {
         { class: 'figure' },
         dotMap({
           label: `Map of ${q?.quakes.length ?? 0} earthquakes of magnitude 4.5 or more in the last week and ${e?.events.length ?? 0} open natural events.`,
-          dots: (q?.quakes ?? []).map((x) => ({ lat: x.lat, lon: x.lon, r: 0.6 + 0.45 * Math.max(0, x.mag - 4.5) ** 1.5, over: quakeOver(x), hover: `M${num(x.mag, 1)}, ${x.place}, ${fmtDayTime(x.time)}` })),
+          dots: (q?.quakes ?? []).map((x) => ({ lat: x.lat, lon: x.lon, r: 0.6 + 0.45 * Math.max(0, x.mag - 4.5) ** 1.5, over: quakeOver(x), ring: Date.now() - Date.parse(x.time) < 864e5, hover: `M${num(x.mag, 1)}, ${x.place}, ${fmtDayTime(x.time)}` })),
           crosses: (e?.events ?? []).map((x) => ({ lat: x.lat, lon: x.lon, hover: `${x.categoryName}: ${x.title}` })),
         }),
-        h('figcaption', {}, 'Circles: earthquakes, sized by magnitude. Red marks magnitude 7 or more, or an orange or red USGS alert. Crosses: open natural events in NASA EONET.'),
+        h('figcaption', {}, 'Circles: earthquakes, sized by magnitude. Red marks magnitude 7 or more, or an orange or red USGS alert. A ring marks an earthquake in the last 24 hours; rings pulse when this file opens. Crosses: open natural events in NASA EONET.'),
       ),
     );
   }
@@ -567,12 +534,49 @@ function renderAhead(files) {
   return out;
 }
 
+// Each file: its sources, the index signals behind its stamp, the typed
+// "Subject" line, and the key figure shown under its name in Records.
+// key() returns null when there is no reliable number; Records then shows
+// the state of `keySource` instead.
 const FILES_LIST = [
-  { id: 'conflict', name: 'Armed conflict', sources: ['ucdp', 'gdelt-events', 'gdelt-doc'], signals: ['conflictNews', 'conflictDeaths'], render: renderConflict },
-  { id: 'work', name: 'Work and AI', sources: ['curated', 'gdelt-doc', 'pulse'], signals: ['aiLayoffs'], render: renderWork, curatedAge: true },
-  { id: 'planet', name: 'Planet', sources: ['usgs', 'eonet'], signals: ['quakes', 'naturalEvents'], render: renderPlanet },
-  { id: 'economy', name: 'Economy', sources: ['worldbank'], signals: [], render: renderEconomy },
-  { id: 'ahead', name: 'What lies ahead', sources: ['curated', 'digest'], signals: ['doomsday'], render: renderAhead },
+  {
+    id: 'conflict', name: 'Armed conflict', subject: 'armed conflict and organised violence',
+    sources: ['ucdp', 'gdelt-events', 'gdelt-doc'], signals: ['conflictNews', 'conflictDeaths'], render: renderConflict,
+    keySource: 'ucdp',
+    key: (f) => { const m = f.ucdp?.data?.monthly?.at(-1); return m ? `${num(m.deaths)} deaths in ${fmtMonth(m.month)}` : null; },
+  },
+  {
+    id: 'work', name: 'Work and AI', subject: 'work and artificial intelligence',
+    sources: ['curated', 'gdelt-doc', 'pulse'], signals: ['aiLayoffs'], render: renderWork, curatedAge: true,
+    keySource: 'curated',
+    key: (f) => {
+      const rows = f.curated?.data?.layoffs?.monthly ?? [];
+      if (!rows.length) return null;
+      const year = rows.map((r) => r.month).sort().at(-1).slice(0, 4);
+      return `${num(rows.filter((r) => r.month.startsWith(year)).reduce((a, r) => a + r.aiCited, 0))} US job cuts attributed to AI in ${year}`;
+    },
+  },
+  {
+    id: 'planet', name: 'Planet', subject: 'earthquakes and natural events',
+    sources: ['usgs', 'eonet'], signals: ['quakes', 'naturalEvents'], render: renderPlanet,
+    keySource: 'usgs',
+    key: (f) => { const q = f.usgs?.data?.strongest; return q ? `M${num(q.mag, 1)}, ${q.place}` : null; },
+  },
+  {
+    id: 'economy', name: 'Economy', subject: 'inflation, unemployment and growth',
+    sources: ['worldbank'], signals: [], render: renderEconomy,
+    keySource: 'worldbank',
+    key: (f) => {
+      const l = f.worldbank?.data?.indicators?.find((i) => i.id === 'FP.CPI.TOTL.ZG')?.series.find((s) => s.country === 'WLD')?.latest;
+      return l ? `World inflation ${pct(l.value)} in ${l.year}` : null;
+    },
+  },
+  {
+    id: 'ahead', name: 'What lies ahead', subject: 'warnings about the years ahead',
+    sources: ['curated', 'digest'], signals: ['doomsday'], render: renderAhead,
+    keySource: 'curated',
+    key: (f) => { const c = f.curated?.data?.doomsday?.current; return c ? `${c.seconds} seconds to midnight` : null; },
+  },
 ];
 
 function fileStamp(d, files) {
@@ -585,21 +589,49 @@ function fileStamp(d, files) {
   return scores.length ? stateFromScore(Math.max(...scores), t) : null;
 }
 
+// The "Subject" and "Filed" lines are typed out once when a file opens.
+// Every character is its own span that fades in (opacity only), so the line
+// wraps like ordinary text and is never cut at narrow widths. Screen
+// readers get the whole line from a hidden copy.
+const TYPE_MS = 28;
+function typed(text, cls, delayMs) {
+  return h(
+    'p',
+    { class: `type ${cls}`, style: `--type-delay: ${delayMs}ms` },
+    h('span', { class: 'visually-hidden' }, text),
+    h('span', { 'aria-hidden': 'true' }, [...text].map((c, i) => h('span', { class: 'type__ch', style: `--i: ${i}` }, c))),
+  );
+}
+
+const sameUtcDay = (a, b) => a.toISOString().slice(0, 10) === b.toISOString().slice(0, 10);
+
 function renderRecords(files) {
   const root = document.getElementById('records');
+  const list = document.getElementById('records-list');
   const slots = [];
   for (const d of FILES_LIST) {
     const hs = d.sources.map((id) => ({ id, ...health(id, files[id]) })).filter((x) => !(x.id === 'digest' && x.text === 'off'));
     const live = hs.filter((x) => x.state === 'stable').length;
     const lastOk = d.sources.map((id) => files[id]?.lastSuccessAt).filter(Boolean).sort().at(-1);
     const panelId = `file-${d.id}`;
-    const liveText = live === hs.length ? (hs.length === 1 ? 'source live' : 'all sources live') : `${live} of ${hs.length} sources live`;
+    const tabId = `tab-${d.id}`;
 
-    const slot = h(
+    let key = null;
+    try {
+      key = d.key(files);
+    } catch (err) {
+      console.error(d.id, err);
+    }
+    const keyHealth = health(d.keySource, files[d.keySource]);
+    const keyText = key ?? `${SOURCE_NAME[d.keySource]}: ${keyHealth.text}`;
+    const updated = lastOk ? `Updated ${sameUtcDay(new Date(lastOk), new Date()) ? fmtTime(lastOk) : fmtDayTime(lastOk)}` : 'No update yet';
+
+    const tab = h(
       'button',
-      { class: 'slot', type: 'button', id: `slot-${d.id}`, 'aria-expanded': 'false', 'aria-controls': panelId },
-      h('span', { class: 'slot__name' }, d.name),
-      h('span', { class: 'slot__meta' }, `${lastOk ? fmtTime(lastOk) : '—'}, ${liveText}`),
+      { class: 'rec', type: 'button', role: 'tab', id: tabId, 'aria-selected': 'false', 'aria-controls': panelId, tabindex: '-1' },
+      h('span', { class: 'rec__name' }, d.name),
+      h('span', { class: `rec__key${key ? '' : ' rec__key--state'}` }, keyText),
+      h('span', { class: 'rec__meta' }, live === hs.length ? updated : `${updated}, ${live} of ${hs.length} sources live`),
     );
 
     const stamp = fileStamp(d, files);
@@ -613,10 +645,19 @@ function renderRecords(files) {
     body = body.filter(Boolean);
     if (!body.length) body = [h('p', { class: 'notice' }, 'No data saved for this file yet. The source list below says why.')];
 
+    const subject = `Subject: ${d.subject}`;
+    const filed = `Filed: ${lastOk ? fmtDayTime(lastOk) : 'nothing yet'}`;
+    const filedDelay = subject.length * TYPE_MS + 200;
+    const stampDelay = filedDelay + filed.length * TYPE_MS + 150;
     const paper = h(
       'article',
       { class: 'paper', 'aria-labelledby': `title-${d.id}` },
-      stamp ? h('p', { class: `stamp stamp--${stamp}` }, shape(stamp), STATE_LABEL[stamp]) : null,
+      h(
+        'div',
+        { class: 'paper__head' },
+        h('div', { class: 'paper__lines' }, typed(subject, 'type--subject', 0), typed(filed, 'type--filed', filedDelay)),
+        stamp ? h('p', { class: `stamp stamp--${stamp}`, style: `--stamp-delay: ${stampDelay}ms` }, shape(stamp), STATE_LABEL[stamp]) : null,
+      ),
       ...body,
       h(
         'ul',
@@ -624,51 +665,64 @@ function renderRecords(files) {
         hs.map((x) => h('li', { class: x.state === 'fail' ? 'danger-value' : '' }, shape(x.state), h('span', { class: 'h-name' }, SOURCE_NAME[x.id] ?? x.id), h('span', { class: 'h-state' }, x.text))),
       ),
     );
+    // Bars ink in one after another when the file opens.
+    paper.querySelectorAll('.chart .bar').forEach((b, i) => b.style.setProperty('--i', i));
     const panel = h(
       'section',
-      { class: 'dossier', id: panelId, hidden: true, tabindex: '-1' },
-      h('div', { class: 'tab' }, h('h2', { id: `title-${d.id}` }, d.name), lastOk ? h('time', { datetime: lastOk }, `filed ${fmtDayTime(lastOk)}`) : null),
+      { class: 'dossier', id: panelId, role: 'tabpanel', 'aria-labelledby': tabId, tabindex: '0', hidden: true },
+      h('div', { class: 'tab' }, h('h2', { id: `title-${d.id}` }, d.name)),
       paper,
     );
-    root.append(slot, panel);
-    slots.push({ d, slot, panel });
+    list.append(tab);
+    root.append(panel);
+    slots.push({ d, tab, panel });
   }
 
-  const wide = matchMedia('(min-width: 961px)');
-  const open = (id, { focus = false } = {}) => {
+  let current = null;
+  // Opens one file. The opening animations (typing, stamp, ink) restart
+  // only when a different file opens, never on the same one again.
+  const select = (id, { focus = false } = {}) => {
+    const target = slots.find((s) => s.d.id === id) ?? slots[0];
+    if (focus) target.tab.focus();
+    if (current === target) return;
+    current = target;
     for (const s of slots) {
-      const on = s.d.id === id;
-      // On narrow screens other files stay as they are (accordion);
-      // on wide screens exactly one is open.
-      if (!on && !wide.matches) continue;
-      s.slot.setAttribute('aria-expanded', String(on));
+      const on = s === target;
+      s.tab.setAttribute('aria-selected', String(on));
+      s.tab.tabIndex = on ? 0 : -1;
       s.panel.hidden = !on;
+      s.panel.classList.remove('is-opening');
     }
-    if (focus) document.getElementById(`file-${id}`)?.focus({ preventScroll: wide.matches });
+    void target.panel.offsetWidth; // restart the CSS animations
+    target.panel.classList.add('is-opening');
   };
-  for (const s of slots) {
-    s.slot.addEventListener('click', () => {
-      const isOpen = s.slot.getAttribute('aria-expanded') === 'true';
-      if (isOpen && !wide.matches) {
-        s.slot.setAttribute('aria-expanded', 'false');
-        s.panel.hidden = true;
-        return;
-      }
-      history.replaceState(null, '', `#${s.d.id}`);
-      open(s.d.id);
-    });
-  }
+  const choose = (s, opts) => {
+    select(s.d.id, opts);
+    history.replaceState(null, '', `#${s.d.id}`);
+  };
+
+  for (const s of slots) s.tab.addEventListener('click', () => choose(s));
+  // Tabs pattern: arrows move and open (automatic activation), Home/End jump.
+  list.addEventListener('keydown', (e) => {
+    const i = slots.findIndex((s) => s.tab === document.activeElement);
+    if (i < 0) return;
+    const next = { ArrowDown: i + 1, ArrowRight: i + 1, ArrowUp: i - 1, ArrowLeft: i - 1, Home: 0, End: slots.length - 1 }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    choose(slots[(next + slots.length) % slots.length], { focus: true });
+  });
+
   const fromHash = () => {
     const id = location.hash.slice(1);
-    if (FILES_LIST.some((d) => d.id === id)) {
-      open(id, { focus: true });
-      document.getElementById(`slot-${id}`)?.scrollIntoView({ block: 'start' });
-    }
+    if (!FILES_LIST.some((d) => d.id === id)) return false;
+    select(id);
+    return true;
   };
-  window.addEventListener('hashchange', fromHash);
-  // The first file starts open at every width, so the paper is never empty.
-  open(FILES_LIST.find((d) => `#${d.id}` === location.hash)?.id ?? FILES_LIST[0].id);
-  wide.addEventListener('change', () => open(slots.find((s) => !s.panel.hidden)?.d.id ?? FILES_LIST[0].id));
+  window.addEventListener('hashchange', () => {
+    if (fromHash()) root.scrollIntoView({ block: 'start' });
+  });
+  // A known hash opens that file; anything else opens the first one.
+  if (!fromHash()) select(FILES_LIST[0].id);
 }
 
 // ---------- boot ----------
@@ -677,5 +731,10 @@ const files = await load();
 const gen = files.manifest?.generatedAt;
 document.getElementById('updated').textContent = gen ? `updated ${fmtDayTime(gen)}` : 'No update recorded yet';
 renderMonitor(files.index);
-renderInventory(files);
+try {
+  const doc = files['gdelt-doc']?.data?.queries ?? {};
+  mountTicker(document.getElementById('ticker'), [doc.conflictHeadlines, doc.aiLayoffHeadlines], fmtDayTime);
+} catch (err) {
+  console.error('ticker', err);
+}
 renderRecords(files);

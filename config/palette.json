@@ -19,25 +19,25 @@
       "fg": "tube",
       "bg": "tile",
       "kind": "text",
-      "use": "main text in the room"
+      "use": "main text in the room, the headline strip and the record list"
     },
     {
       "fg": "tube-low",
       "bg": "tile",
       "kind": "text",
-      "use": "secondary text in the room"
+      "use": "secondary text in the room, the headline strip and the record list"
     },
     {
       "fg": "stable",
       "bg": "tile",
       "kind": "text",
-      "use": "STABLE on the monitor and inventory"
+      "use": "STABLE on the monitor"
     },
     {
       "fg": "caution",
       "bg": "tile",
       "kind": "text",
-      "use": "CAUTION on the monitor and inventory"
+      "use": "CAUTION on the monitor"
     },
     {
       "fg": "danger-light",
@@ -85,7 +85,37 @@
       "fg": "tube-low",
       "bg": "tile",
       "kind": "graphic",
-      "use": "monitor frame and inventory boxes"
+      "use": "monitor frame and headline strip borders"
+    },
+    {
+      "fg": "caution",
+      "bg": "tile",
+      "kind": "graphic",
+      "use": "bar marking the open record in the list"
+    },
+    {
+      "fg": "paper",
+      "bg": "tile",
+      "kind": "graphic",
+      "use": "dossier sheet and its tab against the room"
+    },
+    {
+      "fg": "ink",
+      "bg": "paper",
+      "kind": "graphic",
+      "use": "map dots, recent-earthquake rings, chart bars, rule under the typed lines"
+    },
+    {
+      "fg": "danger-ink",
+      "bg": "paper",
+      "kind": "graphic",
+      "use": "map dots and rings over a threshold"
+    },
+    {
+      "fg": "caution-ink",
+      "bg": "paper",
+      "kind": "graphic",
+      "use": "natural-event crosses on the map"
     }
   ]
 }

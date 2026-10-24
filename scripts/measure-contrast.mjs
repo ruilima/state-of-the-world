@@ -53,10 +53,11 @@ const ratio = (l1, l2) => (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
 // Surface -> text colours drawn on it, and how to find blank strips of it.
 const SURFACES = [
   { name: 'room (header)', fg: ['tube', 'tube-low'], rect: () => { const a = document.querySelector('.masthead__name').getBoundingClientRect(), b = document.querySelector('.masthead__time').getBoundingClientRect(); return { x: a.right + 20, y: a.top, width: b.left - a.right - 40, height: a.height }; } },
-  { name: 'room (records column)', fg: ['tube', 'tube-low'], rect: () => { const s = [...document.querySelectorAll('.slot')].at(-1).getBoundingClientRect(), r = document.querySelector('.records').getBoundingClientRect(); return { x: s.left, y: s.bottom + 20, width: s.width, height: Math.min(400, r.bottom - s.bottom - 40) }; } },
+  { name: 'room (records column)', fg: ['tube', 'tube-low'], rect: () => { const s = [...document.querySelectorAll('.rec')].at(-1).getBoundingClientRect(), r = document.querySelector('.records').getBoundingClientRect(); return { x: s.left, y: s.bottom + 20, width: s.width, height: Math.min(400, r.bottom - s.bottom - 40) }; } },
+  { name: 'open record', fg: ['tube', 'tube-low'], rect: () => { const s = document.querySelector('.rec[aria-selected="true"]').getBoundingClientRect(); return { x: s.left + 6, y: s.bottom - 6, width: s.width - 12, height: 4 }; } },
+  { name: 'headline strip', fg: ['tube', 'tube-low'], rect: () => { const s = document.querySelector('.ticker__bar').getBoundingClientRect(), t = document.querySelector('.ticker__title').getBoundingClientRect(); return { x: t.right + 4, y: s.top + 2, width: 4, height: s.height - 4 }; } },
   { name: 'room (footer)', fg: ['tube', 'tube-low'], rect: () => { const f = document.querySelector('.footer').getBoundingClientRect(); return { x: f.left, y: f.bottom - 30, width: f.width, height: 24 }; } },
   { name: 'monitor', fg: ['tube', 'tube-low', 'stable', 'caution', 'danger-light'], rect: () => { const m = document.querySelector('.monitor').getBoundingClientRect(); return { x: m.left + 4, y: m.bottom - 18, width: m.width - 8, height: 14 }; } },
-  { name: 'inventory box', fg: ['tube', 'stable', 'caution', 'danger-light'], rect: () => { const b = document.querySelector('.item__box').getBoundingClientRect(); return { x: b.left + 4, y: b.top + 4, width: b.width * 0.3, height: b.height * 0.25 }; } },
   { name: 'paper', fg: ['ink', 'ink-faded', 'stable-ink', 'caution-ink', 'danger-ink'], rect: () => { const p = document.querySelector('.dossier:not([hidden]) .paper').getBoundingClientRect(); return { x: p.left + 4, y: p.bottom - 22, width: p.width - 8, height: 18 }; } },
 ];
 

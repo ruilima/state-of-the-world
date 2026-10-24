@@ -104,6 +104,8 @@ export function dotMap({ dots = [], crosses = [], label }) {
   svg.append(el('path', { class: 'land', d: LAND }));
   for (const d of [...dots].sort((a, b) => b.r - a.r)) {
     svg.append(el('circle', { class: `dot${d.over ? ' over' : ''}`, cx: px(d.lon), cy: py(d.lat), r: d.r }, title(d.hover)));
+    // A ring marks a recent point (Planet: earthquakes of the last 24 hours).
+    if (d.ring) svg.append(el('circle', { class: `ring${d.over ? ' over' : ''}`, cx: px(d.lon), cy: py(d.lat), r: d.r + 1.4, 'aria-hidden': 'true' }));
   }
   for (const c of crosses) {
     const x = px(c.lon), y = py(c.lat), s = 1.6;

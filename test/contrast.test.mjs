@@ -32,6 +32,20 @@ for (const p of palette.pairs) {
   });
 }
 
+// Pairs the dossier redesign depends on: they must stay listed (and so tested).
+test('redesign pairs are listed', () => {
+  const has = (fg, bg, kind) => palette.pairs.some((p) => p.fg === fg && p.bg === bg && p.kind === kind);
+  for (const [fg, bg, kind] of [
+    ['tube', 'tile', 'text'],
+    ['tube-low', 'tile', 'text'],
+    ['caution', 'tile', 'graphic'],
+    ['paper', 'tile', 'graphic'],
+    ['ink', 'paper', 'graphic'],
+    ['danger-ink', 'paper', 'graphic'],
+    ['caution-ink', 'paper', 'graphic'],
+  ]) assert.ok(has(fg, bg, kind), `missing pair ${fg} on ${bg} (${kind})`);
+});
+
 test('CSS tokens match config/palette.json', () => {
   const css = readFileSync(new URL('../public/styles.css', import.meta.url), 'utf8');
   for (const [name, hex] of Object.entries(palette.colors)) {
