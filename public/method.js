@@ -1,5 +1,6 @@
 const nf = (n, d = 2) => new Intl.NumberFormat('en-GB', { maximumFractionDigits: d }).format(n);
-const when = (iso) => `${new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' }).format(new Date(iso))} UTC`;
+// Same format as the main page: 24 Oct 2026, 14:39 UTC.
+const when = (iso) => `${new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hourCycle: 'h23' }).format(new Date(iso)).replace(/\bSept\b/, 'Sep')} UTC`;
 // Text from data files is inserted as text, never as HTML.
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 

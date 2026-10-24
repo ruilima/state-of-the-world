@@ -26,7 +26,7 @@ function h(tag, attrs = {}, ...children) {
 // shown as plain text. Link text is always inserted as text, never as HTML.
 const link = (href, text) => (/^https?:\/\//i.test(href ?? '') ? h('a', { href, rel: 'noopener' }, text) : h('span', {}, text));
 
-// English formats: 23 Oct 2026, 14:32 UTC, 13,286.
+// English formats: 24 Oct 2026, 14:39 UTC (one format everywhere), 13,286.
 const LOCALE = 'en-GB';
 const nf = (d = 0) => new Intl.NumberFormat(LOCALE, { maximumFractionDigits: d, minimumFractionDigits: d });
 const num = (n, d = 0) => nf(d).format(n);
@@ -43,7 +43,7 @@ const monthShort = new Intl.DateTimeFormat(LOCALE, { month: 'short', timeZone: '
 const tidy = (s) => s.replace(/\bSept\b/, 'Sep').replace(/ /g, '\u00a0');
 const fmtDate = (iso) => tidy(dateFmt.format(new Date(iso)));
 const fmtTime = (iso) => `${clock.format(new Date(iso))} UTC`;
-const fmtDayTime = (iso) => `${tidy(dayMonth.format(new Date(iso)))}, ${fmtTime(iso)}`;
+const fmtDayTime = (iso) => `${fmtDate(iso)}, ${fmtTime(iso)}`;
 const fmtMonth = (ym) => monthFmt.format(new Date(`${ym}-01T00:00:00Z`));
 
 function ago(iso) {
@@ -98,7 +98,7 @@ async function load() {
 
 const SOURCE_NAME = {
   usgs: 'USGS (earthquakes)', eonet: 'NASA EONET', 'gdelt-events': 'GDELT (event files)', 'gdelt-doc': 'GDELT (headlines)', pulse: 'Hacker News and arXiv',
-  worldbank: 'World Bank', ucdp: 'UCDP', curated: 'Curated files', digest: 'AI summary',
+  worldbank: 'World Bank', ucdp: 'UCDP', curated: 'Hand-curated figures', digest: 'AI summary',
 };
 
 function health(id, file) {
@@ -529,7 +529,7 @@ function renderAhead(files) {
     );
   }
   if (dg?.status === 'ok' || (dg?.status === 'stale' && dg.data)) {
-    out.push(h('h3', {}, 'Today’s summary ', h('span', { class: 'ai-label' }, 'AI-generated')));
+    out.push(h('h3', {}, 'AI summary ', h('span', { class: 'ai-label' }, 'AI-generated')));
     out.push(h('p', { class: 'small faded' }, `Written by a language model from the headlines on this page, ${ago(dg.lastSuccessAt)}. It may contain mistakes: check the sources.`));
     for (const p of dg.data.paragraphs) {
       out.push(h('p', {}, p.text));
@@ -607,8 +607,6 @@ function typed(text, cls, delayMs) {
   );
 }
 
-const sameUtcDay = (a, b) => a.toISOString().slice(0, 10) === b.toISOString().slice(0, 10);
-
 function renderRecords(files) {
   const root = document.getElementById('records');
   const list = document.getElementById('records-list');
@@ -628,14 +626,14 @@ function renderRecords(files) {
     }
     const keyHealth = health(d.keySource, files[d.keySource]);
     const keyText = key ?? `${SOURCE_NAME[d.keySource]}: ${keyHealth.text}`;
-    const updated = lastOk ? `Updated ${sameUtcDay(new Date(lastOk), new Date()) ? fmtTime(lastOk) : fmtDayTime(lastOk)}` : 'No update yet';
+    const updated = lastOk ? `Updated ${fmtDayTime(lastOk)}` : 'No update yet';
 
     const tab = h(
       'button',
       { class: 'rec', type: 'button', role: 'tab', id: tabId, 'aria-selected': 'false', 'aria-controls': panelId, tabindex: '-1' },
       h('span', { class: 'rec__name' }, d.name),
       h('span', { class: `rec__key${key ? '' : ' rec__key--state'}` }, keyText),
-      h('span', { class: 'rec__meta' }, live === hs.length ? updated : `${updated}, ${live} of ${hs.length} sources live`),
+      h('span', { class: 'rec__meta' }, live === hs.length ? updated : `${updated}, ${live} of ${hs.length} sources up to date`),
     );
 
     const { stamp, note } = fileStamp(d, files);
@@ -644,10 +642,10 @@ function renderRecords(files) {
       body = d.render(files);
     } catch (err) {
       console.error(d.id, err);
-      body = [h('p', { class: 'notice' }, 'This file could not be drawn from the current data. The source list below shows the state of each source.')];
+      body = [h('p', { class: 'notice' }, 'This record could not be drawn from the current data. The source list below shows the state of each source.')];
     }
     body = body.filter(Boolean);
-    if (!body.length) body = [h('p', { class: 'notice' }, 'No data saved for this file yet. The source list below says why.')];
+    if (!body.length) body = [h('p', { class: 'notice' }, 'No data saved for this record yet. The source list below says why.')];
 
     const subject = `Subject: ${d.subject}`;
     const filed = `Filed: ${lastOk ? fmtDayTime(lastOk) : 'nothing yet'}`;
@@ -733,7 +731,7 @@ function renderRecords(files) {
 
 const files = await load();
 const gen = files.manifest?.generatedAt;
-document.getElementById('updated').textContent = gen ? `updated ${fmtDayTime(gen)}` : 'No update recorded yet';
+document.getElementById('updated').textContent = gen ? `Updated ${fmtDayTime(gen)}` : 'No update recorded yet';
 renderMonitor(files.index, files);
 try {
   const doc = files['gdelt-doc']?.data?.queries ?? {};
