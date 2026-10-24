@@ -149,6 +149,21 @@ node scripts/measure-contrast.mjs   # contrast measured on the rendered page
 
 To work from the live data instead: `git fetch origin data && git archive FETCH_HEAD | tar -x -C public/data`.
 
+## Prerendered HTML
+
+After the fetch and the tests, the workflow runs `node scripts/prerender.mjs`: it copies
+`public/` to `build/` (git-ignored) and writes into `build/index.html` the masthead time, the
+monitor readout, the headline strip and a plain summary of the five records (name, key line,
+lede), and into `build/how-the-index-works.html` the signals table, all from that run's data.
+The texts come from the same functions the page uses (`public/text.js`, `derive.js`,
+`ticker.js`, `method-table.js`); the script replaces the summary in one frame. `build/` is what
+gets deployed; if the prerender fails, `public/` goes out unchanged. The deployed
+`sitemap.xml` gets true `lastmod` dates (the data date for `/`, the last commit of the method
+page or `config/index.json` for the method).
+
+- `node scripts/check-prerender.mjs <url>` (with `build/` served) checks that the build and
+  the page say the same, and that the page without JavaScript shows the state and the records.
+
 ## Global temperature (C3S)
 
 `scripts/fetch-climate.mjs` reads the latest "Surface air temperature for <Month> <Year>"

@@ -39,6 +39,10 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history: the sitemap's lastmod for the method page is the date
+          # of the last commit that changed it (scripts/prerender.mjs).
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -113,9 +117,19 @@ jobs:
             npx --yes wrangler@4 pages project create state-of-the-world --production-branch=main
           fi
 
+      # Writes the essential text into the HTML that is deployed (build/), from
+      # this run's data. If it fails, public/ goes out as it is: the page still
+      # draws everything with JavaScript.
+      - name: Prerender the HTML
+        run: |
+          node scripts/prerender.mjs || {
+            echo "::warning::prerender failed; deploying public/ without prerendered text"
+            rm -rf build && cp -R public build && rm -rf build/data/.git
+          }
+
       - name: Deploy to Cloudflare Pages
         if: env.CLOUDFLARE_API_TOKEN != ''
-        run: npx --yes wrangler@4 pages deploy public --project-name=state-of-the-world --branch=main --commit-dirty=true
+        run: npx --yes wrangler@4 pages deploy build --project-name=state-of-the-world --branch=main --commit-dirty=true
 
       - name: Live schema test (upstream formats)
         if: env.GROUP != 'fast'

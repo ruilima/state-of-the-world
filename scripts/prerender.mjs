@@ -107,7 +107,8 @@ export async function run() {
   const names = (await readdir(OUT_DIR)).filter((f) => f.endsWith('.json'));
   const files = Object.fromEntries(await Promise.all(names.map(async (f) => [f.replace(/\.json$/, ''), await readJson(join(OUT_DIR, f))])));
   await rm(BUILD_DIR, { recursive: true, force: true });
-  await cp(join(ROOT, 'public'), BUILD_DIR, { recursive: true });
+  // public/data holds a .git folder in CI (the data branch); it is not part of the site.
+  await cp(join(ROOT, 'public'), BUILD_DIR, { recursive: true, filter: (src) => !src.split('/').includes('.git') });
   const index = await readFile(join(ROOT, 'public', 'index.html'), 'utf8');
   await writeFile(join(BUILD_DIR, 'index.html'), prerenderIndex(index, files));
   const method = await readFile(join(ROOT, 'public', 'how-the-index-works.html'), 'utf8');
