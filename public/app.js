@@ -101,12 +101,17 @@ const SOURCE_NAME = {
   worldbank: 'World Bank', ucdp: 'UCDP', curated: 'Hand-curated figures', digest: 'AI summary',
 };
 
+// Plain-English source states. Technical errors stay in the data files and
+// the run logs; the page only says what the visitor needs to know.
+// Sources that publish yearly or by hand are "checked", not "up to date".
+const CHECKED_ONLY = new Set(['worldbank', 'curated']);
 function health(id, file) {
-  if (!file) return { state: 'fail', text: 'failed: data file missing' };
+  if (!file) return { state: 'fail', text: 'no data yet' };
   if (file.status === 'disabled') return { state: 'stale', text: 'off' };
-  if (file.status === 'error') return { state: 'fail', text: `failed (${file.error ?? 'no details'})` };
-  if (isLate(id, file)) return { state: 'stale', text: `delayed: last good data ${ago(file.lastSuccessAt)}${file.error ? ` (${file.error.slice(0, 90)})` : ''}` };
-  return { state: 'stable', text: `live${file.status === 'partial' ? ', some requests refused' : ''}: ${ago(file.lastSuccessAt)}` };
+  if (file.status === 'error') return { state: 'fail', text: 'did not answer; no earlier data to show' };
+  if (isLate(id, file)) return { state: 'stale', text: `delayed: last good data ${ago(file.lastSuccessAt)}` };
+  if (CHECKED_ONLY.has(id)) return { state: 'stable', text: `checked ${ago(file.lastSuccessAt)}` };
+  return { state: 'stable', text: `up to date${file.status === 'partial' ? ' (partial)' : ''}: ${ago(file.lastSuccessAt)}` };
 }
 
 // ---------- monitor ----------
@@ -151,7 +156,7 @@ function unverified(flag, kind = 'pending') {
 
 // What to say when a GDELT DOC query has nothing fresh to show.
 function docEmpty(q, what) {
-  if (!q || q.status === 'error') return `No ${what}: the GDELT API refused our requests (rate limit) and there is no earlier list to fall back on. It retries every 30 minutes.`;
+  if (!q || q.status === 'error') return `No ${what} right now. GDELT did not answer the last request. We try again every 30 minutes.`;
   return `No ${what} in this time window.`;
 }
 
@@ -159,7 +164,7 @@ function docEmpty(q, what) {
 // result, say so right under it, with the time that result was fetched.
 function lastGoodNote(q) {
   if (q?.status !== 'stale' || !q.fetchedAt || !q.items?.length) return null;
-  return h('p', { class: 'notice small' }, `Last good list, from ${fmtDayTime(q.fetchedAt)}. GDELT refused the latest request, so this has not been refreshed since.`);
+  return h('p', { class: 'notice small' }, `Last good list, from ${fmtDayTime(q.fetchedAt)}. GDELT did not answer the last request. We try again every 30 minutes.`);
 }
 
 function renderConflict(files) {
@@ -265,9 +270,9 @@ function renderConflict(files) {
       ),
     );
     const missingCov = covKeys.map((k) => doc[k]).filter((q) => q && !q.items?.length);
-    if (missingCov.length) out.push(h('p', { class: 'notice small' }, `No curve for ${missingCov.map((q) => q.label).join(', ')}: GDELT refused the request and there is no earlier curve to fall back on.`));
+    if (missingCov.length) out.push(h('p', { class: 'notice small' }, `No curve for ${missingCov.map((q) => q.label).join(', ')} right now. GDELT did not answer the last request. We try again every 30 minutes.`));
     const staleCov = cov.filter((q) => q.status === 'stale');
-    if (staleCov.length) out.push(h('p', { class: 'notice small' }, `Last good curve for ${staleCov.map((q) => `${q.label} (from ${fmtDayTime(q.fetchedAt)})`).join(', ')}. GDELT refused the latest request.`));
+    if (staleCov.length) out.push(h('p', { class: 'notice small' }, `Last good curve for ${staleCov.map((q) => `${q.label} (from ${fmtDayTime(q.fetchedAt)})`).join(', ')}. GDELT did not answer the last request. We try again every 30 minutes.`));
   } else {
     out.push(h('p', { class: 'notice' }, docEmpty(doc.coverageArmedConflict, 'coverage curves by topic')));
   }
