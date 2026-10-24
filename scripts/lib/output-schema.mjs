@@ -55,7 +55,7 @@ export const OUTPUT = {
     s.obj({
       month: s.str,
       rank: s.obj({ position: s.num, of: s.num, since: s.str, warmerYears: s.arr(s.str) }),
-      mean12: s.num,
+      twelveMonth: s.nullable(s.obj({ value: s.num, from: s.str, to: s.str, basis: s.str })),
       months: s.arr(s.obj({ month: s.str, anomaly: s.num, absolute: s.num }), { min: 12 }),
       publishedAt: s.nullable(s.str),
       dataUpdated: s.nullable(s.str),

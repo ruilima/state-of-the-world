@@ -17,6 +17,11 @@ const HOST = 'climate.copernicus.eu';
 const MAX_PAGE = 3_000_000; // bytes of HTML
 const MAX_CSV = 1_000_000; // the file is about 51 KB
 export const HEADER = ['month', '2t', 'clim_91-20', 'ano_91-20', 'offset_pi', 'ano_pi'];
+export const HEADER_12M = ['Month', 'Global', 'European'];
+// C3S adds this standard offset to annual (12-month) anomalies against
+// 1991–2020 to express them against 1850–1900 ("Annual global averages: A
+// standard offset of 0.88°C is added…", climate-bulletin-about-data-and-analysis).
+export const ANNUAL_OFFSET = 0.88;
 const KEEP = 24;
 const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 
@@ -34,18 +39,28 @@ export function candidateMonths(now = new Date()) {
 
 export const bulletinUrl = (ym) => URLS.c3sBulletin(MONTHS[Number(ym.slice(5, 7)) - 1], ym.slice(0, 4));
 
-/**
- * The link to the all-months 1850–1900 global series on a bulletin page.
- * Only links on climate.copernicus.eu count.
- */
-export function pickCsvLink(html, base = `https://${HOST}/`) {
-  const hrefs = [...html.matchAll(/href="([^"]+\.csv)"/gi)].map((m) => {
+// CSV links on a bulletin page; only https links on climate.copernicus.eu count.
+function csvLinks(html, base) {
+  return [...html.matchAll(/href="([^"]+\.csv)"/gi)].map((m) => {
     try {
       return new URL(m[1], base);
     } catch {
       return null;
     }
   }).filter((u) => u && u.protocol === 'https:' && u.hostname === HOST);
+}
+
+/** The link to the global 12-month average series (vs 1991–2020) on a bulletin page. */
+export function pick12mLink(html, base = `https://${HOST}/`) {
+  return csvLinks(html, base).find((u) => /global_12month_average_DATA(_\d+)?\.csv$/i.test(u.pathname))?.href ?? null;
+}
+
+/**
+ * The link to the all-months 1850–1900 global series on a bulletin page.
+ * Only links on climate.copernicus.eu count.
+ */
+export function pickCsvLink(html, base = `https://${HOST}/`) {
+  const hrefs = csvLinks(html, base);
   const pick = (re) => hrefs.find((u) => re.test(u.pathname));
   const url = pick(/ref1850-1900_global_allmonths_DATA(_\d+)?\.csv$/i) ?? pick(/preindustrial_global_allmonths_DATA(_\d+)?\.csv$/i);
   return url ? url.href : null;
@@ -72,15 +87,54 @@ export function rankLatest(rows) {
   return { position, of: same.length, since: same.map((r) => r.month.slice(0, 4)).sort()[0], warmerYears: same.slice(0, position - 1).map((r) => r.month.slice(0, 4)) };
 }
 
-/** Summary the page uses: last 24 months, rank, mean of the last 12 monthly values. */
+/** Summary the page uses: last 24 months and the rank of the latest. */
 export function summariseClimate(rows) {
-  const last12 = rows.slice(-12);
   return {
     month: rows.at(-1).month,
     rank: rankLatest(rows),
-    mean12: round2(last12.reduce((a, r) => a + r.anomaly, 0) / last12.length),
     months: rows.slice(-KEEP).map((r) => ({ month: r.month, anomaly: round2(r.anomaly), absolute: round2(r.absolute) })),
   };
+}
+
+/** The 12-month global anomaly (vs 1991–2020) ending in `ym`, from the 12-month CSV. */
+export function parse12mCsv(text, ym) {
+  const lines = text.split(/\r?\n/);
+  const at = lines.findIndex((l) => l.split(',').map((h) => h.trim()).join(',') === HEADER_12M.join(','));
+  if (at < 0) throw new SchemaError('climate', [`$: 12-month file has no ${HEADER_12M.join(',')} header`]);
+  const row = lines.slice(at + 1).map((l) => l.split(',')).find((r) => r[0] === ym.replace('-', ''));
+  const value = Number(row?.[1]);
+  if (!row || !Number.isFinite(value)) throw new SchemaError('climate', [`$: 12-month file has no global value for ${ym}`]);
+  return value;
+}
+
+const MONTH_NUM = Object.fromEntries(MONTHS.map((m, i) => [m, String(i + 1).padStart(2, '0')]));
+
+/**
+ * The bulletin's own sentence: "The average global temperature for the last 12
+ * months (October 2025 to September 2026) was 0.62°C above the 1991-2020
+ * average, and 1.50°C above the 1850-1900 pre-industrial average."
+ */
+export function twelveMonthSentence(html) {
+  const text = html.replace(/<[^>]+>/g, ' ').replace(/&#176;|&deg;/g, '°').replace(/\s+/g, ' ');
+  const m = text.match(/last 12 months \((\w+) (\d{4}) to (\w+) (\d{4})\) was (-?\d+(?:\.\d+)?) ?°C above the 1991-2020 average,? and (-?\d+(?:\.\d+)?) ?°C above the 1850-1900/i);
+  if (!m || !MONTH_NUM[m[1].toLowerCase()] || !MONTH_NUM[m[3].toLowerCase()]) return null;
+  return { from: `${m[2]}-${MONTH_NUM[m[1].toLowerCase()]}`, to: `${m[4]}-${MONTH_NUM[m[3].toLowerCase()]}`, value: Number(m[6]) };
+}
+
+/**
+ * The 12-month average to show: the bulletin's sentence when readable,
+ * otherwise the 12-month CSV plus the annual offset. A disagreement is
+ * logged and the sentence wins. Null when neither is available.
+ */
+export function chooseTwelveMonth(sentence, csvValue, ym, warn = console.warn) {
+  const fromSentence = sentence && sentence.to === ym ? sentence.value : null;
+  const fromCsv = Number.isFinite(csvValue) ? round2(csvValue + ANNUAL_OFFSET) : null;
+  if (fromSentence != null && fromCsv != null && fromSentence !== fromCsv) warn(`climate: 12-month average differs: bulletin text ${fromSentence}, 12-month file ${fromCsv}; using the text`);
+  const value = fromSentence ?? fromCsv;
+  if (value == null) return null;
+  const [y, m] = ym.split('-').map(Number);
+  const from = new Date(Date.UTC(y, m - 12, 1)).toISOString().slice(0, 7);
+  return { value, from, to: ym, basis: fromSentence != null ? 'bulletin text' : '12-month file' };
 }
 
 /** "12 October 2026" next to "<Month> <Year> highlights" on the bulletins index, as YYYY-MM-DD. */
@@ -127,7 +181,17 @@ export const run = () =>
       } catch {
         publishedAt = null;
       }
-      return { data: { ...summariseClimate(rows), publishedAt, dataUpdated: updated, bulletinUrl: bulletinUrl(ym), csvUrl } };
+      // C3S's own 12-month average; missing it only drops that line.
+      let csv12 = null;
+      const link12 = pick12mLink(page);
+      try {
+        if (link12) csv12 = parse12mCsv(await textWithin(link12, MAX_CSV), ym);
+      } catch (err) {
+        console.warn(`climate: 12-month file unreadable: ${err.message}`);
+      }
+      const twelveMonth = chooseTwelveMonth(twelveMonthSentence(page), csv12, ym);
+      const data = { ...summariseClimate(rows), twelveMonth, publishedAt, dataUpdated: updated, bulletinUrl: bulletinUrl(ym), csvUrl };
+      return twelveMonth ? { data } : { data, meta: { status: 'partial', error: 'no 12-month average in the bulletin' } };
     },
   });
 

@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { parseBulletinCsv, summariseClimate, pickCsvLink, publishedOn, candidateMonths, bulletinUrl, HEADER } from '../scripts/fetch-climate.mjs';
+import { parseBulletinCsv, summariseClimate, pickCsvLink, pick12mLink, parse12mCsv, twelveMonthSentence, chooseTwelveMonth, publishedOn, candidateMonths, bulletinUrl, HEADER } from '../scripts/fetch-climate.mjs';
 import { http } from '../scripts/lib/io.mjs';
 
 // The real file linked from the September 2026 bulletin.
@@ -24,10 +24,6 @@ test('September 2026: 1.6340 above 1850–1900 reads as 1.63', () => {
 test('the latest month is ranked against the same month of every year', () => {
   const s = summariseClimate(parseBulletinCsv(csv).rows);
   assert.deepEqual(s.rank, { position: 2, of: 87, since: '1940', warmerYears: ['2023'] });
-});
-
-test('the 12-month value is the mean of the last 12 monthly anomalies', () => {
-  assert.equal(summariseClimate(parseBulletinCsv(csv).rows).mean12, 1.49);
 });
 
 test('a changed header fails loudly', () => {
@@ -90,6 +86,51 @@ test('the 12-month mean from the unrounded values: 17.9357 / 12 = 1.4946, shown 
   const sum = values.reduce((a, v) => a + v, 0);
   assert.equal(Math.round(sum * 1e4) / 1e4, 17.9357);
   assert.equal(Math.round((sum / 12) * 1e4) / 1e4, 1.4946);
-  // Close to 1.495: one rounding step (to 2 decimals) gives 1.49.
-  assert.equal(summariseClimate(parseBulletinCsv(csv).rows).mean12, 1.49);
+  // Close to 1.495, so our own mean is not shown: the page uses C3S's
+  // 12-month figure (1.50) instead, and the data file carries no mean of ours.
+  assert.equal(summariseClimate(parseBulletinCsv(csv).rows).mean12, undefined);
+});
+
+// The September 2026 bulletin's 12-month file (vs 1991–2020), header and last rows.
+const csv12 = [
+  'Twelve-month average surface air temperature anomalies',
+  'Data source: ERA5',
+  'Reference period: 1991-2020',
+  '',
+  'Month,Global,European',
+  '202607,0.5717,0.8011',
+  '202608,0.6018,0.8689',
+  '202609,0.6151,0.8943',
+].join('\n');
+const sentenceHtml = '<p>The average global temperature for the last 12 months (October 2025 to September 2026) was 0.62&#176;C above the 1991-2020 average, and 1.50&#176;C above the 1850-1900 pre-industrial average .</p>';
+
+test('the 12-month file: 0.6151 vs 1991–2020 + 0.88 = 1.4951, shown as 1.50', () => {
+  assert.equal(parse12mCsv(csv12, '2026-09'), 0.6151);
+  assert.deepEqual(chooseTwelveMonth(null, 0.6151, '2026-09'), { value: 1.5, from: '2025-10', to: '2026-09', basis: '12-month file' });
+  assert.throws(() => parse12mCsv(csv12.replace('Month,Global,European', 'Month,World'), '2026-09'), /header/);
+  assert.throws(() => parse12mCsv(csv12, '2026-10'), /no global value/);
+  assert.equal(pick12mLink('<a href="https://climate.copernicus.eu/sites/default/files/2026-10/C3S_Bulletin_temp_202609_FigSupp1b_timeseries_era5_monthly_2t_anomaly_ref19912020_global_12month_average_DATA.csv">x</a>'), 'https://climate.copernicus.eu/sites/default/files/2026-10/C3S_Bulletin_temp_202609_FigSupp1b_timeseries_era5_monthly_2t_anomaly_ref19912020_global_12month_average_DATA.csv');
+  assert.equal(pick12mLink('<a href="https://example.com/x_global_12month_average_DATA.csv">x</a>'), null);
+});
+
+test("the bulletin's 12-month sentence is read and preferred", () => {
+  assert.deepEqual(twelveMonthSentence(sentenceHtml), { from: '2025-10', to: '2026-09', value: 1.5 });
+  const warnings = [];
+  assert.deepEqual(chooseTwelveMonth(twelveMonthSentence(sentenceHtml), 0.6151, '2026-09', (w) => warnings.push(w)), { value: 1.5, from: '2025-10', to: '2026-09', basis: 'bulletin text' });
+  assert.deepEqual(warnings, []);
+});
+
+test('when the sentence and the file disagree, the sentence wins and the run logs it', () => {
+  const warnings = [];
+  const r = chooseTwelveMonth(twelveMonthSentence(sentenceHtml), 0.58, '2026-09', (w) => warnings.push(w));
+  assert.equal(r.value, 1.5);
+  assert.equal(r.basis, 'bulletin text');
+  assert.match(warnings[0], /differs: bulletin text 1.5, 12-month file 1.46/);
+  // A sentence about another period does not count.
+  assert.equal(chooseTwelveMonth(twelveMonthSentence(sentenceHtml), null, '2026-10'), null);
+});
+
+test('with neither the sentence nor the file there is no 12-month line', () => {
+  assert.equal(twelveMonthSentence('<p>No such sentence.</p>'), null);
+  assert.equal(chooseTwelveMonth(null, null, '2026-09'), null);
 });

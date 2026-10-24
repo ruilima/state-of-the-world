@@ -111,7 +111,7 @@ function health(id, file) {
   if (file.status === 'disabled') return { state: 'stale', text: 'off' };
   if (file.status === 'error') return { state: 'fail', text: 'did not answer; no earlier data to show' };
   if (isLate(id, file)) return { state: 'stale', text: `delayed: last good data ${ago(file.lastSuccessAt)}` };
-  if (CHECKED_ONLY.has(id)) return { state: 'stable', text: `checked ${ago(file.lastSuccessAt)}` };
+  if (CHECKED_ONLY.has(id)) return { state: 'stable', text: `checked ${ago(file.lastSuccessAt)}${file.status === 'partial' ? ' (partial)' : ''}` };
   return { state: 'stable', text: `up to date${file.status === 'partial' ? ' (partial)' : ''}: ${ago(file.lastSuccessAt)}` };
 }
 

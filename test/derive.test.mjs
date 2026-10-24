@@ -97,9 +97,11 @@ test('the temperature lede is written from the data', async () => {
   const { climateLede } = await import('../public/derive.js');
   const months = Array.from({ length: 24 }, (_, i) => ({ month: `2026-${String((i % 9) + 1).padStart(2, '0')}`, anomaly: 1.4, absolute: 15 }));
   months[23] = { month: '2026-09', anomaly: 1.634, absolute: 16.27 };
-  const c = { months, mean12: 1.49, rank: { position: 2, of: 87, since: '1940', warmerYears: ['2023'] } };
-  assert.equal(climateLede(c), 'September 2026 was 1.63\u00a0°C above the 1850–1900 average, the second-warmest September on record (after 2023). Average of the last 12 monthly values: 1.49\u00a0°C.');
+  const c = { months, twelveMonth: { value: 1.5, from: '2025-10', to: '2026-09', basis: 'bulletin text' }, rank: { position: 2, of: 87, since: '1940', warmerYears: ['2023'] } };
+  assert.equal(climateLede(c), 'September 2026 was 1.63\u00a0°C above the 1850–1900 average, the second-warmest September on record (after 2023). Average of the last 12 months: 1.50\u00a0°C (C3S).');
   assert.match(climateLede({ ...c, rank: { position: 1, warmerYears: [] } }), /, the warmest September on record\. /);
+  // Without C3S's 12-month figure the sentence is left out; our own mean is never used.
+  assert.equal(climateLede({ ...c, twelveMonth: null }), 'September 2026 was 1.63\u00a0°C above the 1850–1900 average, the second-warmest September on record (after 2023).');
   assert.match(climateLede({ ...c, rank: { position: 3, warmerYears: ['2023', '2024'] } }), /the third-warmest September on record \(after 2023 and 2024\)/);
   assert.match(climateLede({ ...c, rank: { position: 12, warmerYears: Array(11).fill('x') } }), /the 12th-warmest September on record\. /);
 });
