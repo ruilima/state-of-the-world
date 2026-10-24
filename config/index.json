@@ -14,7 +14,7 @@
     {
       "id": "conflictNews",
       "name": "Conflict in the news",
-      "explain": "Share of events coded by GDELT in the last 24 hours that are 'material conflict' (assaults, fighting, mass violence). Uses GDELT's 15-minute event files only.",
+      "explain": "Share of events coded by GDELT in the last 24 hours that are 'material conflict' (assaults, fighting, mass violence). Uses GDELT's 15-minute event files only. Calm 10% and alarm 16% are our choice: in recent days the daily share has been about 12–14%.",
       "source": "gdelt-events",
       "path": "data.materialShare24h",
       "unit": "share of events",
@@ -26,7 +26,7 @@
     {
       "id": "conflictDeaths",
       "name": "Deaths in organised violence",
-      "explain": "Deaths recorded by UCDP in the latest available month (candidate events, 'best' estimate).",
+      "explain": "Deaths recorded by UCDP in the latest available month (candidate events, 'best' estimate). Calm 5,000 and alarm 25,000 a month are our choice: 25,000 a month is about 300,000 a year, above the highest yearly battle-death total since 1989 (about 285,000 in 2022, which counts only state-based conflict).",
       "source": "ucdp",
       "path": "data.monthly[-1].deaths",
       "unit": "deaths per month",
@@ -38,7 +38,7 @@
     {
       "id": "quakes",
       "name": "Significant earthquakes",
-      "explain": "Earthquakes the USGS classes as significant in the last 7 days (combines magnitude, damage and felt reports).",
+      "explain": "Earthquakes the USGS classes as significant in the last 7 days (combines magnitude, damage and felt reports). Calm 1 and alarm 8 a week are our choice: 8 means more than one a day.",
       "source": "usgs",
       "path": "data.counts.significantWeek",
       "unit": "earthquakes per week",
@@ -50,7 +50,7 @@
     {
       "id": "naturalEvents",
       "name": "Active storms and volcanoes",
-      "explain": "Severe storms and active volcanoes open in NASA EONET. Wildfires are left out: there are always dozens and they would swamp the signal.",
+      "explain": "Severe storms and active volcanoes open in NASA EONET. Wildfires are left out: there are always dozens and they would swamp the signal. Calm 2 and alarm 15 open events are our choice.",
       "source": "eonet",
       "sum": [
         "data.byCategory.severeStorms",
@@ -65,7 +65,7 @@
     {
       "id": "aiLayoffs",
       "name": "Pace of job cuts citing AI",
-      "explain": "Last month's US job cuts where companies cited AI (Challenger), divided by the average of the months before it (up to 12). 1 means a normal pace. Weighted lower than the other signals because the attribution is the companies' own.",
+      "explain": "Last month's US job cuts where companies cited AI (Challenger), divided by the average of the months before it (up to 12). 1 means a normal pace. Calm 0.8 (below the usual pace) and alarm 2.0 (double it) are our choice. Weighted 10, like the earthquake and storm signals and half the conflict-news and Doomsday Clock signals, because the reason is the companies' own.",
       "source": "curated",
       "special": "layoffRatio",
       "unit": "ratio to average",
@@ -77,7 +77,7 @@
     {
       "id": "doomsday",
       "name": "Doomsday Clock",
-      "explain": "Seconds to midnight according to the Bulletin of the Atomic Scientists. Fewer seconds, closer to alarm.",
+      "explain": "Seconds to midnight according to the Bulletin of the Atomic Scientists. Fewer seconds, closer to alarm. Calm 420 seconds is the clock's first setting, in 1947 (7 minutes); alarm 60 seconds is our choice.",
       "source": "curated",
       "path": "data.doomsday.current.seconds",
       "unit": "seconds",

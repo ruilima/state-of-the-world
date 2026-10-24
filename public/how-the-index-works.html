@@ -40,7 +40,7 @@
 
         <h2 class="method__h">Step by step</h2>
         <ol class="seq">
-          <li>Each signal has a "calm" value and an "alarm" value, chosen by us. Today's value is placed on a scale from 0 (calm or better) to 100 (alarm or worse).</li>
+          <li>Each signal has a "calm" value and an "alarm" value, chosen by us; the table gives the reason for each. Today's value gets a score from 0 (calm or better) to 100 (alarm or worse).</li>
           <li>The index is the weighted average of those scales. The weights are in the table.</li>
           <li>If a signal has no recent data, it is left out and the other weights are rescaled. The table shows each signal's effective weight.</li>
           <li>The state comes from the index: STABLE below <span data-t="caution">40</span>, CAUTION from there, DANGER from <span data-t="danger">65</span>.</li>
@@ -51,8 +51,8 @@
         <h3>The signals, now</h3>
         <div id="signals"><p class="notice">Reading the configuration and data…</p></div>
 
-        <h3>Where to change it</h3>
-        <p>The formula, weights and thresholds all live in one file, <code>config/index.json</code>, in the repository. A change there applies from the next update.</p>
+        <h3>Where it is set</h3>
+        <p>The formula, weights and thresholds all live in one file, <a href="https://github.com/ruilima/state-of-the-world/blob/main/config/index.json"><code>config/index.json</code></a>, in the site's public repository.</p>
       </article>
     </main>
   </div>
