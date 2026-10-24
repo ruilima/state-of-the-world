@@ -2,7 +2,7 @@
 // source health lines and the monitor, and imported by the tests.
 
 // How often each source should refresh (minutes). Older than 3× → delayed.
-export const EXPECT_MIN = { usgs: 30, eonet: 30, 'gdelt-events': 30, 'gdelt-doc': 30, pulse: 30, curated: 30, index: 30, ucdp: 1440, worldbank: 1440, digest: 1440 };
+export const EXPECT_MIN = { usgs: 30, eonet: 30, 'gdelt-events': 30, 'gdelt-doc': 30, pulse: 30, curated: 30, index: 30, ucdp: 1440, worldbank: 1440, climate: 1440, digest: 1440 };
 
 /** True when the file is marked stale or its last success is older than 3× its refresh. */
 export function isLate(id, file, now = Date.now()) {

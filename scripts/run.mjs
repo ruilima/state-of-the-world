@@ -1,6 +1,6 @@
 // Entry point for CI and local runs:
 //   node scripts/run.mjs fast   — every 30 min: GDELT, USGS, EONET, pulse, curated, index
-//   node scripts/run.mjs slow   — daily: World Bank, UCDP, digest, then index
+//   node scripts/run.mjs slow   — daily: World Bank, UCDP, C3S temperature, digest, then index
 //   node scripts/run.mjs all
 // Sources run one after another (GDELT asks for serial requests) and a
 // failing source never stops the others. The process exits non-zero only
@@ -12,6 +12,7 @@ import * as eonet from './fetch-eonet.mjs';
 import * as pulse from './fetch-pulse.mjs';
 import * as worldbank from './fetch-worldbank.mjs';
 import * as ucdp from './fetch-ucdp.mjs';
+import * as climate from './fetch-climate.mjs';
 import * as digest from './fetch-digest.mjs';
 import * as curated from './build-curated.mjs';
 import * as index from './compute-index.mjs';
@@ -21,7 +22,7 @@ import { readdir } from 'node:fs/promises';
 
 const GROUPS = {
   fast: [usgs, eonet, gdeltEvents, gdeltDoc, pulse, curated],
-  slow: [worldbank, ucdp, curated, digest],
+  slow: [worldbank, ucdp, climate, curated, digest],
 };
 // Fast first: the AI summary (slow group) reads the headlines the fast group fetches.
 GROUPS.all = [...new Set([...GROUPS.fast, ...GROUPS.slow])];

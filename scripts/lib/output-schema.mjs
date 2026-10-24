@@ -51,6 +51,18 @@ export const OUTPUT = {
       points: s.arr(s.obj({ ...point, deaths: s.num, events: s.num })),
     }),
   ),
+  climate: envelope(
+    s.obj({
+      month: s.str,
+      rank: s.obj({ position: s.num, of: s.num, since: s.str, warmerYears: s.arr(s.str) }),
+      mean12: s.num,
+      months: s.arr(s.obj({ month: s.str, anomaly: s.num, absolute: s.num }), { min: 12 }),
+      publishedAt: s.nullable(s.str),
+      dataUpdated: s.nullable(s.str),
+      bulletinUrl: s.str,
+      csvUrl: s.str,
+    }),
+  ),
   curated: envelope(s.obj({ layoffs: CURATED.layoffs, doomsday: CURATED.doomsday, horizons: CURATED.horizons })),
   digest: envelope(s.obj({ label: s.str, paragraphs: s.arr(s.obj({ text: s.str, sources: s.arr(s.obj({ title: s.str, url: s.str })) })) })),
   index: envelope(

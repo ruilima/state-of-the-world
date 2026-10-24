@@ -13,6 +13,9 @@ export const URLS = {
   worldBank: (country, indicator) =>
     `https://api.worldbank.org/v2/country/${country}/indicator/${indicator}?format=json&per_page=80`,
   ucdpDownloads: 'https://ucdp.uu.se/downloads/',
+  // C3S monthly bulletin page (links the data files) and the bulletins index (publication dates).
+  c3sBulletin: (month, year) => `https://climate.copernicus.eu/surface-air-temperature-${month}-${year}`,
+  c3sBulletins: 'https://climate.copernicus.eu/climate-bulletins',
   ucdpApi: 'https://ucdpapi.pcr.uu.se/api',
   // Official HN search API (Algolia); the Firebase API has no search.
   hnSearch: (q) => `https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=40&query=${encodeURIComponent(q)}`,
