@@ -386,6 +386,7 @@ a:hover { text-decoration-thickness: 2px; }
 .figure { margin: 12px 0 0; }
 .figure svg { display: block; width: 100%; height: auto; overflow: visible; }
 .figure svg.map { overflow: hidden; }
+.data__caption { caption-side: top; text-align: left; font-weight: 700; padding-bottom: 6px; }
 .figure figcaption { margin-top: 6px; font-size: var(--s-14); color: var(--ink-faded); max-width: var(--measure); }
 .chart text { font: 400 11px var(--type); fill: var(--ink-faded); }
 .chart .axis { stroke: var(--ink-faded); stroke-width: 1; }

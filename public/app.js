@@ -169,7 +169,7 @@ function renderConflict(files) {
   const out = [];
   if (u?.monthly?.length) {
     const last = u.monthly.at(-1);
-    out.push(h('p', { class: 'lede' }, `In ${fmtMonth(last.month)}, UCDP recorded ${num(last.deaths)} deaths in organised violence, across ${num(last.events)} events.`));
+    out.push(h('p', { class: 'lede' }, `In ${fmtMonth(last.month)}, UCDP recorded ${num(last.deaths)} deaths (provisional) in organised violence, across ${num(last.events)} events.`));
     out.push(h('p', { class: 'small faded' }, 'Candidate events: UCDP’s first monthly count, revised in the next annual release.'));
 
     const over = (cell) => cell.deaths >= 1000;
@@ -183,15 +183,15 @@ function renderConflict(files) {
           label: `Map of deaths in organised violence in ${fmtMonth(last.month)}. Most deaths: ${top}.`,
           dots: u.points.map((p) => ({ lat: p.lat, lon: p.lon, r: Math.min(9, 0.6 + Math.sqrt(p.deaths) * 0.11), over: over(p), hover: `${p.country}: ${num(p.deaths)} deaths, ${p.events} events` })),
         }),
-        h('figcaption', {}, 'Each circle groups the events in a 1° grid cell and grows with the number of deaths. Red marks cells with 1,000 or more deaths in the month.'),
+        h('figcaption', {}, 'Each circle groups the events in a 1° grid cell and grows with the number of deaths. Red marks cells with 1,000 or more deaths in the month, a threshold we chose.'),
       ),
     );
     out.push(
       h(
         'table',
         { class: 'data' },
-        h('caption', { class: 'visually-hidden' }, `Countries with the most deaths in ${fmtMonth(last.month)}`),
-        h('thead', {}, h('tr', {}, h('th', { scope: 'col' }, 'Country'), h('th', { scope: 'col', class: 'num' }, 'Deaths'))),
+        h('caption', { class: 'data__caption' }, `Most deaths, ${tidy(monthShort.format(new Date(`${last.month}-01T00:00:00Z`)))} ${last.month.slice(0, 4)}`),
+        h('thead', {}, h('tr', {}, h('th', { scope: 'col' }, 'Country'), h('th', { scope: 'col', class: 'num' }, 'Deaths (provisional)'))),
         h('tbody', {}, u.topCountries.map((c) => h('tr', {}, h('td', {}, c.country), h('td', { class: 'num' }, num(c.deaths))))),
       ),
     );
@@ -206,8 +206,8 @@ function renderConflict(files) {
           u.monthly.map((m) => ({ label: tidy(monthShort.format(new Date(`${m.month}-01T00:00:00Z`))), value: m.deaths, hover: `${fmtMonth(m.month)}: ${num(m.deaths)} deaths` })),
           { label: `Deaths per month in ${last.month.slice(0, 4)}, from UCDP candidate events.`, format: compact, over: (v) => v >= alarm },
         ),
-        h('figcaption', {}, `Red bars: months above ${num(alarm)} deaths, the alarm value used in the index.`),
-        tableDetails('Deaths per month', ['Month', 'Deaths', 'Events'], u.monthly.map((m) => [fmtMonth(m.month), num(m.deaths), num(m.events)]), [1, 2]),
+        h('figcaption', {}, `Deaths per month (provisional). Red bars: months above ${num(alarm)} deaths, the alarm value we set for the Condition Index.`),
+        tableDetails('Deaths per month', ['Month', 'Deaths (provisional)', 'Events'], u.monthly.map((m) => [fmtMonth(m.month), num(m.deaths), num(m.events)]), [1, 2]),
       ),
     );
   }
@@ -224,7 +224,7 @@ function renderConflict(files) {
           formatX: String,
           xTicks: [a[0].year, 2000, 2010, 2020, a.at(-1).year],
         }),
-        h('figcaption', {}, `${u.annualNote} UCDP Battle-Related Deaths, version ${u.annualVersion}.`),
+        h('figcaption', {}, `${u.annualNote} UCDP Battle-Related Deaths, version ${u.annualVersion}. This line counts only conflicts where one side is a state, so it is not comparable with the monthly figures above.`),
         tableDetails('Battle deaths per year', ['Year', 'Deaths', 'Conflicts'], a.map((r) => [r.year, num(r.deaths), r.conflicts]), [1, 2]),
       ),
     );
@@ -232,7 +232,7 @@ function renderConflict(files) {
 
   out.push(h('h3', {}, 'In the news'));
   if (g?.daily?.length) {
-    out.push(h('p', {}, `In the last 24 hours, ${pct(g.materialShare24h * 100)} of the ${num(g.events24h)} events coded by GDELT were material conflict (7-day average: ${pct(g.materialShare7d * 100)}).`));
+    out.push(h('p', {}, `In the last 24 hours, ${pct(g.materialShare24h * 100)} of the ${num(g.events24h)} events coded by GDELT were material conflict (fighting, assaults, mass violence); 7-day average: ${pct(g.materialShare7d * 100)}.`));
     out.push(
       h(
         'figure',
@@ -244,7 +244,7 @@ function renderConflict(files) {
           formatX: (x) => tidy(dayMonth.format(new Date(x))),
           yMin: 0,
         }),
-        h('figcaption', {}, 'GDELT codes news from around the world automatically. This measures media attention, not casualties. The index uses only these 15-minute event files.'),
+        h('figcaption', {}, 'GDELT codes news from around the world automatically. This measures media attention, not casualties. Only this measure feeds the Condition Index.'),
       ),
     );
   }
@@ -281,8 +281,8 @@ function renderConflict(files) {
         'p',
         { class: 'colophon' },
         'Data: ',
-        link('https://ucdp.uu.se/', 'UCDP — Uppsala Conflict Data Program'),
-        `, Uppsala University, licensed CC BY 4.0. ${files.ucdp.source.citation ?? ''} Mode: ${files.ucdp.mode === 'api' ? 'API with token' : 'official download files'}. ${files.ucdp.modeNote ?? ''}`,
+        link('https://ucdp.uu.se/', 'UCDP'),
+        ', Uppsala University, CC BY 4.0.',
       ),
     );
   }
@@ -553,7 +553,7 @@ const FILES_LIST = [
     id: 'conflict', name: 'Armed conflict', subject: 'armed conflict and organised violence',
     sources: ['ucdp', 'gdelt-events', 'gdelt-doc'], signals: ['conflictNews', 'conflictDeaths'], stampSources: ['gdelt-events', 'ucdp'], render: renderConflict,
     keySource: 'ucdp',
-    key: (f) => { const m = f.ucdp?.data?.monthly?.at(-1); return m ? `${num(m.deaths)} deaths in ${fmtMonth(m.month)}` : null; },
+    key: (f) => { const m = f.ucdp?.data?.monthly?.at(-1); return m ? `${num(m.deaths)} deaths in ${fmtMonth(m.month)} (provisional)` : null; },
   },
   {
     id: 'work', name: 'Work and AI', subject: 'work and artificial intelligence',
