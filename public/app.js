@@ -187,7 +187,7 @@ function renderConflict(files) {
   if (u?.monthly?.length) {
     const last = u.monthly.at(-1);
     out.push(h('p', { class: 'lede' }, `In ${fmtMonth(last.month)}, UCDP recorded ${num(last.deaths)} deaths (provisional) in organised violence, across ${num(last.events)} events.`));
-    out.push(h('p', { class: 'small faded' }, 'Candidate events: UCDP’s first monthly count, revised in the next annual release.'));
+    out.push(h('p', { class: 'small faded' }, 'Candidate events: UCDP’s first monthly count, revised in the next annual release. Deaths in events that last several months are spread over those months by days.'));
 
     const over = (cell) => cell.deaths >= 1000;
     const top = u.topCountries.slice(0, 3).map((c) => `${c.country} (${num(c.deaths)})`).join(', ');

@@ -48,8 +48,11 @@ async function annualSeries(brdLink) {
 
 // Normalise CSV rows and API rows to one event shape. Numbers only:
 // UCDP rows also carry source article text, which we never republish.
-const toEvent = (r) => ({
+// Deaths are always the "best" estimate, never low or high: some rows have
+// low > high, and best is the figure UCDP recommends.
+export const toEvent = (r) => ({
   date: String(r.date_start).slice(0, 10),
+  end: String(r.date_end || r.date_start).slice(0, 10),
   type: Number(r.type_of_violence),
   deaths: Number(r.best) || 0,
   country: String(r.country).replace(/\s*\(.*\)$/, ''),
@@ -74,21 +77,63 @@ export async function eventsFromApi(token, version, year) {
   return events;
 }
 
-function summarise(events) {
-  const months = new Map();
-  for (const e of events) {
-    const m = e.date.slice(0, 7);
-    const acc = months.get(m) ?? { month: m, deaths: 0, events: 0, byType: { 1: 0, 2: 0, 3: 0 } };
-    acc.deaths += e.deaths; acc.events++; acc.byType[e.type] += e.deaths;
-    months.set(m, acc);
+const DAY = 864e5;
+
+/**
+ * An event's share in each calendar month it covers, by days (UTC).
+ * A 1 Jan–30 Jun event puts 31/181 of its deaths in January, 28/181 in
+ * February and so on. A one-day event, or an end before the start, stays
+ * whole in its start month.
+ */
+export function splitByMonth(start, end) {
+  const s = Date.parse(`${start}T00:00:00Z`);
+  const e = Math.max(s, Date.parse(`${end}T00:00:00Z`) || s);
+  const total = (e - s) / DAY + 1;
+  const parts = [];
+  for (let t = s; t <= e; ) {
+    const d = new Date(t);
+    const next = Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1);
+    const days = (Math.min(next - DAY, e) - t) / DAY + 1;
+    parts.push({ month: d.toISOString().slice(0, 7), share: days / total });
+    t = next;
   }
-  const monthly = [...months.values()].sort((a, b) => a.month.localeCompare(b.month));
+  return parts;
+}
+
+// Each event counts once in `events` (in its start month); its deaths are
+// spread over the months it covers. The file covers months up to the newest
+// start date; a share that falls after that stays in the last covered month,
+// so no deaths are lost and no half-covered month appears.
+export function summarise(events) {
+  const months = new Map();
+  const slot = (m) => months.get(m) ?? months.set(m, { month: m, deaths: 0, events: 0, byType: { 1: 0, 2: 0, 3: 0 } }).get(m);
+  const lastCovered = events.reduce((a, e) => (e.date.slice(0, 7) > a ? e.date.slice(0, 7) : a), '');
+  const capped = (parts) => {
+    const out = new Map();
+    for (const p of parts) { const m = p.month > lastCovered ? lastCovered : p.month; out.set(m, (out.get(m) ?? 0) + p.share); }
+    return [...out].map(([month, share]) => ({ month, share }));
+  };
+  const shares = events.map((e) => ({ e, parts: capped(splitByMonth(e.date, e.end ?? e.date)) }));
+  for (const { e, parts } of shares) {
+    slot(e.date.slice(0, 7)).events++;
+    for (const p of parts) {
+      const acc = slot(p.month);
+      acc.deaths += e.deaths * p.share;
+      acc.byType[e.type] += e.deaths * p.share;
+    }
+  }
+  const monthly = [...months.values()]
+    .sort((a, b) => a.month.localeCompare(b.month))
+    .map((m) => ({ ...m, deaths: Math.round(m.deaths), byType: { 1: Math.round(m.byType[1]), 2: Math.round(m.byType[2]), 3: Math.round(m.byType[3]) } }));
   const latestMonth = monthly.at(-1)?.month ?? null;
-  const latest = events.filter((e) => e.date.startsWith(latestMonth));
+  // Events with a share in the latest month, with that share of their deaths.
+  const latest = shares
+    .filter(({ parts }) => parts.some((p) => p.month === latestMonth))
+    .map(({ e, parts }) => ({ ...e, deaths: e.deaths * parts.find((p) => p.month === latestMonth).share }));
 
   const byCountry = new Map();
   for (const e of latest) byCountry.set(e.country, (byCountry.get(e.country) ?? 0) + e.deaths);
-  const topCountries = [...byCountry.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8).map(([country, deaths]) => ({ country, deaths }));
+  const topCountries = [...byCountry.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8).map(([country, deaths]) => ({ country, deaths: Math.round(deaths) }));
 
   // Map: latest month, aggregated to 1° cells so the file stays small.
   const cells = new Map();
@@ -99,7 +144,8 @@ function summarise(events) {
     c.deaths += e.deaths; c.events++;
     cells.set(k, c);
   }
-  return { monthly, latestMonth, topCountries, points: [...cells.values()].sort((a, b) => b.deaths - a.deaths) };
+  const points = [...cells.values()].map((c) => ({ ...c, deaths: Math.round(c.deaths) }));
+  return { monthly, latestMonth, topCountries, points: points.sort((a, b) => b.deaths - a.deaths) };
 }
 
 export const run = () =>
