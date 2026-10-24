@@ -81,5 +81,11 @@ for (const r of results) {
 for (const r of results) {
   md += `\n### ${r.model}\n\n${r.error ? `Error: ${r.error}\n` : r.paragraphs.map((p) => `> ${p.text}\n>\n> _Sources: ${p.sources.map((s) => s.source).join('; ')}_\n`).join('\n')}`;
 }
+// The earthquake paragraph of each model: any paragraph citing a USGS item.
+md += '\n### Earthquake paragraph\n';
+for (const r of results) {
+  const quake = (r.paragraphs ?? []).filter((p) => p.sources.some((s) => s.source === 'USGS'));
+  md += `\n**${r.model}**\n\n${quake.length ? quake.map((p) => `> ${p.text}\n>\n> _Links: ${p.sources.filter((s) => s.source === 'USGS').length} USGS_\n`).join('\n') : '_No earthquake paragraph._\n'}`;
+}
 if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, md);
 console.log(md);

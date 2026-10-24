@@ -61,7 +61,7 @@ test('a paragraph naming or quoting something absent from its cited headlines is
   assert.deepEqual(unsupportedNames('Barclays’ CEO called AI "icing on the cake."', [headlines[1]]), []);
 });
 
-test('sources: one per domain within a paragraph, at most six', async () => {
+test('sources: one per exact URL within a paragraph, at most six', async () => {
   const many = Array.from({ length: 9 }, (_, i) => ({ id: i + 1, topic: 't', title: `Barclays item ${i}`, source: `site${i}.com`, url: `https://site${i}.com/x` }));
   const r = await summarise(
     fakeClient({ paragraphs: [{ text: 'Barclays appears in several reports.', sources: many.map((h) => h.id) }, { text: 'Barclays again, thestar.com.my reports.', sources: [1, 4] }] }),
@@ -69,8 +69,24 @@ test('sources: one per domain within a paragraph, at most six', async () => {
     [...many.slice(0, 9)].concat([]),
   );
   assert.equal(r.paragraphs[0].sources.length, 6);
-  const r2 = await summarise(fakeClient({ paragraphs: [{ text: 'Barclays job cuts, thestar.com.my reports.', sources: [1, 4] }] }), 'claude-opus-5-5', headlines);
-  assert.equal(r2.paragraphs[0].sources.length, 1, 'two thestar.com.my links collapse to one');
+});
+
+test('sources: two events from the same domain keep a link each', async () => {
+  const quakes = [
+    { id: 1, topic: 'planet', title: 'M6.9 earthquake — 197 km WNW of Port-Olry, Vanuatu', source: 'USGS', url: 'https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4j2' },
+    { id: 2, topic: 'planet', title: 'M7 earthquake — 191 km ENE of Nagqu, China', source: 'USGS', url: 'https://earthquake.usgs.gov/earthquakes/eventpage/us6000u43g' },
+  ];
+  const r = await summarise(fakeClient({ paragraphs: [{ text: 'The USGS recorded two earthquakes.', sources: [1, 2] }] }), 'claude-opus-5-5', quakes);
+  assert.deepEqual(r.paragraphs[0].sources.map((s) => s.url), quakes.map((q) => q.url));
+});
+
+test('sources: the same link cited twice appears once', async () => {
+  const twice = [
+    { id: 1, topic: 'work and AI', title: 'Barclays to cut 5,000 jobs', source: 'thestar.com.my', url: 'https://www.thestar.com.my/a' },
+    { id: 2, topic: 'work and AI', title: 'Barclays to cut 5,000 jobs (update)', source: 'thestar.com.my', url: 'https://www.thestar.com.my/a' },
+  ];
+  const r = await summarise(fakeClient({ paragraphs: [{ text: 'Barclays job cuts, thestar.com.my reports.', sources: [1, 2, 1] }] }), 'claude-opus-5-5', twice);
+  assert.deepEqual(r.paragraphs[0].sources.map((s) => s.url), ['https://www.thestar.com.my/a']);
 });
 
 test('paragraph text is never truncated', async () => {
@@ -88,6 +104,7 @@ test('headlines are sent as escaped data, with framing and anti-injection instru
   assert.match(SYSTEM, /in today's headlines/);
   assert.match(SYSTEM, /never say "most", "many"/);
   assert.match(SYSTEM, /Refer to each source exactly as written in its source field/);
+  assert.match(SYSTEM, /keep the distance and direction exactly as given; do not replace them with 'near'/);
   assert.match(SYSTEM, /Keep the strength of each headline's verb \(e\.g\. 'plans to cut' must not become 'will cut'\)/);
 });
 

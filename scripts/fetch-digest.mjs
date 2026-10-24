@@ -102,14 +102,14 @@ export function unsupportedNames(text, cited) {
 
 const MAX_SOURCES = 6;
 
-// One link per domain within a paragraph, at most MAX_SOURCES.
+// One link per exact URL within a paragraph, at most MAX_SOURCES. Several
+// links from one domain stay (each USGS earthquake has its own event page).
 function displaySources(cited) {
   const seen = new Set();
   const out = [];
   for (const h of cited) {
-    const host = hostOf(h.url);
-    if (seen.has(host)) continue;
-    seen.add(host);
+    if (seen.has(h.url)) continue;
+    seen.add(h.url);
     out.push({ title: h.title, source: h.source, url: h.url });
     if (out.length === MAX_SOURCES) break;
   }
@@ -145,6 +145,7 @@ export const SYSTEM =
   'The headlines were found with narrow searches (for example layoffs and AI), so they are not a representative sample: never say "most", "many" or similar, and draw no conclusions about proportions or trends.\n' +
   'Only quote words or name organisations and people that appear in the headlines the paragraph cites. Refer to each source exactly as written in its source field.\n' +
   "Keep the strength of each headline's verb (e.g. 'plans to cut' must not become 'will cut').\n" +
+  "For earthquakes, keep the distance and direction exactly as given; do not replace them with 'near'.\n" +
   'Write 2 to 4 short paragraphs (about 150 words in total). Each paragraph lists, in `sources`, the ids of the headlines it is based on.\n' +
   'No alarmist adjectives and no forecasts of your own. If the headlines are unclear, say less.';
 
