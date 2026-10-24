@@ -1,7 +1,7 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
 import { mountTicker } from './ticker.js';
-import { biggestContribution } from './derive.js';
+import { biggestContribution, dataPeriod } from './derive.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -624,7 +624,7 @@ function fileStamp(d, files) {
   return { stamp: scores.length ? stateFromScore(Math.max(...scores), t) : null, note: fresh.late.length ? delayedNote(fresh.late) : null };
 }
 
-// The "Subject" and "Filed" lines are typed out once when a file opens.
+// The "Subject" and "Data" lines are typed out once when a record opens.
 // Every character is its own span that fades in (opacity only), so the line
 // wraps like ordinary text and is never cut at narrow widths. Screen
 // readers get the whole line from a hidden copy.
@@ -657,7 +657,15 @@ function renderRecords(files) {
     }
     const keyHealth = health(d.keySource, files[d.keySource]);
     const keyText = key ?? `${SOURCE_NAME[d.keySource]}: ${keyHealth.text}`;
-    const updated = lastOk ? `Updated ${fmtDayTime(lastOk)}` : 'No update yet';
+    // The period the data covers comes first; the check time second.
+    let period = null;
+    try {
+      period = dataPeriod(d.id, files);
+    } catch (err) {
+      console.error(d.id, err);
+    }
+    const checked = lastOk ? `checked ${fmtDayTime(lastOk)}` : 'not checked yet';
+    const updated = `Data: ${period ?? '—'} · ${checked}`;
 
     const tab = h(
       'button',
@@ -679,7 +687,7 @@ function renderRecords(files) {
     if (!body.length) body = [h('p', { class: 'notice' }, 'No data saved for this record yet. The source list below says why.')];
 
     const subject = `Subject: ${d.subject}`;
-    const filed = `Filed: ${lastOk ? fmtDayTime(lastOk) : 'nothing yet'}`;
+    const filed = updated;
     const filedDelay = subject.length * TYPE_MS + 200;
     const stampDelay = filedDelay + filed.length * TYPE_MS + 150;
     const paper = h(

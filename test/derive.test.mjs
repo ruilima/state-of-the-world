@@ -22,3 +22,19 @@ test('points are score × effective weight and add up to the index', () => {
 test('no contribution line without a value', () => {
   assert.equal(biggestContribution({ value: null, signals: [] }), null);
 });
+
+test('each record names the period its data covers', async () => {
+  const { dataPeriod } = await import('../public/derive.js');
+  const f = {
+    ucdp: { data: { monthly: [{ month: '2026-08' }, { month: '2026-09' }] } },
+    curated: { data: { layoffs: { monthly: [{ month: '2026-09' }, { month: '2026-01' }] }, doomsday: { current: { setAt: '2026-01-27' } } } },
+    usgs: { data: {} },
+    worldbank: { data: { indicators: [{ series: [{ latest: { year: 2024 } }, { latest: { year: 2025 } }] }] } },
+  };
+  assert.equal(dataPeriod('conflict', f), 'Sep 2026');
+  assert.equal(dataPeriod('work', f), 'Sep 2026');
+  assert.equal(dataPeriod('planet', f), 'last 7 days');
+  assert.equal(dataPeriod('economy', f), '2025');
+  assert.equal(dataPeriod('ahead', f), 'Jan 2026');
+  assert.equal(dataPeriod('conflict', {}), null);
+});

@@ -16,3 +16,22 @@ export function biggestContribution(index) {
   const one = (n) => (Math.round(n * 10) / 10).toFixed(1);
   return `${top.name} (${one(top.points)} of ${one(index.value)} points)`;
 }
+
+// "Sep 2026" from "2026-09"; en-GB writes "Sept", every other month has three letters.
+const monthShort = new Intl.DateTimeFormat('en-GB', { month: 'short', timeZone: 'UTC' });
+export const monthYear = (ym) => (ym ? `${monthShort.format(new Date(`${ym}-01T00:00:00Z`)).replace(/\bSept\b/, 'Sep')} ${ym.slice(0, 4)}` : null);
+
+/** The period each record's main data covers, shown before the check time. */
+export function dataPeriod(id, f) {
+  switch (id) {
+    case 'conflict': return monthYear(f.ucdp?.data?.monthly?.at(-1)?.month);
+    case 'work': return monthYear(f.curated?.data?.layoffs?.monthly?.map((r) => r.month).sort().at(-1));
+    case 'planet': return f.usgs?.data ? 'last 7 days' : null;
+    case 'economy': {
+      const years = (f.worldbank?.data?.indicators ?? []).flatMap((i) => i.series.map((s) => s.latest?.year).filter(Boolean));
+      return years.length ? String(Math.max(...years)) : null;
+    }
+    case 'ahead': return monthYear(f.curated?.data?.doomsday?.current?.setAt?.slice(0, 7));
+    default: return null;
+  }
+}
