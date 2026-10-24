@@ -40,8 +40,10 @@ export const CURATED = {
     updatedAt: s.str,
     source: link,
     current: s.obj({ seconds: s.num, setAt: s.str, verified: s.bool }),
-    // evidence: "secondary" marks a value backed only by secondary reporting.
-    history: s.arr(s.obj({ year: s.num, seconds: s.num, verified: s.bool, evidence: s.oneOf('primary', 'secondary') }, { optional: ['evidence'] }), { min: 1 }),
+    historySource: link,
+    // Every announced setting. evidence: "secondary" marks a value backed only
+    // by secondary reporting; unchanged: the same setting announced again.
+    history: s.arr(s.obj({ year: s.num, seconds: s.num, date: s.str, unchanged: s.bool, verified: s.bool, evidence: s.oneOf('primary', 'secondary') }, { optional: ['date', 'unchanged', 'evidence'] }), { min: 1 }),
   }),
   horizons: s.obj({
     updatedAt: s.str,

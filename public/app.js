@@ -1,7 +1,7 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
 import { mountTicker } from './ticker.js';
-import { biggestContribution, dataPeriod } from './derive.js';
+import { biggestContribution, dataPeriod, closestEver, clockReading } from './derive.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
 // Narrow screens get a narrower chart box so axis text stays legible
@@ -540,10 +540,17 @@ function renderAhead(files) {
   const out = [];
   if (c) {
     const dd = c.doomsday;
-    out.push(h('p', { class: 'lede' }, h('span', { class: 'big-number' }, `${dd.current.seconds} seconds`), ' to midnight on the Doomsday Clock, the closest it has ever been.'));
+    // "The closest it has ever been" only while the data says so.
+    out.push(h('p', { class: 'lede' }, h('span', { class: 'big-number' }, `${dd.current.seconds} seconds`), ` to midnight on the Doomsday Clock${closestEver(dd) ? ', the closest it has ever been' : ''}.`));
     out.push(h('p', { class: 'small' }, 'An expert panel’s judgement of global risk, set once a year. Shown as context: it is not part of the Condition Index. ', `Set on ${fmtDate(dd.current.setAt)} by the `, link(dd.source.url, dd.source.name), '. ', unverified(!dd.current.verified)));
     out.push(h('h3', {}, 'Recent years'));
-    out.push(h('ol', { class: 'seq' }, dd.history.map((r) => h('li', {}, `${r.year}: ${r.seconds} seconds `, unverified(!r.verified, r.evidence === 'secondary' ? 'secondary' : 'pending')))));
+    out.push(h('ol', { class: 'seq' }, dd.history.slice(-5).map((r) => h('li', {}, `${r.year}: ${clockReading(r.seconds)}${r.unchanged ? ' (unchanged)' : ''} `, unverified(!r.verified, r.evidence === 'secondary' ? 'secondary' : 'pending')))));
+    if (dd.historySource) {
+      out.push(
+        tableDetails(`Every setting since ${dd.history[0].year}`, ['Year', 'Setting'], dd.history.map((r) => [r.year, `${clockReading(r.seconds)}${r.unchanged ? ' (unchanged)' : ''}`]), []),
+        h('p', { class: 'small faded' }, 'Source: ', link(dd.historySource.url, dd.historySource.name), '. Years without an entry kept the previous setting.'),
+      );
+    }
 
     out.push(h('h3', {}, 'Horizons'));
     out.push(h('p', { class: 'small faded' }, c.horizons.rule ?? 'Only claims from a named institution, with a primary source.'));

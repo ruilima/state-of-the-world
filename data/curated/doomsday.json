@@ -9,7 +9,160 @@
     "setAt": "2026-01-27",
     "verified": true
   },
+  "historySource": {
+    "name": "Bulletin of the Atomic Scientists — Doomsday Clock Timeline",
+    "url": "https://thebulletin.org/doomsday-clock/timeline/"
+  },
   "history": [
+    {
+      "year": 1947,
+      "seconds": 420,
+      "verified": true
+    },
+    {
+      "year": 1949,
+      "seconds": 180,
+      "verified": true
+    },
+    {
+      "year": 1953,
+      "seconds": 120,
+      "verified": true
+    },
+    {
+      "year": 1960,
+      "seconds": 420,
+      "verified": true
+    },
+    {
+      "year": 1963,
+      "seconds": 720,
+      "verified": true
+    },
+    {
+      "year": 1968,
+      "seconds": 420,
+      "verified": true
+    },
+    {
+      "year": 1969,
+      "seconds": 600,
+      "verified": true
+    },
+    {
+      "year": 1972,
+      "seconds": 720,
+      "verified": true
+    },
+    {
+      "year": 1974,
+      "seconds": 540,
+      "verified": true
+    },
+    {
+      "year": 1980,
+      "seconds": 420,
+      "verified": true
+    },
+    {
+      "year": 1981,
+      "seconds": 240,
+      "verified": true
+    },
+    {
+      "year": 1984,
+      "seconds": 180,
+      "verified": true
+    },
+    {
+      "year": 1988,
+      "seconds": 360,
+      "verified": true
+    },
+    {
+      "year": 1990,
+      "seconds": 600,
+      "verified": true
+    },
+    {
+      "year": 1991,
+      "seconds": 1020,
+      "verified": true
+    },
+    {
+      "year": 1995,
+      "seconds": 840,
+      "verified": true
+    },
+    {
+      "year": 1998,
+      "seconds": 540,
+      "verified": true
+    },
+    {
+      "year": 2002,
+      "seconds": 420,
+      "verified": true
+    },
+    {
+      "year": 2007,
+      "seconds": 300,
+      "verified": true
+    },
+    {
+      "year": 2010,
+      "seconds": 360,
+      "verified": true
+    },
+    {
+      "year": 2012,
+      "seconds": 300,
+      "verified": true
+    },
+    {
+      "year": 2015,
+      "seconds": 180,
+      "verified": true
+    },
+    {
+      "year": 2016,
+      "seconds": 180,
+      "unchanged": true,
+      "verified": true
+    },
+    {
+      "year": 2017,
+      "seconds": 150,
+      "verified": true
+    },
+    {
+      "year": 2018,
+      "seconds": 120,
+      "verified": true
+    },
+    {
+      "year": 2019,
+      "seconds": 120,
+      "unchanged": true,
+      "verified": true
+    },
+    {
+      "year": 2020,
+      "seconds": 100,
+      "verified": true
+    },
+    {
+      "year": 2021,
+      "seconds": 100,
+      "unchanged": true,
+      "verified": true
+    },
+    {
+      "year": 2022,
+      "seconds": 100,
+      "unchanged": true,
+      "verified": true
+    },
     {
       "year": 2023,
       "seconds": 90,
@@ -18,9 +171,8 @@
     {
       "year": 2024,
       "seconds": 90,
-      "verified": false,
-      "evidence": "secondary",
-      "note": "Not stated on the Bulletin's Doomsday Clock page; supported by secondary reporting."
+      "unchanged": true,
+      "verified": true
     },
     {
       "year": 2025,
@@ -30,8 +182,9 @@
     {
       "year": 2026,
       "seconds": 85,
+      "date": "2026-01-27",
       "verified": true
     }
   ],
-  "note": "Set once a year, usually in January. There is no API: update this file by hand."
+  "note": "Set once a year, usually in January. There is no API: update this file by hand. `history` lists every year the Bulletin announced a setting (from its timeline); `unchanged` marks years it announced the same setting again. Only the 2026 entry has an exact date; the timeline gives years."
 }

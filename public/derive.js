@@ -35,3 +35,12 @@ export function dataPeriod(id, f) {
     default: return null;
   }
 }
+
+/** True when the current Doomsday Clock setting is the closest to midnight in its history. */
+export function closestEver(doomsday) {
+  const all = (doomsday?.history ?? []).map((r) => r.seconds);
+  return all.length > 0 && doomsday.current.seconds <= Math.min(...all);
+}
+
+/** "7 minutes", "2.5 minutes", "100 seconds": how the Bulletin writes each setting. */
+export const clockReading = (seconds) => (seconds >= 120 && seconds % 30 === 0 ? `${seconds / 60} minutes` : `${seconds} seconds`);

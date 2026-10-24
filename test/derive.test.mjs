@@ -38,3 +38,16 @@ test('each record names the period its data covers', async () => {
   assert.equal(dataPeriod('ahead', f), 'Jan 2026');
   assert.equal(dataPeriod('conflict', {}), null);
 });
+
+test('"the closest it has ever been" only when the current setting is the minimum', async () => {
+  const { closestEver, clockReading } = await import('../public/derive.js');
+  const { readFileSync } = await import('node:fs');
+  const dd = JSON.parse(readFileSync(new URL('../data/curated/doomsday.json', import.meta.url)));
+  assert.equal(dd.history[0].year, 1947);
+  assert.equal(dd.history[0].seconds, 420);
+  assert.equal(closestEver(dd), true); // 85 s in 2026
+  assert.equal(closestEver({ ...dd, current: { ...dd.current, seconds: 90 } }), false);
+  assert.equal(clockReading(420), '7 minutes');
+  assert.equal(clockReading(150), '2.5 minutes');
+  assert.equal(clockReading(100), '100 seconds');
+});
