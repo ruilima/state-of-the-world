@@ -288,6 +288,7 @@ a:hover { text-decoration-thickness: 2px; }
 .type { margin: 0; overflow-wrap: anywhere; }
 .type--subject { font-size: var(--s-21); font-weight: 700; line-height: 1.35; }
 .type--filed { margin-top: 4px; color: var(--ink-faded); }
+.paper__note { margin: 8px 0 0; }
 
 .stamp {
   display: inline-flex;

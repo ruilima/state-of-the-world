@@ -430,10 +430,11 @@ minutos as execuções agendadas.
 **Ação tua:**
 1. **Layoffs.fyi:** quando leres o contador, envia-me "N pessoas em N empresas, a
    DD/MM/2026" e eu atualizo o ficheiro e tiro o aviso.
-2. **Challenger:** em cada mês, o relatório sai na primeira semana; o de outubro deve
-   sair por volta de 5 nov 2026. Acrescenta uma linha a `monthly` e muda `updatedAt` em
-   `data/curated/layoffs.json`, ou pede-me. Com mais de 35 dias sem atualização, o
-   dossier mostra DATA OUTDATED.
+2. **Challenger:** as datas de cada relatório estão em `releaseCalendar`, em
+   `data/curated/layoffs.json` (calendário oficial de 2026); o de outubro sai a 5 nov
+   2026. Acrescenta uma linha a `monthly` e muda `updatedAt`, ou pede-me. Se a linha não
+   entrar até 3 dias depois da data prevista, o dossier mostra DATA OUTDATED. Em janeiro
+   de 2027 é preciso acrescentar o calendário de 2027.
 3. **UCDP_TOKEN:** quando chegar, põe-no nos segredos do repositório. O módulo passa a
    usar a API sozinho e, se falhar, volta aos downloads.
 4. **Opcional:** dar ao token do `gh` desta máquina acesso a este repositório

@@ -81,31 +81,27 @@ texto da faixa sobre o fundo da faixa, separador ativo sobre `tile`, pontos do m
 
 ## 3. Ajustes ao plano
 
-**a. DATA OUTDATED por dossier, com a cadência real de cada fonte.** A tabela (abaixo)
-tem de ser mostrada ao Rui e aprovada **antes** de ser aplicada. Até lá o carimbo usa a
-regra atual (estado do índice; DATA OUTDATED só no Work and AI, ficheiro curado com mais
-de 35 dias).
-
-Proposta (por aprovar):
+**a. DATA OUTDATED por dossier, com a cadência real de cada fonte.** Aprovado pelo Rui
+a 24 out 2026, com duas alterações (Challenger pelo calendário; regra de "todas as
+fontes"). Aplicado em `public/freshness.js` (`STAMP_SOURCES`, `stampFreshness`).
 
 | Fonte | Cadência real | Janela | Entra no carimbo de |
 |---|---|---|---|
-| GDELT event files | 30 min | 90 min (3×) | Armed conflict |
-| GDELT DOC (manchetes) | 30 min | 90 min | nenhum (só a lista de fontes) |
-| UCDP | descarga diária; dados mensais | 3 dias desde a última descarga, e último mês com dados no máximo 2 meses antes do mês atual | Armed conflict |
-| Layoffs (Challenger, Layoffs.fyi) | manual, mensal | 35 dias desde `updatedAt` (regra atual) | Work and AI |
-| Hacker News e arXiv | 30 min | 90 min | nenhum |
-| USGS | 30 min | 90 min | Planet |
-| NASA EONET | 30 min | 90 min | Planet |
-| World Bank | descarga diária; dados anuais | 3 dias desde a última descarga | Economy (só DATA OUTDATED; sem sinal no índice) |
-| Doomsday Clock | anual, em janeiro, manual | 13 meses desde `setAt` | What lies ahead |
-| Horizontes (IPCC, WMO) | manual; afirmações datadas | sem janela: cada uma mostra a sua data | nenhum |
-| Resumo por IA | diário | 3 dias | nenhum |
-| Índice (monitor) | 30 min | 90 min (já aplicado) | monitor |
+| GDELT event files | 30 min | 90 min (3×) | Armed conflict, monitor |
+| UCDP | descarga diária; dados mensais | 3 dias desde a última descarga, e o último mês com dados no máximo 2 meses antes do mês atual (em outubro: setembro ou agosto passam; julho já é atraso) | Armed conflict, monitor |
+| Challenger (layoffs) | mensal, calendário publicado | 3 dias depois da data prevista do próximo relatório (`releaseCalendar` em `data/curated/layoffs.json`; o de outubro: 5 nov, atraso a partir de 8 nov 00:00 UTC) | Work and AI, monitor |
+| USGS | 30 min | 90 min | Planet, monitor |
+| NASA EONET | 30 min | 90 min | Planet, monitor |
+| World Bank | descarga diária; dados anuais | 3 dias desde a última descarga | Economy (só DATA OUTDATED) |
+| Doomsday Clock | anual, em janeiro | 13 meses desde `setAt` | What lies ahead, monitor |
+| Horizontes (IPCC, WMO) | manual; afirmações datadas | sem janela | nenhum |
+| GDELT DOC, HN e arXiv, resumo por IA | 30 min / 30 min / diário | 90 min / 90 min / 3 dias | nenhum (só "delayed" na lista de fontes) |
+| Índice (`index.json`) | 30 min | 90 min | monitor |
 
-Regra: o carimbo de um dossier diz DATA OUTDATED quando alguma fonte que entra no seu
-carimbo está fora da janela; senão diz o estado calculado pelo índice. As fontes que não
-entram no carimbo continuam a aparecer como "delayed" na lista de fontes.
+Regra (monitor e dossiers): se **todas** as fontes que sustentam o estado estão fora da
+janela, o carimbo diz DATA OUTDATED. Se só algumas estão, mantém-se o estado calculado e
+aparece uma nota curta com os nomes ("1 source delayed: UCDP"). No monitor, também diz
+DATA OUTDATED quando o próprio `index.json` está fora da janela (o número já é velho).
 
 **b. Faixa de manchetes:** se o GDELT estiver recusado, mostra a última lista boa com a
 etiqueta de desatualizada; se não houver nenhuma, a faixa esconde-se por completo, sem
@@ -127,7 +123,11 @@ ARIA.
 - [x] Teclado: setas, Home, End; hash guardado e lido.
 - [x] Tamanho final do JS e do CSS, comparado com antes (antes: app.js 34,930 B,
       charts.js 7,027 B, ecg.js 4,010 B, freshness.js 678 B, styles.css 13,048 B).
-- [ ] Mostrar as capturas ao Rui antes de qualquer merge.
+- [x] Mostrar as capturas ao Rui (primeira ronda, 24 out). Anéis aprovados (2 pulsos e
+      depois parados).
+- [x] Ajuste (a) aplicado; testes de uma fonte atrasada e de todas atrasadas; capturas
+      `outdated-*` refeitas e `delayed-390` (só o UCDP atrasado).
+- [ ] Aprovação final das capturas antes do merge.
 
 ## 5. Progresso
 
@@ -157,4 +157,8 @@ ARIA.
   index.html 5,490 → 6,163. Sem fontes nem bibliotecas novas.
 - Capturas em `screenshots/` (git-ignored): `work-*`, `planet-*`, `header-*`,
   `outdated-*`, `reduced-motion-1360`, `state-*-320`.
-- Ajuste (a) ainda não aplicado: o carimbo usa a regra antiga até a tabela ser aprovada.
+- Ajuste (a) aplicado: janelas por fonte em `public/freshness.js`; calendário da
+  Challenger de 2026 em `data/curated/layoffs.json` (`releaseCalendar`, substitui
+  `maxAgeDays`; esquema em `scripts/lib/curated-schema.mjs`). Se o `curated.json`
+  publicado ainda não tiver o calendário (antes do merge), vale a regra antiga dos 35 dias.
+  `npm test`: 59 passam. Capturas sem erros nem scroll horizontal.

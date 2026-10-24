@@ -18,30 +18,47 @@ const shots = [
     { name: `work-${w}`, viewport: { width: w, height: 900 }, hash: '#work', mobile: w < 600 },
     { name: `planet-${w}`, viewport: { width: w, height: 900 }, hash: '#planet', mobile: w < 600 },
     { name: `header-${w}`, viewport: { width: w, height: 900 }, hash: '#work', mobile: w < 600, clip: '.ticker' },
-    // DATA OUTDATED forced: an old index and an old curated file.
-    { name: `outdated-${w}`, viewport: { width: w, height: 900 }, hash: '#work', mobile: w < 600, state: 'caution', outdated: true },
+    // DATA OUTDATED forced: every source behind the stamps outside its window.
+    { name: `outdated-${w}`, viewport: { width: w, height: 900 }, hash: '#work', mobile: w < 600, state: 'caution', late: 'all' },
   ]),
+  // Only UCDP delayed: the state stays and a note names the source.
+  { name: 'delayed-390', viewport: { width: 390, height: 900 }, hash: '#conflict', mobile: true, state: 'caution', late: 'ucdp' },
   { name: 'reduced-motion-1360', viewport: { width: 1360, height: 900 }, hash: '#work', reduced: true },
   // Longest state words and stamps at the narrowest width we support.
   ...['stable', 'caution', 'danger'].map((state) => ({ name: `state-${state}-320`, viewport: { width: 320, height: 700 }, hash: '#planet', mobile: true, state })),
 ];
 
-// Forces a monitor state and an outdated curated file, to check that every
-// state word and the longest stamp (DATA OUTDATED) fit.
-async function forceState(page, state, outdated) {
+// Forces a monitor state, to check that every state word fits. `late`
+// pushes sources outside their windows: 'all' (every source behind the
+// stamps, so they say DATA OUTDATED) or 'ucdp' (only UCDP).
+const ago = (h) => new Date(Date.now() - h * 3600e3).toISOString();
+async function forceState(page, state, late) {
   await page.route('**/data/index.json', async (route) => {
     const body = await (await route.fetch()).json();
-    if (outdated) body.lastSuccessAt = body.fetchedAt = new Date(Date.now() - 3 * 3600e3).toISOString();
+    if (late === 'all') body.lastSuccessAt = body.fetchedAt = ago(3);
     body.data.state = state;
     body.data.value = { stable: 20, caution: 50, danger: 80 }[state];
     for (const sig of body.data.signals) if (sig.score != null) sig.score = body.data.value;
     await route.fulfill({ json: body });
   });
-  await page.route('**/data/curated.json', async (route) => {
-    const body = await (await route.fetch()).json();
-    body.data.layoffs.updatedAt = '2020-01-01';
-    await route.fulfill({ json: body });
-  });
+  if (!late) return;
+  const aged = late === 'all' ? { 'gdelt-events': 3, usgs: 3, eonet: 3, worldbank: 96, ucdp: 96 } : { ucdp: 96 };
+  for (const [id, hours] of Object.entries(aged)) {
+    await page.route(`**/data/${id}.json`, async (route) => {
+      const body = await (await route.fetch()).json();
+      body.lastSuccessAt = body.fetchedAt = ago(hours);
+      await route.fulfill({ json: body });
+    });
+  }
+  if (late === 'all') {
+    await page.route('**/data/curated.json', async (route) => {
+      const body = await (await route.fetch()).json();
+      for (const r of body.data.layoffs.releaseCalendar?.releases ?? []) r.expectedAt = '2020-01-01';
+      body.data.layoffs.updatedAt = '2020-01-01';
+      body.data.doomsday.current.setAt = '2020-01-01';
+      await route.fulfill({ json: body });
+    });
+  }
 }
 const errors = [];
 for (const s of shots) {
@@ -49,7 +66,7 @@ for (const s of shots) {
   const page = await ctx.newPage();
   page.on('pageerror', (e) => errors.push(`${s.name}: ${e.message}`));
   page.on('console', (m) => m.type() === 'error' && errors.push(`${s.name}: ${m.text()}`));
-  if (s.state) await forceState(page, s.state, s.outdated);
+  if (s.state) await forceState(page, s.state, s.late);
   await page.goto(base + s.hash, { waitUntil: 'load' });
   // Explicit signal: the open file is drawn. Then let the opening animations finish.
   await page.waitForFunction(() => document.querySelector('[role=tabpanel]:not([hidden]) .paper'));
@@ -60,7 +77,7 @@ for (const s of shots) {
   if (overflow > 0) errors.push(`${s.name}: horizontal overflow ${overflow}px`);
   // Elements that must not spill out of their box.
   const spills = await page.evaluate(() =>
-    [...document.querySelectorAll('.monitor__state, .stamp, .rec__name, .rec__key, .type, .ticker__bar > *')]
+    [...document.querySelectorAll('.monitor__state, .monitor__note, .stamp, .paper__note, .rec__name, .rec__key, .type, .ticker__bar > *')]
       .filter((el) => {
         const r = el.getBoundingClientRect();
         const box = (el.closest('.paper, .monitor, .rec, .ticker') ?? document.body).getBoundingClientRect();

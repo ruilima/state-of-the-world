@@ -1,7 +1,67 @@
 {
   "updatedAt": "2026-10-23",
-  "maxAgeDays": 35,
-  "howToUpdate": "Add one row to `monthly` for each Challenger, Gray & Christmas monthly report (usually out in the first week of the following month) and refresh `figures` from Layoffs.fyi. Set `updatedAt` to the review date. Every value needs a source, URL and publication date; set `verified` to true only after reading it in the primary source.",
+  "releaseCalendar": {
+    "source": {
+      "name": "Challenger, Gray & Christmas — 2026 Job Cut Report Release Calendar",
+      "url": "https://www.challengergray.com/blog/2026-challenger-job-cut-report-release-calendar/"
+    },
+    "note": "Dates are subject to change. The Work and AI stamp says DATA OUTDATED 3 days after the date of the first report whose month is not yet in `monthly`.",
+    "releases": [
+      {
+        "month": "2025-12",
+        "expectedAt": "2026-01-08"
+      },
+      {
+        "month": "2026-01",
+        "expectedAt": "2026-02-05"
+      },
+      {
+        "month": "2026-02",
+        "expectedAt": "2026-03-05"
+      },
+      {
+        "month": "2026-03",
+        "expectedAt": "2026-04-02"
+      },
+      {
+        "month": "2026-04",
+        "expectedAt": "2026-05-07"
+      },
+      {
+        "month": "2026-05",
+        "expectedAt": "2026-06-04"
+      },
+      {
+        "month": "2026-06",
+        "expectedAt": "2026-07-01"
+      },
+      {
+        "month": "2026-07",
+        "expectedAt": "2026-08-06"
+      },
+      {
+        "month": "2026-08",
+        "expectedAt": "2026-09-03"
+      },
+      {
+        "month": "2026-09",
+        "expectedAt": "2026-10-01"
+      },
+      {
+        "month": "2026-10",
+        "expectedAt": "2026-11-05"
+      },
+      {
+        "month": "2026-11",
+        "expectedAt": "2026-12-03"
+      },
+      {
+        "month": "2026-12",
+        "expectedAt": "2027-01-07"
+      }
+    ]
+  },
+  "howToUpdate": "Add one row to `monthly` for each Challenger, Gray & Christmas monthly report (release dates in `releaseCalendar`; add next year's calendar when Challenger publishes it) and refresh `figures` from Layoffs.fyi. Set `updatedAt` to the review date. Every value needs a source, URL and publication date; set `verified` to true only after reading it in the primary source.",
   "figures": [
     {
       "id": "ai-cited-us-2026-ytd",

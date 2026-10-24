@@ -1,5 +1,5 @@
 import { mountEcg } from './ecg.js';
-import { isLate } from './freshness.js';
+import { isLate, stampFreshness, delayedNote, SIGNAL_SOURCE } from './freshness.js';
 import { mountTicker } from './ticker.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
@@ -111,7 +111,7 @@ function health(id, file) {
 
 // ---------- monitor ----------
 
-function renderMonitor(index) {
+function renderMonitor(index, files) {
   const d = index?.data;
   const state = d?.state ?? 'stable';
   const stateEl = document.getElementById('monitor-state');
@@ -119,10 +119,15 @@ function renderMonitor(index) {
   stateEl.replaceChildren(shape(state), d?.value == null ? 'NO SIGNAL' : STATE_LABEL[state]);
   document.getElementById('monitor-index').textContent = d?.value == null ? '—' : `${num(d.value, 0)} of 100`;
   document.getElementById('monitor-bpm').textContent = d?.bpm == null ? '—' : `${d.bpm} per minute`;
-  // Same rule as the source health lines: older than 3× the 30-minute refresh.
-  const outdated = d?.value != null && isLate('index', index);
+  // Outdated when the index itself is older than 3× its 30-minute refresh, or
+  // when every source behind its signals is outside its window. When only
+  // some are, the state stays and a note names them.
+  const fresh = stampFreshness([...new Set((d?.signals ?? []).filter((s) => s.score != null).map((s) => SIGNAL_SOURCE[s.id]).filter(Boolean))], files);
+  const outdated = d?.value != null && (isLate('index', index) || fresh.outdated);
+  const figures = document.querySelector('.monitor__figures');
   // After the figures, so it lands under the state word and the figures keep their row.
-  if (outdated) document.querySelector('.monitor__figures').after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
+  if (outdated) figures.after(h('p', { class: 'stamp stamp--stale' }, shape('stale'), STATE_LABEL.stale));
+  else if (d?.value != null && fresh.late.length) figures.after(h('p', { class: 'monitor__note' }, delayedNote(fresh.late)));
   mountEcg(document.getElementById('trace'), { state, bpm: d?.bpm ?? 60, still: outdated });
 }
 
@@ -541,13 +546,13 @@ function renderAhead(files) {
 const FILES_LIST = [
   {
     id: 'conflict', name: 'Armed conflict', subject: 'armed conflict and organised violence',
-    sources: ['ucdp', 'gdelt-events', 'gdelt-doc'], signals: ['conflictNews', 'conflictDeaths'], render: renderConflict,
+    sources: ['ucdp', 'gdelt-events', 'gdelt-doc'], signals: ['conflictNews', 'conflictDeaths'], stampSources: ['gdelt-events', 'ucdp'], render: renderConflict,
     keySource: 'ucdp',
     key: (f) => { const m = f.ucdp?.data?.monthly?.at(-1); return m ? `${num(m.deaths)} deaths in ${fmtMonth(m.month)}` : null; },
   },
   {
     id: 'work', name: 'Work and AI', subject: 'work and artificial intelligence',
-    sources: ['curated', 'gdelt-doc', 'pulse'], signals: ['aiLayoffs'], render: renderWork, curatedAge: true,
+    sources: ['curated', 'gdelt-doc', 'pulse'], signals: ['aiLayoffs'], stampSources: ['layoffs'], render: renderWork,
     keySource: 'curated',
     key: (f) => {
       const rows = f.curated?.data?.layoffs?.monthly ?? [];
@@ -558,13 +563,13 @@ const FILES_LIST = [
   },
   {
     id: 'planet', name: 'Planet', subject: 'earthquakes and natural events',
-    sources: ['usgs', 'eonet'], signals: ['quakes', 'naturalEvents'], render: renderPlanet,
+    sources: ['usgs', 'eonet'], signals: ['quakes', 'naturalEvents'], stampSources: ['usgs', 'eonet'], render: renderPlanet,
     keySource: 'usgs',
     key: (f) => { const q = f.usgs?.data?.strongest; return q ? `M${num(q.mag, 1)}, ${q.place}` : null; },
   },
   {
     id: 'economy', name: 'Economy', subject: 'inflation, unemployment and growth',
-    sources: ['worldbank'], signals: [], render: renderEconomy,
+    sources: ['worldbank'], signals: [], stampSources: ['worldbank'], render: renderEconomy,
     keySource: 'worldbank',
     key: (f) => {
       const l = f.worldbank?.data?.indicators?.find((i) => i.id === 'FP.CPI.TOTL.ZG')?.series.find((s) => s.country === 'WLD')?.latest;
@@ -573,20 +578,19 @@ const FILES_LIST = [
   },
   {
     id: 'ahead', name: 'What lies ahead', subject: 'warnings about the years ahead',
-    sources: ['curated', 'digest'], signals: ['doomsday'], render: renderAhead,
+    sources: ['curated', 'digest'], signals: ['doomsday'], stampSources: ['doomsday'], render: renderAhead,
     keySource: 'curated',
     key: (f) => { const c = f.curated?.data?.doomsday?.current; return c ? `${c.seconds} seconds to midnight` : null; },
   },
 ];
 
+// The stamp and, when only some of its sources are delayed, a note naming them.
 function fileStamp(d, files) {
-  if (d.curatedAge) {
-    const l = files.curated?.data?.layoffs;
-    if (l && (Date.now() - Date.parse(l.updatedAt)) / 864e5 > l.maxAgeDays) return 'stale';
-  }
+  const fresh = stampFreshness(d.stampSources, files);
+  if (fresh.outdated) return { stamp: 'stale', note: null };
   const t = files.index?.data?.thresholds ?? { caution: 40, danger: 65 };
   const scores = (files.index?.data?.signals ?? []).filter((s) => d.signals.includes(s.id) && s.score != null).map((s) => s.score);
-  return scores.length ? stateFromScore(Math.max(...scores), t) : null;
+  return { stamp: scores.length ? stateFromScore(Math.max(...scores), t) : null, note: fresh.late.length ? delayedNote(fresh.late) : null };
 }
 
 // The "Subject" and "Filed" lines are typed out once when a file opens.
@@ -634,7 +638,7 @@ function renderRecords(files) {
       h('span', { class: 'rec__meta' }, live === hs.length ? updated : `${updated}, ${live} of ${hs.length} sources live`),
     );
 
-    const stamp = fileStamp(d, files);
+    const { stamp, note } = fileStamp(d, files);
     let body;
     try {
       body = d.render(files);
@@ -655,7 +659,7 @@ function renderRecords(files) {
       h(
         'div',
         { class: 'paper__head' },
-        h('div', { class: 'paper__lines' }, typed(subject, 'type--subject', 0), typed(filed, 'type--filed', filedDelay)),
+        h('div', { class: 'paper__lines' }, typed(subject, 'type--subject', 0), typed(filed, 'type--filed', filedDelay), note ? h('p', { class: 'small paper__note' }, note) : null),
         stamp ? h('p', { class: `stamp stamp--${stamp}`, style: `--stamp-delay: ${stampDelay}ms` }, shape(stamp), STATE_LABEL[stamp]) : null,
       ),
       ...body,
@@ -730,7 +734,7 @@ function renderRecords(files) {
 const files = await load();
 const gen = files.manifest?.generatedAt;
 document.getElementById('updated').textContent = gen ? `updated ${fmtDayTime(gen)}` : 'No update recorded yet';
-renderMonitor(files.index);
+renderMonitor(files.index, files);
 try {
   const doc = files['gdelt-doc']?.data?.queries ?? {};
   mountTicker(document.getElementById('ticker'), [doc.conflictHeadlines, doc.aiLayoffHeadlines], fmtDayTime);

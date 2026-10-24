@@ -5,7 +5,9 @@ const link = s.obj({ name: s.str, url: s.nullable(s.str) });
 export const CURATED = {
   layoffs: s.obj({
     updatedAt: s.str,
-    maxAgeDays: s.num,
+    // Challenger's published release dates; the Work and AI stamp goes
+    // DATA OUTDATED 3 days after the next report was due.
+    releaseCalendar: s.obj({ source: link, note: s.str, releases: s.arr(s.obj({ month: s.str, expectedAt: s.str }), { min: 1 }) }),
     figures: s.arr(
       s.obj({
         id: s.str,
