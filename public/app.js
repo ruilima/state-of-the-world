@@ -1,6 +1,6 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote } from './freshness.js';
-import { mountTicker } from './ticker.js';
+import { mountTicker, tickerTopics } from './ticker.js';
 import { climateLede, dataPeriod, clockReading } from './derive.js';
 import { num, compact, pct, tidy, fmtDate, fmtTime, fmtDayTime, fmtMonth, dayMonth, monthShort, STATE_LABEL, updatedLine, monitorModel, recordKey, recordLede } from './text.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
@@ -823,8 +823,7 @@ renderMonitor(files.index, files);
 // The Copernicus notice names the year of the information shown.
 if (files.climate?.data?.month) document.getElementById('c3s-year').textContent = files.climate.data.month.slice(0, 4);
 try {
-  const doc = files['gdelt-doc']?.data?.queries ?? {};
-  mountTicker(document.getElementById('ticker'), [{ topic: 'Conflict', query: doc.conflictHeadlines }, { topic: 'Work & AI', query: doc.aiLayoffHeadlines }], fmtDayTime, fmtDate);
+  mountTicker(document.getElementById('ticker'), tickerTopics(files), fmtDayTime, fmtDate);
 } catch (err) {
   console.error('ticker', err);
 }

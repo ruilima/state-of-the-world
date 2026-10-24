@@ -14,6 +14,18 @@
 const SPEED = 45; // pixels per second
 const MAX_ITEMS = 16;
 
+/** The strip's topics, from the published GDELT DOC file. */
+export const tickerTopics = (files) => {
+  const doc = files['gdelt-doc']?.data?.queries ?? {};
+  return [{ topic: 'Conflict', query: doc.conflictHeadlines }, { topic: 'Work & AI', query: doc.aiLayoffHeadlines }];
+};
+
+/** "Last good list, from …" when GDELT refused the latest request, else null. */
+export function staleNote(topics, fmt) {
+  const stale = topics.map((t) => t.query).filter((q) => q?.items?.length && q.status === 'stale' && q.fetchedAt);
+  return stale.length ? `Last good list, from ${fmt(stale.map((q) => q.fetchedAt).sort()[0])}` : null;
+}
+
 /** Interleaves the topics' lists (so one topic does not fill the strip), up to `max`. */
 export function pickHeadlines(topics, max = MAX_ITEMS) {
   const lists = topics.filter((t) => t.query?.items?.length);
@@ -24,15 +36,37 @@ export function pickHeadlines(topics, max = MAX_ITEMS) {
   return items;
 }
 
+/** What one headline shows: topic, title, link (http(s) only, else null) and source line. */
+export function itemParts(a, fmtDay) {
+  return {
+    topic: a.topic,
+    title: a.title,
+    href: /^https?:\/\//i.test(a.url ?? '') ? a.url : null,
+    src: [a.domain, a.date && !Number.isNaN(Date.parse(a.date)) ? fmtDay(a.date) : null].filter(Boolean).join(', '),
+  };
+}
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+
+/** The same headline as HTML, for the build (scripts/prerender.mjs). */
+export function itemHtml(a, fmtDay) {
+  const p = itemParts(a, fmtDay);
+  const text = p.href
+    ? `<a href="${esc(p.href)}" target="_blank" rel="noopener noreferrer">${esc(p.title)}<span class="visually-hidden"> (opens in a new tab)</span></a>`
+    : `<span>${esc(p.title)}</span>`;
+  return `<li><span class="ticker__topic">${esc(p.topic)}</span> ${text} <span class="ticker__src">${esc(p.src)}</span></li>`;
+}
+
 function item(a, copy, fmtDay) {
+  const p = itemParts(a, fmtDay);
   const li = document.createElement('li');
   const topic = document.createElement('span');
   topic.className = 'ticker__topic';
-  topic.textContent = a.topic;
-  const text = document.createElement(/^https?:\/\//i.test(a.url ?? '') ? 'a' : 'span');
-  text.textContent = a.title;
-  if (text.tagName === 'A') {
-    text.href = a.url;
+  topic.textContent = p.topic;
+  const text = document.createElement(p.href ? 'a' : 'span');
+  text.textContent = p.title;
+  if (p.href) {
+    text.href = p.href;
     text.target = '_blank';
     text.rel = 'noopener noreferrer';
     if (copy) text.tabIndex = -1;
@@ -43,7 +77,7 @@ function item(a, copy, fmtDay) {
   }
   const src = document.createElement('span');
   src.className = 'ticker__src';
-  src.textContent = [a.domain, a.date && !Number.isNaN(Date.parse(a.date)) ? fmtDay(a.date) : null].filter(Boolean).join(', ');
+  src.textContent = p.src;
   li.append(topic, ' ', text, ' ', src);
   return li;
 }
@@ -59,13 +93,10 @@ export function mountTicker(root, topics, fmt, fmtDay) {
     return;
   }
 
-  const stale = topics.map((t) => t.query).filter((q) => q?.items?.length && q.status === 'stale' && q.fetchedAt);
+  const noteText = staleNote(topics, fmt);
   const note = root.querySelector('.ticker__note');
-  if (stale.length) {
-    const oldest = stale.map((q) => q.fetchedAt).sort()[0];
-    note.textContent = `Last good list, from ${fmt(oldest)}`;
-    note.hidden = false;
-  }
+  note.textContent = noteText ?? '';
+  note.hidden = !noteText;
 
   const track = root.querySelector('.ticker__track');
   const [main, copy] = track.querySelectorAll('.ticker__list');
