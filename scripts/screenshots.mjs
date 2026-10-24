@@ -2,6 +2,8 @@
 // saves screenshots to screenshots/. Also samples rendered pixels to check
 // the effective contrast once grain and vignette are painted.
 //   node scripts/screenshots.mjs [baseUrl]
+// Point it at a served build/ (after scripts/prerender.mjs): the layout-shift
+// check below measures the page as it is deployed.
 import { chromium } from 'playwright-core';
 import { mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -117,5 +119,26 @@ for (const width of [320, 390, 768, 1360]) {
     await ctx.close();
   }
 }
+// Layout shift while the page loads (CLS), as deployed: under 0.1 at both
+// widths, with a normal CPU and one slowed down 4×.
+for (const rate of [1, 4]) {
+  for (const width of [390, 1360]) {
+    const mobile = width < 600;
+    const ctx = await browser.newContext({ viewport: { width, height: mobile ? 844 : 900 }, isMobile: mobile, hasTouch: mobile, deviceScaleFactor: mobile ? 3 : 1 });
+    const page = await ctx.newPage();
+    if (rate > 1) await (await ctx.newCDPSession(page)).send('Emulation.setCPUThrottlingRate', { rate });
+    await page.addInitScript(() => {
+      window.__cls = 0;
+      new PerformanceObserver((list) => { for (const e of list.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: 'layout-shift', buffered: true });
+    });
+    await page.goto(base, { waitUntil: 'load', timeout: 180000 });
+    await page.waitForFunction(() => document.querySelector('[role=tabpanel]:not([hidden]) .paper'), null, { timeout: 180000 });
+    await page.waitForTimeout(1500);
+    const cls = await page.evaluate(() => window.__cls);
+    console.log(`CLS ${width}px, CPU ${rate}x: ${cls.toFixed(3)}`);
+    if (cls >= 0.1) errors.push(`layout shift ${width}px CPU ${rate}x: CLS ${cls.toFixed(3)}`);
+    await ctx.close();
+  }
+}
 await browser.close();
-console.log(errors.length ? errors.join('\n') : 'no page errors, no horizontal overflow');
+console.log(errors.length ? errors.join('\n') : 'no page errors, no horizontal overflow, CLS under 0.1');
