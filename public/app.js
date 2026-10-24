@@ -408,6 +408,9 @@ function renderWork(files) {
   return out;
 }
 
+// EONET's own label for this category reads as dated English.
+const CATEGORY_NAME = { manmade: 'Human-caused' };
+
 function renderPlanet(files) {
   const q = files.usgs?.data;
   const e = files.eonet?.data;
@@ -425,9 +428,9 @@ function renderPlanet(files) {
         dotMap({
           label: `Map of ${q?.quakes.length ?? 0} earthquakes of magnitude 4.5 or more in the last week and ${e?.events.length ?? 0} open natural events.`,
           dots: (q?.quakes ?? []).map((x) => ({ lat: x.lat, lon: x.lon, r: 0.6 + 0.45 * Math.max(0, x.mag - 4.5) ** 1.5, over: quakeOver(x), ring: Date.now() - Date.parse(x.time) < 864e5, hover: `M${num(x.mag, 1)}, ${x.place}, ${fmtDayTime(x.time)}` })),
-          crosses: (e?.events ?? []).map((x) => ({ lat: x.lat, lon: x.lon, hover: `${x.categoryName}: ${x.title}` })),
+          crosses: (e?.events ?? []).map((x) => ({ lat: x.lat, lon: x.lon, hover: `${CATEGORY_NAME[x.category] ?? x.categoryName}: ${x.title}` })),
         }),
-        h('figcaption', {}, 'Circles: earthquakes, sized by magnitude. Red marks magnitude 7 or more, or an orange or red USGS alert. A ring marks an earthquake in the last 24 hours; rings pulse when this file opens. Crosses: open natural events in NASA EONET.'),
+        h('figcaption', {}, 'Circles: earthquakes, sized by magnitude. Red marks magnitude 7 or more, or an orange or red PAGER impact alert. A ring marks an earthquake in the last 24 hours. Crosses: open natural events in NASA EONET.'),
       ),
     );
   }
@@ -441,8 +444,9 @@ function renderPlanet(files) {
         h(
           'ol',
           { class: 'list' },
-          q.quakes.slice(0, 8).map((x) => h('li', {}, link(x.url, `M${num(x.mag, 1)} ${x.place ?? ''}`), h('span', { class: 'meta' }, `${fmtDayTime(x.time)}, ${num(x.depthKm)} km deep${x.tsunami ? ', tsunami flag' : ''}`))),
+          q.quakes.slice(0, 8).map((x) => h('li', {}, link(x.url, `M${num(x.mag, 1)} ${x.place ?? ''}`), h('span', { class: 'meta' }, `${fmtDayTime(x.time)}, ${num(x.depthKm)} km deep${x.tsunami ? ', tsunami bulletin issued' : ''}`))),
         ),
+        q.quakes.slice(0, 8).some((x) => x.tsunami) ? h('p', { class: 'small faded' }, 'A tsunami bulletin does not mean a tsunami happened.') : null,
       ),
     );
   }
@@ -458,7 +462,7 @@ function renderPlanet(files) {
           { class: 'data' },
           h('caption', { class: 'visually-hidden' }, 'Open natural events by category'),
           h('thead', {}, h('tr', {}, h('th', { scope: 'col' }, 'Category'), h('th', { scope: 'col', class: 'num' }, 'Open'))),
-          h('tbody', {}, rows.map(([k, v]) => h('tr', {}, h('td', {}, e.categoryNames[k] ?? k), h('td', { class: 'num' }, num(v))))),
+          h('tbody', {}, rows.map(([k, v]) => h('tr', {}, h('td', {}, CATEGORY_NAME[k] ?? e.categoryNames[k] ?? k), h('td', { class: 'num' }, num(v))))),
         ),
         h('p', { class: 'small faded' }, 'Events active in the last 30 days that NASA has not closed yet.'),
       ),
@@ -569,7 +573,7 @@ const FILES_LIST = [
     id: 'planet', name: 'Planet', subject: 'earthquakes and natural events',
     sources: ['usgs', 'eonet'], signals: ['quakes', 'naturalEvents'], stampSources: ['usgs', 'eonet'], render: renderPlanet,
     keySource: 'usgs',
-    key: (f) => { const q = f.usgs?.data?.strongest; return q ? `M${num(q.mag, 1)}, ${q.place}` : null; },
+    key: (f) => { const q = f.usgs?.data?.strongest; return q ? `Strongest this week: M${num(q.mag, 1)}, ${q.place}` : null; },
   },
   {
     id: 'economy', name: 'Economy', subject: 'inflation, unemployment and growth',
