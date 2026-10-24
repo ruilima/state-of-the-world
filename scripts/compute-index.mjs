@@ -3,6 +3,7 @@
 // Reads public/data/*.json, writes public/data/index.json.
 import { join } from 'node:path';
 import { readJson, writeJson, OUT_DIR, ROOT } from './lib/io.mjs';
+import { nextChallengerReport } from '../public/freshness.js';
 
 const HISTORY_MAX = 7 * 48; // one week at one run every 30 minutes
 
@@ -47,14 +48,41 @@ export function nextState(prev, value, { caution, danger, hysteresis: h }) {
   return down(caution) ? 'stable' : down(danger) ? 'caution' : 'danger';
 }
 
+const DAY_MS = 864e5;
+
+/**
+ * When a signal's data stops counting. Most sources: maxAgeHours after the
+ * last successful download. The Challenger figures are rebuilt every run,
+ * so the download time says nothing: they stop counting 3 days after the
+ * next monthly report was due (or maxAgeHours after the newest report's
+ * publication date when there is no release calendar).
+ */
+export function leftOutAt(sig, file) {
+  if (sig.special === 'layoffRatio') {
+    const l = file?.data?.layoffs;
+    const next = l?.releaseCalendar ? nextChallengerReport(l) : null;
+    if (next) return { at: Date.parse(next.expectedAt) + 3 * DAY_MS, basis: 'report', dueAt: next.expectedAt };
+    const published = [...(l?.monthly ?? [])].sort((a, b) => a.month.localeCompare(b.month)).at(-1)?.publishedAt;
+    return { at: published ? Date.parse(published) + sig.maxAgeHours * 36e5 : -Infinity, basis: 'published' };
+  }
+  return { at: file?.lastSuccessAt ? Date.parse(file.lastSuccessAt) + sig.maxAgeHours * 36e5 : -Infinity, basis: 'download' };
+}
+
 export function computeIndex(config, files, now = Date.now()) {
   const signals = [];
   for (const sig of config.signals) {
     const file = files[sig.source];
-    const base = { id: sig.id, name: sig.name, explain: sig.explain, unit: sig.unit, calm: sig.calm, alarm: sig.alarm, weight: sig.weight, source: sig.source };
+    const limit = leftOutAt(sig, file);
+    const base = {
+      id: sig.id, name: sig.name, explain: sig.explain, unit: sig.unit, calm: sig.calm, alarm: sig.alarm, weight: sig.weight, source: sig.source,
+      maxAgeHours: sig.maxAgeHours, ageBasis: limit.basis, dueAt: limit.dueAt ?? null,
+    };
     if (!file?.data) { signals.push({ ...base, value: null, score: null, missing: `no data from ${sig.source}` }); continue; }
-    const ageH = file.lastSuccessAt ? (now - Date.parse(file.lastSuccessAt)) / 36e5 : Infinity;
-    if (ageH > sig.maxAgeHours) { signals.push({ ...base, value: null, score: null, missing: `${sig.source} data older than ${sig.maxAgeHours} h` }); continue; }
+    if (now > limit.at) {
+      const why = limit.basis === 'report' ? `the Challenger report due on ${limit.dueAt} has not been added` : `${sig.source} data older than ${sig.maxAgeHours} h`;
+      signals.push({ ...base, value: null, score: null, missing: why });
+      continue;
+    }
 
     let value;
     let reason;
