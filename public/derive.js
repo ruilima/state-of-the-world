@@ -117,12 +117,13 @@ export function climateLede(c) {
 /**
  * The AI summary's sources for one paragraph, grouped by site so a domain is
  * written once, each link with its own text: a short headline, or for an
- * earthquake "M6.5 Bonin Islands, Japan region". Texts are made distinct.
+ * earthquake "M6.5 Bonin Islands, Japan region" (always one decimal: M7.0).
+ * Texts are made distinct.
  */
 export function sourceGroups(sources, max = 70) {
   const short = (s) => {
     const quake = (s.title ?? '').match(/^M([\d.]+) earthquake — (.+)$/);
-    if (quake) return `M${quake[1]} ${quake[2]}`;
+    if (quake) return `M${Number(quake[1]).toFixed(1)} ${quake[2]}`;
     const t = (s.title || s.source || s.url).trim();
     if (t.length <= max) return t;
     const cut = t.slice(0, max);

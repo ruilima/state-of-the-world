@@ -123,5 +123,5 @@ test('summary sources: one group per site, a distinct text per link', async () =
   assert.equal(new Set(texts).size, texts.length);
   // Two identical titles still get distinct texts.
   const same = sourceGroups([{ title: 'M7 earthquake — Bonin Islands, Japan region', source: 'USGS', url: 'u1' }, { title: 'M7 earthquake — Bonin Islands, Japan region', source: 'USGS', url: 'u2' }]);
-  assert.deepEqual(same[0].links.map((l) => l.text), ['M7 Bonin Islands, Japan region', 'M7 Bonin Islands, Japan region (2)']);
+  assert.deepEqual(same[0].links.map((l) => l.text), ['M7.0 Bonin Islands, Japan region', 'M7.0 Bonin Islands, Japan region (2)']);
 });

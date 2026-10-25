@@ -45,7 +45,7 @@ export async function collectHeadlines(dir = OUT_DIR) {
     ...(doc?.data?.queries?.conflictHeadlines?.items ?? []).map((a) => ({ topic: 'conflict', title: a.title, source: a.domain, url: a.url })),
     ...(doc?.data?.queries?.aiLayoffHeadlines?.items ?? []).map((a) => ({ topic: 'work and AI', title: a.title, source: a.domain, url: a.url })),
     ...(pulse?.data?.hn ?? []).slice(0, 5).map((a) => ({ topic: 'work and AI', title: a.title, source: `${hostOf(a.url)} (via Hacker News)`, url: a.url })),
-    ...(usgs?.data?.significant ?? []).slice(0, 5).map((q) => ({ topic: 'planet', title: `M${q.mag} earthquake — ${q.place}`, source: 'USGS', url: q.url })),
+    ...(usgs?.data?.significant ?? []).slice(0, 5).map((q) => ({ topic: 'planet', title: `M${Number(q.mag).toFixed(1)} earthquake — ${q.place}`, source: 'USGS', url: q.url })),
   ];
   return items
     .filter((it) => /^https?:\/\//i.test(it.url ?? ''))
@@ -141,7 +141,7 @@ export const SYSTEM =
   'The headlines were found with narrow searches (for example layoffs and AI), so they are not a representative sample: never say "most", "many" or similar, and draw no conclusions about proportions or trends.\n' +
   'Only quote words or name organisations and people that appear in the headlines the paragraph cites. Refer to each source exactly as written in its source field.\n' +
   "Keep the strength of each headline's verb (e.g. 'plans to cut' must not become 'will cut').\n" +
-  "For earthquakes, keep the distance and direction exactly as given; do not replace them with 'near'.\n" +
+  "For earthquakes, keep the distance and direction exactly as given; do not replace them with 'near'. Write each magnitude as given, with its decimal (M7.0).\n" +
   'Write 2 to 4 short paragraphs (about 150 words in total). Each paragraph lists, in `sources`, the ids of the headlines it is based on.\n' +
   'No alarmist adjectives and no forecasts of your own. If the headlines are unclear, say less.';
 
