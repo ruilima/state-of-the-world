@@ -264,7 +264,8 @@ export const run = async () => {
       const r = await summarise(new Anthropic(), MODEL, headlines);
       // Token counts are kept so the monthly cost can be checked from the data branch.
       console.log(`digest usage: ${r.usage.inputTokens} input, ${r.usage.outputTokens} output tokens`);
-      return { meta: { model: r.model, usage: r.usage, attempts: r.attempts, firstAttemptDropped: r.firstAttemptDropped, droppedParagraphs: r.droppedParagraphs }, data: { label: 'AI-generated', paragraphs: r.paragraphs } };
+      // droppedIds: headline ids the model cited that are not in the input list (kept for audit).
+      return { meta: { model: r.model, usage: r.usage, attempts: r.attempts, firstAttemptDropped: r.firstAttemptDropped, droppedParagraphs: r.droppedParagraphs, droppedIds: r.droppedIds ?? [] }, data: { label: 'AI-generated', paragraphs: r.paragraphs } };
     },
   });
 };

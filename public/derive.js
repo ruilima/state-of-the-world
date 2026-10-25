@@ -113,3 +113,31 @@ export function climateLede(c) {
   const twelve = c.twelveMonth ? ` Average of the last 12 months: ${deg(c.twelveMonth.value)} (C3S).` : '';
   return `${month} ${last.month.slice(0, 4)} was ${deg(last.anomaly)} above the 1850–1900 average, ${rank} ${month} on record${after}.${twelve}`;
 }
+
+/**
+ * The AI summary's sources for one paragraph, grouped by site so a domain is
+ * written once, each link with its own text: a short headline, or for an
+ * earthquake "M6.5 Bonin Islands, Japan region". Texts are made distinct.
+ */
+export function sourceGroups(sources, max = 70) {
+  const short = (s) => {
+    const quake = (s.title ?? '').match(/^M([\d.]+) earthquake — (.+)$/);
+    if (quake) return `M${quake[1]} ${quake[2]}`;
+    const t = (s.title || s.source || s.url).trim();
+    if (t.length <= max) return t;
+    const cut = t.slice(0, max);
+    return `${cut.slice(0, Math.max(cut.lastIndexOf(' '), max - 15)).replace(/[\s,;:–—-]+$/, '')}…`;
+  };
+  const groups = new Map();
+  const used = new Map();
+  for (const s of sources) {
+    const site = s.source || (() => { try { return new URL(s.url).hostname; } catch { return ''; } })();
+    let text = short(s);
+    const n = (used.get(text) ?? 0) + 1;
+    used.set(text, n);
+    if (n > 1) text = `${text} (${n})`;
+    if (!groups.has(site)) groups.set(site, []);
+    groups.get(site).push({ url: s.url, text });
+  }
+  return [...groups].map(([site, links]) => ({ site, links }));
+}

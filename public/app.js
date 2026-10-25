@@ -1,7 +1,7 @@
 import { mountEcg } from './ecg.js';
 import { isLate, stampFreshness, delayedNote } from './freshness.js';
 import { mountTicker, tickerTopics } from './ticker.js';
-import { climateLede, dataPeriod, clockReading } from './derive.js';
+import { climateLede, dataPeriod, clockReading, sourceGroups } from './derive.js';
 import { num, compact, pct, tidy, fmtDate, fmtTime, fmtDayTime, fmtMonth, dayMonth, monthShort, STATE_LABEL, SHAPES, updatedLine, monitorModel, recordKey, recordLede } from './text.js';
 import { barChart as bar, lineChart as line, dotMap, tableDetails } from './charts.js';
 
@@ -609,7 +609,8 @@ function renderAhead(files) {
     out.push(h('p', { class: 'small faded' }, `Written by a language model from the headlines on this page, ${ago(dg.lastSuccessAt)}. It may contain mistakes: check the sources.`));
     for (const p of dg.data.paragraphs) {
       out.push(h('p', {}, p.text));
-      if (p.sources.length) out.push(h('p', { class: 'small' }, 'Sources: ', ...p.sources.flatMap((s, i) => [i ? '; ' : '', link(s.url, s.source || s.title)])));
+      // Each link has its own text (a short headline); a site is named once.
+      if (p.sources.length) out.push(h('p', { class: 'small' }, 'Sources: ', ...sourceGroups(p.sources).flatMap((g, i) => [i ? '; ' : '', `${g.site}: `, ...g.links.flatMap((l, j) => [j ? ', ' : '', link(l.url, l.text)])])));
     }
   }
   return out;

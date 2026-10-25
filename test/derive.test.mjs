@@ -105,3 +105,23 @@ test('the temperature lede is written from the data', async () => {
   assert.match(climateLede({ ...c, rank: { position: 3, warmerYears: ['2023', '2024'] } }), /the third-warmest September on record \(after 2023 and 2024\)/);
   assert.match(climateLede({ ...c, rank: { position: 12, warmerYears: Array(11).fill('x') } }), /the 12th-warmest September on record\. /);
 });
+
+test('summary sources: one group per site, a distinct text per link', async () => {
+  const { sourceGroups } = await import('../public/derive.js');
+  const g = sourceGroups([
+    { title: 'Occupiers attack three towns, four villages in Donetsk region over past 24 hours: 2 people killed, 18 wounded', source: 'en.interfax.com.ua', url: 'https://en.interfax.com.ua/a' },
+    { title: 'One man killed, two others hospitalized following missile strike on Lozova – Synehubov', source: 'en.interfax.com.ua', url: 'https://en.interfax.com.ua/b' },
+    { title: 'Three killed in Saudi air strike on Sanaa, says Houthi - linked media', source: 'middleeasteye.net', url: 'https://www.middleeasteye.net/c' },
+    { title: 'M6.5 earthquake — Bonin Islands, Japan region', source: 'USGS', url: 'https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4r9' },
+    { title: 'M6.9 earthquake — 197 km WNW of Port-Olry, Vanuatu', source: 'USGS', url: 'https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4j2' },
+  ]);
+  assert.deepEqual(g.map((x) => x.site), ['en.interfax.com.ua', 'middleeasteye.net', 'USGS']);
+  assert.deepEqual(g[2].links.map((l) => l.text), ['M6.5 Bonin Islands, Japan region', 'M6.9 197 km WNW of Port-Olry, Vanuatu']);
+  assert.equal(g[1].links[0].text, 'Three killed in Saudi air strike on Sanaa, says Houthi - linked media');
+  assert.ok(g[0].links[0].text.endsWith('…') && g[0].links[0].text.length <= 71);
+  const texts = g.flatMap((x) => x.links.map((l) => l.text));
+  assert.equal(new Set(texts).size, texts.length);
+  // Two identical titles still get distinct texts.
+  const same = sourceGroups([{ title: 'M7 earthquake — Bonin Islands, Japan region', source: 'USGS', url: 'u1' }, { title: 'M7 earthquake — Bonin Islands, Japan region', source: 'USGS', url: 'u2' }]);
+  assert.deepEqual(same[0].links.map((l) => l.text), ['M7 Bonin Islands, Japan region', 'M7 Bonin Islands, Japan region (2)']);
+});
