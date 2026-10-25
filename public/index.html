@@ -26,11 +26,9 @@
   <link rel="icon" href="assets/icon-192.png" type="image/png" sizes="192x192">
   <link rel="icon" href="assets/icon-512.png" type="image/png" sizes="512x512">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- The title face only (latin subset); test/fonts.test.mjs checks Google still serves this file. -->
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/bigshouldersdisplay/v24/fC1MPZJEZG-e9gHhdI4-NBbfd2ys3SjJCx12wPgf9g-_3F0YdQ88FFkwSDH92ZWI0g.woff2">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Big+Shoulders+Stencil+Display:wght@800&family=Courier+Prime:wght@400;700&display=swap">
+  <!-- The two faces seen first (masthead and body text). -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/big-shoulders-display-800-latin.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/courier-prime-400-latin.woff2">
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="app.js"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"World Vitals","url":"https://worldvitals.org/","description":"A dashboard of the state of the world: armed conflict, AI and jobs, the planet and the economy. Public sources, checked every 30 minutes.","inLanguage":"en"}</script>
@@ -109,6 +107,7 @@
         <li><a href="https://www.library.hbs.edu/working-knowledge">Harvard Business School Working Knowledge</a> and <a href="https://hbr.org/">Harvard Business Review</a> — the two readings on job cuts and AI</li>
         <li>AI summary written by <a href="https://www.anthropic.com/claude">Anthropic Claude</a> from the headlines on this page</li>
         <li>Map outline: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain)</li>
+        <li>Fonts: Big Shoulders Display and Big Shoulders Stencil Display (The Big Shoulders Project Authors) and Courier Prime (The Courier Prime Project Authors), under the SIL Open Font License 1.1: <a href="assets/fonts/licenses/bigshouldersdisplay-OFL.txt">Big Shoulders Display licence</a>, <a href="assets/fonts/licenses/bigshouldersstencildisplay-OFL.txt">Big Shoulders Stencil Display licence</a>, <a href="assets/fonts/licenses/courierprime-OFL.txt">Courier Prime licence</a></li>
       </ul>
       <p>News items show only the headline, source, date and link. The data refreshes on its own: fast sources every 30 minutes, slow ones once a day; hand-curated figures when their source publishes. Times are in UTC.</p>
       <p>About: an editorial project. <a href="how-the-index-works">How the index works</a> · <a href="https://github.com/ruilima/state-of-the-world">Source code and data on GitHub</a></p>

@@ -1,24 +1,38 @@
-// The <head> preloads one Google Fonts file by its full URL. Google versions
-// those URLs (…/v24/…); if it moves to a new file, the preload would fetch a
-// file the stylesheet no longer uses. This live test catches that.
+// The fonts are served from this site (public/assets/fonts/), with their
+// SIL Open Font License files. No page asks Google Fonts for anything.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
-import { http } from '../scripts/lib/io.mjs';
+import { readFileSync, existsSync } from 'node:fs';
 
-const html = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
-const preload = html.match(/<link rel="preload" as="font"[^>]*href="([^"]+)"/)?.[1];
+const read = (p) => readFileSync(new URL(`../public/${p}`, import.meta.url), 'utf8');
+const exists = (p) => existsSync(new URL(`../public/${p.replace(/^\//, '').replace(/\?.*$/, '')}`, import.meta.url));
+const pages = ['index.html', 'how-the-index-works.html', '404.html'];
+const css = read('styles.css');
 
-test('only the title face is preloaded, from fonts.gstatic.com', () => {
-  assert.match(preload ?? '', /^https:\/\/fonts\.gstatic\.com\/s\/bigshouldersdisplay\/v\d+\/[\w-]+\.woff2$/);
-  assert.equal(html.split('rel="preload"').length - 1, 1);
+test('no page or stylesheet loads Google Fonts', () => {
+  for (const p of [...pages.map(read), css]) assert.ok(!/fonts\.(googleapis|gstatic)\.com/.test(p));
 });
 
-const live = process.env.LIVE ? test : test.skip;
-live('live: Google Fonts still serves the preloaded title face', async () => {
-  const css = await http('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&display=swap', {
-    as: 'text',
-    headers: { 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' },
-  });
-  assert.ok(css.includes(preload), 'the preloaded URL is no longer in the Google Fonts stylesheet');
+test('every font in the stylesheet and every preload exists, and the italic face is gone', () => {
+  const urls = [...css.matchAll(/url\(([^)]+\.woff2)\)/g)].map((m) => m[1]);
+  assert.equal(urls.length, 6);
+  for (const u of urls) assert.ok(exists(u), u);
+  assert.ok(!/italic/.test(css.match(/@font-face[\s\S]*?:root/)[0]));
+  for (const p of pages) {
+    const preloads = [...read(p).matchAll(/<link rel="preload" as="font"[^>]*href="([^"]+)"/g)].map((m) => m[1]);
+    assert.deepEqual(preloads.map((u) => u.split('/').pop()), ['big-shoulders-display-800-latin.woff2', 'courier-prime-400-latin.woff2'], p);
+    for (const u of preloads) assert.ok(exists(u), u);
+  }
+});
+
+test('the web fonts swap in and the fallbacks are sized to them', () => {
+  assert.equal(css.match(/font-display: swap/g).length, 6);
+  for (const name of ['Courier Prime Fallback', 'Big Shoulders Fallback', 'Big Shoulders Fallback Arial']) assert.match(css, new RegExp(`font-family: "${name}"; src: local\\([^;]+; size-adjust: [\\d.]+%; ascent-override`));
+});
+
+test('each family ships its SIL Open Font License and the footer credits it', () => {
+  for (const f of ['bigshouldersdisplay', 'bigshouldersstencildisplay', 'courierprime']) {
+    assert.match(read(`assets/fonts/licenses/${f}-OFL.txt`), /SIL OPEN FONT LICENSE Version 1\.1/);
+    assert.ok(read('index.html').includes(`assets/fonts/licenses/${f}-OFL.txt`));
+  }
 });
