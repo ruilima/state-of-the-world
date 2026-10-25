@@ -104,10 +104,13 @@ function renderMonitor(index, files) {
     // thresholds while the margin holds the state (CSS picks one); screen
     // readers always get the thresholds here and the full note below.
     const scale = document.getElementById('monitor-scale');
+    // replaceChildren would write a null as the text "null": leave it out.
     scale.replaceChildren(
-      h('span', { class: 'monitor__scale-thresholds', 'aria-hidden': 'true' }, m.thresholds.visible),
-      m.scaleHold.holding ? h('span', { class: 'monitor__scale-hold', 'aria-hidden': 'true' }, m.scaleHold.text) : null,
-      h('span', { class: 'visually-hidden' }, m.thresholds.spoken),
+      ...[
+        h('span', { class: 'monitor__scale-thresholds', 'aria-hidden': 'true' }, m.thresholds.visible),
+        m.scaleHold.holding ? h('span', { class: 'monitor__scale-hold', 'aria-hidden': 'true' }, m.scaleHold.text) : null,
+        h('span', { class: 'visually-hidden' }, m.thresholds.spoken),
+      ].filter(Boolean),
     );
     scale.classList.toggle('is-holding', m.scaleHold.holding);
   }

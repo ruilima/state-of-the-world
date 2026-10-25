@@ -33,6 +33,8 @@ async function snapshot(js, path) {
       prerendered: document.querySelectorAll('[data-prerendered]').length,
       liveRegions: document.querySelectorAll('[aria-live]').length,
       stateShapes: document.querySelectorAll('#monitor-state svg').length,
+      // A missing value written as text by mistake.
+      strayWords: (document.body.innerText.match(/\b(null|undefined|NaN)\b/g) ?? []).length,
     };
   }, MONITOR);
   await ctx.close();
@@ -47,6 +49,7 @@ if (pre.keys.join('|') !== drawn.keys.join('|')) problems.push(`record key lines
 if (pre.ledes.map(norm).join('|') !== drawn.ledes.map(norm).join('|')) problems.push(`ledes differ:\n  build ${pre.ledes.map(norm).join(' | ')}\n  page  ${drawn.ledes.map(norm).join(' | ')}`);
 if (drawn.prerendered) problems.push(`${drawn.prerendered} prerendered elements left after the script ran`);
 if (drawn.stateShapes !== 1) problems.push(`the state word has ${drawn.stateShapes} shapes`);
+if (drawn.strayWords || pre.strayWords) problems.push(`"null", "undefined" or "NaN" written on the page (${pre.strayWords} in the build, ${drawn.strayWords} drawn)`);
 if (pre.keys.length !== 5 || !norm(pre.monitor['#monitor-state'])) problems.push('without JavaScript the page does not show the state and five records');
 
 const [mPre, mDrawn] = [await snapshot(false, 'how-the-index-works.html'), await snapshot(true, 'how-the-index-works.html')];
