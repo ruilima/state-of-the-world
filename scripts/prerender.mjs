@@ -19,6 +19,7 @@ import { ROOT, OUT_DIR, readJson } from './lib/io.mjs';
 import { RECORDS, SHAPES, STATE_LABEL, monitorModel, recordKey, recordLede, updatedLine, fmtDate, fmtDayTime } from '../public/text.js';
 import { tickerTopics, pickHeadlines, staleNote, itemHtml } from '../public/ticker.js';
 import { signalsHtml } from '../public/method-table.js';
+import { versionBuild } from './lib/version-assets.mjs';
 
 export const BUILD_DIR = join(ROOT, 'build');
 const SITE = 'https://worldvitals.org/';
@@ -134,7 +135,9 @@ export async function run() {
       { loc: `${SITE}how-the-index-works`, lastmod: lastChanged(['public/how-the-index-works.html', 'config/index.json']) },
     ]),
   );
-  console.log(`prerender: build/ written in ${Date.now() - t0} ms (state ${files.index?.data?.state ?? 'none'}, data of ${home ?? 'unknown date'})`);
+  // Every local script, stylesheet and font gets ?v=<content hash>.
+  const versions = versionBuild(BUILD_DIR);
+  console.log(`prerender: build/ written in ${Date.now() - t0} ms (state ${files.index?.data?.state ?? 'none'}, data of ${home ?? 'unknown date'}, ${Object.keys(versions).length} files versioned)`);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) await run();
