@@ -32,7 +32,15 @@ test('cleanTitle leaves dashes, separators, capitalised pairs, dates and ranges 
     'Jobs cut by 5 - 10%',
     'Already-hyphenated words stay',
     '100% of staff',
+    'Gaza - live updates',
+    'Yemen - analysis',
+    'Sudan war - latest news as RSF advances',
+    'Strike on port - video',
+    'Ceasefire talks - opinion',
+    'Barclays cuts jobs - report',
   ]) assert.equal(cleanTitle(t), t, t);
+  // A tail word inside a longer word does not block the join.
+  assert.equal(cleanTitle('AI - livestreamed layoffs'), 'AI-livestreamed layoffs');
 });
 
 test('the name rule still matches cleaned titles', () => {

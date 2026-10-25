@@ -31,14 +31,18 @@ const urlFor = ({ mode, q, timespan, max }) => {
 // GDELT tokenises titles ("cut 5 , 000 jobs", "word , word", "AI - driven",
 // "28 %"); undo the spacing it adds around commas, full stops, hyphens inside
 // words and percent signs. A hyphen is joined only between a letter and a
-// lower-case letter, so "Yemen - Xinhua", "A - B", "5 - 10" and dashes stay.
+// lower-case letter, so "Yemen - Xinhua", "A - B", "5 - 10" and dashes stay,
+// and never before a word that usually starts a title's tail ("Gaza - live
+// updates", "Yemen - analysis").
+const TAIL_WORDS = 'live|update|updates|analysis|video|videos|photos|photo|report|opinion|explainer|watch|breaking|latest|review|interview|podcast';
+const SPACED_HYPHEN = new RegExp(`(?<=\\p{L}) - (?!(?:${TAIL_WORDS})\\b)(?=\\p{Ll})`, 'gu');
 export const cleanTitle = (t) =>
   t
     .trim()
     .replace(/(\d) , (\d{3})\b/g, '$1,$2')
     .replace(/ ([,.;:!?])(?=\s|$)/g, '$1')
     .replace(/\s+/g, ' ')
-    .replace(/(?<=\p{L}) - (?=\p{Ll})/gu, '-')
+    .replace(SPACED_HYPHEN, '-')
     .replace(/(\d) %/g, '$1%');
 
 // "20261023T120000Z" -> ISO
