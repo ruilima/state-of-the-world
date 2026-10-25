@@ -2,6 +2,7 @@
 import { runSource, http } from './lib/io.mjs';
 import { assertSchema } from './lib/schema.mjs';
 import { URLS, RAW } from './lib/upstream.mjs';
+import { dropTsunamiCentreDuplicates } from './lib/quakes.mjs';
 
 const simplify = (f) => {
   const [lon, lat, depth] = f.geometry.coordinates;
@@ -28,21 +29,29 @@ export const run = () =>
     async fetchData() {
       const week = assertSchema('usgs', RAW.usgs, await http(URLS.usgs('4.5_week')));
       const significant = assertSchema('usgs', RAW.usgs, await http(URLS.usgs('significant_month')));
-      const quakes = week.features.map(simplify).sort((a, b) => b.mag - a.mag);
+      // Unmerged tsunami-centre duplicates go here, once, so the index, the
+      // map, the lists, the counts and the AI summary all see real quakes only.
+      const all = [...week.features, ...significant.features];
+      const w = dropTsunamiCentreDuplicates(week.features, all);
+      const s = dropTsunamiCentreDuplicates(significant.features, all);
+      const droppedDuplicates = [...new Map([...w.dropped, ...s.dropped].map((d) => [d.id, d])).values()];
+      for (const d of droppedDuplicates) console.warn(`usgs: dropped ${d.id} (${d.reason}: ${d.duplicateOf})`);
+      const quakes = w.kept.map(simplify).sort((a, b) => b.mag - a.mag);
       const weekAgo = Date.now() - 7 * 864e5;
-      const sigWeek = significant.features.filter((f) => f.properties.time >= weekAgo);
+      const sigWeek = s.kept.filter((f) => f.properties.time >= weekAgo);
       return {
         data: {
           upstreamGeneratedAt: new Date(week.metadata.generated).toISOString(),
           counts: {
-            m45Week: week.features.length,
+            m45Week: w.kept.length,
             m6Week: quakes.filter((q) => q.mag >= 6).length,
             significantWeek: sigWeek.length,
-            significantMonth: significant.features.length,
+            significantMonth: s.kept.length,
           },
           strongest: quakes[0] ?? null,
-          significant: significant.features.map(simplify),
+          significant: s.kept.map(simplify),
           quakes,
+          droppedDuplicates,
         },
       };
     },
