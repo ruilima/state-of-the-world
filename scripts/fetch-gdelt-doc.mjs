@@ -28,10 +28,18 @@ const urlFor = ({ mode, q, timespan, max }) => {
   return `${URLS.gdeltDoc}?${p}`;
 };
 
-// GDELT tokenises titles ("cut 5 , 000 jobs", "word , word"); undo the
-// spacing it adds around commas and full stops.
+// GDELT tokenises titles ("cut 5 , 000 jobs", "word , word", "AI - driven",
+// "28 %"); undo the spacing it adds around commas, full stops, hyphens inside
+// words and percent signs. A hyphen is joined only between a letter and a
+// lower-case letter, so "Yemen - Xinhua", "A - B", "5 - 10" and dashes stay.
 export const cleanTitle = (t) =>
-  t.trim().replace(/(\d) , (\d{3})\b/g, '$1,$2').replace(/ ([,.;:!?])(?=\s|$)/g, '$1').replace(/\s+/g, ' ');
+  t
+    .trim()
+    .replace(/(\d) , (\d{3})\b/g, '$1,$2')
+    .replace(/ ([,.;:!?])(?=\s|$)/g, '$1')
+    .replace(/\s+/g, ' ')
+    .replace(/(?<=\p{L}) - (?=\p{Ll})/gu, '-')
+    .replace(/(\d) %/g, '$1%');
 
 // "20261023T120000Z" -> ISO
 const gdeltDate = (s) => `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}T${s.slice(9, 11)}:${s.slice(11, 13)}:00Z`;
