@@ -52,9 +52,12 @@ export async function collectHeadlines(dir = OUT_DIR) {
     .map((it, i) => ({ id: i + 1, topic: it.topic, title: cleanText(it.title), source: cleanText(it.source), url: it.url }));
 }
 
-// Capitalised words that are not names: sentence openers and framing words.
+// Capitalised words that are not names: a short list of sentence openers and
+// framing words. Every other capitalised word, at the start of a sentence
+// too, must appear in the cited headlines ("Anadolu (aa.com.tr) reports…" is
+// rejected: the headline only says aa.com.tr).
 const NOT_NAMES = new Set(
-  'a an and as at but by for from in it its on of or the this that these those there today today\'s tonight elsewhere meanwhile also another other separately according headlines headline reports report reported earthquake earthquakes magnitude january february march april may june july august september october november december monday tuesday wednesday thursday friday saturday sunday'.split(' '),
+  'a an and as at but by for from in it its on of or the this that these those there here today today\'s tonight elsewhere meanwhile also another other others separately according several some both however while after before during earlier later overall headlines headline reports report reported earthquake earthquakes magnitude january february march april may june july august september october november december monday tuesday wednesday thursday friday saturday sunday'.split(' '),
 );
 
 /**
@@ -80,13 +83,6 @@ export function unsupportedNames(text, cited) {
     const word = m[0].replace(/['’]s$/, '').replace(/\.+$/, '');
     const w = word.toLowerCase();
     if (NOT_NAMES.has(w) || w.length < 2) continue;
-    // A lone capitalised word opening a sentence is usually an ordinary word
-    // ("Several", "Assessments"). Check it only if it is an acronym or the
-    // start of a multi-word name ("Goldman Sachs").
-    const before = text.slice(0, m.index).trimEnd();
-    const opensSentence = before === '' || /[.!?:]$/.test(before);
-    const nextIsCapital = /^\s+[A-Z]/.test(text.slice(m.index + m[0].length));
-    if (opensSentence && !/[A-Z].*[A-Z]/.test(word) && !nextIsCapital) continue;
     const stem = w.replace(/(ian|ean|an|ese|ish|i)$/, '');
     const singular = w.replace(/s$/, '');
     if (

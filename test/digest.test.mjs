@@ -167,3 +167,19 @@ test('no retry when nothing was dropped, or when only invalid source ids were dr
   assert.equal(badIds.calls.length, 1);
   assert.equal(r.attempts, 1);
 });
+
+test('a name opening a sentence is checked too: "Anadolu (aa.com.tr)" is rejected, the domain alone passes', () => {
+  const aa = { title: '2 children killed, 3 civilians wounded in Houthi attacks in Yemen Taiz: Rights group', source: 'aa.com.tr', url: 'https://aa.com.tr/en/middle-east/2-children-killed-3-civilians-wounded-in-houthi-attacks-in-yemens-taiz-rights-group/4099420' };
+  assert.deepEqual(unsupportedNames('Anadolu (aa.com.tr) reports a rights group saying 2 children were killed in Taiz.', [aa]), ['Anadolu']);
+  assert.deepEqual(unsupportedNames('aa.com.tr reports a rights group saying 2 children were killed in Taiz.', [aa]), []);
+});
+
+test('legitimate sentence openers and names still pass', () => {
+  const cited = [
+    { title: 'Ukraine says Starlink restored as attacks continue in Russia and Ukraine', source: 'aljazeera.com', url: 'https://www.aljazeera.com/news/x' },
+    { title: 'Three killed in Saudi air strike on Sanaa, says Houthi - linked media', source: 'middleeasteye.net', url: 'https://www.middleeasteye.net/live-blog/x' },
+    { title: 'Barclays to cut 5,000 jobs in AI - driven push to lower costs', source: 'thestar.com.my', url: 'https://www.thestar.com.my/tech/x' },
+  ];
+  const text = "In today's headlines, Ukraine says Starlink has been restored. Middle East Eye says Houthi-linked media report three killed in Sanaa. Several outlets cover jobs: The Star (thestar.com.my) reports Barclays is to cut 5,000 jobs. According to Al Jazeera, attacks continue.";
+  assert.deepEqual(unsupportedNames(text, cited), []);
+});
