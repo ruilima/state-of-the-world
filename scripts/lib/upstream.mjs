@@ -87,7 +87,7 @@ export const RAW = {
   ucdpApiPage: s.obj({
     TotalCount: s.num,
     NextPageUrl: s.nullable(s.str),
-    Result: s.arr(s.obj({ id: s.num, date_start: s.str, type_of_violence: s.num, best: s.num, country: s.str, latitude: s.num, longitude: s.num })),
+    Result: s.arr(s.obj({ id: s.num, date_start: s.str, date_end: s.str, type_of_violence: s.num, best: s.num, country: s.str, latitude: s.num, longitude: s.num })),
   }),
 
   hnSearch: s.obj({

@@ -1,11 +1,21 @@
 // UCDP — Uppsala Conflict Data Program (CC BY 4.0).
 //
 // Two modes, chosen automatically and written into the output as `mode`:
-//   "api"       — UCDP_TOKEN is set: candidate events come from the UCDP API.
-//   "downloads" — no token: the same candidate events come from the monthly
-//                 CSV that UCDP publishes on its downloads page.
-// In both modes the long annual series comes from the Battle-Related
-// Deaths dataset (published once a year).
+//   "api"       — UCDP_TOKEN is set: candidate events come from the UCDP API
+//                 (https://ucdp.uu.se/apidocs/), resource gedevents, at the
+//                 cumulative candidate version of the year (26.01.26.09 =
+//                 January–September 2026, the same events as the file
+//                 GEDEvent_v26_01_26_09.csv). Not 26.1: that is the annual GED,
+//                 which ends in 2025. Not 26.0.9: that is September alone.
+//   "downloads" — no token, or the API failed: the same candidate events come
+//                 from the cumulative CSV on UCDP's downloads page.
+// The version comes from the downloads page in both modes, so a new release
+// is picked up the day it is listed. The long annual series comes from the
+// Battle-Related Deaths file (published once a year) in both modes.
+//
+// The token is sent only in the x-ucdp-access-token header, only to
+// ucdpapi.pcr.uu.se, and never written to the log or the output: error
+// messages are replaced by plain reasons (see apiReason).
 //
 // "Candidate" events are UCDP's preliminary monthly release: they are
 // revised in the next annual dataset. The site says so.
@@ -21,13 +31,12 @@ async function findDownloadLinks() {
   const html = await http(URLS.ucdpDownloads, { as: 'text' });
   const abs = (p) => new URL(p, URLS.ucdpDownloads).href;
   // Cumulative candidate file for the current year, e.g. GEDEvent_v26_01_26_09.csv
-  const cumulative = [...html.matchAll(/href="([^"]*candidateged\/GEDEvent_v(\d+)_01_\d+_(\d+)\.csv)"/gi)].map((m) => ({ url: abs(m[1]), yy: m[2], month: Number(m[3]) }));
-  // Latest single-month candidate file, e.g. GEDEvent_v26_0_9.csv (-> API version 26.0.9)
-  const monthly = [...html.matchAll(/href="([^"]*candidateged\/GEDEvent_v(\d+)_0_(\d+)\.csv)"/gi)].map((m) => ({ url: abs(m[1]), version: `${m[2]}.0.${m[3]}` }));
+  // (-> API version 26.01.26.09).
+  const cumulative = [...html.matchAll(/href="([^"]*candidateged\/GEDEvent_v(\d+)_01_(\d+)_(\d+)\.csv)"/gi)].map((m) => ({ url: abs(m[1]), yy: m[2], month: Number(m[4]), apiVersion: `${m[2]}.01.${m[3]}.${m[4]}` }));
   const brd = [...html.matchAll(/href="([^"]*brd\/ucdp-brd-dyadic-(\d+)-csv\.zip)"/gi)].map((m) => ({ url: abs(m[1]), version: m[2] }));
   if (!cumulative.length || !brd.length) throw new SchemaError('ucdp', ['downloads page no longer lists candidate GED or BRD CSV files']);
   const newest = (arr, key) => arr.sort((a, b) => String(b[key]).localeCompare(String(a[key]), undefined, { numeric: true }))[0];
-  return { cumulative: newest(cumulative, 'month'), monthly: monthly.length ? newest(monthly, 'version') : null, brd: newest(brd, 'version') };
+  return { cumulative: newest(cumulative, 'month'), brd: newest(brd, 'version') };
 }
 
 async function annualSeries(brdLink) {
@@ -66,15 +75,56 @@ async function eventsFromDownloads(link) {
   return rows.map(toEvent);
 }
 
-export async function eventsFromApi(token, version, year) {
+// 1,000 rows a page (about 1.9 MB): 17 requests for January–September 2026.
+// The limit is 5,000 requests a day, errors included; MAX_PAGES caps one run.
+export const PAGE_SIZE = 1000;
+export const MAX_PAGES = 40;
+
+/**
+ * Every event of one candidate version, page by page (pages start at 0).
+ * No date filter: the API's StartDate works on date_end, and the file has
+ * no filter either. Page URLs are built here rather than taken from
+ * NextPageUrl, so the token only ever goes to URLS.ucdpApi. No retries: a
+ * failure falls back to the downloads, and errors count against the quota.
+ * Returns { events, requests }.
+ */
+export async function eventsFromApi(token, version) {
   const events = [];
-  let url = `${URLS.ucdpApi}/gedevents/${version}?pagesize=1000&StartDate=${year}-01-01`;
-  for (let page = 0; url && page < 50; page++) {
-    const body = assertSchema('ucdp', RAW.ucdpApiPage, await http(url, { headers: { 'x-ucdp-access-token': token } }));
-    events.push(...body.Result.map(toEvent));
-    url = body.NextPageUrl || null;
+  const ids = new Set();
+  let total = null;
+  let pages = 1;
+  let requests = 0;
+  for (let page = 0; page < pages; page++) {
+    const url = `${URLS.ucdpApi}/gedevents/${version}?pagesize=${PAGE_SIZE}&page=${page}`;
+    requests++;
+    const body = assertSchema('ucdp', RAW.ucdpApiPage, await http(url, { headers: { 'x-ucdp-access-token': token }, retries: 0, timeout: 60000 }));
+    if (total === null) {
+      total = body.TotalCount;
+      pages = Math.ceil(total / PAGE_SIZE);
+      if (!total) throw new Error(`UCDP API: version ${version} has no events`);
+      if (pages > MAX_PAGES) throw new Error(`UCDP API: ${total} events would take ${pages} requests (cap ${MAX_PAGES})`);
+    }
+    for (const r of body.Result) {
+      if (ids.has(r.id)) continue;
+      ids.add(r.id);
+      events.push(toEvent(r));
+    }
   }
-  return events;
+  // Pages are only stable "within a session": check nothing was lost.
+  if (events.length !== total) throw new Error(`UCDP API: received ${events.length} distinct events of ${total}`);
+  return { events, requests };
+}
+
+/** Why the API was not used, in plain English, without the token or the response body. */
+export function apiReason(err) {
+  const st = err?.status;
+  if (st === 401 || st === 403) return `The UCDP API refused the access token (HTTP ${st}).`;
+  if (st === 429) return 'The UCDP API daily request limit was reached (HTTP 429).';
+  if (st) return `The UCDP API returned an error (HTTP ${st}).`;
+  if (err?.name === 'TimeoutError' || err?.name === 'AbortError') return 'The UCDP API did not answer in time.';
+  if (/^UCDP API: /.test(err?.message ?? '')) return `The UCDP API answer was incomplete (${err.message.slice(10, 120)}).`;
+  if (err?.name === 'SchemaError') return 'The UCDP API answer had an unexpected format.';
+  return 'The UCDP API could not be reached.';
 }
 
 const DAY = 864e5;
@@ -104,7 +154,12 @@ export function splitByMonth(start, end) {
 // spread over the months it covers. The file covers months up to the newest
 // start date; a share that falls after that stays in the last covered month,
 // so no deaths are lost and no half-covered month appears.
-export function summarise(events) {
+// Events are put in a fixed order first: the API and the file list them
+// differently, and the order decides ties on the map and which country names
+// a 1° cell that spans a border.
+const eventKey = (e) => [e.date, e.end, e.country, e.lat, e.lon, e.type, e.deaths].join('|');
+export function summarise(unordered) {
+  const events = unordered.map((e) => [eventKey(e), e]).sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0)).map(([, e]) => e);
   const months = new Map();
   const slot = (m) => months.get(m) ?? months.set(m, { month: m, deaths: 0, events: 0, byType: { 1: 0, 2: 0, 3: 0 } }).get(m);
   const lastCovered = events.reduce((a, e) => (e.date.slice(0, 7) > a ? e.date.slice(0, 7) : a), '');
@@ -135,17 +190,72 @@ export function summarise(events) {
   for (const e of latest) byCountry.set(e.country, (byCountry.get(e.country) ?? 0) + e.deaths);
   const topCountries = [...byCountry.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8).map(([country, deaths]) => ({ country, deaths: Math.round(deaths) }));
 
-  // Map: latest month, aggregated to 1° cells so the file stays small.
+  // Map: latest month, aggregated to 1° cells so the file stays small. A cell
+  // on a border is named after the country with most deaths in it
+  // (alphabetical on a tie).
   const cells = new Map();
   for (const e of latest) {
     if (!Number.isFinite(e.lat) || !Number.isFinite(e.lon)) continue;
     const k = `${Math.round(e.lat)},${Math.round(e.lon)}`;
-    const c = cells.get(k) ?? { lat: Math.round(e.lat), lon: Math.round(e.lon), deaths: 0, events: 0, country: e.country };
+    const c = cells.get(k) ?? { lat: Math.round(e.lat), lon: Math.round(e.lon), deaths: 0, events: 0, byCountry: new Map() };
     c.deaths += e.deaths; c.events++;
+    c.byCountry.set(e.country, (c.byCountry.get(e.country) ?? 0) + e.deaths);
     cells.set(k, c);
   }
-  const points = [...cells.values()].map((c) => ({ ...c, deaths: Math.round(c.deaths) }));
+  const points = [...cells.values()].map(({ byCountry, ...c }) => ({
+    ...c,
+    deaths: Math.round(c.deaths),
+    country: [...byCountry].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0][0],
+  }));
   return { monthly, latestMonth, topCountries, points: points.sort((a, b) => b.deaths - a.deaths) };
+}
+
+/** The ucdp.json payload ({ meta, data }); the API is tried when `token` is set. */
+export async function fetchUcdp(token = process.env.UCDP_TOKEN?.trim()) {
+  const links = await findDownloadLinks();
+  const annual = await annualSeries(links.brd);
+
+  // With a token, try the API first. Any API failure (bad token, quota,
+  // outage, incomplete answer) falls back to the official downloads, and
+  // the output says which one was used and why.
+  const version = links.cumulative.apiVersion;
+  let mode = 'downloads';
+  let events;
+  let apiError = null;
+  let apiRequests = 0;
+  if (token) {
+    try {
+      const r = await eventsFromApi(token, version);
+      events = r.events;
+      apiRequests = r.requests;
+      mode = 'api';
+    } catch (err) {
+      apiError = apiReason(err);
+      console.error(`ucdp: using the download files instead of the API. ${apiError}`);
+    }
+  }
+  if (!events) events = await eventsFromDownloads(links.cumulative);
+  if (mode === 'api') console.log(`ucdp: ${events.length} candidate events from the API, version ${version}, ${apiRequests} requests`);
+  const annualText = `Annual series: Battle-Related Deaths ${links.brd.version}.`;
+  const modeNote =
+    mode === 'api'
+      ? `Candidate events from the UCDP API (version ${version}). ${annualText}`
+      : apiError
+        ? `${apiError} Candidate events were read from UCDP's download file instead (version ${version}). ${annualText}`
+        : `Candidate events read from UCDP's download file (version ${version}), because no API token is set. ${annualText}`;
+  return {
+    meta: { mode, modeNote, apiError, apiRequests },
+    data: {
+      annual,
+      annualVersion: links.brd.version,
+      annualNote: 'Battle deaths in conflicts where at least one side is a state ("best" estimate).',
+      candidateVersion: version,
+      candidateMode: mode,
+      candidateFile: mode === 'downloads' ? links.cumulative.url : null,
+      violenceTypes: VIOLENCE,
+      ...summarise(events),
+    },
+  };
 }
 
 export const run = () =>
@@ -159,47 +269,7 @@ export const run = () =>
       // https://ucdp.uu.se/downloads/ next to each dataset.
       citation: 'UCDP Candidate Events Dataset and UCDP Battle-Related Deaths Dataset, Department of Peace and Conflict Research, Uppsala University.',
     },
-    async fetchData() {
-      const token = process.env.UCDP_TOKEN?.trim();
-      const links = await findDownloadLinks();
-      const annual = await annualSeries(links.brd);
-      const year = new Date().getUTCFullYear();
-
-      // With a token, try the API first. Any API failure (bad token, new
-      // version naming, outage) falls back to the official downloads, and
-      // the page says which one was used.
-      let mode = 'downloads';
-      let events;
-      let apiError = null;
-      if (token && links.monthly) {
-        try {
-          events = await eventsFromApi(token, links.monthly.version, year);
-          mode = 'api';
-        } catch (err) {
-          apiError = String(err.message).slice(0, 160);
-          console.error(`ucdp: API failed, using downloads instead: ${apiError}`);
-        }
-      }
-      if (!events) events = await eventsFromDownloads(links.cumulative);
-      const annualText = `Annual series: Battle-Related Deaths ${links.brd.version}.`;
-      const modeNote =
-        mode === 'api'
-          ? `Candidate events from the UCDP API (version ${links.monthly.version}). ${annualText}`
-          : apiError
-            ? `The UCDP API request failed, so candidate events were read from the official monthly download. ${annualText}`
-            : `Official downloads: candidate events read from UCDP's monthly file, because no API token is set. ${annualText}`;
-      return {
-        meta: { mode, modeNote, apiError },
-        data: {
-          annual,
-          annualVersion: links.brd.version,
-          annualNote: 'Battle deaths in conflicts where at least one side is a state ("best" estimate).',
-          candidateFile: mode === 'downloads' ? links.cumulative.url : null,
-          violenceTypes: VIOLENCE,
-          ...summarise(events),
-        },
-      };
-    },
+    fetchData: () => fetchUcdp(),
   });
 
 if (import.meta.url === `file://${process.argv[1]}`) await run();
