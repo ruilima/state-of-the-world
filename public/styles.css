@@ -343,6 +343,7 @@ a:hover { text-decoration-thickness: 2px; }
     margin-left: -18px;
     border-left: 2px solid var(--tube-low);
     opacity: 0.6;
+    width: 2px;
   }
   .monitor__trace { height: clamp(120px, 13vw, 176px); }
   .monitor__state { margin: 0; font-size: clamp(3rem, 6vw, 5.25rem); }
