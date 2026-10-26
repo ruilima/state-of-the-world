@@ -288,13 +288,16 @@ function renderConflict(files) {
   out.push(lastGoodNote(doc.conflictHeadlines));
 
   if (files.ucdp) {
+    // Which release the monthly figures are, and how they were read.
+    const u = files.ucdp.data;
+    const via = u?.candidateVersion ? ` Candidate events version ${u.candidateVersion}, read ${u.candidateMode === 'api' ? 'through the UCDP API' : 'from UCDP’s download file'}.` : '';
     out.push(
       h(
         'p',
         { class: 'colophon' },
         'Data: ',
         link('https://ucdp.uu.se/', 'UCDP'),
-        ', Uppsala University, CC BY 4.0.',
+        `, Uppsala University, CC BY 4.0.${via}`,
       ),
     );
   }
