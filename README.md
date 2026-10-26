@@ -70,7 +70,7 @@ trigger of its own (see *Cron trigger* below).
    |---|---|---|
    | `CLOUDFLARE_API_TOKEN` | yes, to deploy | `wrangler pages deploy` |
    | `CLOUDFLARE_ACCOUNT_ID` | yes, to deploy | `wrangler pages deploy` (Workers & Pages → Account ID) |
-   | `UCDP_TOKEN` | no | UCDP events through the API instead of the download files |
+   | `UCDP_TOKEN` | no | UCDP candidate events through the API instead of the download file (see [UCDP API](#ucdp-api)) |
    | `ANTHROPIC_API_KEY` | no | the daily AI-generated summary; without it the block is hidden |
 
    `GITHUB_TOKEN` is provided by Actions; nothing to add. Without the Cloudflare secrets
@@ -81,6 +81,32 @@ trigger of its own (see *Cron trigger* below).
    no `data` branch yet, it fetches every source and backfills 7 days of GDELT event
    files (a few minutes). After that the Worker in `cron-trigger/` starts the runs (next
    section).
+
+## UCDP API
+
+With the `UCDP_TOKEN` secret set, `scripts/fetch-ucdp.mjs` reads the candidate events
+from the [UCDP API](https://ucdp.uu.se/apidocs/) instead of the CSV on the downloads page:
+
+- **Version:** the cumulative candidate release of the year, e.g. `26.01.26.09`
+  (January–September 2026), taken from the file name on the downloads page, so a new
+  release is used on the day it is listed. Not `26.1` (the annual GED, up to 2025) and
+  not `26.0.9` (one month).
+- **Requests:** `gedevents/<version>?pagesize=1000&page=0…`, 17 for 16,633 events,
+  once a day in the `slow` group. The limit is 5,000 a day, errors included. Failed
+  requests are not retried, and a run stops at 40 pages.
+- **Token:** sent only in the `x-ucdp-access-token` header, only to
+  `ucdpapi.pcr.uu.se`. The workflow passes the secret to the "Fetch sources" step, and
+  GitHub masks it as `***` in the logs. The module never logs it or writes it to
+  `ucdp.json`.
+- **Fallback:** on any API failure (401/403, 429, server error, incomplete or unexpected
+  answer, timeout) the same events are read from the official download file. The plain
+  reason goes into `apiError` and `modeNote` in `ucdp.json`, e.g. "The UCDP API refused
+  the access token (HTTP 401)." Without a token the download file is used, as before.
+- **Same data:** both paths give the same events and the same summary (checked on 26 Oct
+  2026: 16,633 events, 140,009 deaths, identical months, countries and map).
+- **Renew or revoke:** ask the API maintainer named on the API page, replace the
+  `UCDP_TOKEN` secret, and update any local copy. Deleting the secret switches the site
+  back to the download file at the next `slow` run.
 
 ## Cron trigger (Cloudflare Worker)
 

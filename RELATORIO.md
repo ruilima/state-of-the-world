@@ -23,7 +23,7 @@ Testados a 23/10/2026 a partir desta máquina.
 | NASA EONET v3 | `https://eonet.gsfc.nasa.gov/api/v3/events?status=open&days=30` | **Sim.** O cabeçalho diz `application/rss+xml`, mas o corpo é JSON. | Não | 30 min |
 | Hacker News | `https://hn.algolia.com/api/v1/search_by_date` (pesquisa oficial; a API Firebase também responde, mas não tem pesquisa) | **Sim.** | Não | 30 min |
 | arXiv | `https://export.arxiv.org/api/query` | **Sim.** Atom XML. | Não | 30 min |
-| UCDP API | `https://ucdpapi.pcr.uu.se/api/gedevents/<versão>` | **Não testável sem token:** responde 401 "API token required. Add header: x-ucdp-access-token". O código do modo API está escrito segundo a documentação, mas **nunca correu**. | Sim (`UCDP_TOKEN`) | diária |
+| UCDP API | `https://ucdpapi.pcr.uu.se/api/gedevents/<versão>` | **Sim, com token** (26 out 2026). Versão candidata cumulativa `26.01.26.09`: 16 633 eventos, os mesmos do ficheiro `GEDEvent_v26_01_26_09.csv` (ver secção 12). | Sim (`UCDP_TOKEN`) | diária |
 | UCDP downloads | `https://ucdp.uu.se/downloads/` (lista de ficheiros) | **Sim.** Inclui os eventos candidatos mensais (`candidateged/GEDEvent_v26_0_9.csv`, setembro de 2026), o acumulado de 2026 e o Battle-Related Deaths anual (`brd/ucdp-brd-dyadic-261-csv.zip`). | Não | diária |
 | World Bank | `https://api.worldbank.org/v2/country/{WLD,EUU,PRT}/indicator/{FP.CPI.TOTL.ZG,SL.UEM.TOTL.ZS,NY.GDP.MKTP.KD.ZG}?format=json` | **Sim.** Envelope `[metadata, dados]`; `lastupdated` 2026-10-08; último ano com dados: 2025. | Não | diária |
 
@@ -156,7 +156,7 @@ dias de ficheiros GDELT (`GDELT_MAX_DOWNLOADS=672`).
 |---|---|---|
 | `CLOUDFLARE_API_TOKEN` | Sim, para publicar | `wrangler pages deploy`. Token com permissão *Account → Cloudflare Pages → Edit*. |
 | `CLOUDFLARE_ACCOUNT_ID` | Sim, para publicar | Id da conta Cloudflare (Workers & Pages → Account ID). |
-| `UCDP_TOKEN` | Não | Eventos UCDP pela API. Sem ele, usam-se os ficheiros mensais oficiais. |
+| `UCDP_TOKEN` | Não | Eventos candidatos UCDP pela API (17 pedidos por execução, limite 5 000 por dia). Sem ele, ou se a API falhar, usa-se o ficheiro oficial. |
 | `ANTHROPIC_API_KEY` | Não | Resumo diário "AI-generated". Sem ela, o bloco fica escondido. |
 
 O `GITHUB_TOKEN` é fornecido pelo Actions. Tens de ativar *Settings → Actions → General
@@ -208,8 +208,8 @@ paráfrase imprecisa.
   - o Índice de Condição.
 - **Diário:** World Bank (dados anuais); UCDP, verificado todos os dias; temperatura
   global do C3S (dados mensais, verificados todos os dias); resumo por IA.
-- **Mensal:** UCDP, eventos candidatos, pelos downloads oficiais (último mês: setembro
-  de 2026); Challenger, à mão, no ficheiro curado.
+- **Mensal:** UCDP, eventos candidatos, pela API ou pelo ficheiro oficial (último mês:
+  setembro de 2026); Challenger, à mão, no ficheiro curado.
 - **Anual:** UCDP Battle-Related Deaths (até 2025); Doomsday Clock (à mão).
 - **Manual:** `data/curated/layoffs.json`, `doomsday.json`, `horizons.json`.
 
@@ -233,8 +233,8 @@ paráfrase imprecisa.
   de cobertura falharam; a página explica a falta das curvas.
 - **Manchetes GDELT com ruído:** o filtro por palavras no título deixa passar algumas sem
   relação.
-- **Modo API do UCDP:** nunca correu com um token válido. Só foi testado o caminho de
-  falha, com um token inválido (401 → downloads).
+- **UCDP, versão trimestral:** o acumulado do ano (`26.01.26.09`) sai de três em três
+  meses. Os lançamentos de um só mês (`26.0.10`, …) não são usados, tal como antes.
 - **Cores de estado claras:** só podem ir sobre os painéis escuros (monitor, inventário),
   nunca diretamente sobre a sala.
 
@@ -321,18 +321,63 @@ Com os mesmos dados (a última execução local antes da publicação):
 
 ## 12. UCDP
 
-- **Com `UCDP_TOKEN`:** o pedido à API leva o cabeçalho `x-ucdp-access-token`. Um teste
-  automático (`test/ucdp.test.mjs`) confirma o cabeçalho e o URL.
-- **Se a API falhar,** o módulo usa os downloads oficiais e não dá erro. Testado com um
-  token inválido: 401 → downloads, e a página diz "The UCDP API request failed, so
-  candidate events were read from the official monthly download."
-- **Sem token,** usa os downloads. No site publicado aparece: "Mode: official download
-  files. Official downloads: candidate events read from UCDP's monthly file, because no
-  API token is set."
-- **Versão da API:** o módulo pede `gedevents/<versão candidata>` (hoje `26.0.9`), tirada
-  da lista de downloads. O teu exemplo usa `26.1`, que é a versão anual. Se a versão
-  candidata não for aceite pela API, o site cai para os downloads e diz isso. Saberemos
-  quando o token chegar.
+- **Versão certa:** a documentação (https://ucdp.uu.se/apidocs/) separa três coisas no
+  recurso `gedevents`:
+  - `26.1` é o GED **anual** (até 2025). Não é o que usamos;
+  - `26.0.9` é o candidato **de um só mês** (setembro de 2026, 2 014 eventos);
+  - `26.01.26.09` é o candidato **cumulativo** de janeiro a setembro de 2026
+    (16 633 eventos), o mesmo que o ficheiro `GEDEvent_v26_01_26_09.csv`. É este que
+    usamos.
+
+  O código anterior pedia `26.0.9` com `StartDate`, o que traria só setembro; foi
+  corrigido antes de alguma vez correr.
+- **Versões novas:** a versão vem do nome do ficheiro cumulativo na página de downloads
+  (`GEDEvent_v26_01_26_09.csv` → `26.01.26.09`), lida em cada execução. Quando a UCDP
+  publicar `26.01.26.12`, a execução seguinte usa-a. A página da API lista as mesmas
+  versões em "Available datasets".
+- **Pedido:** `GET https://ucdpapi.pcr.uu.se/api/gedevents/26.01.26.09?pagesize=1000&page=N`,
+  com N de 0 a 16, e o token só no cabeçalho `x-ucdp-access-token`. Sem filtro de datas:
+  o `StartDate` da API filtra por `date_end`, e o ficheiro também não tem filtro. Os
+  URLs das páginas são construídos pelo módulo, não copiados do `NextPageUrl`, por isso
+  o token só vai para `ucdpapi.pcr.uu.se`.
+- **Campos usados:** `id`, `date_start`, `date_end`, `type_of_violence`, `best`,
+  `country`, `latitude`, `longitude`. Também vêm `low` e `high`, mas usamos sempre o
+  `best`. O texto das fontes (`source_article`, …) nunca é guardado.
+- **Página:** a documentação não diz o máximo. Testado: 1 000 linhas (1,9 MB por página)
+  e 10 000 (19 MB) são aceites. Usamos 1 000.
+- **Orçamento:** 17 pedidos por execução slow (16 633 eventos / 1 000). Uma execução por
+  dia, mais as que se disparam à mão: cerca de 17 a 70 pedidos por dia, para um limite
+  de 5 000 (os erros também contam). O módulo não repete pedidos falhados e recusa
+  descarregar mais de 40 páginas numa execução.
+- **Verificação:** o módulo confirma que recebeu tantos eventos distintos (por `id`)
+  quantos o `TotalCount` anuncia. Se não, conta como falha.
+- **Se a API falhar** (token recusado, 401/403; limite diário, 429; erro do servidor;
+  resposta incompleta ou com outro formato; sem resposta), o módulo usa o ficheiro
+  oficial e escreve o motivo em inglês simples em `apiError` e `modeNote` no
+  `ucdp.json`. Por exemplo: "The UCDP API refused the access token (HTTP 401)." Nunca
+  escreve a mensagem de erro original nem o corpo da resposta, que poderiam conter o
+  token.
+- **Sem token,** usa o ficheiro, como antes.
+- **No site:** o colofão do dossier de conflito diz "Candidate events version
+  26.01.26.09, read through the UCDP API." (ou "from UCDP's download file."). A lista de
+  fontes diz que os eventos vêm da API ou, se ela falhar, dos ficheiros. A licença CC BY
+  4.0 e as citações não mudaram.
+- **Comparação (26 out 2026, mesma versão pelas duas vias):** 16 633 eventos e 140 009
+  mortes nas duas; os nove meses (com a repartição por dias e por tipo de violência), os
+  79 países e cada evento são iguais. A única diferença estava no mapa: a ordem dos
+  eventos é diferente na API e no ficheiro, e decidia o nome de 10 células de 1° em
+  fronteiras. Agora o resumo ordena os eventos antes de somar, e uma célula leva o nome
+  do país com mais mortes nela (por exemplo Rússia → Ucrânia em 50° N 36° E).
+- **O segredo:** `UCDP_TOKEN` nos segredos do repositório (Settings → Secrets and
+  variables → Actions). O passo "Fetch sources" recebe-o em `env`; o GitHub substitui o
+  valor por `***` em qualquer linha de log. Para testes locais está em
+  `~/.config/worldvitals/ucdp-token` (chmod 600, fora do repositório) e lê-se para uma
+  variável de ambiente só dentro do comando.
+- **Renovar ou revogar:** pede ao responsável da API (Mert Can Yilmaz,
+  mertcan.yilmaz@pcr.uu.se, indicado na documentação) para revogar ou reemitir o token.
+  Depois substitui o segredo `UCDP_TOKEN` no GitHub e o ficheiro local. Para deixar de
+  usar a API sem esperar, apaga o segredo: o site volta ao ficheiro oficial na execução
+  slow seguinte.
 
 ## 13. Workflow e publicação
 
@@ -426,7 +471,6 @@ minutos as execuções agendadas.
 **Por confirmar:**
 - o valor do Layoffs.fyi (falta a tua leitura);
 - os 90 s de 2024 do Doomsday Clock (apenas fonte secundária);
-- o modo API do UCDP (falta o token).
 
 **Ação tua:**
 1. **Layoffs.fyi:** quando leres o contador, envia-me "N pessoas em N empresas, a
@@ -436,8 +480,8 @@ minutos as execuções agendadas.
    2026. Acrescenta uma linha a `monthly` e muda `updatedAt`, ou pede-me. Se a linha não
    entrar até 3 dias depois da data prevista, o dossier mostra DATA OUTDATED. Em janeiro
    de 2027 é preciso acrescentar o calendário de 2027.
-3. **UCDP_TOKEN:** quando chegar, põe-no nos segredos do repositório. O módulo passa a
-   usar a API sozinho e, se falhar, volta aos downloads.
+3. **UCDP_TOKEN:** já está nos segredos (26 out 2026). Ver a secção 12 para renovar ou
+   revogar.
 4. **Opcional:** dar ao token do `gh` desta máquina acesso a este repositório
    (*Contents: write* e *Actions: write*), para eu poder fazer push e disparar
    workflows sem SSH nem cliques teus.
