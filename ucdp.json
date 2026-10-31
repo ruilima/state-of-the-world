@@ -1,0 +1,3838 @@
+{
+ "id": "ucdp",
+ "source": {
+  "name": "UCDP — Uppsala Conflict Data Program",
+  "url": "https://ucdp.uu.se/",
+  "license": "CC BY 4.0",
+  "citation": "UCDP Candidate Events Dataset and UCDP Battle-Related Deaths Dataset, Department of Peace and Conflict Research, Uppsala University."
+ },
+ "status": "ok",
+ "fetchedAt": "2026-10-31T05:24:07.837Z",
+ "lastSuccessAt": "2026-10-31T05:24:07.837Z",
+ "error": null,
+ "mode": "api",
+ "modeNote": "Candidate events from the UCDP API (version 26.01.26.09). Annual series: Battle-Related Deaths 261.",
+ "apiError": null,
+ "apiRequests": 17,
+ "data": {
+  "annual": [
+   {
+    "year": 1989,
+    "deaths": 55667,
+    "conflicts": 41
+   },
+   {
+    "year": 1990,
+    "deaths": 80297,
+    "conflicts": 49
+   },
+   {
+    "year": 1991,
+    "deaths": 70355,
+    "conflicts": 53
+   },
+   {
+    "year": 1992,
+    "deaths": 53410,
+    "conflicts": 51
+   },
+   {
+    "year": 1993,
+    "deaths": 44954,
+    "conflicts": 44
+   },
+   {
+    "year": 1994,
+    "deaths": 38523,
+    "conflicts": 50
+   },
+   {
+    "year": 1995,
+    "deaths": 36755,
+    "conflicts": 41
+   },
+   {
+    "year": 1996,
+    "deaths": 28903,
+    "conflicts": 41
+   },
+   {
+    "year": 1997,
+    "deaths": 40389,
+    "conflicts": 39
+   },
+   {
+    "year": 1998,
+    "deaths": 40238,
+    "conflicts": 40
+   },
+   {
+    "year": 1999,
+    "deaths": 81444,
+    "conflicts": 40
+   },
+   {
+    "year": 2000,
+    "deaths": 78674,
+    "conflicts": 40
+   },
+   {
+    "year": 2001,
+    "deaths": 23623,
+    "conflicts": 38
+   },
+   {
+    "year": 2002,
+    "deaths": 21157,
+    "conflicts": 33
+   },
+   {
+    "year": 2003,
+    "deaths": 23265,
+    "conflicts": 33
+   },
+   {
+    "year": 2004,
+    "deaths": 19716,
+    "conflicts": 33
+   },
+   {
+    "year": 2005,
+    "deaths": 12437,
+    "conflicts": 33
+   },
+   {
+    "year": 2006,
+    "deaths": 20287,
+    "conflicts": 33
+   },
+   {
+    "year": 2007,
+    "deaths": 19381,
+    "conflicts": 35
+   },
+   {
+    "year": 2008,
+    "deaths": 28867,
+    "conflicts": 39
+   },
+   {
+    "year": 2009,
+    "deaths": 36006,
+    "conflicts": 37
+   },
+   {
+    "year": 2010,
+    "deaths": 21652,
+    "conflicts": 31
+   },
+   {
+    "year": 2011,
+    "deaths": 25636,
+    "conflicts": 37
+   },
+   {
+    "year": 2012,
+    "deaths": 74155,
+    "conflicts": 33
+   },
+   {
+    "year": 2013,
+    "deaths": 93495,
+    "conflicts": 39
+   },
+   {
+    "year": 2014,
+    "deaths": 116005,
+    "conflicts": 46
+   },
+   {
+    "year": 2015,
+    "deaths": 104479,
+    "conflicts": 54
+   },
+   {
+    "year": 2016,
+    "deaths": 90764,
+    "conflicts": 54
+   },
+   {
+    "year": 2017,
+    "deaths": 72137,
+    "conflicts": 54
+   },
+   {
+    "year": 2018,
+    "deaths": 55166,
+    "conflicts": 52
+   },
+   {
+    "year": 2019,
+    "deaths": 52676,
+    "conflicts": 57
+   },
+   {
+    "year": 2020,
+    "deaths": 73139,
+    "conflicts": 57
+   },
+   {
+    "year": 2021,
+    "deaths": 199816,
+    "conflicts": 54
+   },
+   {
+    "year": 2022,
+    "deaths": 284981,
+    "conflicts": 56
+   },
+   {
+    "year": 2023,
+    "deaths": 138917,
+    "conflicts": 59
+   },
+   {
+    "year": 2024,
+    "deaths": 155038,
+    "conflicts": 59
+   },
+   {
+    "year": 2025,
+    "deaths": 153643,
+    "conflicts": 65
+   }
+  ],
+  "annualVersion": "261",
+  "annualNote": "Battle deaths in conflicts where at least one side is a state (\"best\" estimate).",
+  "candidateVersion": "26.01.26.09",
+  "candidateMode": "api",
+  "candidateFile": null,
+  "violenceTypes": {
+   "1": "State-based conflict",
+   "2": "Non-state conflict",
+   "3": "One-sided violence"
+  },
+  "monthly": [
+   {
+    "month": "2026-01",
+    "deaths": 35279,
+    "events": 1698,
+    "byType": {
+     "1": 13256,
+     "2": 1072,
+     "3": 20950
+    }
+   },
+   {
+    "month": "2026-02",
+    "deaths": 13104,
+    "events": 1450,
+    "byType": {
+     "1": 11567,
+     "2": 565,
+     "3": 972
+    }
+   },
+   {
+    "month": "2026-03",
+    "deaths": 18180,
+    "events": 2055,
+    "byType": {
+     "1": 16530,
+     "2": 829,
+     "3": 820
+    }
+   },
+   {
+    "month": "2026-04",
+    "deaths": 14170,
+    "events": 1799,
+    "byType": {
+     "1": 12444,
+     "2": 941,
+     "3": 785
+    }
+   },
+   {
+    "month": "2026-05",
+    "deaths": 13531,
+    "events": 1769,
+    "byType": {
+     "1": 11322,
+     "2": 1186,
+     "3": 1023
+    }
+   },
+   {
+    "month": "2026-06",
+    "deaths": 10735,
+    "events": 1997,
+    "byType": {
+     "1": 9068,
+     "2": 963,
+     "3": 705
+    }
+   },
+   {
+    "month": "2026-07",
+    "deaths": 10265,
+    "events": 2021,
+    "byType": {
+     "1": 8517,
+     "2": 936,
+     "3": 812
+    }
+   },
+   {
+    "month": "2026-08",
+    "deaths": 11157,
+    "events": 1860,
+    "byType": {
+     "1": 9379,
+     "2": 1056,
+     "3": 722
+    }
+   },
+   {
+    "month": "2026-09",
+    "deaths": 13588,
+    "events": 1984,
+    "byType": {
+     "1": 12118,
+     "2": 932,
+     "3": 539
+    }
+   }
+  ],
+  "latestMonth": "2026-09",
+  "topCountries": [
+   {
+    "country": "Ukraine",
+    "deaths": 6211
+   },
+   {
+    "country": "Yemen",
+    "deaths": 3177
+   },
+   {
+    "country": "Pakistan",
+    "deaths": 675
+   },
+   {
+    "country": "Ethiopia",
+    "deaths": 609
+   },
+   {
+    "country": "Nigeria",
+    "deaths": 456
+   },
+   {
+    "country": "Sudan",
+    "deaths": 277
+   },
+   {
+    "country": "Mexico",
+    "deaths": 274
+   },
+   {
+    "country": "Colombia",
+    "deaths": 242
+   }
+  ],
+  "points": [
+   {
+    "lat": 49,
+    "lon": 32,
+    "deaths": 5715,
+    "events": 2,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 13,
+    "lon": 44,
+    "deaths": 1434,
+    "events": 101,
+    "country": "Yemen"
+   },
+   {
+    "lat": 14,
+    "lon": 43,
+    "deaths": 540,
+    "events": 17,
+    "country": "Yemen"
+   },
+   {
+    "lat": 15,
+    "lon": 45,
+    "deaths": 441,
+    "events": 18,
+    "country": "Yemen"
+   },
+   {
+    "lat": 14,
+    "lon": 44,
+    "deaths": 293,
+    "events": 36,
+    "country": "Yemen"
+   },
+   {
+    "lat": 12,
+    "lon": 39,
+    "deaths": 287,
+    "events": 14,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 16,
+    "lon": 48,
+    "deaths": 197,
+    "events": 6,
+    "country": "Yemen"
+   },
+   {
+    "lat": 30,
+    "lon": 67,
+    "deaths": 166,
+    "events": 15,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 15,
+    "lon": -5,
+    "deaths": 115,
+    "events": 9,
+    "country": "Mali"
+   },
+   {
+    "lat": 12,
+    "lon": 40,
+    "deaths": 115,
+    "events": 20,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 3,
+    "lon": 44,
+    "deaths": 114,
+    "events": 5,
+    "country": "Somalia"
+   },
+   {
+    "lat": 48,
+    "lon": 37,
+    "deaths": 111,
+    "events": 40,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 35,
+    "lon": 71,
+    "deaths": 107,
+    "events": 4,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 33,
+    "lon": 70,
+    "deaths": 90,
+    "events": 13,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 16,
+    "lon": 45,
+    "deaths": 78,
+    "events": 14,
+    "country": "Yemen"
+   },
+   {
+    "lat": 49,
+    "lon": 38,
+    "deaths": 67,
+    "events": 34,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 31,
+    "lon": 34,
+    "deaths": 65,
+    "events": 52,
+    "country": "Israel"
+   },
+   {
+    "lat": 34,
+    "lon": 71,
+    "deaths": 65,
+    "events": 9,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 32,
+    "lon": 34,
+    "deaths": 63,
+    "events": 42,
+    "country": "Israel"
+   },
+   {
+    "lat": 25,
+    "lon": -107,
+    "deaths": 60,
+    "events": 47,
+    "country": "Mexico"
+   },
+   {
+    "lat": 10,
+    "lon": 9,
+    "deaths": 56,
+    "events": 26,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 21,
+    "lon": 93,
+    "deaths": 55,
+    "events": 4,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 33,
+    "lon": 71,
+    "deaths": 53,
+    "events": 18,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 14,
+    "lon": 38,
+    "deaths": 52,
+    "events": 11,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 17,
+    "lon": 43,
+    "deaths": 51,
+    "events": 5,
+    "country": "Yemen"
+   },
+   {
+    "lat": 9,
+    "lon": 35,
+    "deaths": 49,
+    "events": 3,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 12,
+    "lon": 7,
+    "deaths": 46,
+    "events": 13,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 5,
+    "lon": -76,
+    "deaths": 44,
+    "events": 37,
+    "country": "Colombia"
+   },
+   {
+    "lat": 12,
+    "lon": 6,
+    "deaths": 44,
+    "events": 8,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 11,
+    "lon": 14,
+    "deaths": 43,
+    "events": 11,
+    "country": "Nigeria"
+   },
+   {
+    "lat": -1,
+    "lon": 29,
+    "deaths": 42,
+    "events": 7,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 10,
+    "lon": 28,
+    "deaths": 42,
+    "events": 2,
+    "country": "Sudan"
+   },
+   {
+    "lat": 13,
+    "lon": 14,
+    "deaths": 40,
+    "events": 4,
+    "country": "Cameroon"
+   },
+   {
+    "lat": 14,
+    "lon": 5,
+    "deaths": 38,
+    "events": 1,
+    "country": "Niger"
+   },
+   {
+    "lat": 19,
+    "lon": -99,
+    "deaths": 37,
+    "events": 25,
+    "country": "Mexico"
+   },
+   {
+    "lat": 33,
+    "lon": 35,
+    "deaths": 37,
+    "events": 14,
+    "country": "Lebanon"
+   },
+   {
+    "lat": 9,
+    "lon": 9,
+    "deaths": 37,
+    "events": 20,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 13,
+    "lon": 43,
+    "deaths": 35,
+    "events": 9,
+    "country": "Yemen"
+   },
+   {
+    "lat": 10,
+    "lon": 13,
+    "deaths": 35,
+    "events": 5,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 48,
+    "lon": 35,
+    "deaths": 34,
+    "events": 22,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 50,
+    "lon": 31,
+    "deaths": 34,
+    "events": 16,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 11,
+    "lon": 31,
+    "deaths": 33,
+    "events": 5,
+    "country": "Sudan"
+   },
+   {
+    "lat": 11,
+    "lon": -75,
+    "deaths": 32,
+    "events": 29,
+    "country": "Colombia"
+   },
+   {
+    "lat": 48,
+    "lon": 36,
+    "deaths": 32,
+    "events": 11,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 14,
+    "lon": 45,
+    "deaths": 32,
+    "events": 6,
+    "country": "Yemen"
+   },
+   {
+    "lat": 13,
+    "lon": 28,
+    "deaths": 31,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 33,
+    "lon": -117,
+    "deaths": 31,
+    "events": 23,
+    "country": "Mexico"
+   },
+   {
+    "lat": 11,
+    "lon": 25,
+    "deaths": 31,
+    "events": 3,
+    "country": "Sudan"
+   },
+   {
+    "lat": -34,
+    "lon": 19,
+    "deaths": 29,
+    "events": 7,
+    "country": "South Africa"
+   },
+   {
+    "lat": 17,
+    "lon": -100,
+    "deaths": 28,
+    "events": 21,
+    "country": "Mexico"
+   },
+   {
+    "lat": 34,
+    "lon": 70,
+    "deaths": 28,
+    "events": 5,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 8,
+    "lon": -73,
+    "deaths": 26,
+    "events": 21,
+    "country": "Colombia"
+   },
+   {
+    "lat": 47,
+    "lon": 33,
+    "deaths": 25,
+    "events": 19,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 32,
+    "lon": 70,
+    "deaths": 25,
+    "events": 6,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 17,
+    "lon": 46,
+    "deaths": 25,
+    "events": 3,
+    "country": "Yemen"
+   },
+   {
+    "lat": 29,
+    "lon": 67,
+    "deaths": 24,
+    "events": 6,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 50,
+    "lon": 37,
+    "deaths": 24,
+    "events": 8,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 3,
+    "lon": 46,
+    "deaths": 23,
+    "events": 3,
+    "country": "Somalia"
+   },
+   {
+    "lat": 12,
+    "lon": 14,
+    "deaths": 23,
+    "events": 4,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 30,
+    "lon": 66,
+    "deaths": 22,
+    "events": 5,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 15,
+    "lon": 3,
+    "deaths": 22,
+    "events": 1,
+    "country": "Niger"
+   },
+   {
+    "lat": 51,
+    "lon": 35,
+    "deaths": 21,
+    "events": 11,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 23,
+    "lon": -106,
+    "deaths": 20,
+    "events": 16,
+    "country": "Mexico"
+   },
+   {
+    "lat": 11,
+    "lon": 30,
+    "deaths": 20,
+    "events": 2,
+    "country": "Sudan"
+   },
+   {
+    "lat": 1,
+    "lon": 43,
+    "deaths": 20,
+    "events": 2,
+    "country": "Somalia"
+   },
+   {
+    "lat": 15,
+    "lon": 2,
+    "deaths": 20,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 14,
+    "lon": 14,
+    "deaths": 20,
+    "events": 2,
+    "country": "Chad"
+   },
+   {
+    "lat": 15,
+    "lon": 43,
+    "deaths": 19,
+    "events": 3,
+    "country": "Yemen"
+   },
+   {
+    "lat": 13,
+    "lon": 6,
+    "deaths": 19,
+    "events": 4,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 2,
+    "lon": 30,
+    "deaths": 19,
+    "events": 4,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 31,
+    "lon": 66,
+    "deaths": 19,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": -4,
+    "lon": 29,
+    "deaths": 18,
+    "events": 9,
+    "country": "DR Congo"
+   },
+   {
+    "lat": -3,
+    "lon": -80,
+    "deaths": 18,
+    "events": 15,
+    "country": "Ecuador"
+   },
+   {
+    "lat": -2,
+    "lon": 29,
+    "deaths": 18,
+    "events": 10,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 11,
+    "lon": -74,
+    "deaths": 18,
+    "events": 18,
+    "country": "Colombia"
+   },
+   {
+    "lat": 13,
+    "lon": 31,
+    "deaths": 18,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 17,
+    "lon": 44,
+    "deaths": 18,
+    "events": 2,
+    "country": "Yemen"
+   },
+   {
+    "lat": 16,
+    "lon": 28,
+    "deaths": 18,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": -26,
+    "lon": 27,
+    "deaths": 18,
+    "events": 1,
+    "country": "South Africa"
+   },
+   {
+    "lat": 34,
+    "lon": 72,
+    "deaths": 17,
+    "events": 6,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 48,
+    "lon": 34,
+    "deaths": 17,
+    "events": 8,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 13,
+    "lon": 39,
+    "deaths": 17,
+    "events": 7,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 36,
+    "lon": 37,
+    "deaths": 17,
+    "events": 1,
+    "country": "Syria"
+   },
+   {
+    "lat": 6,
+    "lon": 10,
+    "deaths": 16,
+    "events": 11,
+    "country": "Cameroon"
+   },
+   {
+    "lat": -2,
+    "lon": -80,
+    "deaths": 16,
+    "events": 11,
+    "country": "Ecuador"
+   },
+   {
+    "lat": 8,
+    "lon": 29,
+    "deaths": 16,
+    "events": 1,
+    "country": "South Sudan"
+   },
+   {
+    "lat": -3,
+    "lon": -60,
+    "deaths": 16,
+    "events": 14,
+    "country": "Brazil"
+   },
+   {
+    "lat": 11,
+    "lon": 4,
+    "deaths": 16,
+    "events": 2,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 19,
+    "lon": 98,
+    "deaths": 15,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 29,
+    "lon": 68,
+    "deaths": 15,
+    "events": 6,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 10,
+    "lon": 39,
+    "deaths": 15,
+    "events": 2,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 14,
+    "lon": -4,
+    "deaths": 15,
+    "events": 6,
+    "country": "Mali"
+   },
+   {
+    "lat": 31,
+    "lon": 70,
+    "deaths": 15,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 8,
+    "lon": 34,
+    "deaths": 15,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 32,
+    "lon": -116,
+    "deaths": 14,
+    "events": 3,
+    "country": "Mexico"
+   },
+   {
+    "lat": 50,
+    "lon": 36,
+    "deaths": 14,
+    "events": 12,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 11,
+    "lon": 7,
+    "deaths": 14,
+    "events": 6,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 2,
+    "lon": 44,
+    "deaths": 14,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 13,
+    "lon": 40,
+    "deaths": 14,
+    "events": 24,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 2,
+    "lon": 42,
+    "deaths": 14,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 48,
+    "lon": 38,
+    "deaths": 14,
+    "events": 6,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 12,
+    "lon": 5,
+    "deaths": 13,
+    "events": 4,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 19,
+    "lon": -72,
+    "deaths": 13,
+    "events": 5,
+    "country": "Haiti"
+   },
+   {
+    "lat": 12,
+    "lon": 25,
+    "deaths": 13,
+    "events": 3,
+    "country": "Sudan"
+   },
+   {
+    "lat": 27,
+    "lon": 62,
+    "deaths": 13,
+    "events": 2,
+    "country": "Iran"
+   },
+   {
+    "lat": 8,
+    "lon": 38,
+    "deaths": 13,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 14,
+    "lon": 0,
+    "deaths": 12,
+    "events": 1,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 15,
+    "lon": -1,
+    "deaths": 12,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": -2,
+    "lon": -81,
+    "deaths": 12,
+    "events": 7,
+    "country": "Ecuador"
+   },
+   {
+    "lat": 21,
+    "lon": 95,
+    "deaths": 12,
+    "events": 5,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 9,
+    "lon": -74,
+    "deaths": 12,
+    "events": 5,
+    "country": "Colombia"
+   },
+   {
+    "lat": 35,
+    "lon": 40,
+    "deaths": 12,
+    "events": 2,
+    "country": "Syria"
+   },
+   {
+    "lat": 23,
+    "lon": 96,
+    "deaths": 12,
+    "events": 3,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 14,
+    "lon": -6,
+    "deaths": 12,
+    "events": 3,
+    "country": "Mali"
+   },
+   {
+    "lat": 33,
+    "lon": 69,
+    "deaths": 12,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": -30,
+    "lon": 31,
+    "deaths": 12,
+    "events": 1,
+    "country": "South Africa"
+   },
+   {
+    "lat": 26,
+    "lon": 63,
+    "deaths": 11,
+    "events": 5,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 50,
+    "lon": 30,
+    "deaths": 11,
+    "events": 5,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 1,
+    "lon": 29,
+    "deaths": 10,
+    "events": 5,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 10,
+    "lon": -74,
+    "deaths": 10,
+    "events": 8,
+    "country": "Colombia"
+   },
+   {
+    "lat": 22,
+    "lon": 96,
+    "deaths": 10,
+    "events": 4,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 6,
+    "lon": -76,
+    "deaths": 10,
+    "events": 9,
+    "country": "Colombia"
+   },
+   {
+    "lat": 28,
+    "lon": 65,
+    "deaths": 10,
+    "events": 3,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 27,
+    "lon": 64,
+    "deaths": 10,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 20,
+    "lon": -73,
+    "deaths": 10,
+    "events": 2,
+    "country": "Haiti"
+   },
+   {
+    "lat": 31,
+    "lon": 64,
+    "deaths": 10,
+    "events": 1,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 2,
+    "lon": -77,
+    "deaths": 9,
+    "events": 3,
+    "country": "Colombia"
+   },
+   {
+    "lat": 3,
+    "lon": -77,
+    "deaths": 9,
+    "events": 6,
+    "country": "Colombia"
+   },
+   {
+    "lat": 29,
+    "lon": 64,
+    "deaths": 9,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 25,
+    "lon": 93,
+    "deaths": 9,
+    "events": 4,
+    "country": "India"
+   },
+   {
+    "lat": 4,
+    "lon": 9,
+    "deaths": 9,
+    "events": 5,
+    "country": "Cameroon"
+   },
+   {
+    "lat": 49,
+    "lon": 36,
+    "deaths": 9,
+    "events": 4,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 46,
+    "lon": 31,
+    "deaths": 9,
+    "events": 7,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 10,
+    "lon": -76,
+    "deaths": 9,
+    "events": 8,
+    "country": "Colombia"
+   },
+   {
+    "lat": 20,
+    "lon": -101,
+    "deaths": 9,
+    "events": 17,
+    "country": "Mexico"
+   },
+   {
+    "lat": 4,
+    "lon": -75,
+    "deaths": 9,
+    "events": 6,
+    "country": "Colombia"
+   },
+   {
+    "lat": 52,
+    "lon": 34,
+    "deaths": 9,
+    "events": 5,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 12,
+    "lon": 8,
+    "deaths": 8,
+    "events": 5,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 13,
+    "lon": 7,
+    "deaths": 8,
+    "events": 3,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 32,
+    "lon": 71,
+    "deaths": 8,
+    "events": 5,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 47,
+    "lon": 34,
+    "deaths": 8,
+    "events": 5,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 21,
+    "lon": -101,
+    "deaths": 8,
+    "events": 32,
+    "country": "Mexico"
+   },
+   {
+    "lat": 12,
+    "lon": 30,
+    "deaths": 8,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 47,
+    "lon": 37,
+    "deaths": 8,
+    "events": 3,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 11,
+    "lon": 37,
+    "deaths": 8,
+    "events": 4,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 18,
+    "lon": 96,
+    "deaths": 8,
+    "events": 2,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 27,
+    "lon": 67,
+    "deaths": 8,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 11,
+    "lon": 8,
+    "deaths": 8,
+    "events": 3,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 32,
+    "lon": -106,
+    "deaths": 8,
+    "events": 8,
+    "country": "Mexico"
+   },
+   {
+    "lat": 10,
+    "lon": 7,
+    "deaths": 8,
+    "events": 2,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 52,
+    "lon": 36,
+    "deaths": 8,
+    "events": 3,
+    "country": "Russia"
+   },
+   {
+    "lat": 16,
+    "lon": 43,
+    "deaths": 8,
+    "events": 2,
+    "country": "Yemen"
+   },
+   {
+    "lat": 7,
+    "lon": 11,
+    "deaths": 8,
+    "events": 2,
+    "country": "Nigeria"
+   },
+   {
+    "lat": -23,
+    "lon": -43,
+    "deaths": 8,
+    "events": 7,
+    "country": "Brazil"
+   },
+   {
+    "lat": -5,
+    "lon": 143,
+    "deaths": 8,
+    "events": 1,
+    "country": "Papua New Guinea"
+   },
+   {
+    "lat": 29,
+    "lon": 70,
+    "deaths": 8,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 29,
+    "lon": 69,
+    "deaths": 8,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 31,
+    "lon": 49,
+    "deaths": 7,
+    "events": 1,
+    "country": "Iran"
+   },
+   {
+    "lat": 10,
+    "lon": -4,
+    "deaths": 7,
+    "events": 1,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": -34,
+    "lon": 18,
+    "deaths": 7,
+    "events": 5,
+    "country": "South Africa"
+   },
+   {
+    "lat": 4,
+    "lon": 28,
+    "deaths": 7,
+    "events": 1,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 47,
+    "lon": 32,
+    "deaths": 7,
+    "events": 6,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 19,
+    "lon": 95,
+    "deaths": 7,
+    "events": 3,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 23,
+    "lon": 95,
+    "deaths": 7,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 13,
+    "lon": 30,
+    "deaths": 7,
+    "events": 4,
+    "country": "Sudan"
+   },
+   {
+    "lat": 13,
+    "lon": 23,
+    "deaths": 7,
+    "events": 2,
+    "country": "Sudan"
+   },
+   {
+    "lat": 32,
+    "lon": 66,
+    "deaths": 7,
+    "events": 2,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 49,
+    "lon": 37,
+    "deaths": 7,
+    "events": 5,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 18,
+    "lon": -93,
+    "deaths": 7,
+    "events": 7,
+    "country": "Mexico"
+   },
+   {
+    "lat": 24,
+    "lon": 96,
+    "deaths": 7,
+    "events": 3,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 47,
+    "lon": 35,
+    "deaths": 7,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 15,
+    "lon": -89,
+    "deaths": 7,
+    "events": 1,
+    "country": "Guatemala"
+   },
+   {
+    "lat": -13,
+    "lon": -56,
+    "deaths": 6,
+    "events": 1,
+    "country": "Brazil"
+   },
+   {
+    "lat": 13,
+    "lon": 13,
+    "deaths": 6,
+    "events": 2,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 27,
+    "lon": 57,
+    "deaths": 6,
+    "events": 2,
+    "country": "Iran"
+   },
+   {
+    "lat": -1,
+    "lon": -81,
+    "deaths": 6,
+    "events": 6,
+    "country": "Ecuador"
+   },
+   {
+    "lat": 35,
+    "lon": 44,
+    "deaths": 6,
+    "events": 4,
+    "country": "Iraq"
+   },
+   {
+    "lat": 35,
+    "lon": 36,
+    "deaths": 6,
+    "events": 2,
+    "country": "Syria"
+   },
+   {
+    "lat": 10,
+    "lon": -75,
+    "deaths": 6,
+    "events": 6,
+    "country": "Colombia"
+   },
+   {
+    "lat": 33,
+    "lon": 36,
+    "deaths": 6,
+    "events": 3,
+    "country": "Lebanon"
+   },
+   {
+    "lat": -12,
+    "lon": 40,
+    "deaths": 6,
+    "events": 4,
+    "country": "Mozambique"
+   },
+   {
+    "lat": 16,
+    "lon": 46,
+    "deaths": 6,
+    "events": 2,
+    "country": "Yemen"
+   },
+   {
+    "lat": 3,
+    "lon": -75,
+    "deaths": 6,
+    "events": 6,
+    "country": "Colombia"
+   },
+   {
+    "lat": 29,
+    "lon": 61,
+    "deaths": 6,
+    "events": 3,
+    "country": "Iran"
+   },
+   {
+    "lat": 28,
+    "lon": 66,
+    "deaths": 6,
+    "events": 7,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 14,
+    "lon": -2,
+    "deaths": 6,
+    "events": 4,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 26,
+    "lon": 62,
+    "deaths": 6,
+    "events": 4,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 15,
+    "lon": 46,
+    "deaths": 6,
+    "events": 4,
+    "country": "Yemen"
+   },
+   {
+    "lat": 31,
+    "lon": 67,
+    "deaths": 6,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 11,
+    "lon": 35,
+    "deaths": 6,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 7,
+    "lon": 125,
+    "deaths": 6,
+    "events": 1,
+    "country": "Philippines"
+   },
+   {
+    "lat": 10,
+    "lon": 6,
+    "deaths": 6,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 8,
+    "lon": 9,
+    "deaths": 5,
+    "events": 4,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 17,
+    "lon": 45,
+    "deaths": 5,
+    "events": 2,
+    "country": "Yemen"
+   },
+   {
+    "lat": 13,
+    "lon": 0,
+    "deaths": 5,
+    "events": 3,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 2,
+    "lon": -76,
+    "deaths": 5,
+    "events": 5,
+    "country": "Colombia"
+   },
+   {
+    "lat": -26,
+    "lon": 28,
+    "deaths": 5,
+    "events": 4,
+    "country": "South Africa"
+   },
+   {
+    "lat": 49,
+    "lon": 35,
+    "deaths": 5,
+    "events": 3,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 51,
+    "lon": 34,
+    "deaths": 5,
+    "events": 3,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 9,
+    "lon": -73,
+    "deaths": 5,
+    "events": 5,
+    "country": "Colombia"
+   },
+   {
+    "lat": -3,
+    "lon": 29,
+    "deaths": 5,
+    "events": 2,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 0,
+    "lon": -78,
+    "deaths": 5,
+    "events": 2,
+    "country": "Ecuador"
+   },
+   {
+    "lat": 20,
+    "lon": 93,
+    "deaths": 5,
+    "events": 4,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 12,
+    "lon": 34,
+    "deaths": 5,
+    "events": 2,
+    "country": "Sudan"
+   },
+   {
+    "lat": -11,
+    "lon": 40,
+    "deaths": 5,
+    "events": 4,
+    "country": "Mozambique"
+   },
+   {
+    "lat": 19,
+    "lon": 97,
+    "deaths": 5,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 32,
+    "lon": -117,
+    "deaths": 5,
+    "events": 4,
+    "country": "Mexico"
+   },
+   {
+    "lat": 11,
+    "lon": 34,
+    "deaths": 5,
+    "events": 2,
+    "country": "Sudan"
+   },
+   {
+    "lat": 29,
+    "lon": 65,
+    "deaths": 5,
+    "events": 3,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 14,
+    "lon": 28,
+    "deaths": 5,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 13,
+    "lon": 37,
+    "deaths": 5,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 14,
+    "lon": 29,
+    "deaths": 5,
+    "events": 3,
+    "country": "Sudan"
+   },
+   {
+    "lat": 22,
+    "lon": 98,
+    "deaths": 5,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": -5,
+    "lon": 139,
+    "deaths": 4,
+    "events": 1,
+    "country": "Indonesia"
+   },
+   {
+    "lat": 34,
+    "lon": 47,
+    "deaths": 4,
+    "events": 1,
+    "country": "Iran"
+   },
+   {
+    "lat": 17,
+    "lon": -99,
+    "deaths": 4,
+    "events": 3,
+    "country": "Mexico"
+   },
+   {
+    "lat": 9,
+    "lon": 40,
+    "deaths": 4,
+    "events": 3,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 43,
+    "lon": 40,
+    "deaths": 4,
+    "events": 1,
+    "country": "Russia"
+   },
+   {
+    "lat": 51,
+    "lon": 38,
+    "deaths": 4,
+    "events": 2,
+    "country": "Russia"
+   },
+   {
+    "lat": 4,
+    "lon": -76,
+    "deaths": 4,
+    "events": 4,
+    "country": "Colombia"
+   },
+   {
+    "lat": 18,
+    "lon": 95,
+    "deaths": 4,
+    "events": 3,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 30,
+    "lon": 69,
+    "deaths": 4,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 17,
+    "lon": -93,
+    "deaths": 4,
+    "events": 2,
+    "country": "Mexico"
+   },
+   {
+    "lat": 11,
+    "lon": -5,
+    "deaths": 4,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 18,
+    "lon": -3,
+    "deaths": 4,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 18,
+    "lon": -100,
+    "deaths": 4,
+    "events": 4,
+    "country": "Mexico"
+   },
+   {
+    "lat": 19,
+    "lon": -102,
+    "deaths": 4,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 16,
+    "lon": 32,
+    "deaths": 4,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 6,
+    "lon": 37,
+    "deaths": 4,
+    "events": 2,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 1,
+    "lon": 44,
+    "deaths": 4,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 25,
+    "lon": 62,
+    "deaths": 4,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 32,
+    "lon": 69,
+    "deaths": 4,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 9,
+    "lon": 126,
+    "deaths": 4,
+    "events": 1,
+    "country": "Philippines"
+   },
+   {
+    "lat": 14,
+    "lon": 22,
+    "deaths": 4,
+    "events": 2,
+    "country": "Sudan"
+   },
+   {
+    "lat": 10,
+    "lon": -73,
+    "deaths": 4,
+    "events": 4,
+    "country": "Colombia"
+   },
+   {
+    "lat": 5,
+    "lon": -74,
+    "deaths": 4,
+    "events": 3,
+    "country": "Colombia"
+   },
+   {
+    "lat": 13,
+    "lon": 4,
+    "deaths": 4,
+    "events": 4,
+    "country": "Nigeria"
+   },
+   {
+    "lat": -12,
+    "lon": 39,
+    "deaths": 4,
+    "events": 2,
+    "country": "Mozambique"
+   },
+   {
+    "lat": 22,
+    "lon": 95,
+    "deaths": 4,
+    "events": 2,
+    "country": "Myanmar"
+   },
+   {
+    "lat": -4,
+    "lon": -80,
+    "deaths": 4,
+    "events": 2,
+    "country": "Ecuador"
+   },
+   {
+    "lat": 53,
+    "lon": 34,
+    "deaths": 4,
+    "events": 1,
+    "country": "Russia"
+   },
+   {
+    "lat": 15,
+    "lon": 44,
+    "deaths": 4,
+    "events": 1,
+    "country": "Yemen"
+   },
+   {
+    "lat": 5,
+    "lon": 24,
+    "deaths": 4,
+    "events": 2,
+    "country": "Central African Republic"
+   },
+   {
+    "lat": 47,
+    "lon": 36,
+    "deaths": 4,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 27,
+    "lon": 63,
+    "deaths": 4,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 25,
+    "lon": 94,
+    "deaths": 4,
+    "events": 2,
+    "country": "India"
+   },
+   {
+    "lat": 25,
+    "lon": 95,
+    "deaths": 4,
+    "events": 1,
+    "country": "India"
+   },
+   {
+    "lat": -4,
+    "lon": 137,
+    "deaths": 4,
+    "events": 1,
+    "country": "Indonesia"
+   },
+   {
+    "lat": 27,
+    "lon": 66,
+    "deaths": 4,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 0,
+    "lon": 29,
+    "deaths": 3,
+    "events": 2,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 0,
+    "lon": -51,
+    "deaths": 3,
+    "events": 3,
+    "country": "Brazil"
+   },
+   {
+    "lat": -29,
+    "lon": 30,
+    "deaths": 3,
+    "events": 2,
+    "country": "South Africa"
+   },
+   {
+    "lat": 27,
+    "lon": 55,
+    "deaths": 3,
+    "events": 1,
+    "country": "Iran"
+   },
+   {
+    "lat": 14,
+    "lon": 98,
+    "deaths": 3,
+    "events": 3,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 10,
+    "lon": 8,
+    "deaths": 3,
+    "events": 2,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 21,
+    "lon": 96,
+    "deaths": 3,
+    "events": 2,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 2,
+    "lon": 36,
+    "deaths": 3,
+    "events": 1,
+    "country": "Kenya"
+   },
+   {
+    "lat": 20,
+    "lon": -102,
+    "deaths": 3,
+    "events": 2,
+    "country": "Mexico"
+   },
+   {
+    "lat": 7,
+    "lon": -75,
+    "deaths": 3,
+    "events": 3,
+    "country": "Colombia"
+   },
+   {
+    "lat": 17,
+    "lon": 97,
+    "deaths": 3,
+    "events": 3,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 13,
+    "lon": 5,
+    "deaths": 3,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 17,
+    "lon": -95,
+    "deaths": 3,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 33,
+    "lon": -115,
+    "deaths": 3,
+    "events": 3,
+    "country": "Mexico"
+   },
+   {
+    "lat": -4,
+    "lon": 140,
+    "deaths": 3,
+    "events": 1,
+    "country": "Indonesia"
+   },
+   {
+    "lat": 8,
+    "lon": -74,
+    "deaths": 3,
+    "events": 3,
+    "country": "Colombia"
+   },
+   {
+    "lat": 18,
+    "lon": -72,
+    "deaths": 3,
+    "events": 1,
+    "country": "Haiti"
+   },
+   {
+    "lat": 9,
+    "lon": 6,
+    "deaths": 3,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 13,
+    "lon": 22,
+    "deaths": 3,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 14,
+    "lon": 23,
+    "deaths": 3,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 25,
+    "lon": 67,
+    "deaths": 3,
+    "events": 3,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 7,
+    "lon": 124,
+    "deaths": 3,
+    "events": 2,
+    "country": "Philippines"
+   },
+   {
+    "lat": 10,
+    "lon": 4,
+    "deaths": 3,
+    "events": 2,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 51,
+    "lon": 32,
+    "deaths": 3,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 14,
+    "lon": 30,
+    "deaths": 3,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 37,
+    "lon": 71,
+    "deaths": 3,
+    "events": 2,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 20,
+    "lon": 97,
+    "deaths": 3,
+    "events": 3,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 26,
+    "lon": 65,
+    "deaths": 3,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 6,
+    "lon": 101,
+    "deaths": 3,
+    "events": 2,
+    "country": "Thailand"
+   },
+   {
+    "lat": 30,
+    "lon": 64,
+    "deaths": 3,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 6,
+    "lon": 6,
+    "deaths": 3,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 12,
+    "lon": 4,
+    "deaths": 3,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": -7,
+    "lon": 29,
+    "deaths": 3,
+    "events": 1,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 17,
+    "lon": -4,
+    "deaths": 2,
+    "events": 2,
+    "country": "Mali"
+   },
+   {
+    "lat": -3,
+    "lon": 30,
+    "deaths": 2,
+    "events": 2,
+    "country": "Burundi"
+   },
+   {
+    "lat": 14,
+    "lon": 37,
+    "deaths": 2,
+    "events": 2,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 24,
+    "lon": 90,
+    "deaths": 2,
+    "events": 2,
+    "country": "Bangladesh"
+   },
+   {
+    "lat": 32,
+    "lon": 35,
+    "deaths": 2,
+    "events": 3,
+    "country": "Israel"
+   },
+   {
+    "lat": 17,
+    "lon": -2,
+    "deaths": 2,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": -6,
+    "lon": 144,
+    "deaths": 2,
+    "events": 1,
+    "country": "Papua New Guinea"
+   },
+   {
+    "lat": 14,
+    "lon": 40,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": -13,
+    "lon": 37,
+    "deaths": 2,
+    "events": 1,
+    "country": "Mozambique"
+   },
+   {
+    "lat": 22,
+    "lon": 92,
+    "deaths": 2,
+    "events": 2,
+    "country": "Bangladesh"
+   },
+   {
+    "lat": 18,
+    "lon": 1,
+    "deaths": 2,
+    "events": 4,
+    "country": "Mali"
+   },
+   {
+    "lat": 18,
+    "lon": -102,
+    "deaths": 2,
+    "events": 2,
+    "country": "Mexico"
+   },
+   {
+    "lat": -13,
+    "lon": 38,
+    "deaths": 2,
+    "events": 1,
+    "country": "Mozambique"
+   },
+   {
+    "lat": 35,
+    "lon": 72,
+    "deaths": 2,
+    "events": 3,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 34,
+    "lon": 75,
+    "deaths": 2,
+    "events": 2,
+    "country": "India"
+   },
+   {
+    "lat": 20,
+    "lon": -99,
+    "deaths": 2,
+    "events": 2,
+    "country": "Mexico"
+   },
+   {
+    "lat": 29,
+    "lon": 60,
+    "deaths": 2,
+    "events": 1,
+    "country": "Iran"
+   },
+   {
+    "lat": 20,
+    "lon": 95,
+    "deaths": 2,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 33,
+    "lon": 72,
+    "deaths": 2,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 12,
+    "lon": 0,
+    "deaths": 2,
+    "events": 3,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": -1,
+    "lon": -79,
+    "deaths": 2,
+    "events": 2,
+    "country": "Ecuador"
+   },
+   {
+    "lat": 24,
+    "lon": 89,
+    "deaths": 2,
+    "events": 2,
+    "country": "Bangladesh"
+   },
+   {
+    "lat": 6,
+    "lon": 19,
+    "deaths": 2,
+    "events": 1,
+    "country": "Central African Republic"
+   },
+   {
+    "lat": 16,
+    "lon": -95,
+    "deaths": 2,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 52,
+    "lon": 33,
+    "deaths": 2,
+    "events": 2,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 13,
+    "lon": -3,
+    "deaths": 2,
+    "events": 1,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 17,
+    "lon": -98,
+    "deaths": 2,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 6,
+    "lon": 4,
+    "deaths": 2,
+    "events": 2,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 15,
+    "lon": 24,
+    "deaths": 2,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 6,
+    "lon": 102,
+    "deaths": 2,
+    "events": 1,
+    "country": "Thailand"
+   },
+   {
+    "lat": 46,
+    "lon": 30,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 11,
+    "lon": 48,
+    "deaths": 2,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 7,
+    "lon": -74,
+    "deaths": 2,
+    "events": 2,
+    "country": "Colombia"
+   },
+   {
+    "lat": 5,
+    "lon": 37,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 51,
+    "lon": 30,
+    "deaths": 2,
+    "events": 2,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 48,
+    "lon": 33,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 51,
+    "lon": 28,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 24,
+    "lon": 88,
+    "deaths": 2,
+    "events": 1,
+    "country": "India"
+   },
+   {
+    "lat": 7,
+    "lon": 5,
+    "deaths": 2,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 16,
+    "lon": 0,
+    "deaths": 2,
+    "events": 2,
+    "country": "Mali"
+   },
+   {
+    "lat": 0,
+    "lon": -80,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ecuador"
+   },
+   {
+    "lat": 17,
+    "lon": -101,
+    "deaths": 2,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 5,
+    "lon": 7,
+    "deaths": 2,
+    "events": 2,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 7,
+    "lon": 4,
+    "deaths": 2,
+    "events": 2,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 11,
+    "lon": -4,
+    "deaths": 2,
+    "events": 1,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 8,
+    "lon": -72,
+    "deaths": 2,
+    "events": 2,
+    "country": "Colombia"
+   },
+   {
+    "lat": 49,
+    "lon": 39,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 33,
+    "lon": 75,
+    "deaths": 2,
+    "events": 1,
+    "country": "India"
+   },
+   {
+    "lat": -2,
+    "lon": -79,
+    "deaths": 2,
+    "events": 2,
+    "country": "Ecuador"
+   },
+   {
+    "lat": 45,
+    "lon": 31,
+    "deaths": 2,
+    "events": 2,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 51,
+    "lon": 29,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 13,
+    "lon": 45,
+    "deaths": 2,
+    "events": 2,
+    "country": "Yemen"
+   },
+   {
+    "lat": -1,
+    "lon": -78,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ecuador"
+   },
+   {
+    "lat": 32,
+    "lon": 75,
+    "deaths": 2,
+    "events": 2,
+    "country": "India"
+   },
+   {
+    "lat": 9,
+    "lon": 10,
+    "deaths": 2,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 35,
+    "lon": 70,
+    "deaths": 2,
+    "events": 1,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 14,
+    "lon": 49,
+    "deaths": 2,
+    "events": 1,
+    "country": "Yemen"
+   },
+   {
+    "lat": 10,
+    "lon": 37,
+    "deaths": 2,
+    "events": 2,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 17,
+    "lon": -91,
+    "deaths": 2,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 17,
+    "lon": 98,
+    "deaths": 2,
+    "events": 2,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 21,
+    "lon": 94,
+    "deaths": 2,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 17,
+    "lon": 3,
+    "deaths": 2,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 9,
+    "lon": -76,
+    "deaths": 2,
+    "events": 2,
+    "country": "Colombia"
+   },
+   {
+    "lat": 11,
+    "lon": 38,
+    "deaths": 2,
+    "events": 3,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 0,
+    "lon": -79,
+    "deaths": 2,
+    "events": 1,
+    "country": "Ecuador"
+   },
+   {
+    "lat": -26,
+    "lon": 30,
+    "deaths": 2,
+    "events": 1,
+    "country": "South Africa"
+   },
+   {
+    "lat": 15,
+    "lon": 42,
+    "deaths": 1,
+    "events": 1,
+    "country": "Yemen"
+   },
+   {
+    "lat": 14,
+    "lon": -5,
+    "deaths": 1,
+    "events": 3,
+    "country": "Mali"
+   },
+   {
+    "lat": 13,
+    "lon": 99,
+    "deaths": 1,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 11,
+    "lon": 12,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 33,
+    "lon": 37,
+    "deaths": 1,
+    "events": 1,
+    "country": "Syria"
+   },
+   {
+    "lat": 50,
+    "lon": 35,
+    "deaths": 1,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 1,
+    "lon": -78,
+    "deaths": 1,
+    "events": 1,
+    "country": "Colombia"
+   },
+   {
+    "lat": 18,
+    "lon": 81,
+    "deaths": 1,
+    "events": 1,
+    "country": "India"
+   },
+   {
+    "lat": 31,
+    "lon": 52,
+    "deaths": 1,
+    "events": 1,
+    "country": "Iran"
+   },
+   {
+    "lat": 19,
+    "lon": -104,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 7,
+    "lon": 10,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 11,
+    "lon": 50,
+    "deaths": 1,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 17,
+    "lon": 47,
+    "deaths": 1,
+    "events": 1,
+    "country": "Yemen"
+   },
+   {
+    "lat": -8,
+    "lon": 140,
+    "deaths": 1,
+    "events": 1,
+    "country": "Indonesia"
+   },
+   {
+    "lat": 19,
+    "lon": 1,
+    "deaths": 1,
+    "events": 3,
+    "country": "Mali"
+   },
+   {
+    "lat": 31,
+    "lon": -106,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 14,
+    "lon": 2,
+    "deaths": 1,
+    "events": 1,
+    "country": "Niger"
+   },
+   {
+    "lat": 12,
+    "lon": 29,
+    "deaths": 1,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 41,
+    "lon": 29,
+    "deaths": 1,
+    "events": 1,
+    "country": "Turkey"
+   },
+   {
+    "lat": 15,
+    "lon": -91,
+    "deaths": 1,
+    "events": 1,
+    "country": "Guatemala"
+   },
+   {
+    "lat": 37,
+    "lon": 41,
+    "deaths": 1,
+    "events": 1,
+    "country": "Syria"
+   },
+   {
+    "lat": 9,
+    "lon": 36,
+    "deaths": 1,
+    "events": 2,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 28,
+    "lon": -107,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 49,
+    "lon": 27,
+    "deaths": 1,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 23,
+    "lon": 94,
+    "deaths": 1,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 10,
+    "lon": 5,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 2,
+    "lon": -75,
+    "deaths": 1,
+    "events": 1,
+    "country": "Colombia"
+   },
+   {
+    "lat": 29,
+    "lon": -106,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 12,
+    "lon": 9,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 13,
+    "lon": 29,
+    "deaths": 1,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 14,
+    "lon": 25,
+    "deaths": 1,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 15,
+    "lon": 47,
+    "deaths": 1,
+    "events": 1,
+    "country": "Yemen"
+   },
+   {
+    "lat": -6,
+    "lon": 13,
+    "deaths": 1,
+    "events": 1,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 37,
+    "lon": 45,
+    "deaths": 1,
+    "events": 1,
+    "country": "Iran"
+   },
+   {
+    "lat": 11,
+    "lon": 125,
+    "deaths": 1,
+    "events": 1,
+    "country": "Philippines"
+   },
+   {
+    "lat": -9,
+    "lon": 147,
+    "deaths": 1,
+    "events": 1,
+    "country": "Papua New Guinea"
+   },
+   {
+    "lat": 27,
+    "lon": -110,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 50,
+    "lon": 38,
+    "deaths": 1,
+    "events": 1,
+    "country": "Russia"
+   },
+   {
+    "lat": 11,
+    "lon": 28,
+    "deaths": 1,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 18,
+    "lon": 94,
+    "deaths": 1,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 19,
+    "lon": 94,
+    "deaths": 1,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 11,
+    "lon": 6,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 34,
+    "lon": 36,
+    "deaths": 1,
+    "events": 1,
+    "country": "Lebanon"
+   },
+   {
+    "lat": 8,
+    "lon": -64,
+    "deaths": 1,
+    "events": 1,
+    "country": "Venezuela"
+   },
+   {
+    "lat": 23,
+    "lon": 91,
+    "deaths": 1,
+    "events": 1,
+    "country": "Bangladesh"
+   },
+   {
+    "lat": 3,
+    "lon": -78,
+    "deaths": 1,
+    "events": 1,
+    "country": "Colombia"
+   },
+   {
+    "lat": 5,
+    "lon": -75,
+    "deaths": 1,
+    "events": 1,
+    "country": "Colombia"
+   },
+   {
+    "lat": 8,
+    "lon": -75,
+    "deaths": 1,
+    "events": 1,
+    "country": "Colombia"
+   },
+   {
+    "lat": 27,
+    "lon": 56,
+    "deaths": 1,
+    "events": 1,
+    "country": "Iran"
+   },
+   {
+    "lat": -6,
+    "lon": 155,
+    "deaths": 1,
+    "events": 1,
+    "country": "Papua New Guinea"
+   },
+   {
+    "lat": 46,
+    "lon": 33,
+    "deaths": 1,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 4,
+    "lon": -77,
+    "deaths": 1,
+    "events": 1,
+    "country": "Colombia"
+   },
+   {
+    "lat": 21,
+    "lon": -102,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": -23,
+    "lon": 35,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mozambique"
+   },
+   {
+    "lat": 16,
+    "lon": 44,
+    "deaths": 1,
+    "events": 1,
+    "country": "Yemen"
+   },
+   {
+    "lat": -4,
+    "lon": 139,
+    "deaths": 1,
+    "events": 1,
+    "country": "Indonesia"
+   },
+   {
+    "lat": 8,
+    "lon": 5,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 48,
+    "lon": 39,
+    "deaths": 1,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": -4,
+    "lon": -53,
+    "deaths": 1,
+    "events": 1,
+    "country": "Brazil"
+   },
+   {
+    "lat": 11,
+    "lon": 49,
+    "deaths": 1,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 6,
+    "lon": 15,
+    "deaths": 1,
+    "events": 1,
+    "country": "Central African Republic"
+   },
+   {
+    "lat": 21,
+    "lon": -99,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 7,
+    "lon": 7,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 28,
+    "lon": 67,
+    "deaths": 1,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 22,
+    "lon": 41,
+    "deaths": 1,
+    "events": 1,
+    "country": "Saudi Arabia"
+   },
+   {
+    "lat": 6,
+    "lon": 11,
+    "deaths": 1,
+    "events": 1,
+    "country": "Cameroon"
+   },
+   {
+    "lat": 9,
+    "lon": 8,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 18,
+    "lon": -5,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": -12,
+    "lon": 27,
+    "deaths": 1,
+    "events": 1,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 6,
+    "lon": -75,
+    "deaths": 1,
+    "events": 1,
+    "country": "Colombia"
+   },
+   {
+    "lat": 25,
+    "lon": 83,
+    "deaths": 1,
+    "events": 1,
+    "country": "India"
+   },
+   {
+    "lat": 5,
+    "lon": 16,
+    "deaths": 1,
+    "events": 1,
+    "country": "Central African Republic"
+   },
+   {
+    "lat": 35,
+    "lon": 64,
+    "deaths": 1,
+    "events": 1,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 11,
+    "lon": -1,
+    "deaths": 1,
+    "events": 1,
+    "country": "Ghana"
+   },
+   {
+    "lat": 28,
+    "lon": 60,
+    "deaths": 1,
+    "events": 1,
+    "country": "Iran"
+   },
+   {
+    "lat": 48,
+    "lon": 31,
+    "deaths": 1,
+    "events": 1,
+    "country": "Ukraine"
+   },
+   {
+    "lat": 14,
+    "lon": 3,
+    "deaths": 1,
+    "events": 1,
+    "country": "Niger"
+   },
+   {
+    "lat": 18,
+    "lon": -94,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 10,
+    "lon": -68,
+    "deaths": 1,
+    "events": 1,
+    "country": "Venezuela"
+   },
+   {
+    "lat": 1,
+    "lon": -52,
+    "deaths": 1,
+    "events": 1,
+    "country": "Brazil"
+   },
+   {
+    "lat": 12,
+    "lon": 51,
+    "deaths": 1,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 6,
+    "lon": 3,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 18,
+    "lon": -95,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 8,
+    "lon": 10,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 35,
+    "lon": 65,
+    "deaths": 1,
+    "events": 1,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 5,
+    "lon": -72,
+    "deaths": 1,
+    "events": 1,
+    "country": "Colombia"
+   },
+   {
+    "lat": 27,
+    "lon": 96,
+    "deaths": 1,
+    "events": 1,
+    "country": "India"
+   },
+   {
+    "lat": 20,
+    "lon": -103,
+    "deaths": 1,
+    "events": 1,
+    "country": "Mexico"
+   },
+   {
+    "lat": 2,
+    "lon": 29,
+    "deaths": 1,
+    "events": 1,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 9,
+    "lon": 11,
+    "deaths": 1,
+    "events": 1,
+    "country": "Nigeria"
+   },
+   {
+    "lat": 14,
+    "lon": 46,
+    "deaths": 1,
+    "events": 1,
+    "country": "Yemen"
+   },
+   {
+    "lat": 2,
+    "lon": 45,
+    "deaths": 0,
+    "events": 5,
+    "country": "Somalia"
+   },
+   {
+    "lat": 14,
+    "lon": -3,
+    "deaths": 0,
+    "events": 3,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 30,
+    "lon": 63,
+    "deaths": 0,
+    "events": 1,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 13,
+    "lon": 1,
+    "deaths": 0,
+    "events": 1,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 16,
+    "lon": -4,
+    "deaths": 0,
+    "events": 2,
+    "country": "Mali"
+   },
+   {
+    "lat": 13,
+    "lon": -1,
+    "deaths": 0,
+    "events": 2,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 13,
+    "lon": -8,
+    "deaths": 0,
+    "events": 3,
+    "country": "Mali"
+   },
+   {
+    "lat": 15,
+    "lon": -4,
+    "deaths": 0,
+    "events": 6,
+    "country": "Mali"
+   },
+   {
+    "lat": 6,
+    "lon": 38,
+    "deaths": 0,
+    "events": 2,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": -3,
+    "lon": 28,
+    "deaths": 0,
+    "events": 1,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 11,
+    "lon": 26,
+    "deaths": 0,
+    "events": 1,
+    "country": "Sudan"
+   },
+   {
+    "lat": 11,
+    "lon": 36,
+    "deaths": 0,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 29,
+    "lon": 66,
+    "deaths": 0,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 34,
+    "lon": 62,
+    "deaths": 0,
+    "events": 1,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 13,
+    "lon": -2,
+    "deaths": 0,
+    "events": 4,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 15,
+    "lon": -2,
+    "deaths": 0,
+    "events": 2,
+    "country": "Mali"
+   },
+   {
+    "lat": 1,
+    "lon": 42,
+    "deaths": 0,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 13,
+    "lon": -5,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 6,
+    "lon": 39,
+    "deaths": 0,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 26,
+    "lon": 67,
+    "deaths": 0,
+    "events": 2,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 9,
+    "lon": 37,
+    "deaths": 0,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 15,
+    "lon": -3,
+    "deaths": 0,
+    "events": 4,
+    "country": "Mali"
+   },
+   {
+    "lat": 12,
+    "lon": -7,
+    "deaths": 0,
+    "events": 2,
+    "country": "Mali"
+   },
+   {
+    "lat": 16,
+    "lon": 2,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 12,
+    "lon": 1,
+    "deaths": 0,
+    "events": 1,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 12,
+    "lon": 3,
+    "deaths": 0,
+    "events": 1,
+    "country": "Benin"
+   },
+   {
+    "lat": 12,
+    "lon": -5,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 30,
+    "lon": 68,
+    "deaths": 0,
+    "events": 1,
+    "country": "Pakistan"
+   },
+   {
+    "lat": 2,
+    "lon": 43,
+    "deaths": 0,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 12,
+    "lon": -8,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 0,
+    "lon": 43,
+    "deaths": 0,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": -1,
+    "lon": 28,
+    "deaths": 0,
+    "events": 1,
+    "country": "DR Congo"
+   },
+   {
+    "lat": 15,
+    "lon": -6,
+    "deaths": 0,
+    "events": 3,
+    "country": "Mali"
+   },
+   {
+    "lat": 14,
+    "lon": 1,
+    "deaths": 0,
+    "events": 1,
+    "country": "Niger"
+   },
+   {
+    "lat": 15,
+    "lon": -7,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 35,
+    "lon": 69,
+    "deaths": 0,
+    "events": 2,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": -18,
+    "lon": 35,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mozambique"
+   },
+   {
+    "lat": 11,
+    "lon": 1,
+    "deaths": 0,
+    "events": 1,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 13,
+    "lon": -6,
+    "deaths": 0,
+    "events": 3,
+    "country": "Mali"
+   },
+   {
+    "lat": 0,
+    "lon": 40,
+    "deaths": 0,
+    "events": 1,
+    "country": "Kenya"
+   },
+   {
+    "lat": 14,
+    "lon": -1,
+    "deaths": 0,
+    "events": 1,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 11,
+    "lon": -8,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 12,
+    "lon": 38,
+    "deaths": 0,
+    "events": 2,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 10,
+    "lon": 40,
+    "deaths": 0,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 16,
+    "lon": -5,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 12,
+    "lon": -3,
+    "deaths": 0,
+    "events": 1,
+    "country": "Burkina Faso"
+   },
+   {
+    "lat": 16,
+    "lon": -1,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 19,
+    "lon": 2,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 36,
+    "lon": 70,
+    "deaths": 0,
+    "events": 1,
+    "country": "Afghanistan"
+   },
+   {
+    "lat": 11,
+    "lon": 40,
+    "deaths": 0,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 12,
+    "lon": 37,
+    "deaths": 0,
+    "events": 2,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 9,
+    "lon": 39,
+    "deaths": 0,
+    "events": 2,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 5,
+    "lon": 48,
+    "deaths": 0,
+    "events": 1,
+    "country": "Somalia"
+   },
+   {
+    "lat": 13,
+    "lon": -7,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 15,
+    "lon": 0,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 16,
+    "lon": 1,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 20,
+    "lon": 2,
+    "deaths": 0,
+    "events": 1,
+    "country": "Mali"
+   },
+   {
+    "lat": 26,
+    "lon": 98,
+    "deaths": 0,
+    "events": 1,
+    "country": "Myanmar"
+   },
+   {
+    "lat": 12,
+    "lon": 41,
+    "deaths": 0,
+    "events": 1,
+    "country": "Ethiopia"
+   },
+   {
+    "lat": 12,
+    "lon": 42,
+    "deaths": 0,
+    "events": 1,
+    "country": "Ethiopia"
+   }
+  ]
+ }
+}

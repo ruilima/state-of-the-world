@@ -1,0 +1,280 @@
+{
+ "id": "gdelt-doc",
+ "source": {
+  "name": "GDELT Project — DOC 2.0 API",
+  "url": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/",
+  "license": "Free to use with attribution to the GDELT Project"
+ },
+ "status": "partial",
+ "fetchedAt": "2026-10-31T11:37:50.573Z",
+ "lastSuccessAt": "2026-10-31T11:37:50.573Z",
+ "error": null,
+ "queriesOk": 0,
+ "queriesTotal": 5,
+ "data": {
+  "queries": {
+   "conflictHeadlines": {
+    "key": "conflictHeadlines",
+    "mode": "artlist",
+    "query": "(\"armed conflict\" OR airstrike OR shelling) sourcelang:english",
+    "timespan": "24h",
+    "label": null,
+    "status": "error",
+    "fetchedAt": null,
+    "error": "fetch failed",
+    "items": []
+   },
+   "aiLayoffHeadlines": {
+    "key": "aiLayoffHeadlines",
+    "mode": "artlist",
+    "query": "(layoffs OR \"job cuts\") (\"artificial intelligence\" OR automation) sourcelang:english",
+    "timespan": "72h",
+    "label": null,
+    "status": "error",
+    "fetchedAt": null,
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": []
+   },
+   "coverageArmedConflict": {
+    "key": "coverageArmedConflict",
+    "mode": "timelinevol",
+    "query": "\"armed conflict\"",
+    "timespan": "30d",
+    "label": "armed conflict",
+    "status": "stale",
+    "fetchedAt": "2026-10-31T10:39:08.260Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-10-02",
+      "value": 0.0762
+     },
+     {
+      "date": "2026-10-06",
+      "value": 0.0758
+     },
+     {
+      "date": "2026-10-08",
+      "value": 0.295
+     },
+     {
+      "date": "2026-10-10",
+      "value": 0
+     },
+     {
+      "date": "2026-10-15",
+      "value": 0.084
+     },
+     {
+      "date": "2026-10-16",
+      "value": 0.0719
+     },
+     {
+      "date": "2026-10-17",
+      "value": 0.0808
+     },
+     {
+      "date": "2026-10-18",
+      "value": 0.0893
+     },
+     {
+      "date": "2026-10-19",
+      "value": 0.1061
+     },
+     {
+      "date": "2026-10-20",
+      "value": 0.0793
+     },
+     {
+      "date": "2026-10-21",
+      "value": 0.0773
+     },
+     {
+      "date": "2026-10-22",
+      "value": 0.1519
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.1241
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.1018
+     },
+     {
+      "date": "2026-10-25",
+      "value": 0.0658
+     },
+     {
+      "date": "2026-10-26",
+      "value": 0
+     },
+     {
+      "date": "2026-10-27",
+      "value": 0.0902
+     }
+    ]
+   },
+   "coverageCeasefire": {
+    "key": "coverageCeasefire",
+    "mode": "timelinevol",
+    "query": "ceasefire",
+    "timespan": "30d",
+    "label": "ceasefire",
+    "status": "stale",
+    "fetchedAt": "2026-10-31T06:39:21.997Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-10-02",
+      "value": 0.2269
+     },
+     {
+      "date": "2026-10-06",
+      "value": 0.2779
+     },
+     {
+      "date": "2026-10-08",
+      "value": 0.4425
+     },
+     {
+      "date": "2026-10-10",
+      "value": 0.4357
+     },
+     {
+      "date": "2026-10-15",
+      "value": 0.5815
+     },
+     {
+      "date": "2026-10-16",
+      "value": 0.4851
+     },
+     {
+      "date": "2026-10-17",
+      "value": 0.5125
+     },
+     {
+      "date": "2026-10-18",
+      "value": 0.5462
+     },
+     {
+      "date": "2026-10-19",
+      "value": 0.5203
+     },
+     {
+      "date": "2026-10-20",
+      "value": 0.2781
+     },
+     {
+      "date": "2026-10-21",
+      "value": 0.448
+     },
+     {
+      "date": "2026-10-22",
+      "value": 0.2682
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.3391
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.6016
+     },
+     {
+      "date": "2026-10-25",
+      "value": 0.4136
+     },
+     {
+      "date": "2026-10-26",
+      "value": 0.2677
+     },
+     {
+      "date": "2026-10-27",
+      "value": 0.4509
+     }
+    ]
+   },
+   "coverageSanctions": {
+    "key": "coverageSanctions",
+    "mode": "timelinevol",
+    "query": "sanctions",
+    "timespan": "30d",
+    "label": "sanctions",
+    "status": "stale",
+    "fetchedAt": "2026-10-31T07:39:33.431Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-10-02",
+      "value": 1.1456
+     },
+     {
+      "date": "2026-10-06",
+      "value": 0.8338
+     },
+     {
+      "date": "2026-10-08",
+      "value": 1.3274
+     },
+     {
+      "date": "2026-10-10",
+      "value": 3.159
+     },
+     {
+      "date": "2026-10-15",
+      "value": 1.3572
+     },
+     {
+      "date": "2026-10-16",
+      "value": 1.5051
+     },
+     {
+      "date": "2026-10-17",
+      "value": 2.6997
+     },
+     {
+      "date": "2026-10-18",
+      "value": 2.0115
+     },
+     {
+      "date": "2026-10-19",
+      "value": 1.8034
+     },
+     {
+      "date": "2026-10-20",
+      "value": 1.5388
+     },
+     {
+      "date": "2026-10-21",
+      "value": 1.3739
+     },
+     {
+      "date": "2026-10-22",
+      "value": 1.3836
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.987
+     },
+     {
+      "date": "2026-10-24",
+      "value": 1.2999
+     },
+     {
+      "date": "2026-10-25",
+      "value": 1.0341
+     },
+     {
+      "date": "2026-10-26",
+      "value": 1.5615
+     },
+     {
+      "date": "2026-10-27",
+      "value": 1.2173
+     }
+    ]
+   }
+  }
+ }
+}

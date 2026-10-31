@@ -1,0 +1,155 @@
+{
+ "id": "climate",
+ "source": {
+  "name": "Copernicus Climate Change Service (C3S), ERA5",
+  "url": "https://climate.copernicus.eu/climate-bulletins",
+  "license": "CC BY 4.0"
+ },
+ "status": "ok",
+ "fetchedAt": "2026-10-31T05:24:47.048Z",
+ "lastSuccessAt": "2026-10-31T05:24:47.048Z",
+ "error": null,
+ "data": {
+  "month": "2026-09",
+  "rank": {
+   "position": 2,
+   "of": 87,
+   "since": "1940",
+   "warmerYears": [
+    "2023"
+   ]
+  },
+  "months": [
+   {
+    "month": "2024-10",
+    "anomaly": 1.65,
+    "absolute": 15.25
+   },
+   {
+    "month": "2024-11",
+    "anomaly": 1.62,
+    "absolute": 14.1
+   },
+   {
+    "month": "2024-12",
+    "anomaly": 1.69,
+    "absolute": 13.42
+   },
+   {
+    "month": "2025-01",
+    "anomaly": 1.75,
+    "absolute": 13.23
+   },
+   {
+    "month": "2025-02",
+    "anomaly": 1.59,
+    "absolute": 13.36
+   },
+   {
+    "month": "2025-03",
+    "anomaly": 1.6,
+    "absolute": 14.06
+   },
+   {
+    "month": "2025-04",
+    "anomaly": 1.51,
+    "absolute": 14.96
+   },
+   {
+    "month": "2025-05",
+    "anomaly": 1.4,
+    "absolute": 15.79
+   },
+   {
+    "month": "2025-06",
+    "anomaly": 1.3,
+    "absolute": 16.46
+   },
+   {
+    "month": "2025-07",
+    "anomaly": 1.25,
+    "absolute": 16.68
+   },
+   {
+    "month": "2025-08",
+    "anomaly": 1.29,
+    "absolute": 16.6
+   },
+   {
+    "month": "2025-09",
+    "anomaly": 1.47,
+    "absolute": 16.11
+   },
+   {
+    "month": "2025-10",
+    "anomaly": 1.55,
+    "absolute": 15.14
+   },
+   {
+    "month": "2025-11",
+    "anomaly": 1.54,
+    "absolute": 14.02
+   },
+   {
+    "month": "2025-12",
+    "anomaly": 1.42,
+    "absolute": 13.15
+   },
+   {
+    "month": "2026-01",
+    "anomaly": 1.47,
+    "absolute": 12.95
+   },
+   {
+    "month": "2026-02",
+    "anomaly": 1.49,
+    "absolute": 13.26
+   },
+   {
+    "month": "2026-03",
+    "anomaly": 1.48,
+    "absolute": 13.94
+   },
+   {
+    "month": "2026-04",
+    "anomaly": 1.43,
+    "absolute": 14.89
+   },
+   {
+    "month": "2026-05",
+    "anomaly": 1.42,
+    "absolute": 15.81
+   },
+   {
+    "month": "2026-06",
+    "anomaly": 1.39,
+    "absolute": 16.54
+   },
+   {
+    "month": "2026-07",
+    "anomaly": 1.47,
+    "absolute": 16.9
+   },
+   {
+    "month": "2026-08",
+    "anomaly": 1.65,
+    "absolute": 16.96
+   },
+   {
+    "month": "2026-09",
+    "anomaly": 1.63,
+    "absolute": 16.27
+   }
+  ],
+  "twelveMonth": {
+   "value": 1.5,
+   "from": "2025-10",
+   "to": "2026-09",
+   "basis": "bulletin text"
+  },
+  "publishedAt": "2026-10-12",
+  "dataUpdated": "03 Oct 2026",
+  "bulletinUrl": "https://climate.copernicus.eu/surface-air-temperature-september-2026",
+  "csvUrl": "https://climate.copernicus.eu/sites/default/files/2026-10/C3S_Bulletin_temp_202609_FigSupp2a_timeseries_anomalies_ref1850-1900_global_allmonths_DATA.csv"
+ }
+}

@@ -1,0 +1,91 @@
+{
+ "id": "digest",
+ "source": {
+  "name": "AI-generated summary (claude-sonnet-5-5)",
+  "url": "https://www.anthropic.com/",
+  "license": null
+ },
+ "status": "ok",
+ "fetchedAt": "2026-10-31T05:24:49.383Z",
+ "lastSuccessAt": "2026-10-31T05:24:49.383Z",
+ "error": null,
+ "model": "claude-sonnet-5-5",
+ "usage": {
+  "inputTokens": 1425,
+  "outputTokens": 436
+ },
+ "attempts": 1,
+ "firstAttemptDropped": [],
+ "droppedParagraphs": [],
+ "droppedIds": [],
+ "data": {
+  "label": "AI-generated",
+  "paragraphs": [
+   {
+    "text": "In today's headlines on work and AI, scottdiesel.dev (via Hacker News) carries a piece titled \"AI Layoffs – The Greatest Lie of the Decade\". apnews.com (via Hacker News) has an article on what to consider if a company that made AI-related job cuts wants you back.",
+    "sources": [
+     {
+      "title": "AI Layoffs – The Greatest Lie of the Decade",
+      "source": "scottdiesel.dev (via Hacker News)",
+      "url": "https://www.scottdiesel.dev/posts/ai-layoffs-the-great-lie-of-the-decade"
+     },
+     {
+      "title": "What to consider if a company that made AI-related job cuts wants you back",
+      "source": "apnews.com (via Hacker News)",
+      "url": "https://apnews.com/article/ai-jobs-layoffs-hiring-rebounding-skills-04662acffb7beba822129118dde3f0a7"
+     }
+    ]
+   },
+   {
+    "text": "sixthtone.com (via Hacker News) reports that China's Lao GAN Ma is taking the heat for alleged layoffs due to AI. zenodo.org (via Hacker News) lists \"A Generalized Response to the AI Layoff Trap\", and library.hbs.edu (via Hacker News) lists a piece titled \"AI Hasn't Spurred Widespread Layoffs Yet. Why Not?\"",
+    "sources": [
+     {
+      "title": "China's Lao GAN Ma Takes the Heat for Alleged Layoffs Due to AI",
+      "source": "sixthtone.com (via Hacker News)",
+      "url": "https://www.sixthtone.com/news/1019180"
+     },
+     {
+      "title": "A Generalized Response to the AI Layoff Trap",
+      "source": "zenodo.org (via Hacker News)",
+      "url": "https://zenodo.org/records/20633148"
+     },
+     {
+      "title": "AI Hasn't Spurred Widespread Layoffs Yet. Why Not?",
+      "source": "library.hbs.edu (via Hacker News)",
+      "url": "https://www.library.hbs.edu/working-knowledge/ai-hasnt-spurred-widespread-layoffs-yet-why-not"
+     }
+    ]
+   },
+   {
+    "text": "The USGS recorded five earthquakes in today's headlines: M6.4 southeast of Easter Island; M6.5 in the Bonin Islands, Japan region; M6.3 170 km NW of Port-Olry, Vanuatu; M6.9 197 km WNW of Port-Olry, Vanuatu; and M7.0 191 km ENE of Nagqu, China.",
+    "sources": [
+     {
+      "title": "M6.4 earthquake — southeast of Easter Island",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttxz"
+     },
+     {
+      "title": "M6.5 earthquake — Bonin Islands, Japan region",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4r9"
+     },
+     {
+      "title": "M6.3 earthquake — 170 km NW of Port-Olry, Vanuatu",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4jb"
+     },
+     {
+      "title": "M6.9 earthquake — 197 km WNW of Port-Olry, Vanuatu",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4j2"
+     },
+     {
+      "title": "M7.0 earthquake — 191 km ENE of Nagqu, China",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u43g"
+     }
+    ]
+   }
+  ]
+ }
+}
