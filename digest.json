@@ -1,0 +1,116 @@
+{
+ "id": "digest",
+ "source": {
+  "name": "AI-generated summary (claude-sonnet-5-5)",
+  "url": "https://www.anthropic.com/",
+  "license": null
+ },
+ "status": "ok",
+ "fetchedAt": "2026-11-07T05:24:39.287Z",
+ "lastSuccessAt": "2026-11-07T05:24:39.287Z",
+ "error": null,
+ "model": "claude-sonnet-5-5",
+ "usage": {
+  "inputTokens": 1983,
+  "outputTokens": 529
+ },
+ "attempts": 1,
+ "firstAttemptDropped": [],
+ "droppedParagraphs": [],
+ "droppedIds": [],
+ "data": {
+  "label": "AI-generated",
+  "paragraphs": [
+   {
+    "text": "In today's headlines on conflict, aa.com.tr reports that Israeli attacks killed 2 more Palestinians in Gaza, including a medical student. Countercurrents.org carries a piece on students and teachers killed in Gaza in October. Kyivpost.com reports that Russian bombing of Komyshuvakha killed 53 and that the search continues. Rightspeak.net lists 167 combat clashes in a daily roundup.",
+    "sources": [
+     {
+      "title": "Israeli attacks kill 2 more Palestinians in Gaza, including medical student",
+      "source": "aa.com.tr",
+      "url": "https://aa.com.tr/en/middle-east/israeli-attacks-kill-2-more-palestinians-in-gaza-including-medical-student/4113819"
+     },
+     {
+      "title": "Israel Attacks on Gaza Education: The Students and Teachers Killed in October",
+      "source": "countercurrents.org",
+      "url": "https://countercurrents.org/2026/11/israels-attacks-on-gazas-education-the-students-and-teachers-killed-in-october/"
+     },
+     {
+      "title": "Russian Bombing of Komyshuvakha Kills 53, Search Continues",
+      "source": "kyivpost.com",
+      "url": "https://www.kyivpost.com/post/89335"
+     },
+     {
+      "title": "RIGHT SPEAK: 167 Combat Clashes ( 14 Pokrovsk, 9 Kostiantynivka, 7 Huliaipole ); UKR Knocks Out 15 RU Refs Causing $23. 2B Damage; MEMO TO TRUMP: RU Sending Iran 90 Kh - 39 Launchers; RU Frames UKR LR Strikes as Peace Barrier; MEANWHILE, 4 D...",
+      "source": "rightspeak.net",
+      "url": "http://www.rightspeak.net/2026/11/167-combat-clashes-14-pokrovsk-9.html"
+     }
+    ]
+   },
+   {
+    "text": "On work and AI, moneycontrol.com reports that Block announced a second round of job cuts in 2026. Phoronix.com says SUSE is laying off 10% of its workforce due to AI and automation. Fortune.com says Goldman says AI layoffs are leaving a 'long-lasting' scar. Gadgetreview.com says companies are rehiring humans after AI layoffs, while scottdiesel.dev calls AI layoffs \"the Greatest Lie of the Decade\". Wral.com says a hiring rebound is expected in new US jobs data.",
+    "sources": [
+     {
+      "title": "Hiring rebound expected in new US jobs data, though inflation is eroding the American paycheck",
+      "source": "wral.com",
+      "url": "https://www.wral.com/news/ap/746ee-hiring-rebound-expected-in-new-us-jobs-data-though-inflation-is-eroding-the-american-paycheck/"
+     },
+     {
+      "title": "Jack Dorsey Block announces fresh layoffs, second round of job cuts in 2026: Report",
+      "source": "moneycontrol.com",
+      "url": "https://www.moneycontrol.com/technology/jack-dorsey-s-block-announces-fresh-layoffs-second-round-of-job-cuts-in-2026-report-article-14072384.html"
+     },
+     {
+      "title": "SUSE Laying Off 10% of Its Workforce Due to AI and Automation",
+      "source": "phoronix.com (via Hacker News)",
+      "url": "https://www.phoronix.com/news/SUSE-Layoffs-10p-AI"
+     },
+     {
+      "title": "The AI Layoff Experiment Is Backfiring as Companies Rehire Humans",
+      "source": "gadgetreview.com (via Hacker News)",
+      "url": "https://www.gadgetreview.com/the-ai-layoff-experiment-is-backfiring-and-companies-are-quietly-rehiring-humans"
+     },
+     {
+      "title": "Goldman says AI layoffs are leaving 'long-lasting' scar, like the last 40 years",
+      "source": "fortune.com (via Hacker News)",
+      "url": "https://fortune.com/2026/10/30/goldman-sachs-ai-layoffs-displaced-workers-older-workers-past-tech-disruptions/"
+     },
+     {
+      "title": "AI Layoffs – The Greatest Lie of the Decade",
+      "source": "scottdiesel.dev (via Hacker News)",
+      "url": "https://www.scottdiesel.dev/posts/ai-layoffs-the-great-lie-of-the-decade"
+     }
+    ]
+   },
+   {
+    "text": "The USGS recorded five earthquakes: M7.0, 189 km ENE of Nagqu, China; M6.8, 203 km NW of Port-Olry, Vanuatu; M6.3, 197 km NW of Port-Olry, Vanuatu; M6.5 in the Bonin Islands, Japan region; and M6.4 southeast of Easter Island.",
+    "sources": [
+     {
+      "title": "M6.4 earthquake — southeast of Easter Island",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttxz"
+     },
+     {
+      "title": "M6.5 earthquake — Bonin Islands, Japan region",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4r9"
+     },
+     {
+      "title": "M6.8 earthquake — 203 km NW of Port-Olry, Vanuatu",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4j2"
+     },
+     {
+      "title": "M7.0 earthquake — 189 km ENE of Nagqu, China",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u43g"
+     },
+     {
+      "title": "M6.3 earthquake — 197 km NW of Port-Olry, Vanuatu",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u3jl"
+     }
+    ]
+   }
+  ]
+ }
+}

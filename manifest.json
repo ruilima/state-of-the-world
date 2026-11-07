@@ -1,0 +1,82 @@
+{
+ "generatedAt": "2026-11-07T13:09:33.782Z",
+ "sources": {
+  "climate": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T05:24:37.257Z",
+   "lastSuccessAt": "2026-11-07T05:24:37.257Z",
+   "error": null,
+   "mode": null
+  },
+  "curated": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T13:09:33.770Z",
+   "lastSuccessAt": "2026-11-07T13:09:33.770Z",
+   "error": null,
+   "mode": null
+  },
+  "digest": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T05:24:39.287Z",
+   "lastSuccessAt": "2026-11-07T05:24:39.287Z",
+   "error": null,
+   "mode": null
+  },
+  "eonet": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T13:07:48.204Z",
+   "lastSuccessAt": "2026-11-07T13:07:48.204Z",
+   "error": null,
+   "mode": null
+  },
+  "gdelt-doc": {
+   "status": "partial",
+   "fetchedAt": "2026-11-07T13:07:48.681Z",
+   "lastSuccessAt": "2026-11-07T13:07:48.681Z",
+   "error": null,
+   "mode": null
+  },
+  "gdelt-events": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T13:07:48.426Z",
+   "lastSuccessAt": "2026-11-07T13:07:48.426Z",
+   "error": null,
+   "mode": null
+  },
+  "index": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T13:09:33.774Z",
+   "lastSuccessAt": "2026-11-07T13:09:33.774Z",
+   "error": null,
+   "mode": null
+  },
+  "pulse": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T13:09:30.864Z",
+   "lastSuccessAt": "2026-11-07T13:09:30.864Z",
+   "error": null,
+   "mode": null
+  },
+  "ucdp": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T05:24:12.983Z",
+   "lastSuccessAt": "2026-11-07T05:24:12.983Z",
+   "error": null,
+   "mode": "api"
+  },
+  "usgs": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T13:07:48.090Z",
+   "lastSuccessAt": "2026-11-07T13:07:48.090Z",
+   "error": null,
+   "mode": null
+  },
+  "worldbank": {
+   "status": "ok",
+   "fetchedAt": "2026-11-07T05:24:07.411Z",
+   "lastSuccessAt": "2026-11-07T05:24:07.411Z",
+   "error": null,
+   "mode": null
+  }
+ }
+}

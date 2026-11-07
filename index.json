@@ -1,0 +1,1794 @@
+{
+ "id": "index",
+ "source": {
+  "name": "Own calculation (config/index.json)",
+  "url": null,
+  "license": null
+ },
+ "status": "ok",
+ "fetchedAt": "2026-11-07T13:09:33.774Z",
+ "lastSuccessAt": "2026-11-07T13:09:33.774Z",
+ "error": null,
+ "data": {
+  "value": 29.3,
+  "state": "stable",
+  "bpm": 74,
+  "thresholds": {
+   "caution": 40,
+   "danger": 65,
+   "hysteresis": 3
+  },
+  "weightCovered": 80,
+  "weightTotal": 80,
+  "signals": [
+   {
+    "id": "conflictNews",
+    "name": "Conflict in the news",
+    "explain": "Share of events coded by GDELT in the last 24 hours that are 'material conflict' (assaults, fighting, mass violence). Uses GDELT's 15-minute event files only. Calm 10% and alarm 16% are our choice: in recent days the daily share has been about 12–14%.",
+    "unit": "share of events",
+    "calm": 0.1,
+    "alarm": 0.16,
+    "weight": 20,
+    "source": "gdelt-events",
+    "maxAgeHours": 6,
+    "ageBasis": "download",
+    "dueAt": null,
+    "value": 0.1317,
+    "score": 52.8,
+    "missing": null,
+    "effectiveWeight": 25
+   },
+   {
+    "id": "conflictDeaths",
+    "name": "Deaths in organised violence",
+    "explain": "Deaths recorded by UCDP in the latest available month (candidate events, 'best' estimate). Events lasting more than one month are split evenly across their days. Calm 5,000 and alarm 25,000 a month are our choice: 25,000 a month is about 300,000 a year, above the highest yearly battle-death total since 1989 (about 285,000 in 2022, which counts only state-based conflict).",
+    "unit": "deaths per month",
+    "calm": 5000,
+    "alarm": 25000,
+    "weight": 30,
+    "source": "ucdp",
+    "maxAgeHours": 1080,
+    "ageBasis": "download",
+    "dueAt": null,
+    "value": 13588,
+    "score": 42.9,
+    "missing": null,
+    "effectiveWeight": 37.5
+   },
+   {
+    "id": "quakes",
+    "name": "Significant earthquakes",
+    "explain": "Earthquakes the USGS classes as significant in the last 7 days (combines magnitude, damage and felt reports). Calm 1 and alarm 8 a week are our choice: 8 means more than one a day.",
+    "unit": "earthquakes per week",
+    "calm": 1,
+    "alarm": 8,
+    "weight": 10,
+    "source": "usgs",
+    "maxAgeHours": 6,
+    "ageBasis": "download",
+    "dueAt": null,
+    "value": 0,
+    "score": 0,
+    "missing": null,
+    "effectiveWeight": 12.5
+   },
+   {
+    "id": "naturalEvents",
+    "name": "Active storms and volcanoes",
+    "explain": "Severe storms and active volcanoes open in NASA EONET. Wildfires are left out: there are always dozens and they would swamp the signal. Calm 2 and alarm 15 open events are our choice.",
+    "unit": "open events",
+    "calm": 2,
+    "alarm": 15,
+    "weight": 10,
+    "source": "eonet",
+    "maxAgeHours": 12,
+    "ageBasis": "download",
+    "dueAt": null,
+    "value": 2,
+    "score": 0,
+    "missing": null,
+    "effectiveWeight": 12.5
+   },
+   {
+    "id": "aiLayoffs",
+    "name": "Pace of job cuts citing AI",
+    "explain": "Last month's US job cuts where companies cited AI (Challenger), divided by the average of the months before it (up to 12). 1 means a normal pace. Calm 0.8 (below the usual pace) and alarm 2.0 (double it) are our choice. Weighted 10, like the earthquake and storm signals and half the conflict-news signal, because the reason is the companies' own.",
+    "unit": "ratio to average",
+    "calm": 0.8,
+    "alarm": 2,
+    "weight": 10,
+    "source": "curated",
+    "maxAgeHours": 840,
+    "ageBasis": "report",
+    "dueAt": "2026-11-05",
+    "value": 0.27,
+    "score": 0,
+    "missing": null,
+    "effectiveWeight": 12.5
+   }
+  ],
+  "history": [
+   {
+    "t": "2026-10-31T16:09:33.560Z",
+    "value": 29.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T16:39:34.492Z",
+    "value": 29.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T17:09:35.327Z",
+    "value": 29.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T17:39:29.852Z",
+    "value": 30,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T18:09:36.240Z",
+    "value": 30,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T18:39:39.395Z",
+    "value": 29.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T19:09:39.474Z",
+    "value": 29.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T19:39:36.353Z",
+    "value": 29.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T20:09:42.349Z",
+    "value": 29.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T20:39:35.019Z",
+    "value": 29.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T21:09:35.169Z",
+    "value": 29,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T21:39:38.127Z",
+    "value": 29.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T22:09:38.455Z",
+    "value": 29.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T22:39:30.312Z",
+    "value": 29.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T23:09:34.741Z",
+    "value": 28.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-10-31T23:39:37.552Z",
+    "value": 28.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T00:09:44.567Z",
+    "value": 28.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T00:39:34.605Z",
+    "value": 28.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T01:09:38.434Z",
+    "value": 28.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T01:39:32.082Z",
+    "value": 28.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T02:09:44.606Z",
+    "value": 28.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T02:39:33.778Z",
+    "value": 26.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T03:09:37.664Z",
+    "value": 26.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T03:39:34.243Z",
+    "value": 26.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T04:09:48.837Z",
+    "value": 26.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T04:39:50.042Z",
+    "value": 26.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T05:09:36.581Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T05:24:54.158Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T05:39:28.638Z",
+    "value": 26.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T06:09:47.052Z",
+    "value": 26.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T06:39:30.379Z",
+    "value": 26.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T07:09:43.934Z",
+    "value": 27,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T07:39:32.521Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T08:09:32.942Z",
+    "value": 27.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T08:39:24.618Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T09:09:36.283Z",
+    "value": 27,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T09:39:43.673Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T10:09:31.753Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T10:39:30.361Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T11:09:30.674Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T11:39:28.897Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T12:09:42.270Z",
+    "value": 27.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T12:39:30.861Z",
+    "value": 27.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T13:09:34.161Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T13:39:26.256Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T14:09:30.461Z",
+    "value": 27.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T14:39:37.879Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T15:09:43.086Z",
+    "value": 26.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T15:39:32.472Z",
+    "value": 27,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T16:09:47.093Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T16:39:25.008Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T17:09:29.276Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T17:39:34.085Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T18:09:38.501Z",
+    "value": 27.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T18:39:42.176Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T19:09:31.388Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T19:39:38.395Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T20:09:36.338Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T20:39:40.506Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T21:09:36.235Z",
+    "value": 27.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T21:39:43.681Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T22:09:35.384Z",
+    "value": 26.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T22:39:33.386Z",
+    "value": 26.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T23:09:43.082Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-01T23:39:23.872Z",
+    "value": 26.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T00:09:38.792Z",
+    "value": 26.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T00:39:34.870Z",
+    "value": 26.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T01:09:37.475Z",
+    "value": 26.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T01:39:31.507Z",
+    "value": 26.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T02:09:36.301Z",
+    "value": 26.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T02:39:33.396Z",
+    "value": 26.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T03:09:35.694Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T03:39:58.887Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T04:10:11.229Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T04:39:30.854Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T05:09:33.803Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T05:24:36.786Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T05:39:40.444Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T06:09:34.496Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T06:39:32.284Z",
+    "value": 26.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T07:09:41.194Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T07:39:29.624Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T08:09:34.329Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T08:39:36.908Z",
+    "value": 26.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T09:10:12.696Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T09:39:27.837Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T10:09:59.099Z",
+    "value": 26.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T10:39:46.157Z",
+    "value": 25.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T11:09:38.894Z",
+    "value": 25.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T11:39:36.150Z",
+    "value": 25.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T12:09:38.518Z",
+    "value": 25.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T12:39:53.020Z",
+    "value": 25.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T13:09:53.186Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T13:39:40.583Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T14:09:52.051Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T14:39:36.313Z",
+    "value": 25.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T15:09:49.772Z",
+    "value": 25.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T15:39:38.200Z",
+    "value": 25.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T16:09:35.048Z",
+    "value": 25.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T16:39:42.517Z",
+    "value": 26.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T17:09:36.912Z",
+    "value": 25.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T17:39:28.063Z",
+    "value": 25.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T18:09:43.428Z",
+    "value": 25.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T18:39:31.356Z",
+    "value": 25.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T19:09:42.644Z",
+    "value": 25.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T19:39:36.999Z",
+    "value": 25.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T20:09:41.829Z",
+    "value": 25.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T20:39:41.904Z",
+    "value": 26,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T21:09:49.524Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T21:39:42.266Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T22:09:41.948Z",
+    "value": 26.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T22:39:37.227Z",
+    "value": 26.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T23:09:40.720Z",
+    "value": 27,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-02T23:39:31.128Z",
+    "value": 26.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T00:09:40.499Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T00:39:43.477Z",
+    "value": 27.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T01:09:35.908Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T01:39:28.144Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T02:09:34.582Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T02:39:31.764Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T03:09:38.174Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T03:39:28.843Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T04:09:39.463Z",
+    "value": 27.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T04:39:48.407Z",
+    "value": 27.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T05:09:59.882Z",
+    "value": 27.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T05:24:24.246Z",
+    "value": 27.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T05:39:32.754Z",
+    "value": 27.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T06:10:02.093Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T06:39:42.800Z",
+    "value": 27.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T07:09:42.923Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T07:39:33.918Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T08:09:38.793Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T08:39:31.503Z",
+    "value": 27.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T09:09:37.210Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T09:39:38.420Z",
+    "value": 27.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T10:09:37.030Z",
+    "value": 27.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T10:39:31.599Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T11:09:37.440Z",
+    "value": 27.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T11:39:39.203Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T12:09:40.638Z",
+    "value": 27.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T12:39:32.718Z",
+    "value": 27,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T13:09:43.634Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T13:39:36.040Z",
+    "value": 26.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T14:09:41.394Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T14:39:33.278Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T15:09:44.794Z",
+    "value": 26.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T15:39:46.118Z",
+    "value": 26.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T16:09:44.637Z",
+    "value": 26.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T16:39:47.867Z",
+    "value": 26,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T17:09:43.082Z",
+    "value": 25.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T17:39:47.438Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T18:10:16.542Z",
+    "value": 25.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T18:39:39.692Z",
+    "value": 25.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T19:10:26.904Z",
+    "value": 25.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T19:40:24.564Z",
+    "value": 25.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T20:10:22.557Z",
+    "value": 25.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T20:39:59.386Z",
+    "value": 25.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T21:09:42.128Z",
+    "value": 24.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T21:39:57.134Z",
+    "value": 24.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T22:09:46.610Z",
+    "value": 24.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T22:39:38.176Z",
+    "value": 24.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T23:09:40.880Z",
+    "value": 24,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-03T23:39:24.976Z",
+    "value": 24,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T00:09:34.461Z",
+    "value": 23.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T00:39:39.081Z",
+    "value": 23.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T01:09:34.421Z",
+    "value": 23.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T01:39:30.355Z",
+    "value": 23.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T02:09:43.121Z",
+    "value": 23.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T02:39:40.836Z",
+    "value": 23,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T03:09:40.556Z",
+    "value": 22.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T03:39:29.786Z",
+    "value": 22.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T04:09:41.358Z",
+    "value": 22.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T04:40:11.071Z",
+    "value": 22.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T05:09:43.596Z",
+    "value": 22.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T05:24:47.800Z",
+    "value": 22.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T05:39:33.650Z",
+    "value": 22.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T06:09:42.837Z",
+    "value": 22.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T06:39:35.103Z",
+    "value": 20.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T07:09:57.287Z",
+    "value": 20.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T07:39:40.593Z",
+    "value": 20.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T08:09:35.022Z",
+    "value": 20.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T08:39:30.199Z",
+    "value": 20.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T09:09:44.921Z",
+    "value": 20.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T09:39:50.929Z",
+    "value": 19.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T10:09:35.974Z",
+    "value": 19.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T10:39:39.290Z",
+    "value": 19.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T11:09:39.376Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T11:39:37.905Z",
+    "value": 19.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T12:09:49.261Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T12:39:42.308Z",
+    "value": 19.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T13:09:49.799Z",
+    "value": 19.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T13:39:44.901Z",
+    "value": 19.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T14:09:48.206Z",
+    "value": 19.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T14:39:34.972Z",
+    "value": 19.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T15:09:57.199Z",
+    "value": 19,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T15:39:33.898Z",
+    "value": 19.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T16:09:35.872Z",
+    "value": 19,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T16:39:32.820Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T17:09:48.397Z",
+    "value": 19.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T17:39:45.743Z",
+    "value": 18.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T18:09:45.697Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T18:39:48.610Z",
+    "value": 19.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T19:09:41.608Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T19:39:35.846Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T20:09:48.551Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T20:39:36.137Z",
+    "value": 19.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T21:09:44.845Z",
+    "value": 19.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T21:39:45.116Z",
+    "value": 19,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T22:09:51.584Z",
+    "value": 19.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T22:39:42.596Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T23:09:32.981Z",
+    "value": 19.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-04T23:39:33.804Z",
+    "value": 19.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T00:09:56.481Z",
+    "value": 19.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T00:39:35.575Z",
+    "value": 19.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T01:09:40.038Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T01:39:37.528Z",
+    "value": 19.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T02:09:37.119Z",
+    "value": 19.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T02:39:34.683Z",
+    "value": 19.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T03:09:40.538Z",
+    "value": 19.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T03:39:30.871Z",
+    "value": 19.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T04:09:36.483Z",
+    "value": 19.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T04:39:50.485Z",
+    "value": 19.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T05:09:56.921Z",
+    "value": 19.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T05:24:35.457Z",
+    "value": 19.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T05:39:38.388Z",
+    "value": 19.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T06:09:49.697Z",
+    "value": 19.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T06:39:50.249Z",
+    "value": 19.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T07:09:51.932Z",
+    "value": 20,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T07:39:34.405Z",
+    "value": 20.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T08:09:42.065Z",
+    "value": 20.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T08:39:37.832Z",
+    "value": 20.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T09:09:55.700Z",
+    "value": 20.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T09:39:38.224Z",
+    "value": 20.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T10:09:39.860Z",
+    "value": 20.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T10:39:35.668Z",
+    "value": 21.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T11:09:34.546Z",
+    "value": 21.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T11:39:32.041Z",
+    "value": 21.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T12:09:57.764Z",
+    "value": 21.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T12:39:39.242Z",
+    "value": 21.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T13:09:40.159Z",
+    "value": 21,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T13:39:29.960Z",
+    "value": 21.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T14:09:35.627Z",
+    "value": 21.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T14:39:45.059Z",
+    "value": 20.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T15:09:41.670Z",
+    "value": 21,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T15:39:39.290Z",
+    "value": 21.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T16:39:36.061Z",
+    "value": 21.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T17:09:47.163Z",
+    "value": 21.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T17:39:33.715Z",
+    "value": 21.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T18:09:53.077Z",
+    "value": 21.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T18:39:37.690Z",
+    "value": 22.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T19:09:42.476Z",
+    "value": 22.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T19:39:39.671Z",
+    "value": 22.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T20:09:45.603Z",
+    "value": 22.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T20:39:55.730Z",
+    "value": 22.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T21:09:38.967Z",
+    "value": 23.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T21:39:50.422Z",
+    "value": 23.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T22:09:41.191Z",
+    "value": 23.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T22:39:30.004Z",
+    "value": 23.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T23:09:45.108Z",
+    "value": 23.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-05T23:39:37.402Z",
+    "value": 23.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T00:09:39.553Z",
+    "value": 23.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T00:39:45.446Z",
+    "value": 23.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T01:09:32.690Z",
+    "value": 24.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T01:39:34.082Z",
+    "value": 24.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T02:09:34.952Z",
+    "value": 24.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T02:39:41.638Z",
+    "value": 24.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T03:09:49.522Z",
+    "value": 24.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T03:39:29.277Z",
+    "value": 24.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T04:09:45.441Z",
+    "value": 24.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T04:39:43.175Z",
+    "value": 24.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T05:09:35.764Z",
+    "value": 24.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T05:25:42.704Z",
+    "value": 24.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T05:39:35.646Z",
+    "value": 24.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T06:09:43.478Z",
+    "value": 24.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T06:39:33.973Z",
+    "value": 24.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T07:09:45.448Z",
+    "value": 24.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T07:39:37.619Z",
+    "value": 24.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T08:09:37.470Z",
+    "value": 24.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T08:39:36.730Z",
+    "value": 24.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T09:09:44.605Z",
+    "value": 24.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T09:39:42.421Z",
+    "value": 24.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T10:09:39.926Z",
+    "value": 25,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T10:39:32.750Z",
+    "value": 25.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T11:09:34.887Z",
+    "value": 25.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T11:39:34.653Z",
+    "value": 25.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T12:09:33.587Z",
+    "value": 25.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T12:39:50.282Z",
+    "value": 25.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T13:09:31.984Z",
+    "value": 26,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T13:39:38.280Z",
+    "value": 26.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T14:09:43.321Z",
+    "value": 26.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T14:39:39.126Z",
+    "value": 26.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T15:09:40.664Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T15:39:45.764Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T16:09:48.019Z",
+    "value": 26,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T16:39:45.865Z",
+    "value": 26,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T17:09:40.966Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T17:39:49.762Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T18:09:39.948Z",
+    "value": 26.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T18:39:32.862Z",
+    "value": 26,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T19:09:39.478Z",
+    "value": 26,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T19:40:04.869Z",
+    "value": 25.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T20:09:46.708Z",
+    "value": 25.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T20:39:37.679Z",
+    "value": 25.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T21:09:35.321Z",
+    "value": 25.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T21:39:35.090Z",
+    "value": 26,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T22:09:36.440Z",
+    "value": 26,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T22:39:42.722Z",
+    "value": 26.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-06T23:39:33.581Z",
+    "value": 26.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T00:09:53.788Z",
+    "value": 26.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T00:39:38.538Z",
+    "value": 26.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T01:09:44.912Z",
+    "value": 27.2,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T01:39:46.079Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T02:09:59.058Z",
+    "value": 27.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T02:39:41.443Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T03:09:47.634Z",
+    "value": 27.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T03:39:38.826Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T04:10:10.396Z",
+    "value": 27.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T04:40:11.042Z",
+    "value": 27.7,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T05:09:33.240Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T05:24:43.884Z",
+    "value": 27.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T05:39:28.728Z",
+    "value": 27.8,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T06:09:34.479Z",
+    "value": 28.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T06:39:33.754Z",
+    "value": 28.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T07:09:31.288Z",
+    "value": 28.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T07:39:33.629Z",
+    "value": 28.4,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T08:09:33.484Z",
+    "value": 28.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T08:39:34.031Z",
+    "value": 28.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T09:09:33.007Z",
+    "value": 28.6,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T09:39:30.510Z",
+    "value": 28.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T10:09:29.632Z",
+    "value": 28.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T10:39:22.160Z",
+    "value": 28.5,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T11:09:30.179Z",
+    "value": 28.9,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T11:39:33.549Z",
+    "value": 29.1,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T12:09:38.361Z",
+    "value": 29.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T12:39:30.627Z",
+    "value": 29.3,
+    "state": "stable"
+   },
+   {
+    "t": "2026-11-07T13:09:33.774Z",
+    "value": 29.3,
+    "state": "stable"
+   }
+  ],
+  "description": "Condition Index: an editorial indicator, not a scientific one. Each signal is placed on a 0–100 scale between a 'calm' value (0) and an 'alarm' value (100), clipped at both ends. The index is the weighted average of the signals that have data; missing signals are left out and the remaining weights are rescaled."
+ }
+}

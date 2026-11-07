@@ -1,0 +1,355 @@
+{
+ "id": "gdelt-doc",
+ "source": {
+  "name": "GDELT Project — DOC 2.0 API",
+  "url": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/",
+  "license": "Free to use with attribution to the GDELT Project"
+ },
+ "status": "partial",
+ "fetchedAt": "2026-11-07T13:07:48.681Z",
+ "lastSuccessAt": "2026-11-07T13:07:48.681Z",
+ "error": null,
+ "queriesOk": 2,
+ "queriesTotal": 5,
+ "data": {
+  "queries": {
+   "conflictHeadlines": {
+    "key": "conflictHeadlines",
+    "mode": "artlist",
+    "query": "(\"armed conflict\" OR airstrike OR shelling) sourcelang:english",
+    "timespan": "24h",
+    "label": null,
+    "status": "stale",
+    "fetchedAt": "2026-11-07T03:08:10.216Z",
+    "error": "fetch failed",
+    "items": [
+     {
+      "title": "Israeli attacks kill 2 more Palestinians in Gaza, including medical student",
+      "domain": "aa.com.tr",
+      "language": "English",
+      "date": "2026-11-06T11:30:00Z",
+      "url": "https://aa.com.tr/en/middle-east/israeli-attacks-kill-2-more-palestinians-in-gaza-including-medical-student/4113819"
+     },
+     {
+      "title": "Israel Attacks on Gaza Education: The Students and Teachers Killed in October",
+      "domain": "countercurrents.org",
+      "language": "English",
+      "date": "2026-11-06T11:30:00Z",
+      "url": "https://countercurrents.org/2026/11/israels-attacks-on-gazas-education-the-students-and-teachers-killed-in-october/"
+     },
+     {
+      "title": "Russian Bombing of Komyshuvakha Kills 53, Search Continues",
+      "domain": "kyivpost.com",
+      "language": "English",
+      "date": "2026-11-06T11:00:00Z",
+      "url": "https://www.kyivpost.com/post/89335"
+     },
+     {
+      "title": "RIGHT SPEAK: 167 Combat Clashes ( 14 Pokrovsk, 9 Kostiantynivka, 7 Huliaipole ); UKR Knocks Out 15 RU Refs Causing $23. 2B Damage; MEMO TO TRUMP: RU Sending Iran 90 Kh - 39 Launchers; RU Frames UKR LR Strikes as Peace Barrier; MEANWHILE, 4 D...",
+      "domain": "rightspeak.net",
+      "language": "English",
+      "date": "2026-11-06T08:00:00Z",
+      "url": "http://www.rightspeak.net/2026/11/167-combat-clashes-14-pokrovsk-9.html"
+     }
+    ]
+   },
+   "aiLayoffHeadlines": {
+    "key": "aiLayoffHeadlines",
+    "mode": "artlist",
+    "query": "(layoffs OR \"job cuts\") (\"artificial intelligence\" OR automation) sourcelang:english",
+    "timespan": "72h",
+    "label": null,
+    "status": "ok",
+    "fetchedAt": "2026-11-07T13:08:23.345Z",
+    "error": null,
+    "items": [
+     {
+      "title": "Hiring rebound expected in new US jobs data, though inflation is eroding the American paycheck",
+      "domain": "wral.com",
+      "language": "English",
+      "date": "2026-11-06T08:30:00Z",
+      "url": "https://www.wral.com/news/ap/746ee-hiring-rebound-expected-in-new-us-jobs-data-though-inflation-is-eroding-the-american-paycheck/"
+     },
+     {
+      "title": "Jack Dorsey Block announces fresh layoffs, second round of job cuts in 2026: Report",
+      "domain": "moneycontrol.com",
+      "language": "English",
+      "date": "2026-11-06T06:00:00Z",
+      "url": "https://www.moneycontrol.com/technology/jack-dorsey-s-block-announces-fresh-layoffs-second-round-of-job-cuts-in-2026-report-article-14072384.html"
+     },
+     {
+      "title": "A. I. Is Eliminating Entry - Level Jobs That Are Never Posted",
+      "domain": "observer.com",
+      "language": "English",
+      "date": "2026-11-06T01:00:00Z",
+      "url": "https://observer.com/2026/11/barclays-ai-automation-entry-level-employment/"
+     }
+    ]
+   },
+   "coverageArmedConflict": {
+    "key": "coverageArmedConflict",
+    "mode": "timelinevol",
+    "query": "\"armed conflict\"",
+    "timespan": "30d",
+    "label": "armed conflict",
+    "status": "stale",
+    "fetchedAt": "2026-11-07T09:38:44.207Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-10-10",
+      "value": 0
+     },
+     {
+      "date": "2026-10-15",
+      "value": 0.084
+     },
+     {
+      "date": "2026-10-16",
+      "value": 0.0719
+     },
+     {
+      "date": "2026-10-17",
+      "value": 0.0808
+     },
+     {
+      "date": "2026-10-18",
+      "value": 0.0893
+     },
+     {
+      "date": "2026-10-19",
+      "value": 0.1061
+     },
+     {
+      "date": "2026-10-20",
+      "value": 0.0793
+     },
+     {
+      "date": "2026-10-21",
+      "value": 0.0773
+     },
+     {
+      "date": "2026-10-22",
+      "value": 0.1519
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.1241
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.1018
+     },
+     {
+      "date": "2026-10-25",
+      "value": 0.0658
+     },
+     {
+      "date": "2026-10-26",
+      "value": 0
+     },
+     {
+      "date": "2026-10-27",
+      "value": 0.0902
+     },
+     {
+      "date": "2026-11-03",
+      "value": 0.0353
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.045
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.0802
+     },
+     {
+      "date": "2026-11-06",
+      "value": 0.0753
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.1073
+     }
+    ]
+   },
+   "coverageCeasefire": {
+    "key": "coverageCeasefire",
+    "mode": "timelinevol",
+    "query": "ceasefire",
+    "timespan": "30d",
+    "label": "ceasefire",
+    "status": "ok",
+    "fetchedAt": "2026-11-07T13:09:07.966Z",
+    "error": null,
+    "items": [
+     {
+      "date": "2026-10-10",
+      "value": 0.4357
+     },
+     {
+      "date": "2026-10-15",
+      "value": 0.5815
+     },
+     {
+      "date": "2026-10-16",
+      "value": 0.4851
+     },
+     {
+      "date": "2026-10-17",
+      "value": 0.5125
+     },
+     {
+      "date": "2026-10-18",
+      "value": 0.5462
+     },
+     {
+      "date": "2026-10-19",
+      "value": 0.5203
+     },
+     {
+      "date": "2026-10-20",
+      "value": 0.2781
+     },
+     {
+      "date": "2026-10-21",
+      "value": 0.448
+     },
+     {
+      "date": "2026-10-22",
+      "value": 0.2682
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.3391
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.6016
+     },
+     {
+      "date": "2026-10-25",
+      "value": 0.4136
+     },
+     {
+      "date": "2026-10-26",
+      "value": 0.2677
+     },
+     {
+      "date": "2026-10-27",
+      "value": 0.4509
+     },
+     {
+      "date": "2026-11-03",
+      "value": 0.4231
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.1802
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.2139
+     },
+     {
+      "date": "2026-11-06",
+      "value": 0.5005
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.2825
+     }
+    ]
+   },
+   "coverageSanctions": {
+    "key": "coverageSanctions",
+    "mode": "timelinevol",
+    "query": "sanctions",
+    "timespan": "30d",
+    "label": "sanctions",
+    "status": "stale",
+    "fetchedAt": "2026-11-07T09:39:27.674Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-10-10",
+      "value": 3.159
+     },
+     {
+      "date": "2026-10-15",
+      "value": 1.3572
+     },
+     {
+      "date": "2026-10-16",
+      "value": 1.5051
+     },
+     {
+      "date": "2026-10-17",
+      "value": 2.6997
+     },
+     {
+      "date": "2026-10-18",
+      "value": 2.0115
+     },
+     {
+      "date": "2026-10-19",
+      "value": 1.8034
+     },
+     {
+      "date": "2026-10-20",
+      "value": 1.5388
+     },
+     {
+      "date": "2026-10-21",
+      "value": 1.3739
+     },
+     {
+      "date": "2026-10-22",
+      "value": 1.3836
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.987
+     },
+     {
+      "date": "2026-10-24",
+      "value": 1.2999
+     },
+     {
+      "date": "2026-10-25",
+      "value": 1.0341
+     },
+     {
+      "date": "2026-10-26",
+      "value": 1.5615
+     },
+     {
+      "date": "2026-10-27",
+      "value": 1.2173
+     },
+     {
+      "date": "2026-11-03",
+      "value": 0.8815
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.7658
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.8825
+     },
+     {
+      "date": "2026-11-06",
+      "value": 1.0153
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.916
+     }
+    ]
+   }
+  }
+ }
+}
