@@ -1,0 +1,121 @@
+{
+ "id": "digest",
+ "source": {
+  "name": "AI-generated summary (claude-sonnet-5-5)",
+  "url": "https://www.anthropic.com/",
+  "license": null
+ },
+ "status": "ok",
+ "fetchedAt": "2026-11-14T05:25:35.406Z",
+ "lastSuccessAt": "2026-11-14T05:25:35.406Z",
+ "error": null,
+ "model": "claude-sonnet-5-5",
+ "usage": {
+  "inputTokens": 1716,
+  "outputTokens": 514
+ },
+ "attempts": 1,
+ "firstAttemptDropped": [],
+ "droppedParagraphs": [],
+ "droppedIds": [],
+ "data": {
+  "label": "AI-generated",
+  "paragraphs": [
+   {
+    "text": "In today's headlines, english.wafa.ps reports that the UN warns Israeli attacks have pushed Gaza's health system to the brink of collapse.",
+    "sources": [
+     {
+      "title": "UN warns Israeli attacks have pushed Gaza health system to brink of collapse",
+      "source": "english.wafa.ps",
+      "url": "https://english.wafa.ps/Pages/Details/176900"
+     }
+    ]
+   },
+   {
+    "text": "On work and AI, insurancejournal.com reports Australian companies face AI washing claims after a wave of job cuts and offshoring. The ABC reports Qantas is the latest in a list of companies to outsource jobs to India, and carries a segment titled \"AI is coming for Qantas jobs\". juneesoutherncross.com.au reports a big-four bank boss defends sending jobs offshore.",
+    "sources": [
+     {
+      "title": "Australian Companies Face AI Washing Claims After Wave of Job Cuts, Offshoring",
+      "source": "insurancejournal.com",
+      "url": "https://www.insurancejournal.com/news/international/2026/11/12/892331.htm"
+     },
+     {
+      "title": "Big-four bank boss defends sending jobs offshore",
+      "source": "juneesoutherncross.com.au",
+      "url": "https://www.juneesoutherncross.com.au/story/9390178/big-four-bank-boss-defends-sending-jobs-offshore/"
+     },
+     {
+      "title": "Qantas the latest in list of companies to outsource jobs to India",
+      "source": "abc.net.au",
+      "url": "https://www.abc.net.au/news/2026-11-12/jobs-moving-overseas-to-gcc-tech-centres-in-india-asia/107374082"
+     },
+     {
+      "title": "AI is coming for Qantas jobs - ABC listen",
+      "source": "abc.net.au",
+      "url": "https://www.abc.net.au/listen/programs/abc-business-daily/ai-is-coming-for-qantas-job/107363426"
+     }
+    ]
+   },
+   {
+    "text": "Phoronix reports SUSE is laying off 10% of its workforce due to AI and automation. jsdev.space and gadgetreview.com each carry pieces saying AI layoffs are backfiring as companies rehire workers, and reddit.com has a post about boomerang employees. Fortune reports Goldman says AI layoffs are leaving a 'long-lasting' scar.",
+    "sources": [
+     {
+      "title": "AI Layoffs Backfire as Companies Start Rehiring Workers",
+      "source": "jsdev.space (via Hacker News)",
+      "url": "https://jsdev.space/companies-rehiring-workers/"
+     },
+     {
+      "title": "SUSE Laying Off 10% of Its Workforce Due to AI and Automation",
+      "source": "phoronix.com (via Hacker News)",
+      "url": "https://www.phoronix.com/news/SUSE-Layoffs-10p-AI"
+     },
+     {
+      "title": "The AI Layoff Experiment Is Backfiring as Companies Rehire Humans",
+      "source": "gadgetreview.com (via Hacker News)",
+      "url": "https://www.gadgetreview.com/the-ai-layoff-experiment-is-backfiring-and-companies-are-quietly-rehiring-humans"
+     },
+     {
+      "title": "AI-driven layoffs are creating a new class of boomerang employees",
+      "source": "reddit.com (via Hacker News)",
+      "url": "https://www.reddit.com/r/technology/s/bU94PCfFwr"
+     },
+     {
+      "title": "Goldman says AI layoffs are leaving 'long-lasting' scar, like the last 40 years",
+      "source": "fortune.com (via Hacker News)",
+      "url": "https://fortune.com/2026/10/30/goldman-sachs-ai-layoffs-displaced-workers-older-workers-past-tech-disruptions/"
+     }
+    ]
+   },
+   {
+    "text": "The USGS recorded five earthquakes: M6.4, 30 km WSW of Lata, Solomon Islands; M6.4, southeast of Easter Island; M6.5 in the Bonin Islands, Japan region; M6.8, 203 km NW of Port-Olry, Vanuatu; and M7.0, 189 km ENE of Nagqu, China.",
+    "sources": [
+     {
+      "title": "M6.4 earthquake — 30 km WSW of Lata, Solomon Islands",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tx16"
+     },
+     {
+      "title": "M6.4 earthquake — southeast of Easter Island",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttxz"
+     },
+     {
+      "title": "M6.5 earthquake — Bonin Islands, Japan region",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4r9"
+     },
+     {
+      "title": "M6.8 earthquake — 203 km NW of Port-Olry, Vanuatu",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4j2"
+     },
+     {
+      "title": "M7.0 earthquake — 189 km ENE of Nagqu, China",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u43g"
+     }
+    ]
+   }
+  ]
+ }
+}

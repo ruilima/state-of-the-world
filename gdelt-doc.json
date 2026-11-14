@@ -1,0 +1,370 @@
+{
+ "id": "gdelt-doc",
+ "source": {
+  "name": "GDELT Project — DOC 2.0 API",
+  "url": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/",
+  "license": "Free to use with attribution to the GDELT Project"
+ },
+ "status": "partial",
+ "fetchedAt": "2026-11-14T13:07:50.483Z",
+ "lastSuccessAt": "2026-11-14T13:07:50.483Z",
+ "error": null,
+ "queriesOk": 0,
+ "queriesTotal": 5,
+ "data": {
+  "queries": {
+   "conflictHeadlines": {
+    "key": "conflictHeadlines",
+    "mode": "artlist",
+    "query": "(\"armed conflict\" OR airstrike OR shelling) sourcelang:english",
+    "timespan": "24h",
+    "label": null,
+    "status": "stale",
+    "fetchedAt": "2026-11-14T06:38:10.286Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "title": "UN warns Israeli attacks have pushed Gaza health system to brink of collapse",
+      "domain": "english.wafa.ps",
+      "language": "English",
+      "date": "2026-11-13T18:00:00Z",
+      "url": "https://english.wafa.ps/Pages/Details/176900"
+     }
+    ]
+   },
+   "aiLayoffHeadlines": {
+    "key": "aiLayoffHeadlines",
+    "mode": "artlist",
+    "query": "(layoffs OR \"job cuts\") (\"artificial intelligence\" OR automation) sourcelang:english",
+    "timespan": "72h",
+    "label": null,
+    "status": "stale",
+    "fetchedAt": "2026-11-14T11:38:23.673Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "title": "Australian Companies Face AI Washing Claims After Wave of Job Cuts, Offshoring",
+      "domain": "insurancejournal.com",
+      "language": "English",
+      "date": "2026-11-12T06:45:00Z",
+      "url": "https://www.insurancejournal.com/news/international/2026/11/12/892331.htm"
+     },
+     {
+      "title": "Big-four bank boss defends sending jobs offshore",
+      "domain": "juneesoutherncross.com.au",
+      "language": "English",
+      "date": "2026-11-12T03:45:00Z",
+      "url": "https://www.juneesoutherncross.com.au/story/9390178/big-four-bank-boss-defends-sending-jobs-offshore/"
+     },
+     {
+      "title": "Qantas the latest in list of companies to outsource jobs to India",
+      "domain": "abc.net.au",
+      "language": "English",
+      "date": "2026-11-12T01:30:00Z",
+      "url": "https://www.abc.net.au/news/2026-11-12/jobs-moving-overseas-to-gcc-tech-centres-in-india-asia/107374082"
+     }
+    ]
+   },
+   "coverageArmedConflict": {
+    "key": "coverageArmedConflict",
+    "mode": "timelinevol",
+    "query": "\"armed conflict\"",
+    "timespan": "30d",
+    "label": "armed conflict",
+    "status": "stale",
+    "fetchedAt": "2026-11-14T11:38:46.966Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-10-16",
+      "value": 0.0719
+     },
+     {
+      "date": "2026-10-17",
+      "value": 0.0808
+     },
+     {
+      "date": "2026-10-18",
+      "value": 0.0893
+     },
+     {
+      "date": "2026-10-19",
+      "value": 0.1061
+     },
+     {
+      "date": "2026-10-20",
+      "value": 0.0793
+     },
+     {
+      "date": "2026-10-21",
+      "value": 0.0773
+     },
+     {
+      "date": "2026-10-22",
+      "value": 0.1519
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.1241
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.1018
+     },
+     {
+      "date": "2026-10-25",
+      "value": 0.0658
+     },
+     {
+      "date": "2026-10-26",
+      "value": 0
+     },
+     {
+      "date": "2026-10-27",
+      "value": 0.0902
+     },
+     {
+      "date": "2026-11-03",
+      "value": 0.0353
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.045
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.0802
+     },
+     {
+      "date": "2026-11-06",
+      "value": 0.0753
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.0737
+     },
+     {
+      "date": "2026-11-08",
+      "value": 0.0567
+     },
+     {
+      "date": "2026-11-09",
+      "value": 0.0747
+     },
+     {
+      "date": "2026-11-10",
+      "value": 0.0663
+     },
+     {
+      "date": "2026-11-11",
+      "value": 0.0703
+     },
+     {
+      "date": "2026-11-12",
+      "value": 0.1751
+     }
+    ]
+   },
+   "coverageCeasefire": {
+    "key": "coverageCeasefire",
+    "mode": "timelinevol",
+    "query": "ceasefire",
+    "timespan": "30d",
+    "label": "ceasefire",
+    "status": "stale",
+    "fetchedAt": "2026-11-14T10:39:13.020Z",
+    "error": "fetch failed",
+    "items": [
+     {
+      "date": "2026-10-16",
+      "value": 0.4851
+     },
+     {
+      "date": "2026-10-17",
+      "value": 0.5125
+     },
+     {
+      "date": "2026-10-18",
+      "value": 0.5462
+     },
+     {
+      "date": "2026-10-19",
+      "value": 0.5203
+     },
+     {
+      "date": "2026-10-20",
+      "value": 0.2781
+     },
+     {
+      "date": "2026-10-21",
+      "value": 0.448
+     },
+     {
+      "date": "2026-10-22",
+      "value": 0.2682
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.3391
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.6016
+     },
+     {
+      "date": "2026-10-25",
+      "value": 0.4136
+     },
+     {
+      "date": "2026-10-26",
+      "value": 0.2677
+     },
+     {
+      "date": "2026-10-27",
+      "value": 0.4509
+     },
+     {
+      "date": "2026-11-03",
+      "value": 0.4231
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.1802
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.2139
+     },
+     {
+      "date": "2026-11-06",
+      "value": 0.5005
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.3215
+     },
+     {
+      "date": "2026-11-08",
+      "value": 0.3685
+     },
+     {
+      "date": "2026-11-09",
+      "value": 0.2613
+     },
+     {
+      "date": "2026-11-10",
+      "value": 0.2763
+     },
+     {
+      "date": "2026-11-11",
+      "value": 0.2485
+     },
+     {
+      "date": "2026-11-12",
+      "value": 0.2994
+     }
+    ]
+   },
+   "coverageSanctions": {
+    "key": "coverageSanctions",
+    "mode": "timelinevol",
+    "query": "sanctions",
+    "timespan": "30d",
+    "label": "sanctions",
+    "status": "stale",
+    "fetchedAt": "2026-11-14T11:39:32.371Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-10-16",
+      "value": 1.5051
+     },
+     {
+      "date": "2026-10-17",
+      "value": 2.6997
+     },
+     {
+      "date": "2026-10-18",
+      "value": 2.0115
+     },
+     {
+      "date": "2026-10-19",
+      "value": 1.8034
+     },
+     {
+      "date": "2026-10-20",
+      "value": 1.5388
+     },
+     {
+      "date": "2026-10-21",
+      "value": 1.3739
+     },
+     {
+      "date": "2026-10-22",
+      "value": 1.3836
+     },
+     {
+      "date": "2026-10-23",
+      "value": 0.987
+     },
+     {
+      "date": "2026-10-24",
+      "value": 1.2999
+     },
+     {
+      "date": "2026-10-25",
+      "value": 1.0341
+     },
+     {
+      "date": "2026-10-26",
+      "value": 1.5615
+     },
+     {
+      "date": "2026-10-27",
+      "value": 1.2173
+     },
+     {
+      "date": "2026-11-03",
+      "value": 0.8815
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.7658
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.8825
+     },
+     {
+      "date": "2026-11-06",
+      "value": 1.0153
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.9812
+     },
+     {
+      "date": "2026-11-08",
+      "value": 0.8859
+     },
+     {
+      "date": "2026-11-09",
+      "value": 1.314
+     },
+     {
+      "date": "2026-11-10",
+      "value": 1.0314
+     },
+     {
+      "date": "2026-11-11",
+      "value": 0.9894
+     },
+     {
+      "date": "2026-11-12",
+      "value": 1.3682
+     }
+    ]
+   }
+  }
+ }
+}

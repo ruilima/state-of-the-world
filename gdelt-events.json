@@ -1,0 +1,4790 @@
+{
+ "id": "gdelt-events",
+ "source": {
+  "name": "GDELT Project — Event Database 2.0",
+  "url": "https://www.gdeltproject.org/",
+  "license": "Free to use with attribution to the GDELT Project"
+ },
+ "status": "ok",
+ "fetchedAt": "2026-11-14T13:07:50.112Z",
+ "lastSuccessAt": "2026-11-14T13:07:50.112Z",
+ "error": null,
+ "coverage": {
+  "buckets": 672,
+  "expected": 672,
+  "downloadedThisRun": 2,
+  "missingUpstream": 0
+ },
+ "data": {
+  "latestBucket": "2026-11-14T13:15:00.000Z",
+  "materialShare24h": 0.115,
+  "materialShare7d": 0.1179,
+  "ratio24hTo7d": 0.975,
+  "events24h": 97242,
+  "material24h": 11184,
+  "daily": [
+   {
+    "date": "2026-11-07",
+    "total": 26794,
+    "material": 3359,
+    "verbal": 3591,
+    "materialShare": 0.1254
+   },
+   {
+    "date": "2026-11-08",
+    "total": 57162,
+    "material": 7623,
+    "verbal": 7468,
+    "materialShare": 0.1334
+   },
+   {
+    "date": "2026-11-09",
+    "total": 102962,
+    "material": 12119,
+    "verbal": 12890,
+    "materialShare": 0.1177
+   },
+   {
+    "date": "2026-11-10",
+    "total": 124504,
+    "material": 14595,
+    "verbal": 15594,
+    "materialShare": 0.1172
+   },
+   {
+    "date": "2026-11-11",
+    "total": 118737,
+    "material": 14508,
+    "verbal": 15013,
+    "materialShare": 0.1222
+   },
+   {
+    "date": "2026-11-12",
+    "total": 120768,
+    "material": 13716,
+    "verbal": 14640,
+    "materialShare": 0.1136
+   },
+   {
+    "date": "2026-11-13",
+    "total": 111095,
+    "material": 12519,
+    "verbal": 13483,
+    "materialShare": 0.1127
+   },
+   {
+    "date": "2026-11-14",
+    "total": 45613,
+    "material": 4995,
+    "verbal": 5206,
+    "materialShare": 0.1095
+   }
+  ],
+  "buckets": [
+   {
+    "t": "2026-11-07T13:30:00.000Z",
+    "total": 759,
+    "verbal": 103,
+    "material": 54,
+    "goldsteinMean": 1.38
+   },
+   {
+    "t": "2026-11-07T13:45:00.000Z",
+    "total": 952,
+    "verbal": 126,
+    "material": 141,
+    "goldsteinMean": 0.24
+   },
+   {
+    "t": "2026-11-07T14:00:00.000Z",
+    "total": 912,
+    "verbal": 89,
+    "material": 80,
+    "goldsteinMean": 1.14
+   },
+   {
+    "t": "2026-11-07T14:15:00.000Z",
+    "total": 629,
+    "verbal": 99,
+    "material": 73,
+    "goldsteinMean": 0.17
+   },
+   {
+    "t": "2026-11-07T14:30:00.000Z",
+    "total": 760,
+    "verbal": 95,
+    "material": 94,
+    "goldsteinMean": 0.33
+   },
+   {
+    "t": "2026-11-07T14:45:00.000Z",
+    "total": 1189,
+    "verbal": 171,
+    "material": 147,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-07T15:00:00.000Z",
+    "total": 759,
+    "verbal": 81,
+    "material": 99,
+    "goldsteinMean": 0.94
+   },
+   {
+    "t": "2026-11-07T15:15:00.000Z",
+    "total": 537,
+    "verbal": 69,
+    "material": 59,
+    "goldsteinMean": 0.87
+   },
+   {
+    "t": "2026-11-07T15:30:00.000Z",
+    "total": 717,
+    "verbal": 96,
+    "material": 109,
+    "goldsteinMean": 0.09
+   },
+   {
+    "t": "2026-11-07T15:45:00.000Z",
+    "total": 742,
+    "verbal": 83,
+    "material": 89,
+    "goldsteinMean": 0.72
+   },
+   {
+    "t": "2026-11-07T16:00:00.000Z",
+    "total": 738,
+    "verbal": 83,
+    "material": 107,
+    "goldsteinMean": 0.64
+   },
+   {
+    "t": "2026-11-07T16:15:00.000Z",
+    "total": 523,
+    "verbal": 74,
+    "material": 59,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-07T16:30:00.000Z",
+    "total": 827,
+    "verbal": 105,
+    "material": 89,
+    "goldsteinMean": 0.65
+   },
+   {
+    "t": "2026-11-07T16:45:00.000Z",
+    "total": 662,
+    "verbal": 94,
+    "material": 101,
+    "goldsteinMean": 0.25
+   },
+   {
+    "t": "2026-11-07T17:00:00.000Z",
+    "total": 622,
+    "verbal": 70,
+    "material": 100,
+    "goldsteinMean": 0.3
+   },
+   {
+    "t": "2026-11-07T17:15:00.000Z",
+    "total": 619,
+    "verbal": 56,
+    "material": 86,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-07T17:30:00.000Z",
+    "total": 825,
+    "verbal": 132,
+    "material": 111,
+    "goldsteinMean": 0.3
+   },
+   {
+    "t": "2026-11-07T17:45:00.000Z",
+    "total": 1024,
+    "verbal": 143,
+    "material": 99,
+    "goldsteinMean": 1.11
+   },
+   {
+    "t": "2026-11-07T18:00:00.000Z",
+    "total": 767,
+    "verbal": 101,
+    "material": 97,
+    "goldsteinMean": 0.32
+   },
+   {
+    "t": "2026-11-07T18:15:00.000Z",
+    "total": 828,
+    "verbal": 99,
+    "material": 99,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-07T18:30:00.000Z",
+    "total": 409,
+    "verbal": 55,
+    "material": 61,
+    "goldsteinMean": 0.41
+   },
+   {
+    "t": "2026-11-07T18:45:00.000Z",
+    "total": 428,
+    "verbal": 60,
+    "material": 48,
+    "goldsteinMean": 0.33
+   },
+   {
+    "t": "2026-11-07T19:00:00.000Z",
+    "total": 510,
+    "verbal": 68,
+    "material": 54,
+    "goldsteinMean": 0.91
+   },
+   {
+    "t": "2026-11-07T19:15:00.000Z",
+    "total": 585,
+    "verbal": 57,
+    "material": 78,
+    "goldsteinMean": 0.78
+   },
+   {
+    "t": "2026-11-07T19:30:00.000Z",
+    "total": 558,
+    "verbal": 90,
+    "material": 98,
+    "goldsteinMean": -0.15
+   },
+   {
+    "t": "2026-11-07T19:45:00.000Z",
+    "total": 679,
+    "verbal": 99,
+    "material": 76,
+    "goldsteinMean": 0.45
+   },
+   {
+    "t": "2026-11-07T20:00:00.000Z",
+    "total": 553,
+    "verbal": 67,
+    "material": 49,
+    "goldsteinMean": 1.4
+   },
+   {
+    "t": "2026-11-07T20:15:00.000Z",
+    "total": 353,
+    "verbal": 47,
+    "material": 57,
+    "goldsteinMean": 0.1
+   },
+   {
+    "t": "2026-11-07T20:30:00.000Z",
+    "total": 802,
+    "verbal": 114,
+    "material": 109,
+    "goldsteinMean": 0.68
+   },
+   {
+    "t": "2026-11-07T20:45:00.000Z",
+    "total": 544,
+    "verbal": 87,
+    "material": 41,
+    "goldsteinMean": 1.01
+   },
+   {
+    "t": "2026-11-07T21:00:00.000Z",
+    "total": 704,
+    "verbal": 72,
+    "material": 71,
+    "goldsteinMean": 0.88
+   },
+   {
+    "t": "2026-11-07T21:15:00.000Z",
+    "total": 515,
+    "verbal": 82,
+    "material": 62,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-07T21:30:00.000Z",
+    "total": 479,
+    "verbal": 89,
+    "material": 68,
+    "goldsteinMean": 0.24
+   },
+   {
+    "t": "2026-11-07T21:45:00.000Z",
+    "total": 489,
+    "verbal": 58,
+    "material": 84,
+    "goldsteinMean": -0.09
+   },
+   {
+    "t": "2026-11-07T22:00:00.000Z",
+    "total": 674,
+    "verbal": 109,
+    "material": 106,
+    "goldsteinMean": -0.27
+   },
+   {
+    "t": "2026-11-07T22:15:00.000Z",
+    "total": 395,
+    "verbal": 58,
+    "material": 27,
+    "goldsteinMean": 1.19
+   },
+   {
+    "t": "2026-11-07T22:30:00.000Z",
+    "total": 817,
+    "verbal": 123,
+    "material": 114,
+    "goldsteinMean": 0.22
+   },
+   {
+    "t": "2026-11-07T22:45:00.000Z",
+    "total": 448,
+    "verbal": 50,
+    "material": 57,
+    "goldsteinMean": 1.05
+   },
+   {
+    "t": "2026-11-07T23:00:00.000Z",
+    "total": 571,
+    "verbal": 107,
+    "material": 103,
+    "goldsteinMean": -0.63
+   },
+   {
+    "t": "2026-11-07T23:15:00.000Z",
+    "total": 317,
+    "verbal": 49,
+    "material": 36,
+    "goldsteinMean": 0.48
+   },
+   {
+    "t": "2026-11-07T23:30:00.000Z",
+    "total": 312,
+    "verbal": 41,
+    "material": 38,
+    "goldsteinMean": 0.46
+   },
+   {
+    "t": "2026-11-07T23:45:00.000Z",
+    "total": 261,
+    "verbal": 40,
+    "material": 29,
+    "goldsteinMean": 0.02
+   },
+   {
+    "t": "2026-11-08T00:00:00.000Z",
+    "total": 999,
+    "verbal": 151,
+    "material": 155,
+    "goldsteinMean": -0.02
+   },
+   {
+    "t": "2026-11-08T00:15:00.000Z",
+    "total": 894,
+    "verbal": 163,
+    "material": 113,
+    "goldsteinMean": 0.07
+   },
+   {
+    "t": "2026-11-08T00:30:00.000Z",
+    "total": 798,
+    "verbal": 54,
+    "material": 89,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-08T00:45:00.000Z",
+    "total": 626,
+    "verbal": 60,
+    "material": 89,
+    "goldsteinMean": 0.07
+   },
+   {
+    "t": "2026-11-08T01:00:00.000Z",
+    "total": 574,
+    "verbal": 70,
+    "material": 95,
+    "goldsteinMean": 0.1
+   },
+   {
+    "t": "2026-11-08T01:15:00.000Z",
+    "total": 426,
+    "verbal": 37,
+    "material": 101,
+    "goldsteinMean": -0.78
+   },
+   {
+    "t": "2026-11-08T01:30:00.000Z",
+    "total": 708,
+    "verbal": 83,
+    "material": 98,
+    "goldsteinMean": 0.31
+   },
+   {
+    "t": "2026-11-08T01:45:00.000Z",
+    "total": 460,
+    "verbal": 51,
+    "material": 69,
+    "goldsteinMean": 0.45
+   },
+   {
+    "t": "2026-11-08T02:00:00.000Z",
+    "total": 458,
+    "verbal": 81,
+    "material": 48,
+    "goldsteinMean": 0.52
+   },
+   {
+    "t": "2026-11-08T02:15:00.000Z",
+    "total": 485,
+    "verbal": 56,
+    "material": 52,
+    "goldsteinMean": 1.09
+   },
+   {
+    "t": "2026-11-08T02:30:00.000Z",
+    "total": 399,
+    "verbal": 41,
+    "material": 82,
+    "goldsteinMean": -0.03
+   },
+   {
+    "t": "2026-11-08T02:45:00.000Z",
+    "total": 411,
+    "verbal": 41,
+    "material": 39,
+    "goldsteinMean": 1.34
+   },
+   {
+    "t": "2026-11-08T03:00:00.000Z",
+    "total": 657,
+    "verbal": 87,
+    "material": 75,
+    "goldsteinMean": 0.5
+   },
+   {
+    "t": "2026-11-08T03:15:00.000Z",
+    "total": 595,
+    "verbal": 80,
+    "material": 110,
+    "goldsteinMean": -0.26
+   },
+   {
+    "t": "2026-11-08T03:30:00.000Z",
+    "total": 688,
+    "verbal": 104,
+    "material": 98,
+    "goldsteinMean": 0.22
+   },
+   {
+    "t": "2026-11-08T03:45:00.000Z",
+    "total": 575,
+    "verbal": 87,
+    "material": 65,
+    "goldsteinMean": 0.53
+   },
+   {
+    "t": "2026-11-08T04:00:00.000Z",
+    "total": 330,
+    "verbal": 47,
+    "material": 36,
+    "goldsteinMean": 0.27
+   },
+   {
+    "t": "2026-11-08T04:15:00.000Z",
+    "total": 539,
+    "verbal": 77,
+    "material": 74,
+    "goldsteinMean": 0.63
+   },
+   {
+    "t": "2026-11-08T04:30:00.000Z",
+    "total": 345,
+    "verbal": 25,
+    "material": 52,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-08T04:45:00.000Z",
+    "total": 391,
+    "verbal": 52,
+    "material": 50,
+    "goldsteinMean": 0.71
+   },
+   {
+    "t": "2026-11-08T05:00:00.000Z",
+    "total": 376,
+    "verbal": 62,
+    "material": 71,
+    "goldsteinMean": -0.45
+   },
+   {
+    "t": "2026-11-08T05:15:00.000Z",
+    "total": 505,
+    "verbal": 59,
+    "material": 37,
+    "goldsteinMean": 1.18
+   },
+   {
+    "t": "2026-11-08T05:30:00.000Z",
+    "total": 420,
+    "verbal": 48,
+    "material": 38,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-08T05:45:00.000Z",
+    "total": 367,
+    "verbal": 38,
+    "material": 69,
+    "goldsteinMean": -0.11
+   },
+   {
+    "t": "2026-11-08T06:00:00.000Z",
+    "total": 618,
+    "verbal": 70,
+    "material": 70,
+    "goldsteinMean": 0.38
+   },
+   {
+    "t": "2026-11-08T06:15:00.000Z",
+    "total": 746,
+    "verbal": 89,
+    "material": 124,
+    "goldsteinMean": -0.07
+   },
+   {
+    "t": "2026-11-08T06:30:00.000Z",
+    "total": 623,
+    "verbal": 87,
+    "material": 80,
+    "goldsteinMean": 0.51
+   },
+   {
+    "t": "2026-11-08T06:45:00.000Z",
+    "total": 573,
+    "verbal": 86,
+    "material": 135,
+    "goldsteinMean": -1.02
+   },
+   {
+    "t": "2026-11-08T07:00:00.000Z",
+    "total": 521,
+    "verbal": 84,
+    "material": 46,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-08T07:15:00.000Z",
+    "total": 265,
+    "verbal": 51,
+    "material": 34,
+    "goldsteinMean": 0.23
+   },
+   {
+    "t": "2026-11-08T07:30:00.000Z",
+    "total": 232,
+    "verbal": 26,
+    "material": 24,
+    "goldsteinMean": 1.14
+   },
+   {
+    "t": "2026-11-08T07:45:00.000Z",
+    "total": 1044,
+    "verbal": 122,
+    "material": 159,
+    "goldsteinMean": 0.3
+   },
+   {
+    "t": "2026-11-08T08:00:00.000Z",
+    "total": 565,
+    "verbal": 56,
+    "material": 66,
+    "goldsteinMean": 1.05
+   },
+   {
+    "t": "2026-11-08T08:15:00.000Z",
+    "total": 695,
+    "verbal": 116,
+    "material": 110,
+    "goldsteinMean": 0.08
+   },
+   {
+    "t": "2026-11-08T08:30:00.000Z",
+    "total": 570,
+    "verbal": 57,
+    "material": 36,
+    "goldsteinMean": 1.38
+   },
+   {
+    "t": "2026-11-08T08:45:00.000Z",
+    "total": 594,
+    "verbal": 82,
+    "material": 97,
+    "goldsteinMean": -0.03
+   },
+   {
+    "t": "2026-11-08T09:00:00.000Z",
+    "total": 343,
+    "verbal": 43,
+    "material": 30,
+    "goldsteinMean": 1.01
+   },
+   {
+    "t": "2026-11-08T09:15:00.000Z",
+    "total": 552,
+    "verbal": 88,
+    "material": 63,
+    "goldsteinMean": 0.4
+   },
+   {
+    "t": "2026-11-08T09:30:00.000Z",
+    "total": 513,
+    "verbal": 79,
+    "material": 72,
+    "goldsteinMean": 0.4
+   },
+   {
+    "t": "2026-11-08T09:45:00.000Z",
+    "total": 412,
+    "verbal": 48,
+    "material": 49,
+    "goldsteinMean": 0.49
+   },
+   {
+    "t": "2026-11-08T10:00:00.000Z",
+    "total": 587,
+    "verbal": 74,
+    "material": 82,
+    "goldsteinMean": 0.38
+   },
+   {
+    "t": "2026-11-08T10:15:00.000Z",
+    "total": 426,
+    "verbal": 71,
+    "material": 75,
+    "goldsteinMean": -0.19
+   },
+   {
+    "t": "2026-11-08T10:30:00.000Z",
+    "total": 820,
+    "verbal": 120,
+    "material": 133,
+    "goldsteinMean": 0.18
+   },
+   {
+    "t": "2026-11-08T10:45:00.000Z",
+    "total": 616,
+    "verbal": 98,
+    "material": 71,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-08T11:00:00.000Z",
+    "total": 736,
+    "verbal": 84,
+    "material": 72,
+    "goldsteinMean": 1.11
+   },
+   {
+    "t": "2026-11-08T11:15:00.000Z",
+    "total": 823,
+    "verbal": 118,
+    "material": 157,
+    "goldsteinMean": -0.33
+   },
+   {
+    "t": "2026-11-08T11:30:00.000Z",
+    "total": 701,
+    "verbal": 91,
+    "material": 90,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-08T11:45:00.000Z",
+    "total": 621,
+    "verbal": 92,
+    "material": 102,
+    "goldsteinMean": -0.04
+   },
+   {
+    "t": "2026-11-08T12:00:00.000Z",
+    "total": 566,
+    "verbal": 90,
+    "material": 64,
+    "goldsteinMean": 0.4
+   },
+   {
+    "t": "2026-11-08T12:15:00.000Z",
+    "total": 409,
+    "verbal": 41,
+    "material": 71,
+    "goldsteinMean": 0.2
+   },
+   {
+    "t": "2026-11-08T12:30:00.000Z",
+    "total": 614,
+    "verbal": 71,
+    "material": 90,
+    "goldsteinMean": 0.21
+   },
+   {
+    "t": "2026-11-08T12:45:00.000Z",
+    "total": 548,
+    "verbal": 75,
+    "material": 77,
+    "goldsteinMean": 0.24
+   },
+   {
+    "t": "2026-11-08T13:00:00.000Z",
+    "total": 732,
+    "verbal": 110,
+    "material": 112,
+    "goldsteinMean": -0.04
+   },
+   {
+    "t": "2026-11-08T13:15:00.000Z",
+    "total": 537,
+    "verbal": 61,
+    "material": 43,
+    "goldsteinMean": 1.1
+   },
+   {
+    "t": "2026-11-08T13:30:00.000Z",
+    "total": 738,
+    "verbal": 112,
+    "material": 100,
+    "goldsteinMean": 0.14
+   },
+   {
+    "t": "2026-11-08T13:45:00.000Z",
+    "total": 814,
+    "verbal": 117,
+    "material": 111,
+    "goldsteinMean": 0.27
+   },
+   {
+    "t": "2026-11-08T14:00:00.000Z",
+    "total": 730,
+    "verbal": 100,
+    "material": 60,
+    "goldsteinMean": 0.83
+   },
+   {
+    "t": "2026-11-08T14:15:00.000Z",
+    "total": 485,
+    "verbal": 46,
+    "material": 70,
+    "goldsteinMean": 0.62
+   },
+   {
+    "t": "2026-11-08T14:30:00.000Z",
+    "total": 771,
+    "verbal": 133,
+    "material": 110,
+    "goldsteinMean": 0.02
+   },
+   {
+    "t": "2026-11-08T14:45:00.000Z",
+    "total": 837,
+    "verbal": 73,
+    "material": 81,
+    "goldsteinMean": 1.28
+   },
+   {
+    "t": "2026-11-08T15:00:00.000Z",
+    "total": 734,
+    "verbal": 121,
+    "material": 79,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-08T15:15:00.000Z",
+    "total": 624,
+    "verbal": 67,
+    "material": 77,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-08T15:30:00.000Z",
+    "total": 590,
+    "verbal": 74,
+    "material": 80,
+    "goldsteinMean": 0.57
+   },
+   {
+    "t": "2026-11-08T15:45:00.000Z",
+    "total": 830,
+    "verbal": 114,
+    "material": 123,
+    "goldsteinMean": 0.36
+   },
+   {
+    "t": "2026-11-08T16:00:00.000Z",
+    "total": 623,
+    "verbal": 76,
+    "material": 68,
+    "goldsteinMean": 0.8
+   },
+   {
+    "t": "2026-11-08T16:15:00.000Z",
+    "total": 644,
+    "verbal": 61,
+    "material": 49,
+    "goldsteinMean": 1.17
+   },
+   {
+    "t": "2026-11-08T16:30:00.000Z",
+    "total": 815,
+    "verbal": 103,
+    "material": 131,
+    "goldsteinMean": 0.34
+   },
+   {
+    "t": "2026-11-08T16:45:00.000Z",
+    "total": 1054,
+    "verbal": 103,
+    "material": 124,
+    "goldsteinMean": 0.8
+   },
+   {
+    "t": "2026-11-08T17:00:00.000Z",
+    "total": 516,
+    "verbal": 65,
+    "material": 64,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-08T17:15:00.000Z",
+    "total": 522,
+    "verbal": 49,
+    "material": 71,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-08T17:30:00.000Z",
+    "total": 1060,
+    "verbal": 131,
+    "material": 131,
+    "goldsteinMean": 0.61
+   },
+   {
+    "t": "2026-11-08T17:45:00.000Z",
+    "total": 722,
+    "verbal": 108,
+    "material": 106,
+    "goldsteinMean": 0.11
+   },
+   {
+    "t": "2026-11-08T18:00:00.000Z",
+    "total": 589,
+    "verbal": 69,
+    "material": 69,
+    "goldsteinMean": 0.52
+   },
+   {
+    "t": "2026-11-08T18:15:00.000Z",
+    "total": 569,
+    "verbal": 65,
+    "material": 73,
+    "goldsteinMean": 0.65
+   },
+   {
+    "t": "2026-11-08T18:30:00.000Z",
+    "total": 657,
+    "verbal": 93,
+    "material": 100,
+    "goldsteinMean": 0.34
+   },
+   {
+    "t": "2026-11-08T18:45:00.000Z",
+    "total": 521,
+    "verbal": 60,
+    "material": 50,
+    "goldsteinMean": 0.87
+   },
+   {
+    "t": "2026-11-08T19:00:00.000Z",
+    "total": 563,
+    "verbal": 73,
+    "material": 66,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-08T19:15:00.000Z",
+    "total": 508,
+    "verbal": 51,
+    "material": 89,
+    "goldsteinMean": 0.22
+   },
+   {
+    "t": "2026-11-08T19:30:00.000Z",
+    "total": 471,
+    "verbal": 77,
+    "material": 75,
+    "goldsteinMean": -0.14
+   },
+   {
+    "t": "2026-11-08T19:45:00.000Z",
+    "total": 537,
+    "verbal": 73,
+    "material": 74,
+    "goldsteinMean": 0.47
+   },
+   {
+    "t": "2026-11-08T20:00:00.000Z",
+    "total": 709,
+    "verbal": 76,
+    "material": 83,
+    "goldsteinMean": 0.87
+   },
+   {
+    "t": "2026-11-08T20:15:00.000Z",
+    "total": 675,
+    "verbal": 78,
+    "material": 49,
+    "goldsteinMean": 1.15
+   },
+   {
+    "t": "2026-11-08T20:30:00.000Z",
+    "total": 503,
+    "verbal": 96,
+    "material": 56,
+    "goldsteinMean": 0.39
+   },
+   {
+    "t": "2026-11-08T20:45:00.000Z",
+    "total": 581,
+    "verbal": 92,
+    "material": 53,
+    "goldsteinMean": 0.92
+   },
+   {
+    "t": "2026-11-08T21:00:00.000Z",
+    "total": 862,
+    "verbal": 132,
+    "material": 149,
+    "goldsteinMean": -0.03
+   },
+   {
+    "t": "2026-11-08T21:15:00.000Z",
+    "total": 379,
+    "verbal": 58,
+    "material": 48,
+    "goldsteinMean": 0.08
+   },
+   {
+    "t": "2026-11-08T21:30:00.000Z",
+    "total": 406,
+    "verbal": 49,
+    "material": 58,
+    "goldsteinMean": 0.3
+   },
+   {
+    "t": "2026-11-08T21:45:00.000Z",
+    "total": 532,
+    "verbal": 77,
+    "material": 48,
+    "goldsteinMean": 0.56
+   },
+   {
+    "t": "2026-11-08T22:00:00.000Z",
+    "total": 858,
+    "verbal": 117,
+    "material": 116,
+    "goldsteinMean": 0.57
+   },
+   {
+    "t": "2026-11-08T22:15:00.000Z",
+    "total": 523,
+    "verbal": 87,
+    "material": 79,
+    "goldsteinMean": 0.25
+   },
+   {
+    "t": "2026-11-08T22:30:00.000Z",
+    "total": 427,
+    "verbal": 30,
+    "material": 47,
+    "goldsteinMean": 1.04
+   },
+   {
+    "t": "2026-11-08T22:45:00.000Z",
+    "total": 589,
+    "verbal": 74,
+    "material": 69,
+    "goldsteinMean": 0.62
+   },
+   {
+    "t": "2026-11-08T23:00:00.000Z",
+    "total": 526,
+    "verbal": 62,
+    "material": 104,
+    "goldsteinMean": -0.29
+   },
+   {
+    "t": "2026-11-08T23:15:00.000Z",
+    "total": 335,
+    "verbal": 48,
+    "material": 51,
+    "goldsteinMean": -0.1
+   },
+   {
+    "t": "2026-11-08T23:30:00.000Z",
+    "total": 472,
+    "verbal": 52,
+    "material": 76,
+    "goldsteinMean": 0.2
+   },
+   {
+    "t": "2026-11-08T23:45:00.000Z",
+    "total": 633,
+    "verbal": 92,
+    "material": 67,
+    "goldsteinMean": 0.54
+   },
+   {
+    "t": "2026-11-09T00:00:00.000Z",
+    "total": 914,
+    "verbal": 98,
+    "material": 128,
+    "goldsteinMean": 0.15
+   },
+   {
+    "t": "2026-11-09T00:15:00.000Z",
+    "total": 709,
+    "verbal": 80,
+    "material": 98,
+    "goldsteinMean": 0.13
+   },
+   {
+    "t": "2026-11-09T00:30:00.000Z",
+    "total": 487,
+    "verbal": 53,
+    "material": 61,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-09T00:45:00.000Z",
+    "total": 870,
+    "verbal": 121,
+    "material": 100,
+    "goldsteinMean": 0.72
+   },
+   {
+    "t": "2026-11-09T01:00:00.000Z",
+    "total": 705,
+    "verbal": 73,
+    "material": 76,
+    "goldsteinMean": 0.71
+   },
+   {
+    "t": "2026-11-09T01:15:00.000Z",
+    "total": 678,
+    "verbal": 80,
+    "material": 90,
+    "goldsteinMean": 0.64
+   },
+   {
+    "t": "2026-11-09T01:30:00.000Z",
+    "total": 861,
+    "verbal": 111,
+    "material": 119,
+    "goldsteinMean": 0.19
+   },
+   {
+    "t": "2026-11-09T01:45:00.000Z",
+    "total": 556,
+    "verbal": 69,
+    "material": 70,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-09T02:00:00.000Z",
+    "total": 639,
+    "verbal": 98,
+    "material": 93,
+    "goldsteinMean": 0.26
+   },
+   {
+    "t": "2026-11-09T02:15:00.000Z",
+    "total": 732,
+    "verbal": 75,
+    "material": 71,
+    "goldsteinMean": 1.18
+   },
+   {
+    "t": "2026-11-09T02:30:00.000Z",
+    "total": 624,
+    "verbal": 78,
+    "material": 67,
+    "goldsteinMean": 0.56
+   },
+   {
+    "t": "2026-11-09T02:45:00.000Z",
+    "total": 652,
+    "verbal": 86,
+    "material": 83,
+    "goldsteinMean": 0.57
+   },
+   {
+    "t": "2026-11-09T03:00:00.000Z",
+    "total": 707,
+    "verbal": 100,
+    "material": 76,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-09T03:15:00.000Z",
+    "total": 818,
+    "verbal": 90,
+    "material": 63,
+    "goldsteinMean": 0.92
+   },
+   {
+    "t": "2026-11-09T03:30:00.000Z",
+    "total": 613,
+    "verbal": 84,
+    "material": 63,
+    "goldsteinMean": 1.03
+   },
+   {
+    "t": "2026-11-09T03:45:00.000Z",
+    "total": 920,
+    "verbal": 95,
+    "material": 105,
+    "goldsteinMean": 0.62
+   },
+   {
+    "t": "2026-11-09T04:00:00.000Z",
+    "total": 493,
+    "verbal": 42,
+    "material": 53,
+    "goldsteinMean": 0.87
+   },
+   {
+    "t": "2026-11-09T04:15:00.000Z",
+    "total": 616,
+    "verbal": 56,
+    "material": 52,
+    "goldsteinMean": 1.42
+   },
+   {
+    "t": "2026-11-09T04:30:00.000Z",
+    "total": 610,
+    "verbal": 75,
+    "material": 67,
+    "goldsteinMean": 0.66
+   },
+   {
+    "t": "2026-11-09T04:45:00.000Z",
+    "total": 691,
+    "verbal": 88,
+    "material": 50,
+    "goldsteinMean": 1
+   },
+   {
+    "t": "2026-11-09T05:00:00.000Z",
+    "total": 521,
+    "verbal": 112,
+    "material": 53,
+    "goldsteinMean": -0.22
+   },
+   {
+    "t": "2026-11-09T05:15:00.000Z",
+    "total": 838,
+    "verbal": 91,
+    "material": 91,
+    "goldsteinMean": 0.72
+   },
+   {
+    "t": "2026-11-09T05:30:00.000Z",
+    "total": 685,
+    "verbal": 59,
+    "material": 75,
+    "goldsteinMean": 1.21
+   },
+   {
+    "t": "2026-11-09T05:45:00.000Z",
+    "total": 1039,
+    "verbal": 99,
+    "material": 117,
+    "goldsteinMean": 1.08
+   },
+   {
+    "t": "2026-11-09T06:00:00.000Z",
+    "total": 839,
+    "verbal": 112,
+    "material": 66,
+    "goldsteinMean": 1.63
+   },
+   {
+    "t": "2026-11-09T06:15:00.000Z",
+    "total": 622,
+    "verbal": 83,
+    "material": 102,
+    "goldsteinMean": -0.03
+   },
+   {
+    "t": "2026-11-09T06:30:00.000Z",
+    "total": 522,
+    "verbal": 54,
+    "material": 64,
+    "goldsteinMean": 0.96
+   },
+   {
+    "t": "2026-11-09T06:45:00.000Z",
+    "total": 1102,
+    "verbal": 122,
+    "material": 150,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-09T07:00:00.000Z",
+    "total": 1072,
+    "verbal": 106,
+    "material": 169,
+    "goldsteinMean": 0.43
+   },
+   {
+    "t": "2026-11-09T07:15:00.000Z",
+    "total": 703,
+    "verbal": 70,
+    "material": 71,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-09T07:30:00.000Z",
+    "total": 1113,
+    "verbal": 126,
+    "material": 202,
+    "goldsteinMean": 0.04
+   },
+   {
+    "t": "2026-11-09T07:45:00.000Z",
+    "total": 1180,
+    "verbal": 134,
+    "material": 170,
+    "goldsteinMean": 0.46
+   },
+   {
+    "t": "2026-11-09T08:00:00.000Z",
+    "total": 753,
+    "verbal": 83,
+    "material": 81,
+    "goldsteinMean": 1.09
+   },
+   {
+    "t": "2026-11-09T08:15:00.000Z",
+    "total": 636,
+    "verbal": 73,
+    "material": 87,
+    "goldsteinMean": 0.47
+   },
+   {
+    "t": "2026-11-09T08:30:00.000Z",
+    "total": 778,
+    "verbal": 96,
+    "material": 68,
+    "goldsteinMean": 1.06
+   },
+   {
+    "t": "2026-11-09T08:45:00.000Z",
+    "total": 955,
+    "verbal": 128,
+    "material": 108,
+    "goldsteinMean": 0.62
+   },
+   {
+    "t": "2026-11-09T09:00:00.000Z",
+    "total": 654,
+    "verbal": 69,
+    "material": 65,
+    "goldsteinMean": 1.07
+   },
+   {
+    "t": "2026-11-09T09:15:00.000Z",
+    "total": 875,
+    "verbal": 118,
+    "material": 72,
+    "goldsteinMean": 0.92
+   },
+   {
+    "t": "2026-11-09T09:30:00.000Z",
+    "total": 1024,
+    "verbal": 117,
+    "material": 62,
+    "goldsteinMean": 1.52
+   },
+   {
+    "t": "2026-11-09T09:45:00.000Z",
+    "total": 850,
+    "verbal": 103,
+    "material": 99,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-09T10:00:00.000Z",
+    "total": 1058,
+    "verbal": 177,
+    "material": 98,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-09T10:15:00.000Z",
+    "total": 1638,
+    "verbal": 233,
+    "material": 166,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-09T10:30:00.000Z",
+    "total": 992,
+    "verbal": 103,
+    "material": 105,
+    "goldsteinMean": 0.94
+   },
+   {
+    "t": "2026-11-09T10:45:00.000Z",
+    "total": 1034,
+    "verbal": 149,
+    "material": 101,
+    "goldsteinMean": 0.66
+   },
+   {
+    "t": "2026-11-09T11:00:00.000Z",
+    "total": 721,
+    "verbal": 103,
+    "material": 78,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-09T11:15:00.000Z",
+    "total": 929,
+    "verbal": 136,
+    "material": 105,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-09T11:30:00.000Z",
+    "total": 913,
+    "verbal": 106,
+    "material": 76,
+    "goldsteinMean": 1.26
+   },
+   {
+    "t": "2026-11-09T11:45:00.000Z",
+    "total": 1009,
+    "verbal": 116,
+    "material": 81,
+    "goldsteinMean": 1.37
+   },
+   {
+    "t": "2026-11-09T12:00:00.000Z",
+    "total": 1694,
+    "verbal": 236,
+    "material": 171,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-09T12:15:00.000Z",
+    "total": 1501,
+    "verbal": 175,
+    "material": 201,
+    "goldsteinMean": 0.46
+   },
+   {
+    "t": "2026-11-09T12:30:00.000Z",
+    "total": 1005,
+    "verbal": 101,
+    "material": 80,
+    "goldsteinMean": 1.23
+   },
+   {
+    "t": "2026-11-09T12:45:00.000Z",
+    "total": 1201,
+    "verbal": 148,
+    "material": 122,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-09T13:00:00.000Z",
+    "total": 1214,
+    "verbal": 167,
+    "material": 173,
+    "goldsteinMean": 0.35
+   },
+   {
+    "t": "2026-11-09T13:15:00.000Z",
+    "total": 1235,
+    "verbal": 130,
+    "material": 142,
+    "goldsteinMean": 0.92
+   },
+   {
+    "t": "2026-11-09T13:30:00.000Z",
+    "total": 1482,
+    "verbal": 176,
+    "material": 177,
+    "goldsteinMean": 0.87
+   },
+   {
+    "t": "2026-11-09T13:45:00.000Z",
+    "total": 1259,
+    "verbal": 164,
+    "material": 168,
+    "goldsteinMean": 0.58
+   },
+   {
+    "t": "2026-11-09T14:00:00.000Z",
+    "total": 1122,
+    "verbal": 154,
+    "material": 125,
+    "goldsteinMean": 0.76
+   },
+   {
+    "t": "2026-11-09T14:15:00.000Z",
+    "total": 1573,
+    "verbal": 223,
+    "material": 184,
+    "goldsteinMean": 0.65
+   },
+   {
+    "t": "2026-11-09T14:30:00.000Z",
+    "total": 1267,
+    "verbal": 145,
+    "material": 139,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-09T14:45:00.000Z",
+    "total": 1356,
+    "verbal": 180,
+    "material": 205,
+    "goldsteinMean": 0.39
+   },
+   {
+    "t": "2026-11-09T15:00:00.000Z",
+    "total": 1291,
+    "verbal": 151,
+    "material": 153,
+    "goldsteinMean": 1.16
+   },
+   {
+    "t": "2026-11-09T15:15:00.000Z",
+    "total": 1894,
+    "verbal": 208,
+    "material": 209,
+    "goldsteinMean": 1.15
+   },
+   {
+    "t": "2026-11-09T15:30:00.000Z",
+    "total": 1243,
+    "verbal": 184,
+    "material": 133,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-09T15:45:00.000Z",
+    "total": 1366,
+    "verbal": 149,
+    "material": 171,
+    "goldsteinMean": 0.64
+   },
+   {
+    "t": "2026-11-09T16:00:00.000Z",
+    "total": 1449,
+    "verbal": 208,
+    "material": 202,
+    "goldsteinMean": 0.4
+   },
+   {
+    "t": "2026-11-09T16:15:00.000Z",
+    "total": 1687,
+    "verbal": 184,
+    "material": 188,
+    "goldsteinMean": 1.02
+   },
+   {
+    "t": "2026-11-09T16:30:00.000Z",
+    "total": 1559,
+    "verbal": 173,
+    "material": 240,
+    "goldsteinMean": 0.47
+   },
+   {
+    "t": "2026-11-09T16:45:00.000Z",
+    "total": 1747,
+    "verbal": 256,
+    "material": 202,
+    "goldsteinMean": 0.47
+   },
+   {
+    "t": "2026-11-09T17:00:00.000Z",
+    "total": 1768,
+    "verbal": 226,
+    "material": 236,
+    "goldsteinMean": 0.58
+   },
+   {
+    "t": "2026-11-09T17:15:00.000Z",
+    "total": 1609,
+    "verbal": 172,
+    "material": 238,
+    "goldsteinMean": 0.8
+   },
+   {
+    "t": "2026-11-09T17:30:00.000Z",
+    "total": 1017,
+    "verbal": 141,
+    "material": 98,
+    "goldsteinMean": 1
+   },
+   {
+    "t": "2026-11-09T17:45:00.000Z",
+    "total": 1514,
+    "verbal": 145,
+    "material": 180,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-09T18:00:00.000Z",
+    "total": 1156,
+    "verbal": 152,
+    "material": 91,
+    "goldsteinMean": 1.3
+   },
+   {
+    "t": "2026-11-09T18:15:00.000Z",
+    "total": 1599,
+    "verbal": 192,
+    "material": 183,
+    "goldsteinMean": 0.98
+   },
+   {
+    "t": "2026-11-09T18:30:00.000Z",
+    "total": 1719,
+    "verbal": 215,
+    "material": 190,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-09T18:45:00.000Z",
+    "total": 1080,
+    "verbal": 152,
+    "material": 157,
+    "goldsteinMean": 0.48
+   },
+   {
+    "t": "2026-11-09T19:00:00.000Z",
+    "total": 1415,
+    "verbal": 182,
+    "material": 206,
+    "goldsteinMean": 0.3
+   },
+   {
+    "t": "2026-11-09T19:15:00.000Z",
+    "total": 939,
+    "verbal": 102,
+    "material": 85,
+    "goldsteinMean": 1.31
+   },
+   {
+    "t": "2026-11-09T19:30:00.000Z",
+    "total": 1622,
+    "verbal": 255,
+    "material": 207,
+    "goldsteinMean": 0.52
+   },
+   {
+    "t": "2026-11-09T19:45:00.000Z",
+    "total": 1605,
+    "verbal": 156,
+    "material": 217,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-09T20:00:00.000Z",
+    "total": 1065,
+    "verbal": 131,
+    "material": 104,
+    "goldsteinMean": 1.07
+   },
+   {
+    "t": "2026-11-09T20:15:00.000Z",
+    "total": 1251,
+    "verbal": 203,
+    "material": 154,
+    "goldsteinMean": 0.51
+   },
+   {
+    "t": "2026-11-09T20:30:00.000Z",
+    "total": 1480,
+    "verbal": 192,
+    "material": 160,
+    "goldsteinMean": 0.91
+   },
+   {
+    "t": "2026-11-09T20:45:00.000Z",
+    "total": 876,
+    "verbal": 113,
+    "material": 76,
+    "goldsteinMean": 1.17
+   },
+   {
+    "t": "2026-11-09T21:00:00.000Z",
+    "total": 1053,
+    "verbal": 143,
+    "material": 117,
+    "goldsteinMean": 0.76
+   },
+   {
+    "t": "2026-11-09T21:15:00.000Z",
+    "total": 1297,
+    "verbal": 194,
+    "material": 195,
+    "goldsteinMean": 0.37
+   },
+   {
+    "t": "2026-11-09T21:30:00.000Z",
+    "total": 1240,
+    "verbal": 135,
+    "material": 197,
+    "goldsteinMean": 0.48
+   },
+   {
+    "t": "2026-11-09T21:45:00.000Z",
+    "total": 1166,
+    "verbal": 164,
+    "material": 154,
+    "goldsteinMean": 0.47
+   },
+   {
+    "t": "2026-11-09T22:00:00.000Z",
+    "total": 1165,
+    "verbal": 153,
+    "material": 121,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-09T22:15:00.000Z",
+    "total": 1646,
+    "verbal": 193,
+    "material": 183,
+    "goldsteinMean": 0.94
+   },
+   {
+    "t": "2026-11-09T22:30:00.000Z",
+    "total": 1137,
+    "verbal": 131,
+    "material": 138,
+    "goldsteinMean": 0.91
+   },
+   {
+    "t": "2026-11-09T22:45:00.000Z",
+    "total": 1167,
+    "verbal": 199,
+    "material": 194,
+    "goldsteinMean": -0.09
+   },
+   {
+    "t": "2026-11-09T23:00:00.000Z",
+    "total": 1179,
+    "verbal": 144,
+    "material": 154,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-09T23:15:00.000Z",
+    "total": 1191,
+    "verbal": 174,
+    "material": 111,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-09T23:30:00.000Z",
+    "total": 1112,
+    "verbal": 175,
+    "material": 134,
+    "goldsteinMean": 0.64
+   },
+   {
+    "t": "2026-11-09T23:45:00.000Z",
+    "total": 799,
+    "verbal": 114,
+    "material": 87,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-10T00:00:00.000Z",
+    "total": 2501,
+    "verbal": 302,
+    "material": 304,
+    "goldsteinMean": 0.7
+   },
+   {
+    "t": "2026-11-10T00:15:00.000Z",
+    "total": 1899,
+    "verbal": 223,
+    "material": 273,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-10T00:30:00.000Z",
+    "total": 1510,
+    "verbal": 251,
+    "material": 152,
+    "goldsteinMean": 0.72
+   },
+   {
+    "t": "2026-11-10T00:45:00.000Z",
+    "total": 1645,
+    "verbal": 203,
+    "material": 212,
+    "goldsteinMean": 0.85
+   },
+   {
+    "t": "2026-11-10T01:00:00.000Z",
+    "total": 1492,
+    "verbal": 164,
+    "material": 146,
+    "goldsteinMean": 0.98
+   },
+   {
+    "t": "2026-11-10T01:15:00.000Z",
+    "total": 1957,
+    "verbal": 258,
+    "material": 199,
+    "goldsteinMean": 0.88
+   },
+   {
+    "t": "2026-11-10T01:30:00.000Z",
+    "total": 1083,
+    "verbal": 125,
+    "material": 141,
+    "goldsteinMean": 0.72
+   },
+   {
+    "t": "2026-11-10T01:45:00.000Z",
+    "total": 1138,
+    "verbal": 144,
+    "material": 160,
+    "goldsteinMean": 0.48
+   },
+   {
+    "t": "2026-11-10T02:00:00.000Z",
+    "total": 1264,
+    "verbal": 165,
+    "material": 147,
+    "goldsteinMean": 0.92
+   },
+   {
+    "t": "2026-11-10T02:15:00.000Z",
+    "total": 1304,
+    "verbal": 198,
+    "material": 156,
+    "goldsteinMean": 0.7
+   },
+   {
+    "t": "2026-11-10T02:30:00.000Z",
+    "total": 1192,
+    "verbal": 143,
+    "material": 132,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-10T02:45:00.000Z",
+    "total": 1168,
+    "verbal": 152,
+    "material": 146,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-10T03:00:00.000Z",
+    "total": 958,
+    "verbal": 145,
+    "material": 134,
+    "goldsteinMean": 0.55
+   },
+   {
+    "t": "2026-11-10T03:15:00.000Z",
+    "total": 1284,
+    "verbal": 161,
+    "material": 141,
+    "goldsteinMean": 0.61
+   },
+   {
+    "t": "2026-11-10T03:30:00.000Z",
+    "total": 1182,
+    "verbal": 119,
+    "material": 97,
+    "goldsteinMean": 1.81
+   },
+   {
+    "t": "2026-11-10T03:45:00.000Z",
+    "total": 902,
+    "verbal": 139,
+    "material": 91,
+    "goldsteinMean": 0.83
+   },
+   {
+    "t": "2026-11-10T04:00:00.000Z",
+    "total": 853,
+    "verbal": 108,
+    "material": 87,
+    "goldsteinMean": 1.06
+   },
+   {
+    "t": "2026-11-10T04:15:00.000Z",
+    "total": 903,
+    "verbal": 148,
+    "material": 119,
+    "goldsteinMean": 0.27
+   },
+   {
+    "t": "2026-11-10T04:30:00.000Z",
+    "total": 922,
+    "verbal": 106,
+    "material": 104,
+    "goldsteinMean": 0.66
+   },
+   {
+    "t": "2026-11-10T04:45:00.000Z",
+    "total": 845,
+    "verbal": 125,
+    "material": 109,
+    "goldsteinMean": 0.03
+   },
+   {
+    "t": "2026-11-10T05:00:00.000Z",
+    "total": 1003,
+    "verbal": 157,
+    "material": 132,
+    "goldsteinMean": 0.42
+   },
+   {
+    "t": "2026-11-10T05:15:00.000Z",
+    "total": 766,
+    "verbal": 108,
+    "material": 79,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-10T05:30:00.000Z",
+    "total": 825,
+    "verbal": 107,
+    "material": 115,
+    "goldsteinMean": 0.41
+   },
+   {
+    "t": "2026-11-10T05:45:00.000Z",
+    "total": 1178,
+    "verbal": 109,
+    "material": 132,
+    "goldsteinMean": 0.91
+   },
+   {
+    "t": "2026-11-10T06:00:00.000Z",
+    "total": 1041,
+    "verbal": 153,
+    "material": 128,
+    "goldsteinMean": 0.44
+   },
+   {
+    "t": "2026-11-10T06:15:00.000Z",
+    "total": 1316,
+    "verbal": 137,
+    "material": 148,
+    "goldsteinMean": 1.06
+   },
+   {
+    "t": "2026-11-10T06:30:00.000Z",
+    "total": 1153,
+    "verbal": 131,
+    "material": 133,
+    "goldsteinMean": 0.75
+   },
+   {
+    "t": "2026-11-10T06:45:00.000Z",
+    "total": 855,
+    "verbal": 88,
+    "material": 89,
+    "goldsteinMean": 1.01
+   },
+   {
+    "t": "2026-11-10T07:00:00.000Z",
+    "total": 1406,
+    "verbal": 170,
+    "material": 142,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-10T07:15:00.000Z",
+    "total": 950,
+    "verbal": 99,
+    "material": 123,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-10T07:30:00.000Z",
+    "total": 1210,
+    "verbal": 164,
+    "material": 103,
+    "goldsteinMean": 1.08
+   },
+   {
+    "t": "2026-11-10T07:45:00.000Z",
+    "total": 1052,
+    "verbal": 160,
+    "material": 154,
+    "goldsteinMean": 0.2
+   },
+   {
+    "t": "2026-11-10T08:00:00.000Z",
+    "total": 1043,
+    "verbal": 138,
+    "material": 85,
+    "goldsteinMean": 1.32
+   },
+   {
+    "t": "2026-11-10T08:15:00.000Z",
+    "total": 1217,
+    "verbal": 162,
+    "material": 132,
+    "goldsteinMean": 0.75
+   },
+   {
+    "t": "2026-11-10T08:30:00.000Z",
+    "total": 1011,
+    "verbal": 120,
+    "material": 114,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-10T08:45:00.000Z",
+    "total": 915,
+    "verbal": 127,
+    "material": 105,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-10T09:00:00.000Z",
+    "total": 1167,
+    "verbal": 157,
+    "material": 110,
+    "goldsteinMean": 1.06
+   },
+   {
+    "t": "2026-11-10T09:15:00.000Z",
+    "total": 1005,
+    "verbal": 119,
+    "material": 110,
+    "goldsteinMean": 0.68
+   },
+   {
+    "t": "2026-11-10T09:30:00.000Z",
+    "total": 1248,
+    "verbal": 133,
+    "material": 122,
+    "goldsteinMean": 0.88
+   },
+   {
+    "t": "2026-11-10T09:45:00.000Z",
+    "total": 1238,
+    "verbal": 111,
+    "material": 117,
+    "goldsteinMean": 1.85
+   },
+   {
+    "t": "2026-11-10T10:00:00.000Z",
+    "total": 2039,
+    "verbal": 233,
+    "material": 245,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-10T10:15:00.000Z",
+    "total": 1211,
+    "verbal": 136,
+    "material": 133,
+    "goldsteinMean": 1.08
+   },
+   {
+    "t": "2026-11-10T10:30:00.000Z",
+    "total": 1365,
+    "verbal": 121,
+    "material": 143,
+    "goldsteinMean": 1.31
+   },
+   {
+    "t": "2026-11-10T10:45:00.000Z",
+    "total": 1243,
+    "verbal": 150,
+    "material": 186,
+    "goldsteinMean": 0.5
+   },
+   {
+    "t": "2026-11-10T11:00:00.000Z",
+    "total": 823,
+    "verbal": 97,
+    "material": 98,
+    "goldsteinMean": 0.99
+   },
+   {
+    "t": "2026-11-10T11:15:00.000Z",
+    "total": 1126,
+    "verbal": 151,
+    "material": 120,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-10T11:30:00.000Z",
+    "total": 1731,
+    "verbal": 182,
+    "material": 197,
+    "goldsteinMean": 1.21
+   },
+   {
+    "t": "2026-11-10T11:45:00.000Z",
+    "total": 1205,
+    "verbal": 172,
+    "material": 136,
+    "goldsteinMean": 0.7
+   },
+   {
+    "t": "2026-11-10T12:00:00.000Z",
+    "total": 850,
+    "verbal": 140,
+    "material": 82,
+    "goldsteinMean": 0.88
+   },
+   {
+    "t": "2026-11-10T12:15:00.000Z",
+    "total": 1158,
+    "verbal": 141,
+    "material": 140,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-10T12:30:00.000Z",
+    "total": 1100,
+    "verbal": 119,
+    "material": 84,
+    "goldsteinMean": 1.5
+   },
+   {
+    "t": "2026-11-10T12:45:00.000Z",
+    "total": 1652,
+    "verbal": 183,
+    "material": 129,
+    "goldsteinMean": 1.4
+   },
+   {
+    "t": "2026-11-10T13:00:00.000Z",
+    "total": 2279,
+    "verbal": 261,
+    "material": 221,
+    "goldsteinMean": 1.11
+   },
+   {
+    "t": "2026-11-10T13:15:00.000Z",
+    "total": 1221,
+    "verbal": 175,
+    "material": 131,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-10T13:30:00.000Z",
+    "total": 1542,
+    "verbal": 147,
+    "material": 130,
+    "goldsteinMean": 1.51
+   },
+   {
+    "t": "2026-11-10T13:45:00.000Z",
+    "total": 1378,
+    "verbal": 178,
+    "material": 154,
+    "goldsteinMean": 0.97
+   },
+   {
+    "t": "2026-11-10T14:00:00.000Z",
+    "total": 1324,
+    "verbal": 135,
+    "material": 130,
+    "goldsteinMean": 1.43
+   },
+   {
+    "t": "2026-11-10T14:15:00.000Z",
+    "total": 1831,
+    "verbal": 196,
+    "material": 154,
+    "goldsteinMean": 1.16
+   },
+   {
+    "t": "2026-11-10T14:30:00.000Z",
+    "total": 1392,
+    "verbal": 172,
+    "material": 157,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-10T14:45:00.000Z",
+    "total": 1611,
+    "verbal": 186,
+    "material": 207,
+    "goldsteinMean": 0.62
+   },
+   {
+    "t": "2026-11-10T15:00:00.000Z",
+    "total": 1582,
+    "verbal": 195,
+    "material": 178,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-10T15:15:00.000Z",
+    "total": 1226,
+    "verbal": 173,
+    "material": 141,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-10T15:30:00.000Z",
+    "total": 1581,
+    "verbal": 162,
+    "material": 152,
+    "goldsteinMean": 1.08
+   },
+   {
+    "t": "2026-11-10T15:45:00.000Z",
+    "total": 1357,
+    "verbal": 218,
+    "material": 162,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-10T16:00:00.000Z",
+    "total": 1480,
+    "verbal": 235,
+    "material": 182,
+    "goldsteinMean": 0.63
+   },
+   {
+    "t": "2026-11-10T16:15:00.000Z",
+    "total": 1605,
+    "verbal": 190,
+    "material": 141,
+    "goldsteinMean": 1.08
+   },
+   {
+    "t": "2026-11-10T16:30:00.000Z",
+    "total": 1584,
+    "verbal": 216,
+    "material": 162,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-10T16:45:00.000Z",
+    "total": 1488,
+    "verbal": 216,
+    "material": 163,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-10T17:00:00.000Z",
+    "total": 1780,
+    "verbal": 197,
+    "material": 194,
+    "goldsteinMean": 1.06
+   },
+   {
+    "t": "2026-11-10T17:15:00.000Z",
+    "total": 1055,
+    "verbal": 123,
+    "material": 130,
+    "goldsteinMean": 0.7
+   },
+   {
+    "t": "2026-11-10T17:30:00.000Z",
+    "total": 1933,
+    "verbal": 204,
+    "material": 150,
+    "goldsteinMean": 1.4
+   },
+   {
+    "t": "2026-11-10T17:45:00.000Z",
+    "total": 1498,
+    "verbal": 209,
+    "material": 202,
+    "goldsteinMean": 0.46
+   },
+   {
+    "t": "2026-11-10T18:00:00.000Z",
+    "total": 1442,
+    "verbal": 171,
+    "material": 198,
+    "goldsteinMean": 0.8
+   },
+   {
+    "t": "2026-11-10T18:15:00.000Z",
+    "total": 1259,
+    "verbal": 166,
+    "material": 162,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-10T18:30:00.000Z",
+    "total": 1595,
+    "verbal": 232,
+    "material": 210,
+    "goldsteinMean": 0.3
+   },
+   {
+    "t": "2026-11-10T18:45:00.000Z",
+    "total": 1377,
+    "verbal": 172,
+    "material": 210,
+    "goldsteinMean": 0.41
+   },
+   {
+    "t": "2026-11-10T19:00:00.000Z",
+    "total": 1456,
+    "verbal": 159,
+    "material": 182,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-10T19:15:00.000Z",
+    "total": 1443,
+    "verbal": 154,
+    "material": 189,
+    "goldsteinMean": 0.83
+   },
+   {
+    "t": "2026-11-10T19:30:00.000Z",
+    "total": 1592,
+    "verbal": 220,
+    "material": 233,
+    "goldsteinMean": 0.45
+   },
+   {
+    "t": "2026-11-10T19:45:00.000Z",
+    "total": 1157,
+    "verbal": 145,
+    "material": 170,
+    "goldsteinMean": 0.65
+   },
+   {
+    "t": "2026-11-10T20:00:00.000Z",
+    "total": 1148,
+    "verbal": 161,
+    "material": 205,
+    "goldsteinMean": -0.12
+   },
+   {
+    "t": "2026-11-10T20:15:00.000Z",
+    "total": 1111,
+    "verbal": 142,
+    "material": 164,
+    "goldsteinMean": 0.46
+   },
+   {
+    "t": "2026-11-10T20:30:00.000Z",
+    "total": 1252,
+    "verbal": 137,
+    "material": 170,
+    "goldsteinMean": 0.83
+   },
+   {
+    "t": "2026-11-10T20:45:00.000Z",
+    "total": 1150,
+    "verbal": 154,
+    "material": 135,
+    "goldsteinMean": 0.78
+   },
+   {
+    "t": "2026-11-10T21:00:00.000Z",
+    "total": 1106,
+    "verbal": 114,
+    "material": 153,
+    "goldsteinMean": 0.7
+   },
+   {
+    "t": "2026-11-10T21:15:00.000Z",
+    "total": 1494,
+    "verbal": 235,
+    "material": 208,
+    "goldsteinMean": 0.29
+   },
+   {
+    "t": "2026-11-10T21:30:00.000Z",
+    "total": 1517,
+    "verbal": 200,
+    "material": 177,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-10T21:45:00.000Z",
+    "total": 1264,
+    "verbal": 172,
+    "material": 249,
+    "goldsteinMean": -0.14
+   },
+   {
+    "t": "2026-11-10T22:00:00.000Z",
+    "total": 1091,
+    "verbal": 154,
+    "material": 158,
+    "goldsteinMean": 0.36
+   },
+   {
+    "t": "2026-11-10T22:15:00.000Z",
+    "total": 970,
+    "verbal": 107,
+    "material": 123,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-10T22:30:00.000Z",
+    "total": 1230,
+    "verbal": 213,
+    "material": 138,
+    "goldsteinMean": 0.35
+   },
+   {
+    "t": "2026-11-10T22:45:00.000Z",
+    "total": 1439,
+    "verbal": 154,
+    "material": 139,
+    "goldsteinMean": 1.23
+   },
+   {
+    "t": "2026-11-10T23:00:00.000Z",
+    "total": 931,
+    "verbal": 126,
+    "material": 133,
+    "goldsteinMean": 0.42
+   },
+   {
+    "t": "2026-11-10T23:15:00.000Z",
+    "total": 1327,
+    "verbal": 186,
+    "material": 222,
+    "goldsteinMean": 0.37
+   },
+   {
+    "t": "2026-11-10T23:30:00.000Z",
+    "total": 1310,
+    "verbal": 147,
+    "material": 185,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-10T23:45:00.000Z",
+    "total": 992,
+    "verbal": 131,
+    "material": 125,
+    "goldsteinMean": 0.5
+   },
+   {
+    "t": "2026-11-11T00:00:00.000Z",
+    "total": 2253,
+    "verbal": 300,
+    "material": 297,
+    "goldsteinMean": 0.53
+   },
+   {
+    "t": "2026-11-11T00:15:00.000Z",
+    "total": 1939,
+    "verbal": 213,
+    "material": 250,
+    "goldsteinMean": 0.58
+   },
+   {
+    "t": "2026-11-11T00:30:00.000Z",
+    "total": 1426,
+    "verbal": 175,
+    "material": 182,
+    "goldsteinMean": 0.76
+   },
+   {
+    "t": "2026-11-11T00:45:00.000Z",
+    "total": 1178,
+    "verbal": 165,
+    "material": 180,
+    "goldsteinMean": 0.14
+   },
+   {
+    "t": "2026-11-11T01:00:00.000Z",
+    "total": 1548,
+    "verbal": 188,
+    "material": 196,
+    "goldsteinMean": 0.44
+   },
+   {
+    "t": "2026-11-11T01:15:00.000Z",
+    "total": 1259,
+    "verbal": 168,
+    "material": 132,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-11T01:30:00.000Z",
+    "total": 1340,
+    "verbal": 166,
+    "material": 199,
+    "goldsteinMean": 0.47
+   },
+   {
+    "t": "2026-11-11T01:45:00.000Z",
+    "total": 1326,
+    "verbal": 163,
+    "material": 150,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-11T02:00:00.000Z",
+    "total": 1067,
+    "verbal": 141,
+    "material": 99,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-11T02:15:00.000Z",
+    "total": 1104,
+    "verbal": 140,
+    "material": 142,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-11T02:30:00.000Z",
+    "total": 1637,
+    "verbal": 210,
+    "material": 210,
+    "goldsteinMean": 0.65
+   },
+   {
+    "t": "2026-11-11T02:45:00.000Z",
+    "total": 965,
+    "verbal": 134,
+    "material": 200,
+    "goldsteinMean": -0.31
+   },
+   {
+    "t": "2026-11-11T03:00:00.000Z",
+    "total": 1192,
+    "verbal": 121,
+    "material": 214,
+    "goldsteinMean": 0.28
+   },
+   {
+    "t": "2026-11-11T03:15:00.000Z",
+    "total": 1089,
+    "verbal": 127,
+    "material": 123,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-11T03:30:00.000Z",
+    "total": 1189,
+    "verbal": 150,
+    "material": 137,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-11T03:45:00.000Z",
+    "total": 1174,
+    "verbal": 137,
+    "material": 186,
+    "goldsteinMean": 0.28
+   },
+   {
+    "t": "2026-11-11T04:00:00.000Z",
+    "total": 803,
+    "verbal": 120,
+    "material": 126,
+    "goldsteinMean": 0.15
+   },
+   {
+    "t": "2026-11-11T04:15:00.000Z",
+    "total": 907,
+    "verbal": 127,
+    "material": 130,
+    "goldsteinMean": 0.36
+   },
+   {
+    "t": "2026-11-11T04:30:00.000Z",
+    "total": 1059,
+    "verbal": 170,
+    "material": 159,
+    "goldsteinMean": 0.19
+   },
+   {
+    "t": "2026-11-11T04:45:00.000Z",
+    "total": 1059,
+    "verbal": 141,
+    "material": 124,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-11T05:00:00.000Z",
+    "total": 1450,
+    "verbal": 178,
+    "material": 160,
+    "goldsteinMean": 0.76
+   },
+   {
+    "t": "2026-11-11T05:15:00.000Z",
+    "total": 1228,
+    "verbal": 162,
+    "material": 142,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-11T05:30:00.000Z",
+    "total": 718,
+    "verbal": 83,
+    "material": 112,
+    "goldsteinMean": 0.4
+   },
+   {
+    "t": "2026-11-11T05:45:00.000Z",
+    "total": 1163,
+    "verbal": 132,
+    "material": 126,
+    "goldsteinMean": 0.83
+   },
+   {
+    "t": "2026-11-11T06:00:00.000Z",
+    "total": 953,
+    "verbal": 150,
+    "material": 106,
+    "goldsteinMean": 0.65
+   },
+   {
+    "t": "2026-11-11T06:15:00.000Z",
+    "total": 914,
+    "verbal": 125,
+    "material": 154,
+    "goldsteinMean": 0.25
+   },
+   {
+    "t": "2026-11-11T06:30:00.000Z",
+    "total": 989,
+    "verbal": 136,
+    "material": 87,
+    "goldsteinMean": 0.96
+   },
+   {
+    "t": "2026-11-11T06:45:00.000Z",
+    "total": 1109,
+    "verbal": 142,
+    "material": 117,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-11T07:00:00.000Z",
+    "total": 1529,
+    "verbal": 200,
+    "material": 159,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-11T07:15:00.000Z",
+    "total": 1090,
+    "verbal": 132,
+    "material": 117,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-11T07:30:00.000Z",
+    "total": 917,
+    "verbal": 114,
+    "material": 91,
+    "goldsteinMean": 0.87
+   },
+   {
+    "t": "2026-11-11T07:45:00.000Z",
+    "total": 1005,
+    "verbal": 122,
+    "material": 149,
+    "goldsteinMean": 0.26
+   },
+   {
+    "t": "2026-11-11T08:00:00.000Z",
+    "total": 791,
+    "verbal": 105,
+    "material": 120,
+    "goldsteinMean": 0.38
+   },
+   {
+    "t": "2026-11-11T08:15:00.000Z",
+    "total": 1166,
+    "verbal": 111,
+    "material": 92,
+    "goldsteinMean": 1.76
+   },
+   {
+    "t": "2026-11-11T08:30:00.000Z",
+    "total": 1231,
+    "verbal": 157,
+    "material": 146,
+    "goldsteinMean": 0.71
+   },
+   {
+    "t": "2026-11-11T08:45:00.000Z",
+    "total": 836,
+    "verbal": 143,
+    "material": 114,
+    "goldsteinMean": 0.04
+   },
+   {
+    "t": "2026-11-11T09:00:00.000Z",
+    "total": 883,
+    "verbal": 117,
+    "material": 100,
+    "goldsteinMean": 0.88
+   },
+   {
+    "t": "2026-11-11T09:15:00.000Z",
+    "total": 1289,
+    "verbal": 132,
+    "material": 127,
+    "goldsteinMean": 1.02
+   },
+   {
+    "t": "2026-11-11T09:30:00.000Z",
+    "total": 1391,
+    "verbal": 209,
+    "material": 171,
+    "goldsteinMean": 0.58
+   },
+   {
+    "t": "2026-11-11T09:45:00.000Z",
+    "total": 1097,
+    "verbal": 120,
+    "material": 90,
+    "goldsteinMean": 1.24
+   },
+   {
+    "t": "2026-11-11T10:00:00.000Z",
+    "total": 957,
+    "verbal": 105,
+    "material": 159,
+    "goldsteinMean": 0.48
+   },
+   {
+    "t": "2026-11-11T10:15:00.000Z",
+    "total": 876,
+    "verbal": 151,
+    "material": 94,
+    "goldsteinMean": 0.87
+   },
+   {
+    "t": "2026-11-11T10:30:00.000Z",
+    "total": 983,
+    "verbal": 138,
+    "material": 112,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-11T10:45:00.000Z",
+    "total": 1394,
+    "verbal": 179,
+    "material": 158,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-11T11:00:00.000Z",
+    "total": 956,
+    "verbal": 133,
+    "material": 135,
+    "goldsteinMean": 0.42
+   },
+   {
+    "t": "2026-11-11T11:15:00.000Z",
+    "total": 1114,
+    "verbal": 127,
+    "material": 115,
+    "goldsteinMean": 1.36
+   },
+   {
+    "t": "2026-11-11T11:30:00.000Z",
+    "total": 990,
+    "verbal": 149,
+    "material": 107,
+    "goldsteinMean": 0.7
+   },
+   {
+    "t": "2026-11-11T11:45:00.000Z",
+    "total": 1214,
+    "verbal": 170,
+    "material": 155,
+    "goldsteinMean": 0.5
+   },
+   {
+    "t": "2026-11-11T12:00:00.000Z",
+    "total": 1269,
+    "verbal": 162,
+    "material": 129,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-11T12:15:00.000Z",
+    "total": 1139,
+    "verbal": 136,
+    "material": 156,
+    "goldsteinMean": 0.39
+   },
+   {
+    "t": "2026-11-11T12:30:00.000Z",
+    "total": 1651,
+    "verbal": 211,
+    "material": 161,
+    "goldsteinMean": 1.02
+   },
+   {
+    "t": "2026-11-11T12:45:00.000Z",
+    "total": 1213,
+    "verbal": 160,
+    "material": 135,
+    "goldsteinMean": 1.13
+   },
+   {
+    "t": "2026-11-11T13:00:00.000Z",
+    "total": 1270,
+    "verbal": 150,
+    "material": 193,
+    "goldsteinMean": 0.32
+   },
+   {
+    "t": "2026-11-11T13:15:00.000Z",
+    "total": 1289,
+    "verbal": 149,
+    "material": 174,
+    "goldsteinMean": 0.65
+   },
+   {
+    "t": "2026-11-11T13:30:00.000Z",
+    "total": 1373,
+    "verbal": 172,
+    "material": 165,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-11T13:45:00.000Z",
+    "total": 1653,
+    "verbal": 210,
+    "material": 197,
+    "goldsteinMean": 0.62
+   },
+   {
+    "t": "2026-11-11T14:00:00.000Z",
+    "total": 1499,
+    "verbal": 172,
+    "material": 128,
+    "goldsteinMean": 1.15
+   },
+   {
+    "t": "2026-11-11T14:15:00.000Z",
+    "total": 1384,
+    "verbal": 164,
+    "material": 165,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-11T14:30:00.000Z",
+    "total": 2111,
+    "verbal": 261,
+    "material": 204,
+    "goldsteinMean": 0.99
+   },
+   {
+    "t": "2026-11-11T14:45:00.000Z",
+    "total": 1488,
+    "verbal": 225,
+    "material": 175,
+    "goldsteinMean": 0.5
+   },
+   {
+    "t": "2026-11-11T15:00:00.000Z",
+    "total": 1280,
+    "verbal": 179,
+    "material": 146,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-11T15:15:00.000Z",
+    "total": 1556,
+    "verbal": 170,
+    "material": 231,
+    "goldsteinMean": 0.55
+   },
+   {
+    "t": "2026-11-11T15:30:00.000Z",
+    "total": 1405,
+    "verbal": 172,
+    "material": 137,
+    "goldsteinMean": 0.94
+   },
+   {
+    "t": "2026-11-11T15:45:00.000Z",
+    "total": 1109,
+    "verbal": 111,
+    "material": 147,
+    "goldsteinMean": 0.72
+   },
+   {
+    "t": "2026-11-11T16:00:00.000Z",
+    "total": 1464,
+    "verbal": 194,
+    "material": 182,
+    "goldsteinMean": 0.72
+   },
+   {
+    "t": "2026-11-11T16:15:00.000Z",
+    "total": 1135,
+    "verbal": 146,
+    "material": 130,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-11T16:30:00.000Z",
+    "total": 1387,
+    "verbal": 222,
+    "material": 174,
+    "goldsteinMean": 0.36
+   },
+   {
+    "t": "2026-11-11T16:45:00.000Z",
+    "total": 1516,
+    "verbal": 170,
+    "material": 144,
+    "goldsteinMean": 1.18
+   },
+   {
+    "t": "2026-11-11T17:00:00.000Z",
+    "total": 2048,
+    "verbal": 222,
+    "material": 256,
+    "goldsteinMean": 1.08
+   },
+   {
+    "t": "2026-11-11T17:15:00.000Z",
+    "total": 1256,
+    "verbal": 183,
+    "material": 160,
+    "goldsteinMean": 0.7
+   },
+   {
+    "t": "2026-11-11T17:30:00.000Z",
+    "total": 1295,
+    "verbal": 174,
+    "material": 126,
+    "goldsteinMean": 0.85
+   },
+   {
+    "t": "2026-11-11T17:45:00.000Z",
+    "total": 1292,
+    "verbal": 169,
+    "material": 158,
+    "goldsteinMean": 0.9
+   },
+   {
+    "t": "2026-11-11T18:00:00.000Z",
+    "total": 1464,
+    "verbal": 184,
+    "material": 206,
+    "goldsteinMean": 0.57
+   },
+   {
+    "t": "2026-11-11T18:15:00.000Z",
+    "total": 1479,
+    "verbal": 186,
+    "material": 142,
+    "goldsteinMean": 1.06
+   },
+   {
+    "t": "2026-11-11T18:30:00.000Z",
+    "total": 1831,
+    "verbal": 254,
+    "material": 282,
+    "goldsteinMean": 0.23
+   },
+   {
+    "t": "2026-11-11T18:45:00.000Z",
+    "total": 1458,
+    "verbal": 183,
+    "material": 225,
+    "goldsteinMean": 0.27
+   },
+   {
+    "t": "2026-11-11T19:00:00.000Z",
+    "total": 1397,
+    "verbal": 168,
+    "material": 167,
+    "goldsteinMean": 0.87
+   },
+   {
+    "t": "2026-11-11T19:15:00.000Z",
+    "total": 890,
+    "verbal": 135,
+    "material": 90,
+    "goldsteinMean": 0.92
+   },
+   {
+    "t": "2026-11-11T19:30:00.000Z",
+    "total": 1416,
+    "verbal": 161,
+    "material": 161,
+    "goldsteinMean": 0.94
+   },
+   {
+    "t": "2026-11-11T19:45:00.000Z",
+    "total": 1102,
+    "verbal": 135,
+    "material": 143,
+    "goldsteinMean": 0.61
+   },
+   {
+    "t": "2026-11-11T20:00:00.000Z",
+    "total": 1372,
+    "verbal": 155,
+    "material": 151,
+    "goldsteinMean": 0.96
+   },
+   {
+    "t": "2026-11-11T20:15:00.000Z",
+    "total": 1001,
+    "verbal": 128,
+    "material": 146,
+    "goldsteinMean": 0.2
+   },
+   {
+    "t": "2026-11-11T20:30:00.000Z",
+    "total": 1210,
+    "verbal": 165,
+    "material": 150,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-11T20:45:00.000Z",
+    "total": 1166,
+    "verbal": 149,
+    "material": 158,
+    "goldsteinMean": 0.63
+   },
+   {
+    "t": "2026-11-11T21:00:00.000Z",
+    "total": 972,
+    "verbal": 133,
+    "material": 97,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-11T21:15:00.000Z",
+    "total": 1241,
+    "verbal": 156,
+    "material": 142,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-11T21:30:00.000Z",
+    "total": 941,
+    "verbal": 139,
+    "material": 152,
+    "goldsteinMean": 0.01
+   },
+   {
+    "t": "2026-11-11T21:45:00.000Z",
+    "total": 896,
+    "verbal": 128,
+    "material": 82,
+    "goldsteinMean": 0.61
+   },
+   {
+    "t": "2026-11-11T22:00:00.000Z",
+    "total": 1345,
+    "verbal": 147,
+    "material": 174,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-11T22:15:00.000Z",
+    "total": 1287,
+    "verbal": 176,
+    "material": 152,
+    "goldsteinMean": 0.47
+   },
+   {
+    "t": "2026-11-11T22:30:00.000Z",
+    "total": 1066,
+    "verbal": 108,
+    "material": 133,
+    "goldsteinMean": 0.9
+   },
+   {
+    "t": "2026-11-11T22:45:00.000Z",
+    "total": 904,
+    "verbal": 113,
+    "material": 126,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-11T23:00:00.000Z",
+    "total": 1024,
+    "verbal": 105,
+    "material": 114,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-11T23:15:00.000Z",
+    "total": 1088,
+    "verbal": 102,
+    "material": 119,
+    "goldsteinMean": 0.9
+   },
+   {
+    "t": "2026-11-11T23:30:00.000Z",
+    "total": 1404,
+    "verbal": 148,
+    "material": 147,
+    "goldsteinMean": 0.83
+   },
+   {
+    "t": "2026-11-11T23:45:00.000Z",
+    "total": 954,
+    "verbal": 93,
+    "material": 125,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-12T00:00:00.000Z",
+    "total": 2242,
+    "verbal": 255,
+    "material": 218,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-12T00:15:00.000Z",
+    "total": 2355,
+    "verbal": 276,
+    "material": 297,
+    "goldsteinMean": 0.62
+   },
+   {
+    "t": "2026-11-12T00:30:00.000Z",
+    "total": 1380,
+    "verbal": 167,
+    "material": 175,
+    "goldsteinMean": 0.44
+   },
+   {
+    "t": "2026-11-12T00:45:00.000Z",
+    "total": 1333,
+    "verbal": 175,
+    "material": 122,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-12T01:00:00.000Z",
+    "total": 1575,
+    "verbal": 152,
+    "material": 131,
+    "goldsteinMean": 1.07
+   },
+   {
+    "t": "2026-11-12T01:15:00.000Z",
+    "total": 1141,
+    "verbal": 117,
+    "material": 169,
+    "goldsteinMean": 0.44
+   },
+   {
+    "t": "2026-11-12T01:30:00.000Z",
+    "total": 1330,
+    "verbal": 173,
+    "material": 146,
+    "goldsteinMean": 0.61
+   },
+   {
+    "t": "2026-11-12T01:45:00.000Z",
+    "total": 1235,
+    "verbal": 143,
+    "material": 141,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-12T02:00:00.000Z",
+    "total": 767,
+    "verbal": 73,
+    "material": 108,
+    "goldsteinMean": 0.49
+   },
+   {
+    "t": "2026-11-12T02:15:00.000Z",
+    "total": 1227,
+    "verbal": 101,
+    "material": 99,
+    "goldsteinMean": 1.24
+   },
+   {
+    "t": "2026-11-12T02:30:00.000Z",
+    "total": 1666,
+    "verbal": 208,
+    "material": 208,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-12T02:45:00.000Z",
+    "total": 1013,
+    "verbal": 93,
+    "material": 111,
+    "goldsteinMean": 0.99
+   },
+   {
+    "t": "2026-11-12T03:00:00.000Z",
+    "total": 1252,
+    "verbal": 132,
+    "material": 157,
+    "goldsteinMean": 0.58
+   },
+   {
+    "t": "2026-11-12T03:15:00.000Z",
+    "total": 649,
+    "verbal": 85,
+    "material": 73,
+    "goldsteinMean": 0.51
+   },
+   {
+    "t": "2026-11-12T03:30:00.000Z",
+    "total": 1124,
+    "verbal": 142,
+    "material": 139,
+    "goldsteinMean": 0.71
+   },
+   {
+    "t": "2026-11-12T03:45:00.000Z",
+    "total": 854,
+    "verbal": 106,
+    "material": 123,
+    "goldsteinMean": 0.49
+   },
+   {
+    "t": "2026-11-12T04:00:00.000Z",
+    "total": 789,
+    "verbal": 93,
+    "material": 88,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-12T04:15:00.000Z",
+    "total": 1275,
+    "verbal": 182,
+    "material": 111,
+    "goldsteinMean": 1.08
+   },
+   {
+    "t": "2026-11-12T04:30:00.000Z",
+    "total": 853,
+    "verbal": 100,
+    "material": 57,
+    "goldsteinMean": 1.1
+   },
+   {
+    "t": "2026-11-12T04:45:00.000Z",
+    "total": 1044,
+    "verbal": 156,
+    "material": 141,
+    "goldsteinMean": 0.29
+   },
+   {
+    "t": "2026-11-12T05:00:00.000Z",
+    "total": 1363,
+    "verbal": 176,
+    "material": 197,
+    "goldsteinMean": 0.24
+   },
+   {
+    "t": "2026-11-12T05:15:00.000Z",
+    "total": 1232,
+    "verbal": 157,
+    "material": 127,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-12T05:30:00.000Z",
+    "total": 883,
+    "verbal": 92,
+    "material": 141,
+    "goldsteinMean": 0.43
+   },
+   {
+    "t": "2026-11-12T05:45:00.000Z",
+    "total": 813,
+    "verbal": 88,
+    "material": 111,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-12T06:00:00.000Z",
+    "total": 1318,
+    "verbal": 212,
+    "material": 157,
+    "goldsteinMean": 0.44
+   },
+   {
+    "t": "2026-11-12T06:15:00.000Z",
+    "total": 986,
+    "verbal": 131,
+    "material": 88,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-12T06:30:00.000Z",
+    "total": 1142,
+    "verbal": 153,
+    "material": 125,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-12T06:45:00.000Z",
+    "total": 759,
+    "verbal": 88,
+    "material": 89,
+    "goldsteinMean": 0.64
+   },
+   {
+    "t": "2026-11-12T07:00:00.000Z",
+    "total": 1193,
+    "verbal": 201,
+    "material": 145,
+    "goldsteinMean": 0.3
+   },
+   {
+    "t": "2026-11-12T07:15:00.000Z",
+    "total": 858,
+    "verbal": 92,
+    "material": 84,
+    "goldsteinMean": 1.49
+   },
+   {
+    "t": "2026-11-12T07:30:00.000Z",
+    "total": 1080,
+    "verbal": 137,
+    "material": 96,
+    "goldsteinMean": 1.04
+   },
+   {
+    "t": "2026-11-12T07:45:00.000Z",
+    "total": 1123,
+    "verbal": 137,
+    "material": 128,
+    "goldsteinMean": 0.97
+   },
+   {
+    "t": "2026-11-12T08:00:00.000Z",
+    "total": 937,
+    "verbal": 121,
+    "material": 110,
+    "goldsteinMean": 0.65
+   },
+   {
+    "t": "2026-11-12T08:15:00.000Z",
+    "total": 1409,
+    "verbal": 186,
+    "material": 194,
+    "goldsteinMean": 0.58
+   },
+   {
+    "t": "2026-11-12T08:30:00.000Z",
+    "total": 1170,
+    "verbal": 100,
+    "material": 121,
+    "goldsteinMean": 1.44
+   },
+   {
+    "t": "2026-11-12T08:45:00.000Z",
+    "total": 1152,
+    "verbal": 132,
+    "material": 94,
+    "goldsteinMean": 1.33
+   },
+   {
+    "t": "2026-11-12T09:00:00.000Z",
+    "total": 725,
+    "verbal": 98,
+    "material": 78,
+    "goldsteinMean": 0.96
+   },
+   {
+    "t": "2026-11-12T09:15:00.000Z",
+    "total": 1238,
+    "verbal": 145,
+    "material": 174,
+    "goldsteinMean": 0.7
+   },
+   {
+    "t": "2026-11-12T09:30:00.000Z",
+    "total": 993,
+    "verbal": 125,
+    "material": 122,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-12T09:45:00.000Z",
+    "total": 938,
+    "verbal": 102,
+    "material": 126,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-12T10:00:00.000Z",
+    "total": 1435,
+    "verbal": 171,
+    "material": 161,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-12T10:15:00.000Z",
+    "total": 861,
+    "verbal": 116,
+    "material": 74,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-12T10:30:00.000Z",
+    "total": 1270,
+    "verbal": 167,
+    "material": 145,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-12T10:45:00.000Z",
+    "total": 1069,
+    "verbal": 136,
+    "material": 124,
+    "goldsteinMean": 0.53
+   },
+   {
+    "t": "2026-11-12T11:00:00.000Z",
+    "total": 1116,
+    "verbal": 146,
+    "material": 113,
+    "goldsteinMean": 1.22
+   },
+   {
+    "t": "2026-11-12T11:15:00.000Z",
+    "total": 1134,
+    "verbal": 142,
+    "material": 131,
+    "goldsteinMean": 1.02
+   },
+   {
+    "t": "2026-11-12T11:30:00.000Z",
+    "total": 1346,
+    "verbal": 179,
+    "material": 128,
+    "goldsteinMean": 0.8
+   },
+   {
+    "t": "2026-11-12T11:45:00.000Z",
+    "total": 1166,
+    "verbal": 164,
+    "material": 137,
+    "goldsteinMean": 0.57
+   },
+   {
+    "t": "2026-11-12T12:00:00.000Z",
+    "total": 1298,
+    "verbal": 130,
+    "material": 114,
+    "goldsteinMean": 1.39
+   },
+   {
+    "t": "2026-11-12T12:15:00.000Z",
+    "total": 1863,
+    "verbal": 214,
+    "material": 199,
+    "goldsteinMean": 1.06
+   },
+   {
+    "t": "2026-11-12T12:30:00.000Z",
+    "total": 1110,
+    "verbal": 92,
+    "material": 121,
+    "goldsteinMean": 1.16
+   },
+   {
+    "t": "2026-11-12T12:45:00.000Z",
+    "total": 1259,
+    "verbal": 164,
+    "material": 109,
+    "goldsteinMean": 1.16
+   },
+   {
+    "t": "2026-11-12T13:00:00.000Z",
+    "total": 1487,
+    "verbal": 218,
+    "material": 155,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-12T13:15:00.000Z",
+    "total": 1124,
+    "verbal": 129,
+    "material": 121,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-12T13:30:00.000Z",
+    "total": 1269,
+    "verbal": 170,
+    "material": 121,
+    "goldsteinMean": 1
+   },
+   {
+    "t": "2026-11-12T13:45:00.000Z",
+    "total": 1404,
+    "verbal": 177,
+    "material": 145,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-12T14:00:00.000Z",
+    "total": 1538,
+    "verbal": 156,
+    "material": 183,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-12T14:15:00.000Z",
+    "total": 1416,
+    "verbal": 146,
+    "material": 207,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-12T14:30:00.000Z",
+    "total": 1604,
+    "verbal": 215,
+    "material": 191,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-12T14:45:00.000Z",
+    "total": 1745,
+    "verbal": 229,
+    "material": 177,
+    "goldsteinMean": 0.96
+   },
+   {
+    "t": "2026-11-12T15:00:00.000Z",
+    "total": 1589,
+    "verbal": 234,
+    "material": 117,
+    "goldsteinMean": 1.36
+   },
+   {
+    "t": "2026-11-12T15:15:00.000Z",
+    "total": 1676,
+    "verbal": 196,
+    "material": 214,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-12T15:30:00.000Z",
+    "total": 1537,
+    "verbal": 178,
+    "material": 146,
+    "goldsteinMean": 1.09
+   },
+   {
+    "t": "2026-11-12T15:45:00.000Z",
+    "total": 1542,
+    "verbal": 178,
+    "material": 126,
+    "goldsteinMean": 1.05
+   },
+   {
+    "t": "2026-11-12T16:00:00.000Z",
+    "total": 1458,
+    "verbal": 156,
+    "material": 169,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-12T16:15:00.000Z",
+    "total": 1287,
+    "verbal": 153,
+    "material": 152,
+    "goldsteinMean": 0.68
+   },
+   {
+    "t": "2026-11-12T16:30:00.000Z",
+    "total": 1447,
+    "verbal": 173,
+    "material": 144,
+    "goldsteinMean": 1.23
+   },
+   {
+    "t": "2026-11-12T16:45:00.000Z",
+    "total": 1695,
+    "verbal": 242,
+    "material": 187,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-12T17:00:00.000Z",
+    "total": 1465,
+    "verbal": 165,
+    "material": 136,
+    "goldsteinMean": 1.09
+   },
+   {
+    "t": "2026-11-12T17:15:00.000Z",
+    "total": 1469,
+    "verbal": 173,
+    "material": 146,
+    "goldsteinMean": 0.91
+   },
+   {
+    "t": "2026-11-12T17:30:00.000Z",
+    "total": 1820,
+    "verbal": 218,
+    "material": 179,
+    "goldsteinMean": 0.97
+   },
+   {
+    "t": "2026-11-12T17:45:00.000Z",
+    "total": 1698,
+    "verbal": 196,
+    "material": 160,
+    "goldsteinMean": 1.17
+   },
+   {
+    "t": "2026-11-12T18:00:00.000Z",
+    "total": 1547,
+    "verbal": 191,
+    "material": 180,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-12T18:15:00.000Z",
+    "total": 1369,
+    "verbal": 163,
+    "material": 127,
+    "goldsteinMean": 0.91
+   },
+   {
+    "t": "2026-11-12T18:30:00.000Z",
+    "total": 1231,
+    "verbal": 152,
+    "material": 158,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-12T18:45:00.000Z",
+    "total": 1239,
+    "verbal": 151,
+    "material": 175,
+    "goldsteinMean": 0.8
+   },
+   {
+    "t": "2026-11-12T19:00:00.000Z",
+    "total": 1838,
+    "verbal": 205,
+    "material": 246,
+    "goldsteinMean": 0.54
+   },
+   {
+    "t": "2026-11-12T19:15:00.000Z",
+    "total": 1463,
+    "verbal": 188,
+    "material": 174,
+    "goldsteinMean": 0.44
+   },
+   {
+    "t": "2026-11-12T19:30:00.000Z",
+    "total": 1365,
+    "verbal": 131,
+    "material": 185,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-12T19:45:00.000Z",
+    "total": 1345,
+    "verbal": 200,
+    "material": 137,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-12T20:00:00.000Z",
+    "total": 1134,
+    "verbal": 126,
+    "material": 142,
+    "goldsteinMean": 0.76
+   },
+   {
+    "t": "2026-11-12T20:15:00.000Z",
+    "total": 1721,
+    "verbal": 271,
+    "material": 226,
+    "goldsteinMean": 0.24
+   },
+   {
+    "t": "2026-11-12T20:30:00.000Z",
+    "total": 994,
+    "verbal": 115,
+    "material": 172,
+    "goldsteinMean": 0.26
+   },
+   {
+    "t": "2026-11-12T20:45:00.000Z",
+    "total": 1419,
+    "verbal": 162,
+    "material": 161,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-12T21:00:00.000Z",
+    "total": 1156,
+    "verbal": 134,
+    "material": 163,
+    "goldsteinMean": 0.54
+   },
+   {
+    "t": "2026-11-12T21:15:00.000Z",
+    "total": 1075,
+    "verbal": 112,
+    "material": 123,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-12T21:30:00.000Z",
+    "total": 1113,
+    "verbal": 181,
+    "material": 137,
+    "goldsteinMean": 0.53
+   },
+   {
+    "t": "2026-11-12T21:45:00.000Z",
+    "total": 1066,
+    "verbal": 125,
+    "material": 173,
+    "goldsteinMean": 0.37
+   },
+   {
+    "t": "2026-11-12T22:00:00.000Z",
+    "total": 1163,
+    "verbal": 133,
+    "material": 92,
+    "goldsteinMean": 1.54
+   },
+   {
+    "t": "2026-11-12T22:15:00.000Z",
+    "total": 1258,
+    "verbal": 151,
+    "material": 128,
+    "goldsteinMean": 1.1
+   },
+   {
+    "t": "2026-11-12T22:30:00.000Z",
+    "total": 899,
+    "verbal": 87,
+    "material": 98,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-12T22:45:00.000Z",
+    "total": 968,
+    "verbal": 117,
+    "material": 145,
+    "goldsteinMean": 0.42
+   },
+   {
+    "t": "2026-11-12T23:00:00.000Z",
+    "total": 843,
+    "verbal": 98,
+    "material": 149,
+    "goldsteinMean": 0.18
+   },
+   {
+    "t": "2026-11-12T23:15:00.000Z",
+    "total": 889,
+    "verbal": 114,
+    "material": 121,
+    "goldsteinMean": 0.49
+   },
+   {
+    "t": "2026-11-12T23:30:00.000Z",
+    "total": 1139,
+    "verbal": 114,
+    "material": 118,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-12T23:45:00.000Z",
+    "total": 921,
+    "verbal": 94,
+    "material": 133,
+    "goldsteinMean": 0.64
+   },
+   {
+    "t": "2026-11-13T00:00:00.000Z",
+    "total": 2674,
+    "verbal": 298,
+    "material": 249,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-13T00:15:00.000Z",
+    "total": 1545,
+    "verbal": 139,
+    "material": 160,
+    "goldsteinMean": 1.27
+   },
+   {
+    "t": "2026-11-13T00:30:00.000Z",
+    "total": 1499,
+    "verbal": 174,
+    "material": 207,
+    "goldsteinMean": 0.56
+   },
+   {
+    "t": "2026-11-13T00:45:00.000Z",
+    "total": 1453,
+    "verbal": 143,
+    "material": 168,
+    "goldsteinMean": 0.96
+   },
+   {
+    "t": "2026-11-13T01:00:00.000Z",
+    "total": 1356,
+    "verbal": 199,
+    "material": 171,
+    "goldsteinMean": 0.68
+   },
+   {
+    "t": "2026-11-13T01:15:00.000Z",
+    "total": 1281,
+    "verbal": 134,
+    "material": 151,
+    "goldsteinMean": 1.1
+   },
+   {
+    "t": "2026-11-13T01:30:00.000Z",
+    "total": 1053,
+    "verbal": 104,
+    "material": 144,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-13T01:45:00.000Z",
+    "total": 1233,
+    "verbal": 163,
+    "material": 154,
+    "goldsteinMean": 0.52
+   },
+   {
+    "t": "2026-11-13T02:00:00.000Z",
+    "total": 1171,
+    "verbal": 136,
+    "material": 156,
+    "goldsteinMean": 0.45
+   },
+   {
+    "t": "2026-11-13T02:15:00.000Z",
+    "total": 1205,
+    "verbal": 139,
+    "material": 92,
+    "goldsteinMean": 1.57
+   },
+   {
+    "t": "2026-11-13T02:30:00.000Z",
+    "total": 1206,
+    "verbal": 174,
+    "material": 93,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-13T02:45:00.000Z",
+    "total": 1151,
+    "verbal": 156,
+    "material": 101,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-13T03:00:00.000Z",
+    "total": 1355,
+    "verbal": 173,
+    "material": 166,
+    "goldsteinMean": 0.51
+   },
+   {
+    "t": "2026-11-13T03:15:00.000Z",
+    "total": 768,
+    "verbal": 82,
+    "material": 74,
+    "goldsteinMean": 0.69
+   },
+   {
+    "t": "2026-11-13T03:30:00.000Z",
+    "total": 864,
+    "verbal": 140,
+    "material": 104,
+    "goldsteinMean": 0.66
+   },
+   {
+    "t": "2026-11-13T03:45:00.000Z",
+    "total": 1059,
+    "verbal": 96,
+    "material": 114,
+    "goldsteinMean": 0.9
+   },
+   {
+    "t": "2026-11-13T04:00:00.000Z",
+    "total": 813,
+    "verbal": 88,
+    "material": 84,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-13T04:15:00.000Z",
+    "total": 625,
+    "verbal": 74,
+    "material": 77,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-13T04:30:00.000Z",
+    "total": 961,
+    "verbal": 120,
+    "material": 117,
+    "goldsteinMean": 0.53
+   },
+   {
+    "t": "2026-11-13T04:45:00.000Z",
+    "total": 823,
+    "verbal": 128,
+    "material": 85,
+    "goldsteinMean": 0.58
+   },
+   {
+    "t": "2026-11-13T05:00:00.000Z",
+    "total": 1024,
+    "verbal": 106,
+    "material": 70,
+    "goldsteinMean": 1.3
+   },
+   {
+    "t": "2026-11-13T05:15:00.000Z",
+    "total": 1013,
+    "verbal": 121,
+    "material": 134,
+    "goldsteinMean": 0.63
+   },
+   {
+    "t": "2026-11-13T05:30:00.000Z",
+    "total": 1148,
+    "verbal": 163,
+    "material": 145,
+    "goldsteinMean": 0.36
+   },
+   {
+    "t": "2026-11-13T05:45:00.000Z",
+    "total": 828,
+    "verbal": 105,
+    "material": 104,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-13T06:00:00.000Z",
+    "total": 878,
+    "verbal": 121,
+    "material": 77,
+    "goldsteinMean": 1.15
+   },
+   {
+    "t": "2026-11-13T06:15:00.000Z",
+    "total": 758,
+    "verbal": 96,
+    "material": 73,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-13T06:30:00.000Z",
+    "total": 1050,
+    "verbal": 113,
+    "material": 83,
+    "goldsteinMean": 1.56
+   },
+   {
+    "t": "2026-11-13T06:45:00.000Z",
+    "total": 1115,
+    "verbal": 130,
+    "material": 73,
+    "goldsteinMean": 1.59
+   },
+   {
+    "t": "2026-11-13T07:00:00.000Z",
+    "total": 819,
+    "verbal": 113,
+    "material": 52,
+    "goldsteinMean": 1.26
+   },
+   {
+    "t": "2026-11-13T07:15:00.000Z",
+    "total": 743,
+    "verbal": 91,
+    "material": 103,
+    "goldsteinMean": 0.25
+   },
+   {
+    "t": "2026-11-13T07:30:00.000Z",
+    "total": 812,
+    "verbal": 120,
+    "material": 85,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-13T07:45:00.000Z",
+    "total": 872,
+    "verbal": 146,
+    "material": 87,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-13T08:00:00.000Z",
+    "total": 1143,
+    "verbal": 125,
+    "material": 127,
+    "goldsteinMean": 0.9
+   },
+   {
+    "t": "2026-11-13T08:15:00.000Z",
+    "total": 979,
+    "verbal": 100,
+    "material": 107,
+    "goldsteinMean": 0.71
+   },
+   {
+    "t": "2026-11-13T08:30:00.000Z",
+    "total": 1248,
+    "verbal": 192,
+    "material": 131,
+    "goldsteinMean": 0.46
+   },
+   {
+    "t": "2026-11-13T08:45:00.000Z",
+    "total": 1111,
+    "verbal": 142,
+    "material": 95,
+    "goldsteinMean": 1.45
+   },
+   {
+    "t": "2026-11-13T09:00:00.000Z",
+    "total": 1060,
+    "verbal": 165,
+    "material": 148,
+    "goldsteinMean": 0.04
+   },
+   {
+    "t": "2026-11-13T09:15:00.000Z",
+    "total": 1003,
+    "verbal": 124,
+    "material": 98,
+    "goldsteinMean": 0.94
+   },
+   {
+    "t": "2026-11-13T09:30:00.000Z",
+    "total": 1011,
+    "verbal": 135,
+    "material": 125,
+    "goldsteinMean": 0.35
+   },
+   {
+    "t": "2026-11-13T09:45:00.000Z",
+    "total": 1121,
+    "verbal": 165,
+    "material": 84,
+    "goldsteinMean": 0.91
+   },
+   {
+    "t": "2026-11-13T10:00:00.000Z",
+    "total": 1176,
+    "verbal": 167,
+    "material": 142,
+    "goldsteinMean": 0.62
+   },
+   {
+    "t": "2026-11-13T10:15:00.000Z",
+    "total": 1016,
+    "verbal": 129,
+    "material": 69,
+    "goldsteinMean": 1.16
+   },
+   {
+    "t": "2026-11-13T10:30:00.000Z",
+    "total": 1068,
+    "verbal": 92,
+    "material": 98,
+    "goldsteinMean": 1.42
+   },
+   {
+    "t": "2026-11-13T10:45:00.000Z",
+    "total": 793,
+    "verbal": 105,
+    "material": 91,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-13T11:00:00.000Z",
+    "total": 1197,
+    "verbal": 122,
+    "material": 114,
+    "goldsteinMean": 1.2
+   },
+   {
+    "t": "2026-11-13T11:15:00.000Z",
+    "total": 1008,
+    "verbal": 121,
+    "material": 120,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-13T11:30:00.000Z",
+    "total": 1176,
+    "verbal": 127,
+    "material": 125,
+    "goldsteinMean": 1.17
+   },
+   {
+    "t": "2026-11-13T11:45:00.000Z",
+    "total": 839,
+    "verbal": 106,
+    "material": 75,
+    "goldsteinMean": 1.18
+   },
+   {
+    "t": "2026-11-13T12:00:00.000Z",
+    "total": 1000,
+    "verbal": 112,
+    "material": 104,
+    "goldsteinMean": 0.98
+   },
+   {
+    "t": "2026-11-13T12:15:00.000Z",
+    "total": 1329,
+    "verbal": 213,
+    "material": 146,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-13T12:30:00.000Z",
+    "total": 992,
+    "verbal": 136,
+    "material": 128,
+    "goldsteinMean": 0.58
+   },
+   {
+    "t": "2026-11-13T12:45:00.000Z",
+    "total": 1246,
+    "verbal": 169,
+    "material": 143,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-13T13:00:00.000Z",
+    "total": 1442,
+    "verbal": 151,
+    "material": 159,
+    "goldsteinMean": 0.89
+   },
+   {
+    "t": "2026-11-13T13:15:00.000Z",
+    "total": 1353,
+    "verbal": 161,
+    "material": 148,
+    "goldsteinMean": 1
+   },
+   {
+    "t": "2026-11-13T13:30:00.000Z",
+    "total": 1083,
+    "verbal": 158,
+    "material": 97,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-13T13:45:00.000Z",
+    "total": 1368,
+    "verbal": 166,
+    "material": 175,
+    "goldsteinMean": 0.57
+   },
+   {
+    "t": "2026-11-13T14:00:00.000Z",
+    "total": 1301,
+    "verbal": 146,
+    "material": 120,
+    "goldsteinMean": 1.07
+   },
+   {
+    "t": "2026-11-13T14:15:00.000Z",
+    "total": 1032,
+    "verbal": 112,
+    "material": 129,
+    "goldsteinMean": 0.91
+   },
+   {
+    "t": "2026-11-13T14:30:00.000Z",
+    "total": 1297,
+    "verbal": 164,
+    "material": 165,
+    "goldsteinMean": 0.49
+   },
+   {
+    "t": "2026-11-13T14:45:00.000Z",
+    "total": 1787,
+    "verbal": 205,
+    "material": 199,
+    "goldsteinMean": 0.82
+   },
+   {
+    "t": "2026-11-13T15:00:00.000Z",
+    "total": 1161,
+    "verbal": 121,
+    "material": 104,
+    "goldsteinMean": 0.98
+   },
+   {
+    "t": "2026-11-13T15:15:00.000Z",
+    "total": 1111,
+    "verbal": 140,
+    "material": 133,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-13T15:30:00.000Z",
+    "total": 1695,
+    "verbal": 180,
+    "material": 219,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-13T15:45:00.000Z",
+    "total": 1239,
+    "verbal": 143,
+    "material": 188,
+    "goldsteinMean": 0.39
+   },
+   {
+    "t": "2026-11-13T16:00:00.000Z",
+    "total": 1233,
+    "verbal": 142,
+    "material": 109,
+    "goldsteinMean": 1.14
+   },
+   {
+    "t": "2026-11-13T16:15:00.000Z",
+    "total": 906,
+    "verbal": 108,
+    "material": 110,
+    "goldsteinMean": 0.68
+   },
+   {
+    "t": "2026-11-13T16:30:00.000Z",
+    "total": 1286,
+    "verbal": 196,
+    "material": 154,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-13T16:45:00.000Z",
+    "total": 1996,
+    "verbal": 254,
+    "material": 218,
+    "goldsteinMean": 0.97
+   },
+   {
+    "t": "2026-11-13T17:00:00.000Z",
+    "total": 1380,
+    "verbal": 177,
+    "material": 177,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-13T17:15:00.000Z",
+    "total": 1266,
+    "verbal": 126,
+    "material": 138,
+    "goldsteinMean": 1.13
+   },
+   {
+    "t": "2026-11-13T17:30:00.000Z",
+    "total": 1717,
+    "verbal": 220,
+    "material": 238,
+    "goldsteinMean": 0.48
+   },
+   {
+    "t": "2026-11-13T17:45:00.000Z",
+    "total": 1599,
+    "verbal": 154,
+    "material": 175,
+    "goldsteinMean": 1.41
+   },
+   {
+    "t": "2026-11-13T18:00:00.000Z",
+    "total": 1145,
+    "verbal": 125,
+    "material": 151,
+    "goldsteinMean": 0.8
+   },
+   {
+    "t": "2026-11-13T18:15:00.000Z",
+    "total": 1300,
+    "verbal": 131,
+    "material": 154,
+    "goldsteinMean": 1.01
+   },
+   {
+    "t": "2026-11-13T18:30:00.000Z",
+    "total": 1170,
+    "verbal": 153,
+    "material": 143,
+    "goldsteinMean": 0.46
+   },
+   {
+    "t": "2026-11-13T18:45:00.000Z",
+    "total": 1235,
+    "verbal": 141,
+    "material": 167,
+    "goldsteinMean": 0.72
+   },
+   {
+    "t": "2026-11-13T19:00:00.000Z",
+    "total": 1645,
+    "verbal": 246,
+    "material": 209,
+    "goldsteinMean": 0.59
+   },
+   {
+    "t": "2026-11-13T19:15:00.000Z",
+    "total": 1355,
+    "verbal": 185,
+    "material": 192,
+    "goldsteinMean": 0.55
+   },
+   {
+    "t": "2026-11-13T19:30:00.000Z",
+    "total": 1428,
+    "verbal": 169,
+    "material": 131,
+    "goldsteinMean": 1.17
+   },
+   {
+    "t": "2026-11-13T19:45:00.000Z",
+    "total": 1358,
+    "verbal": 168,
+    "material": 179,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-13T20:00:00.000Z",
+    "total": 1615,
+    "verbal": 154,
+    "material": 190,
+    "goldsteinMean": 1.32
+   },
+   {
+    "t": "2026-11-13T20:15:00.000Z",
+    "total": 1172,
+    "verbal": 109,
+    "material": 79,
+    "goldsteinMean": 1.73
+   },
+   {
+    "t": "2026-11-13T20:30:00.000Z",
+    "total": 1205,
+    "verbal": 139,
+    "material": 109,
+    "goldsteinMean": 1.33
+   },
+   {
+    "t": "2026-11-13T20:45:00.000Z",
+    "total": 1140,
+    "verbal": 128,
+    "material": 142,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-13T21:00:00.000Z",
+    "total": 1111,
+    "verbal": 141,
+    "material": 160,
+    "goldsteinMean": 0.34
+   },
+   {
+    "t": "2026-11-13T21:15:00.000Z",
+    "total": 781,
+    "verbal": 96,
+    "material": 131,
+    "goldsteinMean": 0.35
+   },
+   {
+    "t": "2026-11-13T21:30:00.000Z",
+    "total": 910,
+    "verbal": 94,
+    "material": 114,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-13T21:45:00.000Z",
+    "total": 1212,
+    "verbal": 140,
+    "material": 150,
+    "goldsteinMean": 0.7
+   },
+   {
+    "t": "2026-11-13T22:00:00.000Z",
+    "total": 1012,
+    "verbal": 120,
+    "material": 146,
+    "goldsteinMean": 0.37
+   },
+   {
+    "t": "2026-11-13T22:15:00.000Z",
+    "total": 924,
+    "verbal": 137,
+    "material": 141,
+    "goldsteinMean": 0.27
+   },
+   {
+    "t": "2026-11-13T22:30:00.000Z",
+    "total": 1050,
+    "verbal": 96,
+    "material": 116,
+    "goldsteinMean": 1.11
+   },
+   {
+    "t": "2026-11-13T22:45:00.000Z",
+    "total": 868,
+    "verbal": 93,
+    "material": 109,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-13T23:00:00.000Z",
+    "total": 661,
+    "verbal": 75,
+    "material": 69,
+    "goldsteinMean": 0.84
+   },
+   {
+    "t": "2026-11-13T23:15:00.000Z",
+    "total": 1125,
+    "verbal": 168,
+    "material": 111,
+    "goldsteinMean": 1.03
+   },
+   {
+    "t": "2026-11-13T23:30:00.000Z",
+    "total": 797,
+    "verbal": 97,
+    "material": 113,
+    "goldsteinMean": 0.56
+   },
+   {
+    "t": "2026-11-13T23:45:00.000Z",
+    "total": 953,
+    "verbal": 122,
+    "material": 135,
+    "goldsteinMean": 0.35
+   },
+   {
+    "t": "2026-11-14T00:00:00.000Z",
+    "total": 1927,
+    "verbal": 258,
+    "material": 211,
+    "goldsteinMean": 0.63
+   },
+   {
+    "t": "2026-11-14T00:15:00.000Z",
+    "total": 1302,
+    "verbal": 124,
+    "material": 184,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-14T00:30:00.000Z",
+    "total": 1713,
+    "verbal": 199,
+    "material": 222,
+    "goldsteinMean": 0.75
+   },
+   {
+    "t": "2026-11-14T00:45:00.000Z",
+    "total": 1290,
+    "verbal": 143,
+    "material": 95,
+    "goldsteinMean": 1.3
+   },
+   {
+    "t": "2026-11-14T01:00:00.000Z",
+    "total": 1073,
+    "verbal": 120,
+    "material": 110,
+    "goldsteinMean": 1.09
+   },
+   {
+    "t": "2026-11-14T01:15:00.000Z",
+    "total": 1285,
+    "verbal": 121,
+    "material": 127,
+    "goldsteinMean": 1.22
+   },
+   {
+    "t": "2026-11-14T01:30:00.000Z",
+    "total": 941,
+    "verbal": 108,
+    "material": 118,
+    "goldsteinMean": 0.46
+   },
+   {
+    "t": "2026-11-14T01:45:00.000Z",
+    "total": 1236,
+    "verbal": 142,
+    "material": 147,
+    "goldsteinMean": 0.66
+   },
+   {
+    "t": "2026-11-14T02:00:00.000Z",
+    "total": 860,
+    "verbal": 68,
+    "material": 149,
+    "goldsteinMean": 0.31
+   },
+   {
+    "t": "2026-11-14T02:15:00.000Z",
+    "total": 1378,
+    "verbal": 167,
+    "material": 183,
+    "goldsteinMean": 0.87
+   },
+   {
+    "t": "2026-11-14T02:30:00.000Z",
+    "total": 919,
+    "verbal": 63,
+    "material": 92,
+    "goldsteinMean": 1.29
+   },
+   {
+    "t": "2026-11-14T02:45:00.000Z",
+    "total": 620,
+    "verbal": 54,
+    "material": 89,
+    "goldsteinMean": 0.6
+   },
+   {
+    "t": "2026-11-14T03:00:00.000Z",
+    "total": 994,
+    "verbal": 103,
+    "material": 198,
+    "goldsteinMean": 0.09
+   },
+   {
+    "t": "2026-11-14T03:15:00.000Z",
+    "total": 585,
+    "verbal": 51,
+    "material": 75,
+    "goldsteinMean": 0.91
+   },
+   {
+    "t": "2026-11-14T03:30:00.000Z",
+    "total": 870,
+    "verbal": 98,
+    "material": 76,
+    "goldsteinMean": 1.3
+   },
+   {
+    "t": "2026-11-14T03:45:00.000Z",
+    "total": 910,
+    "verbal": 85,
+    "material": 66,
+    "goldsteinMean": 1.69
+   },
+   {
+    "t": "2026-11-14T04:00:00.000Z",
+    "total": 625,
+    "verbal": 84,
+    "material": 50,
+    "goldsteinMean": 1.11
+   },
+   {
+    "t": "2026-11-14T04:15:00.000Z",
+    "total": 633,
+    "verbal": 73,
+    "material": 69,
+    "goldsteinMean": 0.79
+   },
+   {
+    "t": "2026-11-14T04:30:00.000Z",
+    "total": 562,
+    "verbal": 76,
+    "material": 61,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-14T04:45:00.000Z",
+    "total": 910,
+    "verbal": 103,
+    "material": 45,
+    "goldsteinMean": 1.15
+   },
+   {
+    "t": "2026-11-14T05:00:00.000Z",
+    "total": 646,
+    "verbal": 89,
+    "material": 56,
+    "goldsteinMean": 1.23
+   },
+   {
+    "t": "2026-11-14T05:15:00.000Z",
+    "total": 446,
+    "verbal": 51,
+    "material": 47,
+    "goldsteinMean": 1.05
+   },
+   {
+    "t": "2026-11-14T05:30:00.000Z",
+    "total": 877,
+    "verbal": 86,
+    "material": 117,
+    "goldsteinMean": 0.86
+   },
+   {
+    "t": "2026-11-14T05:45:00.000Z",
+    "total": 729,
+    "verbal": 86,
+    "material": 40,
+    "goldsteinMean": 1.47
+   },
+   {
+    "t": "2026-11-14T06:00:00.000Z",
+    "total": 775,
+    "verbal": 96,
+    "material": 57,
+    "goldsteinMean": 1.35
+   },
+   {
+    "t": "2026-11-14T06:15:00.000Z",
+    "total": 409,
+    "verbal": 31,
+    "material": 31,
+    "goldsteinMean": 1.5
+   },
+   {
+    "t": "2026-11-14T06:30:00.000Z",
+    "total": 691,
+    "verbal": 69,
+    "material": 86,
+    "goldsteinMean": 0.9
+   },
+   {
+    "t": "2026-11-14T06:45:00.000Z",
+    "total": 1078,
+    "verbal": 121,
+    "material": 121,
+    "goldsteinMean": 0.83
+   },
+   {
+    "t": "2026-11-14T07:00:00.000Z",
+    "total": 706,
+    "verbal": 107,
+    "material": 73,
+    "goldsteinMean": 0.81
+   },
+   {
+    "t": "2026-11-14T07:15:00.000Z",
+    "total": 739,
+    "verbal": 100,
+    "material": 60,
+    "goldsteinMean": 1.2
+   },
+   {
+    "t": "2026-11-14T07:30:00.000Z",
+    "total": 757,
+    "verbal": 105,
+    "material": 74,
+    "goldsteinMean": 0.73
+   },
+   {
+    "t": "2026-11-14T07:45:00.000Z",
+    "total": 848,
+    "verbal": 139,
+    "material": 81,
+    "goldsteinMean": 0.74
+   },
+   {
+    "t": "2026-11-14T08:00:00.000Z",
+    "total": 634,
+    "verbal": 81,
+    "material": 66,
+    "goldsteinMean": 1.14
+   },
+   {
+    "t": "2026-11-14T08:15:00.000Z",
+    "total": 515,
+    "verbal": 56,
+    "material": 56,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-14T08:30:00.000Z",
+    "total": 653,
+    "verbal": 67,
+    "material": 65,
+    "goldsteinMean": 1.47
+   },
+   {
+    "t": "2026-11-14T08:45:00.000Z",
+    "total": 705,
+    "verbal": 76,
+    "material": 62,
+    "goldsteinMean": 1.23
+   },
+   {
+    "t": "2026-11-14T09:00:00.000Z",
+    "total": 699,
+    "verbal": 108,
+    "material": 92,
+    "goldsteinMean": 0.42
+   },
+   {
+    "t": "2026-11-14T09:15:00.000Z",
+    "total": 956,
+    "verbal": 98,
+    "material": 87,
+    "goldsteinMean": 1.12
+   },
+   {
+    "t": "2026-11-14T09:30:00.000Z",
+    "total": 579,
+    "verbal": 66,
+    "material": 72,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-14T09:45:00.000Z",
+    "total": 624,
+    "verbal": 61,
+    "material": 44,
+    "goldsteinMean": 1.58
+   },
+   {
+    "t": "2026-11-14T10:00:00.000Z",
+    "total": 878,
+    "verbal": 122,
+    "material": 119,
+    "goldsteinMean": 0.83
+   },
+   {
+    "t": "2026-11-14T10:15:00.000Z",
+    "total": 664,
+    "verbal": 62,
+    "material": 86,
+    "goldsteinMean": 0.95
+   },
+   {
+    "t": "2026-11-14T10:30:00.000Z",
+    "total": 637,
+    "verbal": 60,
+    "material": 103,
+    "goldsteinMean": 0.67
+   },
+   {
+    "t": "2026-11-14T10:45:00.000Z",
+    "total": 764,
+    "verbal": 77,
+    "material": 98,
+    "goldsteinMean": 0.94
+   },
+   {
+    "t": "2026-11-14T11:00:00.000Z",
+    "total": 785,
+    "verbal": 74,
+    "material": 62,
+    "goldsteinMean": 1.52
+   },
+   {
+    "t": "2026-11-14T11:15:00.000Z",
+    "total": 660,
+    "verbal": 48,
+    "material": 106,
+    "goldsteinMean": 0.5
+   },
+   {
+    "t": "2026-11-14T11:30:00.000Z",
+    "total": 874,
+    "verbal": 140,
+    "material": 90,
+    "goldsteinMean": 0.31
+   },
+   {
+    "t": "2026-11-14T11:45:00.000Z",
+    "total": 590,
+    "verbal": 82,
+    "material": 49,
+    "goldsteinMean": 0.93
+   },
+   {
+    "t": "2026-11-14T12:00:00.000Z",
+    "total": 911,
+    "verbal": 104,
+    "material": 93,
+    "goldsteinMean": 0.77
+   },
+   {
+    "t": "2026-11-14T12:15:00.000Z",
+    "total": 1191,
+    "verbal": 157,
+    "material": 155,
+    "goldsteinMean": 0.46
+   },
+   {
+    "t": "2026-11-14T12:30:00.000Z",
+    "total": 971,
+    "verbal": 100,
+    "material": 92,
+    "goldsteinMean": 1.18
+   },
+   {
+    "t": "2026-11-14T12:45:00.000Z",
+    "total": 496,
+    "verbal": 64,
+    "material": 49,
+    "goldsteinMean": 0.8
+   },
+   {
+    "t": "2026-11-14T13:00:00.000Z",
+    "total": 719,
+    "verbal": 76,
+    "material": 69,
+    "goldsteinMean": 1.07
+   },
+   {
+    "t": "2026-11-14T13:15:00.000Z",
+    "total": 774,
+    "verbal": 107,
+    "material": 70,
+    "goldsteinMean": 1.35
+   }
+  ]
+ }
+}

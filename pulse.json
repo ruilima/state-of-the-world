@@ -1,0 +1,128 @@
+{
+ "id": "pulse",
+ "source": {
+  "name": "Hacker News (Algolia) and arXiv",
+  "url": "https://hn.algolia.com/api",
+  "license": "Titles and links only. Thank you to arXiv for use of its open access interoperability."
+ },
+ "status": "ok",
+ "fetchedAt": "2026-11-14T13:09:34.182Z",
+ "lastSuccessAt": "2026-11-14T13:09:34.182Z",
+ "error": null,
+ "data": {
+  "hn": [
+   {
+    "title": "AI Layoffs Backfire as Companies Start Rehiring Workers",
+    "date": "2026-11-07T20:07:15Z",
+    "points": 4,
+    "url": "https://jsdev.space/companies-rehiring-workers/",
+    "discussion": "https://news.ycombinator.com/item?id=50407575"
+   },
+   {
+    "title": "SUSE Laying Off 10% of Its Workforce Due to AI and Automation",
+    "date": "2026-11-03T11:37:40Z",
+    "points": 3,
+    "url": "https://www.phoronix.com/news/SUSE-Layoffs-10p-AI",
+    "discussion": "https://news.ycombinator.com/item?id=50350729"
+   },
+   {
+    "title": "The AI Layoff Experiment Is Backfiring as Companies Rehire Humans",
+    "date": "2026-11-03T09:13:21Z",
+    "points": 1,
+    "url": "https://www.gadgetreview.com/the-ai-layoff-experiment-is-backfiring-and-companies-are-quietly-rehiring-humans",
+    "discussion": "https://news.ycombinator.com/item?id=50349740"
+   },
+   {
+    "title": "AI-driven layoffs are creating a new class of boomerang employees",
+    "date": "2026-11-01T09:07:46Z",
+    "points": 5,
+    "url": "https://www.reddit.com/r/technology/s/bU94PCfFwr",
+    "discussion": "https://news.ycombinator.com/item?id=50323813"
+   },
+   {
+    "title": "Goldman says AI layoffs are leaving 'long-lasting' scar, like the last 40 years",
+    "date": "2026-10-31T15:19:40Z",
+    "points": 5,
+    "url": "https://fortune.com/2026/10/30/goldman-sachs-ai-layoffs-displaced-workers-older-workers-past-tech-disruptions/",
+    "discussion": "https://news.ycombinator.com/item?id=50316955"
+   },
+   {
+    "title": "AI Layoffs – The Greatest Lie of the Decade",
+    "date": "2026-10-30T12:17:17Z",
+    "points": 5,
+    "url": "https://www.scottdiesel.dev/posts/ai-layoffs-the-great-lie-of-the-decade",
+    "discussion": "https://news.ycombinator.com/item?id=50302904"
+   },
+   {
+    "title": "What to consider if a company that made AI-related job cuts wants you back",
+    "date": "2026-10-30T11:51:50Z",
+    "points": 4,
+    "url": "https://apnews.com/article/ai-jobs-layoffs-hiring-rebounding-skills-04662acffb7beba822129118dde3f0a7",
+    "discussion": "https://news.ycombinator.com/item?id=50302696"
+   },
+   {
+    "title": "China's Lao GAN Ma Takes the Heat for Alleged Layoffs Due to AI",
+    "date": "2026-10-28T15:47:48Z",
+    "points": 2,
+    "url": "https://www.sixthtone.com/news/1019180",
+    "discussion": "https://news.ycombinator.com/item?id=50275653"
+   },
+   {
+    "title": "A Generalized Response to the AI Layoff Trap",
+    "date": "2026-10-22T15:27:31Z",
+    "points": 2,
+    "url": "https://zenodo.org/records/20633148",
+    "discussion": "https://news.ycombinator.com/item?id=50196739"
+   },
+   {
+    "title": "AI Hasn't Spurred Widespread Layoffs Yet. Why Not?",
+    "date": "2026-10-22T06:22:53Z",
+    "points": 3,
+    "url": "https://www.library.hbs.edu/working-knowledge/ai-hasnt-spurred-widespread-layoffs-yet-why-not",
+    "discussion": "https://news.ycombinator.com/item?id=50191869"
+   }
+  ],
+  "arxiv": [
+   {
+    "title": "Decision Models as Scalable Economic Surrogates that Capture Human Variation",
+    "date": "2026-11-03T19:47:00Z",
+    "url": "https://arxiv.org/abs/2611.05553v1"
+   },
+   {
+    "title": "Is AI Widening the Wage Gap? A Hybrid Agentic Simulation for Labor Equity",
+    "date": "2026-09-27T08:50:23Z",
+    "url": "https://arxiv.org/abs/2609.33367v3"
+   },
+   {
+    "title": "When AI Enters the Workplace, Who Faces Greater Risks? A Gendered Analysis",
+    "date": "2026-09-18T13:27:50Z",
+    "url": "https://arxiv.org/abs/2609.21756v1"
+   },
+   {
+    "title": "Prepared Or Unprepared? Evaluating Healthcare Workforce Readiness for Clinical Adoption of Artificial Intelligence in Nigeria",
+    "date": "2026-09-16T17:30:48Z",
+    "url": "https://arxiv.org/abs/2609.19096v1"
+   },
+   {
+    "title": "AI and the Economy: An Economic Examination of Production, Distribution, Firms, Labor, and Welfare",
+    "date": "2026-09-01T13:53:19Z",
+    "url": "https://arxiv.org/abs/2609.01263v1"
+   },
+   {
+    "title": "Tariff Threats, Macroeconomic Expectations, and Policy Communication Strategies: Experiments Based on a Multi-Agent System",
+    "date": "2026-08-31T09:55:29Z",
+    "url": "https://arxiv.org/abs/2608.30522v1"
+   },
+   {
+    "title": "Monocultural Biases: Correlated biases in large language models lead to unequal systemic exclusion rates in hiring",
+    "date": "2026-08-26T21:49:22Z",
+    "url": "https://arxiv.org/abs/2609.22169v1"
+   },
+   {
+    "title": "Measuring Digital Labour Market Transitions with a Digital Semantic Score: An AI-Based Methodology Applied to the Dutch Labour Market",
+    "date": "2026-08-25T08:27:35Z",
+    "url": "https://arxiv.org/abs/2608.24222v2"
+   }
+  ]
+ }
+}
