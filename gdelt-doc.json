@@ -1,0 +1,382 @@
+{
+ "id": "gdelt-doc",
+ "source": {
+  "name": "GDELT Project — DOC 2.0 API",
+  "url": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/",
+  "license": "Free to use with attribution to the GDELT Project"
+ },
+ "status": "partial",
+ "fetchedAt": "2026-11-21T11:37:46.735Z",
+ "lastSuccessAt": "2026-11-21T11:37:46.735Z",
+ "error": null,
+ "queriesOk": 1,
+ "queriesTotal": 5,
+ "data": {
+  "queries": {
+   "conflictHeadlines": {
+    "key": "conflictHeadlines",
+    "mode": "artlist",
+    "query": "(\"armed conflict\" OR airstrike OR shelling) sourcelang:english",
+    "timespan": "24h",
+    "label": null,
+    "status": "stale",
+    "fetchedAt": "2026-11-21T00:08:21.929Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "title": "Iraq Avoids Armed Clash With Iran - Backed Militia Kataeb Hezbollah After Dramatic Last - Minute Compromise Deal",
+      "domain": "latintimes.com",
+      "language": "English",
+      "date": "2026-11-20T21:45:00Z",
+      "url": "https://www.latintimes.com/iraqi-forces-enter-jurf-al-sakhar-kataeb-hezbollah-deal-601637"
+     },
+     {
+      "title": "Fishermen from Ecuador sue Trump administration over boat strike",
+      "domain": "themorningsun.com",
+      "language": "English",
+      "date": "2026-11-20T05:30:00Z",
+      "url": "https://www.themorningsun.com/2026/11/18/fishermen-boat-strike-lawsuit/"
+     },
+     {
+      "title": "Why are Bukele Salvadoran troops in Haiti and what have they achieved? - Grenada Chronicle – Daily Grenada And Caribbean News",
+      "domain": "grenadachronicle.com",
+      "language": "English",
+      "date": "2026-11-20T01:15:00Z",
+      "url": "https://grenadachronicle.com/why-are-bukeles-salvadoran-troops-in-haiti-and-what-have-they-achieved/"
+     }
+    ]
+   },
+   "aiLayoffHeadlines": {
+    "key": "aiLayoffHeadlines",
+    "mode": "artlist",
+    "query": "(layoffs OR \"job cuts\") (\"artificial intelligence\" OR automation) sourcelang:english",
+    "timespan": "72h",
+    "label": null,
+    "status": "stale",
+    "fetchedAt": "2026-11-21T10:38:26.323Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "title": "No Job Creation, No Pay Hike For Employees Despite Tax Cuts: Modi Big Question To India Inc As Layoffs Hit Companies",
+      "domain": "oneindia.com",
+      "language": "English",
+      "date": "2026-11-20T06:45:00Z",
+      "url": "https://www.oneindia.com/india/no-job-creation-no-pay-hike-for-employees-despite-tax-cuts-modis-big-question-to-india-inc-as-lay-8264841.html"
+     }
+    ]
+   },
+   "coverageArmedConflict": {
+    "key": "coverageArmedConflict",
+    "mode": "timelinevol",
+    "query": "\"armed conflict\"",
+    "timespan": "30d",
+    "label": "armed conflict",
+    "status": "ok",
+    "fetchedAt": "2026-11-21T11:38:51.026Z",
+    "error": null,
+    "items": [
+     {
+      "date": "2026-10-23",
+      "value": 0.1241
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.1018
+     },
+     {
+      "date": "2026-10-25",
+      "value": 0.0658
+     },
+     {
+      "date": "2026-10-26",
+      "value": 0
+     },
+     {
+      "date": "2026-10-27",
+      "value": 0.0902
+     },
+     {
+      "date": "2026-11-03",
+      "value": 0.0353
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.045
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.0802
+     },
+     {
+      "date": "2026-11-06",
+      "value": 0.0753
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.0737
+     },
+     {
+      "date": "2026-11-08",
+      "value": 0.0567
+     },
+     {
+      "date": "2026-11-09",
+      "value": 0.0747
+     },
+     {
+      "date": "2026-11-10",
+      "value": 0.0663
+     },
+     {
+      "date": "2026-11-11",
+      "value": 0.0703
+     },
+     {
+      "date": "2026-11-12",
+      "value": 0.1751
+     },
+     {
+      "date": "2026-11-13",
+      "value": 0.1151
+     },
+     {
+      "date": "2026-11-14",
+      "value": 0.0846
+     },
+     {
+      "date": "2026-11-15",
+      "value": 0.1649
+     },
+     {
+      "date": "2026-11-16",
+      "value": 0
+     },
+     {
+      "date": "2026-11-18",
+      "value": 0.0324
+     },
+     {
+      "date": "2026-11-19",
+      "value": 0.2136
+     },
+     {
+      "date": "2026-11-20",
+      "value": 0.0835
+     },
+     {
+      "date": "2026-11-21",
+      "value": 0.154
+     }
+    ]
+   },
+   "coverageCeasefire": {
+    "key": "coverageCeasefire",
+    "mode": "timelinevol",
+    "query": "ceasefire",
+    "timespan": "30d",
+    "label": "ceasefire",
+    "status": "stale",
+    "fetchedAt": "2026-11-21T07:09:16.879Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-10-23",
+      "value": 0.3391
+     },
+     {
+      "date": "2026-10-24",
+      "value": 0.6016
+     },
+     {
+      "date": "2026-10-25",
+      "value": 0.4136
+     },
+     {
+      "date": "2026-10-26",
+      "value": 0.2677
+     },
+     {
+      "date": "2026-10-27",
+      "value": 0.4509
+     },
+     {
+      "date": "2026-11-03",
+      "value": 0.4231
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.1802
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.2139
+     },
+     {
+      "date": "2026-11-06",
+      "value": 0.5005
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.3215
+     },
+     {
+      "date": "2026-11-08",
+      "value": 0.3685
+     },
+     {
+      "date": "2026-11-09",
+      "value": 0.2613
+     },
+     {
+      "date": "2026-11-10",
+      "value": 0.2763
+     },
+     {
+      "date": "2026-11-11",
+      "value": 0.2485
+     },
+     {
+      "date": "2026-11-12",
+      "value": 0.2994
+     },
+     {
+      "date": "2026-11-13",
+      "value": 0.4028
+     },
+     {
+      "date": "2026-11-14",
+      "value": 0.536
+     },
+     {
+      "date": "2026-11-15",
+      "value": 0.3299
+     },
+     {
+      "date": "2026-11-16",
+      "value": 0.1754
+     },
+     {
+      "date": "2026-11-18",
+      "value": 0.3244
+     },
+     {
+      "date": "2026-11-19",
+      "value": 0.49
+     },
+     {
+      "date": "2026-11-20",
+      "value": 0.2338
+     },
+     {
+      "date": "2026-11-21",
+      "value": 0.616
+     }
+    ]
+   },
+   "coverageSanctions": {
+    "key": "coverageSanctions",
+    "mode": "timelinevol",
+    "query": "sanctions",
+    "timespan": "30d",
+    "label": "sanctions",
+    "status": "stale",
+    "fetchedAt": "2026-11-21T10:09:35.785Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-10-23",
+      "value": 0.987
+     },
+     {
+      "date": "2026-10-24",
+      "value": 1.2999
+     },
+     {
+      "date": "2026-10-25",
+      "value": 1.0341
+     },
+     {
+      "date": "2026-10-26",
+      "value": 1.5615
+     },
+     {
+      "date": "2026-10-27",
+      "value": 1.2173
+     },
+     {
+      "date": "2026-11-03",
+      "value": 0.8815
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.7658
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.8825
+     },
+     {
+      "date": "2026-11-06",
+      "value": 1.0153
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.9812
+     },
+     {
+      "date": "2026-11-08",
+      "value": 0.8859
+     },
+     {
+      "date": "2026-11-09",
+      "value": 1.314
+     },
+     {
+      "date": "2026-11-10",
+      "value": 1.0314
+     },
+     {
+      "date": "2026-11-11",
+      "value": 0.9894
+     },
+     {
+      "date": "2026-11-12",
+      "value": 1.3682
+     },
+     {
+      "date": "2026-11-13",
+      "value": 0.94
+     },
+     {
+      "date": "2026-11-14",
+      "value": 0.7616
+     },
+     {
+      "date": "2026-11-15",
+      "value": 1.1545
+     },
+     {
+      "date": "2026-11-16",
+      "value": 0.8772
+     },
+     {
+      "date": "2026-11-18",
+      "value": 1.0704
+     },
+     {
+      "date": "2026-11-19",
+      "value": 1.1057
+     },
+     {
+      "date": "2026-11-20",
+      "value": 1.0356
+     },
+     {
+      "date": "2026-11-21",
+      "value": 1.232
+     }
+    ]
+   }
+  }
+ }
+}

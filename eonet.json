@@ -1,0 +1,457 @@
+{
+ "id": "eonet",
+ "source": {
+  "name": "NASA EONET v3",
+  "url": "https://eonet.gsfc.nasa.gov/",
+  "license": "Public domain (NASA)"
+ },
+ "status": "ok",
+ "fetchedAt": "2026-11-21T11:37:46.442Z",
+ "lastSuccessAt": "2026-11-21T11:37:46.442Z",
+ "error": null,
+ "data": {
+  "open": 42,
+  "byCategory": {
+   "wildfires": 31,
+   "severeStorms": 2,
+   "seaLakeIce": 9
+  },
+  "categoryNames": {
+   "wildfires": "Wildfires",
+   "severeStorms": "Severe storms",
+   "volcanoes": "Volcanoes",
+   "seaLakeIce": "Sea and lake ice",
+   "floods": "Floods",
+   "drought": "Drought",
+   "dustHaze": "Dust and haze",
+   "earthquakes": "Earthquakes",
+   "landslides": "Landslides",
+   "manmade": "Manmade",
+   "snow": "Snow",
+   "tempExtremes": "Temperature extremes",
+   "waterColor": "Water colour"
+  },
+  "events": [
+   {
+    "id": "EONET_26568",
+    "title": "Wildfire Greene - Caney Creek Lane, Greene, Tennessee",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-18T14:11:00Z",
+    "lon": -82.8,
+    "lat": 36.36,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-TNTNS-261114"
+   },
+   {
+    "id": "EONET_26569",
+    "title": "Prescribed Fire 2027 TXTMR HFR RX, Matagorda, Texas",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-18T09:44:00Z",
+    "lon": -95.81,
+    "lat": 28.76,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-TXHGR-000422"
+   },
+   {
+    "id": "EONET_26571",
+    "title": "Prescribed Fire OAK Compartment 29 RX, Bibb, Alabama",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-18T09:18:00Z",
+    "lon": -87.35,
+    "lat": 32.95,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-ALALF-000534"
+   },
+   {
+    "id": "EONET_26572",
+    "title": "Prescribed Fire rx-Lapham Good Oak 2026, Waukesha, Wisconsin",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-18T08:47:00Z",
+    "lon": -88.4,
+    "lat": 43.04,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-WIWIS-RX3524"
+   },
+   {
+    "id": "EONET_26494",
+    "title": "Tropical Cyclone Akvan",
+    "category": "severeStorms",
+    "categoryName": "Severe storms",
+    "date": "2026-11-19T18:00:00Z",
+    "lon": 84.7,
+    "lat": 17.2,
+    "url": "https://www.metoc.navy.mil/jtwc/products/io0526.tcw"
+   },
+   {
+    "id": "EONET_26573",
+    "title": "Prescribed Fire STEELY MILL RX, El Dorado, California",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-16T11:32:00Z",
+    "lon": -120.5,
+    "lat": 38.62,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-CAENF-035548"
+   },
+   {
+    "id": "EONET_26575",
+    "title": "Prescribed Fire Elk/Clark Piles RX, Coconino, Arizona",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-16T09:06:00Z",
+    "lon": -111.58,
+    "lat": 35.05,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-AZCOF-001646"
+   },
+   {
+    "id": "EONET_26463",
+    "title": "Tropical Cyclone Xavier",
+    "category": "severeStorms",
+    "categoryName": "Severe storms",
+    "date": "2026-11-21T00:00:00Z",
+    "lon": -164.2,
+    "lat": -11.5,
+    "url": "https://www.metoc.navy.mil/jtwc/products/sh0427.tcw"
+   },
+   {
+    "id": "EONET_26465",
+    "title": "Wildfire Range 47, Forrest, Mississippi",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-13T15:18:00Z",
+    "lon": -89.16,
+    "lat": 31.1,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-MSMNF-000723"
+   },
+   {
+    "id": "EONET_26464",
+    "title": "Wildfire 201W, Perry, Mississippi",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-13T13:31:00Z",
+    "lon": -89.08,
+    "lat": 31.12,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-MSMNF-000720"
+   },
+   {
+    "id": "EONET_26469",
+    "title": "Prescribed Fire rx-Northern Scuppernong, Waukesha, Wisconsin",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-13T10:30:00Z",
+    "lon": -88.48,
+    "lat": 42.92,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-WIWIS-RX3504"
+   },
+   {
+    "id": "EONET_26467",
+    "title": "Prescribed Fire 3R RX - KRUMM MP, Stevens, Washington",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-12T11:59:00Z",
+    "lon": -117.53,
+    "lat": 48.4,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-WACOF-002229"
+   },
+   {
+    "id": "EONET_26468",
+    "title": "Prescribed Fire Holly Springs 119-1 &amp; 84-2 RX, Lafayette, Mississippi",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-12T09:20:00Z",
+    "lon": -89.42,
+    "lat": 34.49,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-MSMNF-000714"
+   },
+   {
+    "id": "EONET_26331",
+    "title": "Wildfire Red Hill, Perry, Mississippi",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-12T00:22:00Z",
+    "lon": -89.06,
+    "lat": 31.13,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-MSMNF-000713"
+   },
+   {
+    "id": "EONET_26332",
+    "title": "Prescribed Fire Bienville CPT 29 Sub 2 RX, Scott, Mississippi",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-11T09:57:00Z",
+    "lon": -89.6,
+    "lat": 32.42,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-MSMNF-000709"
+   },
+   {
+    "id": "EONET_26576",
+    "title": "Prescribed Fire TSK Compartment 6 RX, Macon, Alabama",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-11T08:18:00Z",
+    "lon": -85.65,
+    "lat": 32.45,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-ALALF-000525"
+   },
+   {
+    "id": "EONET_26577",
+    "title": "Prescribed Fire Strawberry RX, Wasatch, Utah",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-10T17:06:00Z",
+    "lon": -111.27,
+    "lat": 40.31,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-UTUWF-200865"
+   },
+   {
+    "id": "EONET_26333",
+    "title": "Prescribed Fire Compartment 170 RX, Greene, Georgia",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-09T16:30:00Z",
+    "lon": -83.26,
+    "lat": 33.75,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-GACHF-260217"
+   },
+   {
+    "id": "EONET_2736",
+    "title": "Iceberg B22A",
+    "category": "seaLakeIce",
+    "categoryName": "Sea and lake ice",
+    "date": "2026-11-06T00:00:00Z",
+    "lon": 163.59,
+    "lat": -69.59,
+    "url": "http://www.scp.byu.edu/data/iceberg/ascat/b22a.ascat"
+   },
+   {
+    "id": "EONET_6474",
+    "title": "Iceberg D35",
+    "category": "seaLakeIce",
+    "categoryName": "Sea and lake ice",
+    "date": "2026-11-13T00:00:00Z",
+    "lon": -43.29,
+    "lat": -59.8,
+    "url": "https://usicecenter.gov/pub/Iceberg_Tabular.csv"
+   },
+   {
+    "id": "EONET_26258",
+    "title": "Wildfire FOOT CREEK, Johnson, Wyoming",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-05T16:11:00Z",
+    "lon": -106.93,
+    "lat": 44.32,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-WYBHF-000401"
+   },
+   {
+    "id": "EONET_26260",
+    "title": "Prescribed Fire Cold Springs RX, Wasatch, Utah",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-03T10:48:00Z",
+    "lon": -110.94,
+    "lat": 40.51,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-UTUWF-200860"
+   },
+   {
+    "id": "EONET_26057",
+    "title": "Wildfire Wild River, Coos, New Hampshire",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-11-02T07:58:00Z",
+    "lon": -71.03,
+    "lat": 44.33,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-NHWMF-000182"
+   },
+   {
+    "id": "EONET_25984",
+    "title": "Prescribed Fire Dry Lake Hills Piles RX, Coconino, Arizona",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-30T10:13:00Z",
+    "lon": -111.62,
+    "lat": 35.27,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-AZCOF-001612"
+   },
+   {
+    "id": "EONET_6051",
+    "title": "Iceberg C39",
+    "category": "seaLakeIce",
+    "categoryName": "Sea and lake ice",
+    "date": "2026-10-30T00:00:00Z",
+    "lon": 55.55,
+    "lat": -65.58,
+    "url": "https://usicecenter.gov/pub/Iceberg_Tabular.csv"
+   },
+   {
+    "id": "EONET_6320",
+    "title": "Iceberg A81",
+    "category": "seaLakeIce",
+    "categoryName": "Sea and lake ice",
+    "date": "2026-11-13T00:00:00Z",
+    "lon": -34.36,
+    "lat": -55.48,
+    "url": "https://usicecenter.gov/pub/Iceberg_Tabular.csv"
+   },
+   {
+    "id": "EONET_6424",
+    "title": "Iceberg D33B",
+    "category": "seaLakeIce",
+    "categoryName": "Sea and lake ice",
+    "date": "2026-11-13T00:00:00Z",
+    "lon": -39.34,
+    "lat": -55.19,
+    "url": "https://usicecenter.gov/pub/Iceberg_Tabular.csv"
+   },
+   {
+    "id": "EONET_6523",
+    "title": "Iceberg A83",
+    "category": "seaLakeIce",
+    "categoryName": "Sea and lake ice",
+    "date": "2026-11-13T00:00:00Z",
+    "lon": -48.45,
+    "lat": -58.98,
+    "url": "https://earthobservatory.nasa.gov/images/152848/antarctic-ice-shelf-spawns-iceberg-a-83"
+   },
+   {
+    "id": "EONET_12618",
+    "title": "Iceberg A84",
+    "category": "seaLakeIce",
+    "categoryName": "Sea and lake ice",
+    "date": "2026-11-13T00:00:00Z",
+    "lon": -90.01,
+    "lat": -68.39,
+    "url": "https://usicecenter.gov/pub/Iceberg_Tabular.csv"
+   },
+   {
+    "id": "EONET_12716",
+    "title": "Iceberg A85",
+    "category": "seaLakeIce",
+    "categoryName": "Sea and lake ice",
+    "date": "2026-11-13T00:00:00Z",
+    "lon": -45.95,
+    "lat": -55.94,
+    "url": "https://usicecenter.gov/pub/Iceberg_Tabular.csv"
+   },
+   {
+    "id": "EONET_25990",
+    "title": "Iceberg B22K",
+    "category": "seaLakeIce",
+    "categoryName": "Sea and lake ice",
+    "date": "2026-10-30T00:00:00Z",
+    "lon": 163.35,
+    "lat": -69.76,
+    "url": "https://usicecenter.gov/pub/Iceberg_Tabular.csv"
+   },
+   {
+    "id": "EONET_25986",
+    "title": "Prescribed Fire McCarty Piles RX, Coconino, Arizona",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-29T12:16:00Z",
+    "lon": -111.26,
+    "lat": 34.51,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-AZCOF-001609"
+   },
+   {
+    "id": "EONET_25985",
+    "title": "Prescribed Fire Freidland-Chimney Piles RX, Coconino, Arizona",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-29T11:37:00Z",
+    "lon": -111.67,
+    "lat": 35.28,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-AZCOF-001608"
+   },
+   {
+    "id": "EONET_26056",
+    "title": "Prescribed Fire TON RX - BAILEY LOST HP, Okanogan, Washington",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-29T11:08:00Z",
+    "lon": -119.06,
+    "lat": 48.53,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-WACOF-002153"
+   },
+   {
+    "id": "EONET_25827",
+    "title": "Wildfire South Tank Trail, Perry, Mississippi",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-28T18:02:00Z",
+    "lon": -89.1,
+    "lat": 31.09,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-MSMNF-000680"
+   },
+   {
+    "id": "EONET_26259",
+    "title": "Prescribed Fire 3R RX - DRUMMOND MP, Stevens, Washington",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-28T11:42:00Z",
+    "lon": -117.53,
+    "lat": 48.4,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-WACOF-002228"
+   },
+   {
+    "id": "EONET_25829",
+    "title": "Prescribed Fire Walker Hill 3 Piles RX, Coconino, Arizona",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-28T11:22:00Z",
+    "lon": -111.84,
+    "lat": 35.26,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-AZCOF-001563"
+   },
+   {
+    "id": "EONET_25830",
+    "title": "Prescribed Fire Brie Slash Piles RX, Coconino, Arizona",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-28T11:21:00Z",
+    "lon": -111.32,
+    "lat": 34.55,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-AZCOF-001597"
+   },
+   {
+    "id": "EONET_25828",
+    "title": "Prescribed Fire Newman 3 Piles RX, Coconino, Arizona",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-28T10:09:00Z",
+    "lon": -111.64,
+    "lat": 35.02,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-AZCOF-001600"
+   },
+   {
+    "id": "EONET_26334",
+    "title": "Prescribed Fire REP RX - WALKER HP, Ferry, Washington",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-26T11:39:00Z",
+    "lon": -118.56,
+    "lat": 48.68,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-WACOF-001045"
+   },
+   {
+    "id": "EONET_25769",
+    "title": "Wildfire Range  47B, Forrest, Mississippi",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-24T17:10:00Z",
+    "lon": -89.16,
+    "lat": 31.1,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-MSMNF-000672"
+   },
+   {
+    "id": "EONET_25590",
+    "title": "Wildfire BEE HAVEN (2) (24-06), Hamilton, Florida",
+    "category": "wildfires",
+    "categoryName": "Wildfires",
+    "date": "2026-10-22T21:45:00Z",
+    "lon": -82.86,
+    "lat": 30.5,
+    "url": "https://irwin.doi.gov/observer/incidents/2026-FLFLS-260601105"
+   }
+  ]
+ }
+}

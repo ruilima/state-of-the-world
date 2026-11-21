@@ -1,0 +1,106 @@
+{
+ "id": "digest",
+ "source": {
+  "name": "AI-generated summary (claude-sonnet-5-5)",
+  "url": "https://www.anthropic.com/",
+  "license": null
+ },
+ "status": "ok",
+ "fetchedAt": "2026-11-21T05:24:37.887Z",
+ "lastSuccessAt": "2026-11-21T05:24:37.887Z",
+ "error": null,
+ "model": "claude-sonnet-5-5",
+ "usage": {
+  "inputTokens": 1757,
+  "outputTokens": 508
+ },
+ "attempts": 1,
+ "firstAttemptDropped": [],
+ "droppedParagraphs": [],
+ "droppedIds": [],
+ "data": {
+  "label": "AI-generated",
+  "paragraphs": [
+   {
+    "text": "In today's headlines on conflict, latintimes.com reports that Iraq avoided an armed clash with the Iran-backed militia Kataeb Hezbollah after a last-minute compromise deal. themorningsun.com reports that fishermen from Ecuador are suing the Trump administration over a boat strike. grenadachronicle.com carries a piece asking why Salvadoran troops are in Haiti and what they have achieved.",
+    "sources": [
+     {
+      "title": "Iraq Avoids Armed Clash With Iran - Backed Militia Kataeb Hezbollah After Dramatic Last - Minute Compromise Deal",
+      "source": "latintimes.com",
+      "url": "https://www.latintimes.com/iraqi-forces-enter-jurf-al-sakhar-kataeb-hezbollah-deal-601637"
+     },
+     {
+      "title": "Fishermen from Ecuador sue Trump administration over boat strike",
+      "source": "themorningsun.com",
+      "url": "https://www.themorningsun.com/2026/11/18/fishermen-boat-strike-lawsuit/"
+     },
+     {
+      "title": "Why are Bukele Salvadoran troops in Haiti and what have they achieved? - Grenada Chronicle – Daily Grenada And Caribbean News",
+      "source": "grenadachronicle.com",
+      "url": "https://grenadachronicle.com/why-are-bukeles-salvadoran-troops-in-haiti-and-what-have-they-achieved/"
+     }
+    ]
+   },
+   {
+    "text": "On work and AI, phoronix.com (via Hacker News) reports SUSE is laying off 10% of its workforce due to AI and automation. jsdev.space and gadgetreview.com, both via Hacker News, report that AI layoffs are backfiring as companies rehire workers, and a reddit.com post describes a new class of boomerang employees. oneindia.com reports Modi asking India Inc about job creation and pay as layoffs hit companies.",
+    "sources": [
+     {
+      "title": "No Job Creation, No Pay Hike For Employees Despite Tax Cuts: Modi Big Question To India Inc As Layoffs Hit Companies",
+      "source": "oneindia.com",
+      "url": "https://www.oneindia.com/india/no-job-creation-no-pay-hike-for-employees-despite-tax-cuts-modis-big-question-to-india-inc-as-lay-8264841.html"
+     },
+     {
+      "title": "AI Layoffs Backfire as Companies Start Rehiring Workers",
+      "source": "jsdev.space (via Hacker News)",
+      "url": "https://jsdev.space/companies-rehiring-workers/"
+     },
+     {
+      "title": "SUSE Laying Off 10% of Its Workforce Due to AI and Automation",
+      "source": "phoronix.com (via Hacker News)",
+      "url": "https://www.phoronix.com/news/SUSE-Layoffs-10p-AI"
+     },
+     {
+      "title": "The AI Layoff Experiment Is Backfiring as Companies Rehire Humans",
+      "source": "gadgetreview.com (via Hacker News)",
+      "url": "https://www.gadgetreview.com/the-ai-layoff-experiment-is-backfiring-and-companies-are-quietly-rehiring-humans"
+     },
+     {
+      "title": "AI-driven layoffs are creating a new class of boomerang employees",
+      "source": "reddit.com (via Hacker News)",
+      "url": "https://www.reddit.com/r/technology/s/bU94PCfFwr"
+     }
+    ]
+   },
+   {
+    "text": "The USGS recorded an M6.7 earthquake 9 km NE of Carhuamayo, Peru, and an M6.6 earthquake 149 km WSW of Tual, Indonesia. It also listed an M5.3 earthquake 17 km ESE of Comandău, Romania, an M5.0 earthquake 10 km NW of Pinnacles, CA, and an M3.9 earthquake 1 km NW of Commerce, CA.",
+    "sources": [
+     {
+      "title": "M6.7 earthquake — 9 km NE of Carhuamayo, Peru",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucfm"
+     },
+     {
+      "title": "M6.6 earthquake — 149 km WSW of Tual, Indonesia",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tymu"
+     },
+     {
+      "title": "M5.3 earthquake — 17 km ESE of Comandău, Romania",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tyw8"
+     },
+     {
+      "title": "M5.0 earthquake — 10 km NW of Pinnacles, CA",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75468702"
+     },
+     {
+      "title": "M3.9 earthquake — 1 km NW of Commerce, CA",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41364111"
+     }
+    ]
+   }
+  ]
+ }
+}
