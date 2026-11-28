@@ -1,0 +1,101 @@
+{
+ "id": "digest",
+ "source": {
+  "name": "AI-generated summary (claude-sonnet-5-5)",
+  "url": "https://www.anthropic.com/",
+  "license": null
+ },
+ "status": "ok",
+ "fetchedAt": "2026-11-28T05:24:24.268Z",
+ "lastSuccessAt": "2026-11-28T05:24:24.268Z",
+ "error": null,
+ "model": "claude-sonnet-5-5",
+ "usage": {
+  "inputTokens": 1705,
+  "outputTokens": 505
+ },
+ "attempts": 1,
+ "firstAttemptDropped": [],
+ "droppedParagraphs": [],
+ "droppedIds": [],
+ "data": {
+  "label": "AI-generated",
+  "paragraphs": [
+   {
+    "text": "In today's headlines on work and AI, business-standard.com reports that HSBC reorganizes support roles in India, impacting hundreds of jobs. economictimes.indiatimes.com carries a headline attributing to JP Morgan the claim that 24 million jobs are at risk globally over the next five years due to AI. phoronix.com (via Hacker News) reports that SUSE is laying off 10% of its workforce due to AI and automation.",
+    "sources": [
+     {
+      "title": "HSBC reorganizes support roles in India, impacting hundreds of jobs",
+      "source": "business-standard.com",
+      "url": "https://www.business-standard.com/industry/news/hsbc-reorganizes-support-roles-in-india-impacts-hundreds-of-jobs-126112700132_1.html"
+     },
+     {
+      "title": "JP Morgan: 24 million jobs at risk globally over the next five years due to AI",
+      "source": "economictimes.indiatimes.com",
+      "url": "https://economictimes.indiatimes.com/news/international/business/jp-morgan-24-million-jobs-at-risk-globally-over-the-next-five-years-due-to-ai/articleshow/136207356.cms"
+     },
+     {
+      "title": "SUSE Laying Off 10% of Its Workforce Due to AI and Automation",
+      "source": "phoronix.com (via Hacker News)",
+      "url": "https://www.phoronix.com/news/SUSE-Layoffs-10p-AI"
+     }
+    ]
+   },
+   {
+    "text": "Other headlines offer commentary. jsdev.space (via Hacker News) and gadgetreview.com (via Hacker News) both say AI layoffs are backfiring as companies rehire workers. zerohedge.com asks who pays for a $2 trillion deficit if AI takes jobs. braidwoodtimes.com.au reports that ASIS is recruiting in Canberra with jobs paying up to $210,000.",
+    "sources": [
+     {
+      "title": "AI Layoffs Backfire as Companies Start Rehiring Workers",
+      "source": "jsdev.space (via Hacker News)",
+      "url": "https://jsdev.space/companies-rehiring-workers/"
+     },
+     {
+      "title": "The AI Layoff Experiment Is Backfiring as Companies Rehire Humans",
+      "source": "gadgetreview.com (via Hacker News)",
+      "url": "https://www.gadgetreview.com/the-ai-layoff-experiment-is-backfiring-and-companies-are-quietly-rehiring-humans"
+     },
+     {
+      "title": "Robo-cession: If AI Takes The Jobs, Who Pays For The $2 Trillion Deficit?",
+      "source": "zerohedge.com",
+      "url": "http://www.zerohedge.com/political/robo-cession-if-ai-takes-jobs-who-pays-2-trillion-deficit"
+     },
+     {
+      "title": "ASIS recruits in Canberra with jobs paying up to $210,000",
+      "source": "braidwoodtimes.com.au",
+      "url": "https://www.braidwoodtimes.com.au/story/9398592/asis-recruits-in-canberra-with-jobs-paying-up-to-210000/"
+     }
+    ]
+   },
+   {
+    "text": "On earthquakes, the USGS recorded an M6.8 earthquake 105 km NE of Lospalos, Timor Leste, an M6.5 earthquake in the Vanuatu region, and an M6.4 earthquake in the Mauritius - Reunion region. The USGS also listed an M5.9 earthquake 238 km SW of Yanglong, China, and an M4.2 earthquake 10 km WSW of Point MacKenzie, Alaska.",
+    "sources": [
+     {
+      "title": "M6.8 earthquake — 105 km NE of Lospalos, Timor Leste",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucij"
+     },
+     {
+      "title": "M6.5 earthquake — Vanuatu region",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucvm"
+     },
+     {
+      "title": "M6.4 earthquake — Mauritius - Reunion region",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ud6h"
+     },
+     {
+      "title": "M5.9 earthquake — 238 km SW of Yanglong, China",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucly"
+     },
+     {
+      "title": "M4.2 earthquake — 10 km WSW of Point MacKenzie, Alaska",
+      "source": "USGS",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026xhgksb"
+     }
+    ]
+   }
+  ]
+ }
+}

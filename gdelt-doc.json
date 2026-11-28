@@ -1,0 +1,455 @@
+{
+ "id": "gdelt-doc",
+ "source": {
+  "name": "GDELT Project — DOC 2.0 API",
+  "url": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/",
+  "license": "Free to use with attribution to the GDELT Project"
+ },
+ "status": "partial",
+ "fetchedAt": "2026-11-28T13:37:47.294Z",
+ "lastSuccessAt": "2026-11-28T13:37:47.294Z",
+ "error": null,
+ "queriesOk": 1,
+ "queriesTotal": 5,
+ "data": {
+  "queries": {
+   "conflictHeadlines": {
+    "key": "conflictHeadlines",
+    "mode": "artlist",
+    "query": "(\"armed conflict\" OR airstrike OR shelling) sourcelang:english",
+    "timespan": "24h",
+    "label": null,
+    "status": "stale",
+    "fetchedAt": "2026-11-28T13:08:06.652Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "title": "Son of Hamas chief and his family survive Israeli airstrike, group says",
+      "domain": "lbc.co.uk",
+      "language": "English",
+      "date": "2026-11-28T12:45:00Z",
+      "url": "https://www.lbc.co.uk/article/son-of-hamas-chief-family-survive-israeli-airstrike-5Hjdng5_2/"
+     },
+     {
+      "title": "Doctors Without Borders condemns Israeli strike that killed 2 Gaza staff, and other Mideast news",
+      "domain": "rockymounttelegram.com",
+      "language": "English",
+      "date": "2026-11-28T12:45:00Z",
+      "url": "http://www.rockymounttelegram.com/news/national/doctors-without-borders-condemns-israeli-strike-that-killed-2-gaza-staff-and-other-mideast-news/article_54154068-f386-537a-8bfa-71e7432830d8.html"
+     },
+     {
+      "title": "NYT Iran dam-missile narrative crumbles under statistical scrutiny and engineering evidence",
+      "domain": "presstv.co.uk",
+      "language": "English",
+      "date": "2026-11-28T12:45:00Z",
+      "url": "https://www.presstv.co.uk/Detail/2026/11/21/781246/the-dam-riddle-that-isnt-refuting-the-new-york-times-case-against-irans-water-infrastructure"
+     },
+     {
+      "title": "Doctors Without Borders says two staff members killed in Israeli airstrike in Gaza",
+      "domain": "sana.sy",
+      "language": "English",
+      "date": "2026-11-28T10:45:00Z",
+      "url": "https://sana.sy/en/international/2362452/"
+     },
+     {
+      "title": "Houthis report airstrikes in Yemen, Israeli strike kills 2 near Gaza clinic, and other Mideast news",
+      "domain": "hngnews.com",
+      "language": "English",
+      "date": "2026-11-28T10:45:00Z",
+      "url": "http://www.hngnews.com/nation_world/houthis-report-airstrikes-in-yemen-israeli-strike-kills-2-near-gaza-clinic-and-other-mideast/article_7d2bad22-155d-5697-8548-b97deb8b68a5.html"
+     },
+     {
+      "title": "Houthi attacks kill three, including 10 - year-old boy in Yemen Taiz",
+      "domain": "arabherald.com",
+      "language": "English",
+      "date": "2026-11-28T08:15:00Z",
+      "url": "http://www.arabherald.com/news/279469951/houthi-attacks-kill-three-including-10-year-old-boy-in-yemen-taiz"
+     },
+     {
+      "title": "Israel intensifies targeted killings of Hamas leaders as US pushes Gaza ceasefire - Philippine Canadian Inquirer Nationwide Filipino Newspaper",
+      "domain": "canadianinquirer.net",
+      "language": "English",
+      "date": "2026-11-28T08:15:00Z",
+      "url": "https://canadianinquirer.net/2026/11/28/israel-intensifies-targeted-killings-of-hamas-leaders-as-us-pushes-gaza-ceasefire/"
+     }
+    ]
+   },
+   "aiLayoffHeadlines": {
+    "key": "aiLayoffHeadlines",
+    "mode": "artlist",
+    "query": "(layoffs OR \"job cuts\") (\"artificial intelligence\" OR automation) sourcelang:english",
+    "timespan": "72h",
+    "label": null,
+    "status": "stale",
+    "fetchedAt": "2026-11-28T11:38:25.175Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "title": "HSBC reorganizes support roles in India, impacting hundreds of jobs",
+      "domain": "business-standard.com",
+      "language": "English",
+      "date": "2026-11-27T05:30:00Z",
+      "url": "https://www.business-standard.com/industry/news/hsbc-reorganizes-support-roles-in-india-impacts-hundreds-of-jobs-126112700132_1.html"
+     },
+     {
+      "title": "JP Morgan: 24 million jobs at risk globally over the next five years due to AI",
+      "domain": "economictimes.indiatimes.com",
+      "language": "English",
+      "date": "2026-11-27T03:30:00Z",
+      "url": "https://economictimes.indiatimes.com/news/international/business/jp-morgan-24-million-jobs-at-risk-globally-over-the-next-five-years-due-to-ai/articleshow/136207356.cms"
+     },
+     {
+      "title": "ASIS recruits in Canberra with jobs paying up to $210,000",
+      "domain": "braidwoodtimes.com.au",
+      "language": "English",
+      "date": "2026-11-26T22:45:00Z",
+      "url": "https://www.braidwoodtimes.com.au/story/9398592/asis-recruits-in-canberra-with-jobs-paying-up-to-210000/"
+     },
+     {
+      "title": "Robo-cession: If AI Takes The Jobs, Who Pays For The $2 Trillion Deficit?",
+      "domain": "zerohedge.com",
+      "language": "English",
+      "date": "2026-11-26T02:30:00Z",
+      "url": "http://www.zerohedge.com/political/robo-cession-if-ai-takes-jobs-who-pays-2-trillion-deficit"
+     }
+    ]
+   },
+   "coverageArmedConflict": {
+    "key": "coverageArmedConflict",
+    "mode": "timelinevol",
+    "query": "\"armed conflict\"",
+    "timespan": "30d",
+    "label": "armed conflict",
+    "status": "ok",
+    "fetchedAt": "2026-11-28T13:38:45.583Z",
+    "error": null,
+    "items": [
+     {
+      "date": "2026-11-03",
+      "value": 0.0353
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.045
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.0802
+     },
+     {
+      "date": "2026-11-06",
+      "value": 0.0753
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.0737
+     },
+     {
+      "date": "2026-11-08",
+      "value": 0.0567
+     },
+     {
+      "date": "2026-11-09",
+      "value": 0.0747
+     },
+     {
+      "date": "2026-11-10",
+      "value": 0.0663
+     },
+     {
+      "date": "2026-11-11",
+      "value": 0.0703
+     },
+     {
+      "date": "2026-11-12",
+      "value": 0.1751
+     },
+     {
+      "date": "2026-11-13",
+      "value": 0.1151
+     },
+     {
+      "date": "2026-11-14",
+      "value": 0.0846
+     },
+     {
+      "date": "2026-11-15",
+      "value": 0.1649
+     },
+     {
+      "date": "2026-11-16",
+      "value": 0
+     },
+     {
+      "date": "2026-11-18",
+      "value": 0.0324
+     },
+     {
+      "date": "2026-11-19",
+      "value": 0.2136
+     },
+     {
+      "date": "2026-11-20",
+      "value": 0.0835
+     },
+     {
+      "date": "2026-11-21",
+      "value": 0.0853
+     },
+     {
+      "date": "2026-11-22",
+      "value": 0.2467
+     },
+     {
+      "date": "2026-11-23",
+      "value": 0.1499
+     },
+     {
+      "date": "2026-11-24",
+      "value": 0.1108
+     },
+     {
+      "date": "2026-11-25",
+      "value": 0.1367
+     },
+     {
+      "date": "2026-11-26",
+      "value": 0.0852
+     },
+     {
+      "date": "2026-11-27",
+      "value": 0.1167
+     },
+     {
+      "date": "2026-11-28",
+      "value": 0.149
+     }
+    ]
+   },
+   "coverageCeasefire": {
+    "key": "coverageCeasefire",
+    "mode": "timelinevol",
+    "query": "ceasefire",
+    "timespan": "30d",
+    "label": "ceasefire",
+    "status": "stale",
+    "fetchedAt": "2026-11-28T07:39:14.892Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-11-03",
+      "value": 0.4231
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.1802
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.2139
+     },
+     {
+      "date": "2026-11-06",
+      "value": 0.5005
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.3215
+     },
+     {
+      "date": "2026-11-08",
+      "value": 0.3685
+     },
+     {
+      "date": "2026-11-09",
+      "value": 0.2613
+     },
+     {
+      "date": "2026-11-10",
+      "value": 0.2763
+     },
+     {
+      "date": "2026-11-11",
+      "value": 0.2485
+     },
+     {
+      "date": "2026-11-12",
+      "value": 0.2994
+     },
+     {
+      "date": "2026-11-13",
+      "value": 0.4028
+     },
+     {
+      "date": "2026-11-14",
+      "value": 0.536
+     },
+     {
+      "date": "2026-11-15",
+      "value": 0.3299
+     },
+     {
+      "date": "2026-11-16",
+      "value": 0.1754
+     },
+     {
+      "date": "2026-11-18",
+      "value": 0.3244
+     },
+     {
+      "date": "2026-11-19",
+      "value": 0.49
+     },
+     {
+      "date": "2026-11-20",
+      "value": 0.2338
+     },
+     {
+      "date": "2026-11-21",
+      "value": 0.3741
+     },
+     {
+      "date": "2026-11-22",
+      "value": 0.3084
+     },
+     {
+      "date": "2026-11-23",
+      "value": 0.1999
+     },
+     {
+      "date": "2026-11-24",
+      "value": 0.171
+     },
+     {
+      "date": "2026-11-25",
+      "value": 0.2014
+     },
+     {
+      "date": "2026-11-26",
+      "value": 0.2694
+     },
+     {
+      "date": "2026-11-27",
+      "value": 0.2262
+     },
+     {
+      "date": "2026-11-28",
+      "value": 0.3149
+     }
+    ]
+   },
+   "coverageSanctions": {
+    "key": "coverageSanctions",
+    "mode": "timelinevol",
+    "query": "sanctions",
+    "timespan": "30d",
+    "label": "sanctions",
+    "status": "stale",
+    "fetchedAt": "2026-11-28T09:39:34.010Z",
+    "error": "HTTP 429 from api.gdeltproject.org: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+    "items": [
+     {
+      "date": "2026-11-03",
+      "value": 0.8815
+     },
+     {
+      "date": "2026-11-04",
+      "value": 0.7658
+     },
+     {
+      "date": "2026-11-05",
+      "value": 0.8825
+     },
+     {
+      "date": "2026-11-06",
+      "value": 1.0153
+     },
+     {
+      "date": "2026-11-07",
+      "value": 0.9812
+     },
+     {
+      "date": "2026-11-08",
+      "value": 0.8859
+     },
+     {
+      "date": "2026-11-09",
+      "value": 1.314
+     },
+     {
+      "date": "2026-11-10",
+      "value": 1.0314
+     },
+     {
+      "date": "2026-11-11",
+      "value": 0.9894
+     },
+     {
+      "date": "2026-11-12",
+      "value": 1.3682
+     },
+     {
+      "date": "2026-11-13",
+      "value": 0.94
+     },
+     {
+      "date": "2026-11-14",
+      "value": 0.7616
+     },
+     {
+      "date": "2026-11-15",
+      "value": 1.1545
+     },
+     {
+      "date": "2026-11-16",
+      "value": 0.8772
+     },
+     {
+      "date": "2026-11-18",
+      "value": 1.0704
+     },
+     {
+      "date": "2026-11-19",
+      "value": 1.1057
+     },
+     {
+      "date": "2026-11-20",
+      "value": 1.0356
+     },
+     {
+      "date": "2026-11-21",
+      "value": 0.9253
+     },
+     {
+      "date": "2026-11-22",
+      "value": 0.8859
+     },
+     {
+      "date": "2026-11-23",
+      "value": 0.9995
+     },
+     {
+      "date": "2026-11-24",
+      "value": 1.1798
+     },
+     {
+      "date": "2026-11-25",
+      "value": 1.0865
+     },
+     {
+      "date": "2026-11-26",
+      "value": 0.9692
+     },
+     {
+      "date": "2026-11-27",
+      "value": 0.9959
+     },
+     {
+      "date": "2026-11-28",
+      "value": 1.052
+     }
+    ]
+   }
+  }
+ }
+}
